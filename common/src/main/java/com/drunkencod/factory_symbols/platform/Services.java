@@ -2,6 +2,7 @@ package com.drunkencod.factory_symbols.platform;
 
 import com.drunkencod.factory_symbols.Constants;
 import com.drunkencod.factory_symbols.platform.services.IPlatformHelper;
+import com.drunkencod.factory_symbols.registry.ICreativeTabHelper;
 import com.drunkencod.factory_symbols.registry.IRegistryHelper;
 import com.drunkencod.factory_symbols.config.IConfigHelper;
 
@@ -12,6 +13,7 @@ public class Services {
     public static final IPlatformHelper PLATFORM = load(IPlatformHelper.class);
     public static final IRegistryHelper REGISTRY = load(IRegistryHelper.class);
     public static final IConfigHelper CONFIG = load(IConfigHelper.class);
+    public static final ICreativeTabHelper CREATIVE_TAB = load(ICreativeTabHelper.class);
 
     public static <T> T load(Class<T> clazz) {
 

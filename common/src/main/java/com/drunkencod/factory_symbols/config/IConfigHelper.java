@@ -1,5 +1,9 @@
 package com.drunkencod.factory_symbols.config;
 
+import com.drunkencod.factory_symbols.symbols.SymbolCategory;
+import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
+import com.drunkencod.factory_symbols.symbols.SymbolType;
+
 /**
  * Cross-loader config service interface.
  * <p>
@@ -13,24 +17,23 @@ package com.drunkencod.factory_symbols.config;
  */
 public interface IConfigHelper {
 
-    /**
-     * Example startup (common) config value — read once during mod initialisation.
-     *
-     * @return {@code true} if the example startup option is enabled
-     */
     boolean getExampleStartupBool();
 
-    /**
-     * Example server-side config value.
-     *
-     * @return {@code true} if the example server option is enabled
-     */
     boolean getExampleServerBool();
 
-    /**
-     * Example client-side config value.
-     *
-     * @return {@code true} if the example client option is enabled
-     */
     boolean getExampleClientBool();
+
+    // #region Symbol enable/disable (common config, checked at recipe load time)
+
+    /** Whether to load recipes for items of the given material. */
+    boolean isMaterialEnabled(SymbolMaterial material);
+
+    /** Whether to load recipes for symbols in the given category. */
+    boolean isCategoryEnabled(SymbolCategory category);
+
+    /**
+     * Whether to load the stonecutter recipe for this specific symbol (overrides
+     * category/material).
+     */
+    boolean isSymbolEnabled(SymbolType symbol);
 }
