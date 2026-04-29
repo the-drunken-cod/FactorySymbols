@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 /**
  * Helper for bulk item model generation.
  * <p>
@@ -35,7 +37,7 @@ public class ItemModelHelper {
      *
      * @param id Registry path of the item (e.g. {@code "my_item"})
      */
-    public static void addFlatItem(String id) {
+    public static void addFlatItem(@Nonnull String id) {
         FLAT_ITEM_IDS.add(id);
         ModItems.addForBulkModel(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id));
     }
