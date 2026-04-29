@@ -14,8 +14,6 @@ dependencies {
 }
 
 loom {
-    enableDataGeneration()
-
     def aw = project(':common').file("src/main/resources/${mod_id}.accesswidener")
     if (aw.exists()) {
         accessWidenerPath.set(aw)
@@ -41,6 +39,14 @@ loom {
             if (project.findProperty('fabric_debug') == 'true') {
                 vmArgs '-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5006'
             }
+        }
+        datagen {
+            inherit client
+            name 'Data Generation'
+            vmArg "-Dfabric-api.datagen"
+            vmArg "-Dfabric-api.datagen.output-dir=${project.file('src/generated/resources').absolutePath}"
+            vmArg "-Dfabric-api.datagen.modid=${mod_id}"
+            runDir 'build/datagen'
         }
     }
 }
