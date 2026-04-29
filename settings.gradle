@@ -25,17 +25,6 @@ pluginManagement {
                 includeGroupAndSubgroups("org.spongepowered")
             }
         }
-        exclusiveContent {
-            forRepository {
-                maven {
-                    name = 'Forge'
-                    url = uri('https://maven.minecraftforge.net')
-                }
-            }
-            filter {
-                includeGroupAndSubgroups('net.minecraftforge')
-            }
-        }
     }
 }
 
@@ -44,8 +33,21 @@ plugins {
 }
 
 // This should match the folder name of the project, or else IDEA may complain (see https://youtrack.jetbrains.com/issue/IDEA-317606)
-rootProject.name = 'MultiLoader-Template'
+rootProject.name = 'FactorySymbols'
 include('common')
 include('fabric')
 include('neoforge')
-include('forge')
+
+// Load version-specific properties from versions/<mc_version>.properties.
+// This allows switching the target Minecraft/loader versions without editing the main gradle.properties.
+def mcVersion = providers.gradleProperty('mc_version').getOrElse('1.21.1')
+def versionPropsFile = rootDir.toPath().resolve("versions/${mcVersion}.properties").toFile()
+if (versionPropsFile.exists()) {
+    def versionProps = new Properties()
+    versionPropsFile.withInputStream { versionProps.load(it) }
+    gradle.allprojects { proj ->
+        versionProps.each { k, v -> proj.extensions.extraProperties.set(k.toString(), v.toString()) }
+    }
+} else {
+    throw new GradleException("Version properties file not found: versions/${mcVersion}.properties")
+}

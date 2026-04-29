@@ -22,3 +22,9 @@ build
 eclipse
 run
 runs
+
+# local-only version overrides
+versions/*.local.properties
+
+# environment secrets
+.env
