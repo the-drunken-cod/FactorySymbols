@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "redstone",
+      "symbol": "letter_x"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "factory_symbols:template_redstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:symbol_redstone_letter_x"
+  }
+}

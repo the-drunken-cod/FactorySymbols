@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "emerald",
+      "symbol": "letter_p"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "factory_symbols:template_emerald"
+  },
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:symbol_emerald_letter_p"
+  }
+}

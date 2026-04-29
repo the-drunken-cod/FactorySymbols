@@ -28,26 +28,26 @@ public class FabricItemModelProvider implements DataProvider {
         List<CompletableFuture<?>> futures = new ArrayList<>();
 
         for (SymbolMaterial mat : SymbolMaterial.values()) {
-            String prefix = mat.getPrefix();
-            String fgSuffix = mat.isLightForeground() ? "_white" : "_black";
+            String material = mat.getPrefix();
+            String colorSuffix = mat.isLightForeground() ? "_white" : "_black";
             String ns = Constants.MOD_ID;
 
-            // #region Base background model
-            futures.add(save(cache, "base_" + prefix,
-                    model("minecraft:item/generated", "layer0", ns + ":item/bg_" + prefix)));
+            // #region Template item model — background plate
+            futures.add(save(cache, "template_" + material,
+                    model("minecraft:item/generated", "layer0", ns + ":item/template/" + material)));
 
-            // #region Template item model
-            futures.add(save(cache, "template_" + prefix,
-                    model("minecraft:item/generated", "layer0", ns + ":item/template_" + prefix)));
-
-            // #region Symbol item models — inherits base, adds foreground layer
+            // #region Symbol item models — inherit template, add foreground layer
             for (SymbolType sym : SymbolType.values()) {
+                String catFolder = sym.getCategory().getId().replaceAll("s$", "");
+                String symName = sym.getId().startsWith(catFolder + "_")
+                        ? sym.getId().substring(catFolder.length() + 1)
+                        : sym.getId();
                 JsonObject json = new JsonObject();
-                json.addProperty("parent", ns + ":item/base_" + prefix);
+                json.addProperty("parent", ns + ":item/template_" + material);
                 JsonObject textures = new JsonObject();
-                textures.addProperty("layer1", ns + ":item/symbols/" + sym.getId() + fgSuffix);
+                textures.addProperty("layer1", ns + ":item/symbol/" + catFolder + "/" + symName + colorSuffix);
                 json.add("textures", textures);
-                futures.add(save(cache, "symbol_" + prefix + "_" + sym.getId(), json));
+                futures.add(save(cache, "symbol_" + material + "_" + sym.getId(), json));
             }
         }
 

@@ -45,7 +45,7 @@ public class FactorySymbolsMod {
                 var output = generator.getPackOutput();
 
                 generator.addProvider(event.includeClient(),
-                                new NeoForgeItemModelProvider(output, event.getExistingFileHelper()));
+                                new NeoForgeItemModelProvider(output));
 
                 generator.addProvider(event.includeServer(),
                                 new NeoForgeRecipeProvider(output, event.getLookupProvider()));

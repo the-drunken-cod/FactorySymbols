@@ -2,14 +2,13 @@ package com.drunkencod.factory_symbols.symbols;
 
 public enum SymbolMaterial {
     // #region Entries
-    PAPER("paper", 2, false),
     IRON("iron", 8, false),
-    GOLD("gold", 8, false),
-    COPPER("copper", 4, false),
+    COAL("coal", 8, true),
     REDSTONE("redstone", 8, true),
-    COAL("coal", 4, true),
+    GOLD("gold", 16, false),
     EMERALD("emerald", 16, false),
     DIAMOND("diamond", 16, false),
+    COPPER("copper", 8, false),
     AMETHYST("amethyst", 8, false);
 
     private final String prefix;

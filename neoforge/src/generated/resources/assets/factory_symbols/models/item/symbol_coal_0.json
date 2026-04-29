@@ -1,0 +1,6 @@
+{
+  "parent": "factory_symbols:item/template_coal",
+  "textures": {
+    "layer1": "factory_symbols:item/symbol/number/0_white"
+  }
+}

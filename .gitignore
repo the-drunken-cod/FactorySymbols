@@ -24,6 +24,9 @@ eclipse
 run
 runs
 
+# datagen
+**/generated/**/.cache/
+
 # local-only version overrides
 versions/*.local.properties
 

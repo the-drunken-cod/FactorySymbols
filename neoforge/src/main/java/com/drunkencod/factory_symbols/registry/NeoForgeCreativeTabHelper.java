@@ -17,7 +17,7 @@ public class NeoForgeCreativeTabHelper implements ICreativeTabHelper {
     public NeoForgeCreativeTabHelper() {
         creativeTabs.register(Constants.MOD_ID, () -> CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup." + Constants.MOD_ID))
-                .icon(() -> new ItemStack(ModItems.TEMPLATES.get(SymbolMaterial.PAPER).get()))
+                .icon(() -> new ItemStack(ModItems.TEMPLATES.get(SymbolMaterial.IRON).get()))
                 .displayItems((params, output) -> ModItems.populateCreativeTab(output))
                 .build());
     }

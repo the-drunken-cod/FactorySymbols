@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "factory_symbols:material/amethyst"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:template_amethyst"
+  }
+}

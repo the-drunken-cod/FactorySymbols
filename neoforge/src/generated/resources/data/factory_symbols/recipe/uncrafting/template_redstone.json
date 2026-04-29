@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "factory_symbols:material/redstone"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:template_redstone"
+  }
+}

@@ -3,35 +3,72 @@ package com.drunkencod.factory_symbols.datagen;
 import com.drunkencod.factory_symbols.Constants;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
 import com.drunkencod.factory_symbols.symbols.SymbolType;
+import com.google.gson.JsonObject;
+import net.minecraft.data.CachedOutput;
+import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
-import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.minecraft.resources.ResourceLocation;
 
-public class NeoForgeItemModelProvider extends ItemModelProvider {
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
-    public NeoForgeItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, Constants.MOD_ID, existingFileHelper);
+public class NeoForgeItemModelProvider implements DataProvider {
+
+    private final PackOutput.PathProvider pathProvider;
+
+    public NeoForgeItemModelProvider(PackOutput output) {
+        this.pathProvider = output.createPathProvider(PackOutput.Target.RESOURCE_PACK, "models/item");
     }
 
     @Override
-    protected void registerModels() {
+    public CompletableFuture<?> run(CachedOutput cache) {
+        List<CompletableFuture<?>> futures = new ArrayList<>();
+
         for (SymbolMaterial mat : SymbolMaterial.values()) {
-            String prefix = mat.getPrefix();
+            String material = mat.getPrefix();
+            String colorSuffix = mat.isLightForeground() ? "_white" : "_black";
+            String ns = Constants.MOD_ID;
 
-            // #region Base background model for this material
-            withExistingParent("base_" + prefix, "minecraft:item/generated")
-                    .texture("layer0", modLoc("item/bg_" + prefix));
+            // #region Template item model — background plate
+            futures.add(save(cache, "template_" + material,
+                    model("minecraft:item/generated", "layer0", ns + ":item/template/" + material)));
 
-            // #region Template item model
-            withExistingParent("template_" + prefix, "minecraft:item/generated")
-                    .texture("layer0", modLoc("item/template_" + prefix));
-
-            // #region Symbol item models — two layers: background + symbol foreground
-            String fgSuffix = mat.isLightForeground() ? "_white" : "_black";
+            // #region Symbol item models — inherit template, add foreground layer
             for (SymbolType sym : SymbolType.values()) {
-                withExistingParent("symbol_" + prefix + "_" + sym.getId(), modLoc("item/base_" + prefix))
-                        .texture("layer1", modLoc("item/symbols/" + sym.getId() + fgSuffix));
+                String catFolder = sym.getCategory().getId().replaceAll("s$", "");
+                String symName = sym.getId().startsWith(catFolder + "_")
+                        ? sym.getId().substring(catFolder.length() + 1)
+                        : sym.getId();
+                JsonObject json = new JsonObject();
+                json.addProperty("parent", ns + ":item/template_" + material);
+                JsonObject textures = new JsonObject();
+                textures.addProperty("layer1", ns + ":item/symbol/" + catFolder + "/" + symName + colorSuffix);
+                json.add("textures", textures);
+                futures.add(save(cache, "symbol_" + material + "_" + sym.getId(), json));
             }
         }
+
+        return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
+    }
+
+    private CompletableFuture<?> save(CachedOutput cache, String name, JsonObject json) {
+        Path path = pathProvider.json(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+        return DataProvider.saveStable(cache, json, path);
+    }
+
+    private static JsonObject model(String parent, String textureKey, String textureValue) {
+        JsonObject json = new JsonObject();
+        json.addProperty("parent", parent);
+        JsonObject textures = new JsonObject();
+        textures.addProperty(textureKey, textureValue);
+        json.add("textures", textures);
+        return json;
+    }
+
+    @Override
+    public String getName() {
+        return "Factory Symbols Item Models";
     }
 }

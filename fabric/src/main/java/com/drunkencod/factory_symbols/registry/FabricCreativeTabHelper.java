@@ -17,7 +17,7 @@ public class FabricCreativeTabHelper implements ICreativeTabHelper {
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, Constants.MOD_ID),
                 FabricItemGroup.builder()
                         .title(Component.translatable("itemGroup." + Constants.MOD_ID))
-                        .icon(() -> new ItemStack(ModItems.TEMPLATES.get(SymbolMaterial.PAPER).get()))
+                        .icon(() -> new ItemStack(ModItems.TEMPLATES.get(SymbolMaterial.IRON).get()))
                         .displayItems((params, output) -> ModItems.populateCreativeTab(output))
                         .build());
     }

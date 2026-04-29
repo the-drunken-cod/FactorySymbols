@@ -41,7 +41,6 @@ public class FabricConfigHelper implements IConfigHelper {
     public boolean isMaterialEnabled(SymbolMaterial material) {
         MaterialsSection mats = AutoConfig.getConfigHolder(CommonConfigData.class).getConfig().materials;
         return switch (material) {
-            case PAPER -> mats.paper;
             case IRON -> mats.iron;
             case GOLD -> mats.gold;
             case COPPER -> mats.copper;
@@ -140,7 +139,6 @@ public class FabricConfigHelper implements IConfigHelper {
     }
 
     public static class MaterialsSection {
-        public boolean paper = true;
         public boolean iron = true;
         public boolean gold = true;
         public boolean copper = true;

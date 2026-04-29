@@ -1,0 +1,6 @@
+{
+  "parent": "factory_symbols:item/template_gold",
+  "textures": {
+    "layer1": "factory_symbols:item/symbol/letter/k_black"
+  }
+}
