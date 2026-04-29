@@ -6,7 +6,6 @@ import net.minecraft.world.item.Items;
 
 public class FactorySymbols {
 
-    @SuppressWarnings("null")
     public static void init() {
 
         Constants.LOG.info("Hello from Factory Symbols on {}! we are currently in a {} environment!",
