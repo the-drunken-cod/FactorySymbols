@@ -16,13 +16,11 @@ public class NeoForgeRegistryHelper implements IRegistryHelper {
     private final DeferredRegister<Block> blocks = DeferredRegister.create(BuiltInRegistries.BLOCK, Constants.MOD_ID);
 
     @Override
-    @SuppressWarnings("unchecked")
     public <T extends Item> Supplier<T> registerItem(String id, Supplier<T> factory) {
         return (Supplier<T>) items.register(id, factory);
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public <T extends Block> Supplier<T> registerBlock(String id, Supplier<T> factory) {
         return (Supplier<T>) blocks.register(id, factory);
     }
