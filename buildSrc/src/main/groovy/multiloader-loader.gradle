@@ -10,6 +10,11 @@ configurations {
     commonResources{
         canBeResolved = true
     }
+    // Resolvable variant of compileOnly for IDE tooling (eclipse/VS Code Gradle model)
+    ideCompileOnly {
+        canBeResolved = true
+        extendsFrom configurations.compileOnly
+    }
 }
 
 dependencies {
@@ -26,7 +31,7 @@ dependencies {
 // classpath model so the Java language server can resolve cross-module imports.
 eclipse {
     classpath {
-        plusConfigurations += [configurations.compileOnly]
+        plusConfigurations += [configurations.ideCompileOnly]
     }
 }
 
