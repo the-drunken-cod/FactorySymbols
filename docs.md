@@ -31,6 +31,7 @@ IDEA:
 Base items that can be crafted into the actual symbol items.  
 Can be made from different materials, yielding different background colors in the textures, and a different registry ID prefix.  
 The yield when crafting one material item into templates depends on the material's abundance and value.  
+Template items have registry IDs in the format `factory_symbols:template_<material>` and the item tags `#factory_symbols:templates` and `#factory_symbols:templates/<material>`.  
   
 | Material | Color | Yield | Prefix |
 | :-- | :-- | :-- | :-- |
@@ -51,7 +52,7 @@ The yield when crafting one material item into templates depends on the material
 Crafted from the symbol templates in a stonecutter, yielding 1 symbol item per craft.  
 The symbol items can be uncrafted back into the symbol template in a crafting grid, yielding 1 template per craft.  
 The symbol items have a uniform texture design with the symbol in the center and the material's color as a square background, allowing for good contrast and recognizability even at small sizes.  
-The symbol items have registry IDs in the format `factory_symbols:symbol_<material>_<symbol_name>`.
+The symbol items have registry IDs in the format `factory_symbols:symbol_<material>_<symbol_name>` and the item tags `#factory_symbols:symbols`, `#factory_symbols:symbols/<category>`, and `#factory_symbols:symbols/<category>/<material>`.
   
 | Category | Emoji | Symbol |
 | :-- | :-- | :-- |

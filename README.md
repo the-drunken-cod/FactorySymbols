@@ -7,14 +7,14 @@ Collection of meaningful symbol items for Minecraft Java Edition.
 
 </div>
 
-## Introduction
+## Introduction:
 Factory Symbols is a Minecraft mod for NeoForge and Fabric that adds a collection of symbol items to the game.  
 These symbols are designed to be meaningful and can be used for labeling purposes, like making Create's Redstone Link frequencies more recognizable.  
 They are regular items that are cheaply craftable and uncraftable and have uniform and recognizable textures.
 
 <br>
 
-## Installation
+## Installation:
 You can visit the [releases page](https://github.com/Sv443/FactorySymbols/releases), the [TODO: Modrinth page](), or the [TODO: CurseForge page]() to download the latest version of Factory Symbols.  
 Then simply place the downloaded JAR file into your Minecraft `mods` folder and launch the game with either NeoForge or Fabric.  
   
@@ -27,12 +27,19 @@ Then simply place the downloaded JAR file into your Minecraft `mods` folder and 
 
 <br>
 
-## Attribution
+## Attribution:
 - Created from the template [jaredlll08/MultiLoader-Template](https://github.com/jaredlll08/MultiLoader-Template)
 - Inspired by the [virtual circuit network symbols](https://wiki.factorio.com/Circuit_network#Virtual_signals) from the game [Factorio](https://www.factorio.com/)
 
 <br>
 
-## License
+## License:
 This project is licensed under the AGPL-3.0-or-later License.  
 See the [`LICENSE.txt` file](https://github.com/Sv443/FactorySymbols/blob/develop/LICENSE.txt) for details.
+
+<br>
+
+## Disclaimers:
+NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.  
+  
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
