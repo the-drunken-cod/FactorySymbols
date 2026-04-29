@@ -3,7 +3,7 @@
 # Factory Symbols
 Collection of meaningful symbol items for Minecraft Java Edition.
 
-![Banner](./.github/assets/banner.png)
+![TODO: banner showing off symbols](./.github/assets/banner.png)
 
 </div>
 

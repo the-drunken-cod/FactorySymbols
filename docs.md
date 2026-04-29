@@ -31,19 +31,20 @@ IDEA:
 Base items that can be crafted into the actual symbol items.  
 Can be made from different materials, yielding different background colors in the textures, and a different registry ID prefix.  
 The yield when crafting one material item into templates depends on the material's abundance and value.  
-Template items have registry IDs in the format `factory_symbols:template_<material>` and the item tags `#factory_symbols:templates` and `#factory_symbols:templates/<material>`.  
+Template items have registry IDs in the format `factory_symbols:template_<material>` and the item tags `#factory_symbols:templates` and `#factory_symbols:material/<material>`.  
   
-| Material | Color | Yield | Prefix |
+| Material | BG Color | FG Color | Yield | Prefix |
 | :-- | :-- | :-- | :-- |
-| Paper | White | 2 | `paper` |
-| Iron | Gray | 8 | `iron` |
-| Gold | Yellow | 8 | `gold` |
-| Copper | Orange | 4 | `copper` |
-| Redstone | Red | 8 | `redstone` |
-| Coal | Black | 4 | `coal` |
-| Emerald | Lime Green | 16 | `emerald` |
-| Diamond | Light Blue | 16 | `diamond` |
-| Amethyst | Magenta | 8 | `amethyst` |
+| Iron | Light Gray | Black | 8 | `iron` |
+| Copper | Orange | Black | 8 | `copper` |
+| Redstone | Red | White | 8 | `redstone` |
+| Coal | Black | White | 8 | `coal` |
+| Amethyst | Magenta | Black | 8 | `amethyst` |
+| Lapis | Blue | White | 8 | `lapis` |
+| Quartz | White | Black | 16 | `quartz` |
+| Gold | Yellow | Black | 16 | `gold` |
+| Emerald | Lime Green | Black | 16 | `emerald` |
+| Diamond | Light Blue | Black | 16 | `diamond` |
 
 <br>
 
@@ -52,7 +53,7 @@ Template items have registry IDs in the format `factory_symbols:template_<materi
 Crafted from the symbol templates in a stonecutter, yielding 1 symbol item per craft.  
 The symbol items can be uncrafted back into the symbol template in a crafting grid, yielding 1 template per craft.  
 The symbol items have a uniform texture design with the symbol in the center and the material's color as a square background, allowing for good contrast and recognizability even at small sizes.  
-The symbol items have registry IDs in the format `factory_symbols:symbol_<material>_<symbol_name>` and the item tags `#factory_symbols:symbols`, `#factory_symbols:symbols/<category>`, and `#factory_symbols:symbols/<category>/<material>`.
+The symbol items have registry IDs in the format `factory_symbols:symbol_<material>_<symbol_name>` and the item tags `#factory_symbols:symbols`, `#factory_symbols:category/<category>`, and `#factory_symbols:material/<material>`.
   
 | Category | Emoji | Symbol |
 | :-- | :-- | :-- |
@@ -62,7 +63,7 @@ The symbol items have registry IDs in the format `factory_symbols:symbol_<materi
 | Mathematical | π ∞ ➕ ➖ ✖️ ➗ ... | pi, infinity, plus, minus, multiplication, division, greater than, less than, equal to, not equal to, modulo |
 | Warning | ⚠️ 🔥 ⚡ ☣️ ... | general warning, fire hazard, electric hazard, biohazard, radiation hazard, explosive hazard, laser hazard |
 | Science | ⚛️ 🧬 ☢️ ... | atom, DNA, radioactive, low temp, med temp, high temp |
-| Environment | 🏠 🌳 💧 ❄️ ☀️ ... | house, tree, water drop, snowflake, sun, moon, lightning bolt |
+| Environment | 🏠 🌳 💧 ❄️ ☀️ ... | house, tree, water drop, snowflake, sun, moon, lightning bolt, flame, haze, spray |
 | Misc | ❤️ ⭐ 🎵 💀 🙂 ... | heart, star, music note, skull, happy face, sad face, neutral face |
 
 <br>
