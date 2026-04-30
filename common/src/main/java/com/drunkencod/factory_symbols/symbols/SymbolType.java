@@ -85,6 +85,7 @@ public enum SymbolType {
     ENVIRONMENT_WATER("environment_water", SymbolCategory.ENVIRONMENT),
     ENVIRONMENT_SUN("environment_sun", SymbolCategory.ENVIRONMENT),
     ENVIRONMENT_MOON("environment_moon", SymbolCategory.ENVIRONMENT),
+    ENVIRONMENT_STAR("environment_star", SymbolCategory.ENVIRONMENT),
     // #region warning
     WARNING_GENERIC("warning_generic", SymbolCategory.WARNING),
     WARNING_FIRE("warning_fire", SymbolCategory.WARNING),

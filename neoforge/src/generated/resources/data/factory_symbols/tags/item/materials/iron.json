@@ -59,16 +59,17 @@
     "factory_symbols:symbol_iron_arrow_cycle_counterclockwise",
     "factory_symbols:symbol_iron_arrow_inward",
     "factory_symbols:symbol_iron_arrow_outward",
+    "factory_symbols:symbol_iron_environment_house",
+    "factory_symbols:symbol_iron_environment_tree",
+    "factory_symbols:symbol_iron_environment_water",
+    "factory_symbols:symbol_iron_environment_sun",
+    "factory_symbols:symbol_iron_environment_moon",
+    "factory_symbols:symbol_iron_environment_star",
     "factory_symbols:symbol_iron_warning_generic",
     "factory_symbols:symbol_iron_warning_fire",
     "factory_symbols:symbol_iron_warning_machinery",
     "factory_symbols:symbol_iron_warning_electric",
     "factory_symbols:symbol_iron_warning_explosive",
-    "factory_symbols:symbol_iron_warning_laser",
-    "factory_symbols:symbol_iron_environment_house",
-    "factory_symbols:symbol_iron_environment_tree",
-    "factory_symbols:symbol_iron_environment_water",
-    "factory_symbols:symbol_iron_environment_sun",
-    "factory_symbols:symbol_iron_environment_moon"
+    "factory_symbols:symbol_iron_warning_laser"
   ]
 }
