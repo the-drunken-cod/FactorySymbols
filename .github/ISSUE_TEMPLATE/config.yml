@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "Discussions"
+    about: "Open a new thread on the discussion board if you have questions, want to show off something you made, etc."
+    url: "https://github.com/the-drunken-cod/FactorySymbols/discussions"
+  - name: "Dev Docs"
+    about: "If you have specific questions, this documentation might just have what you are looking for."
+    url: "https://github.com/the-drunken-cod/FactorySymbols/blob/develop/docs.md"
