@@ -43,12 +43,10 @@ public class FabricConfigHelper implements IConfigHelper {
         return switch (material) {
             case IRON -> mats.iron;
             case GOLD -> mats.gold;
-            case COPPER -> mats.copper;
             case REDSTONE -> mats.redstone;
             case COAL -> mats.coal;
             case EMERALD -> mats.emerald;
-            case DIAMOND -> mats.diamond;
-            case AMETHYST -> mats.amethyst;
+            case LAPIS -> mats.lapis;
         };
     }
 
@@ -146,7 +144,7 @@ public class FabricConfigHelper implements IConfigHelper {
         public boolean redstone = true;
         public boolean coal = true;
         public boolean emerald = true;
-        public boolean diamond = true;
+        public boolean lapis = true;
         public boolean amethyst = true;
     }
 

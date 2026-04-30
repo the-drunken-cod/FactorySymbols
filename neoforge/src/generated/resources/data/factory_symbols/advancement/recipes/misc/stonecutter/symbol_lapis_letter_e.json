@@ -1,0 +1,39 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "lapis",
+      "symbol": "letter_e"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_template_lapis": {
+      "conditions": {
+        "items": [
+          {
+            "items": "factory_symbols:template_lapis"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "factory_symbols:stonecutter/symbol_lapis_letter_e"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_template_lapis"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "factory_symbols:stonecutter/symbol_lapis_letter_e"
+    ]
+  }
+}

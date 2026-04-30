@@ -1,0 +1,6 @@
+{
+  "parent": "factory_symbols:item/template_lapis",
+  "textures": {
+    "layer1": "factory_symbols:item/symbol/letter/x_black"
+  }
+}

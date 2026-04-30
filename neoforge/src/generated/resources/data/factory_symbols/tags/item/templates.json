@@ -1,12 +1,10 @@
 {
   "values": [
-    "factory_symbols:template_iron",
     "factory_symbols:template_coal",
-    "factory_symbols:template_redstone",
+    "factory_symbols:template_iron",
     "factory_symbols:template_gold",
-    "factory_symbols:template_emerald",
-    "factory_symbols:template_diamond",
-    "factory_symbols:template_copper",
-    "factory_symbols:template_amethyst"
+    "factory_symbols:template_lapis",
+    "factory_symbols:template_redstone",
+    "factory_symbols:template_emerald"
   ]
 }

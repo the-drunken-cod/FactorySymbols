@@ -27,24 +27,16 @@ IDEA:
 
 -->
 
-## Symbol Templates:
-Base items that can be crafted into the actual symbol items.  
-Can be made from different materials, yielding different background colors in the textures, and a different registry ID prefix.  
-The yield when crafting one material item into templates depends on the material's abundance and value.  
-Template items have registry IDs in the format `factory_symbols:template_<material>` and the item tags `#factory_symbols:templates` and `#factory_symbols:materials/<material>`.  
-  
+## Symbol Materials:
+Materials for crafting the symbol items, each with a distinct background color and a fixed yield of symbol items per craft:  
 | Material | BG Color | FG Color | Yield | Prefix |
 | :-- | :-- | :-- | :-- |
 | Iron | Light Gray | Black | 8 | `iron` |
-| Copper | Orange | Black | 8 | `copper` |
 | Redstone | Red | White | 8 | `redstone` |
 | Coal | Black | White | 8 | `coal` |
-| Amethyst | Magenta | Black | 8 | `amethyst` |
-| Lapis | Blue | White | 8 | `lapis` |
-| Quartz | White | Black | 16 | `quartz` |
 | Gold | Yellow | Black | 16 | `gold` |
 | Emerald | Lime Green | Black | 16 | `emerald` |
-| Diamond | Light Blue | Black | 16 | `diamond` |
+| Lapis | Blue | Black | 16 | `diamond` |
 
 <br>
 
