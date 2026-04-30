@@ -8,11 +8,11 @@
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_template_redstone": {
+    "has_material_redstone": {
       "conditions": {
         "items": [
           {
-            "items": "factory_symbols:template_redstone"
+            "items": "minecraft:redstone"
           }
         ]
       },
@@ -28,7 +28,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_template_redstone"
+      "has_material_redstone"
     ]
   ],
   "rewards": {

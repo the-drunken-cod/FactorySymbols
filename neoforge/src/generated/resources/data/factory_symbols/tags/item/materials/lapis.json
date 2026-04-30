@@ -1,6 +1,5 @@
 {
   "values": [
-    "factory_symbols:template_lapis",
     "factory_symbols:symbol_lapis_number_0",
     "factory_symbols:symbol_lapis_number_1",
     "factory_symbols:symbol_lapis_number_2",
@@ -37,6 +36,7 @@
     "factory_symbols:symbol_lapis_letter_x",
     "factory_symbols:symbol_lapis_letter_y",
     "factory_symbols:symbol_lapis_letter_z",
+    "factory_symbols:symbol_lapis_space",
     "factory_symbols:symbol_lapis_instruction_info",
     "factory_symbols:symbol_lapis_instruction_check",
     "factory_symbols:symbol_lapis_instruction_cross",

@@ -1,6 +1,5 @@
 {
   "values": [
-    "factory_symbols:template_emerald",
     "factory_symbols:symbol_emerald_number_0",
     "factory_symbols:symbol_emerald_number_1",
     "factory_symbols:symbol_emerald_number_2",
@@ -37,6 +36,7 @@
     "factory_symbols:symbol_emerald_letter_x",
     "factory_symbols:symbol_emerald_letter_y",
     "factory_symbols:symbol_emerald_letter_z",
+    "factory_symbols:symbol_emerald_space",
     "factory_symbols:symbol_emerald_instruction_info",
     "factory_symbols:symbol_emerald_instruction_check",
     "factory_symbols:symbol_emerald_instruction_cross",

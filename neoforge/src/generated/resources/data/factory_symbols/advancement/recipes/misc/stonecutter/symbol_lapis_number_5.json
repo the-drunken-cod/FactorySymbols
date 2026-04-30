@@ -8,11 +8,11 @@
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_template_lapis": {
+    "has_material_lapis": {
       "conditions": {
         "items": [
           {
-            "items": "factory_symbols:template_lapis"
+            "items": "minecraft:lapis_lazuli"
           }
         ]
       },
@@ -28,7 +28,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_template_lapis"
+      "has_material_lapis"
     ]
   ],
   "rewards": {

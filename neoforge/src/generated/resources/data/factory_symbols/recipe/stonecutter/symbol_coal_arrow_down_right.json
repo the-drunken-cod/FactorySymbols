@@ -8,10 +8,10 @@
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "factory_symbols:template_coal"
+    "item": "minecraft:coal"
   },
   "result": {
-    "count": 1,
+    "count": 4,
     "id": "factory_symbols:symbol_coal_arrow_down_right"
   }
 }

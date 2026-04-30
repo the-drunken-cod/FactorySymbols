@@ -1,6 +1,7 @@
 {
-  "parent": "factory_symbols:item/template_lapis",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer1": "factory_symbols:item/symbol/arrow/cycle_black"
+    "layer0": "factory_symbols:item/template/lapis",
+    "layer1": "factory_symbols:item/symbol/arrow/cycle_white"
   }
 }

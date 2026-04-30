@@ -8,10 +8,10 @@
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "factory_symbols:template_lapis"
+    "item": "minecraft:lapis_lazuli"
   },
   "result": {
-    "count": 1,
+    "count": 4,
     "id": "factory_symbols:symbol_lapis_letter_z"
   }
 }

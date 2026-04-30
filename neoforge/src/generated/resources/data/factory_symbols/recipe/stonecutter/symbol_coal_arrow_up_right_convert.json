@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "coal",
+      "symbol": "arrow_up_right"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "factory_symbols:materials/coal"
+  },
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:symbol_coal_arrow_up_right"
+  }
+}

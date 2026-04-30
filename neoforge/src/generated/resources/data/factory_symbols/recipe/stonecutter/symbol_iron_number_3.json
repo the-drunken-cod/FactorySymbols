@@ -8,10 +8,10 @@
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "factory_symbols:template_iron"
+    "item": "minecraft:iron_ingot"
   },
   "result": {
-    "count": 1,
+    "count": 4,
     "id": "factory_symbols:symbol_iron_number_3"
   }
 }

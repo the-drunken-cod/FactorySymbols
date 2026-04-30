@@ -2,6 +2,7 @@ package com.drunkencod.factory_symbols.registry;
 
 import com.drunkencod.factory_symbols.Constants;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
+import com.drunkencod.factory_symbols.symbols.SymbolType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -17,7 +18,7 @@ public class NeoForgeCreativeTabHelper implements ICreativeTabHelper {
     public NeoForgeCreativeTabHelper() {
         creativeTabs.register(Constants.MOD_ID, () -> CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup." + Constants.MOD_ID))
-                .icon(() -> new ItemStack(ModItems.TEMPLATES.get(SymbolMaterial.IRON).get()))
+                .icon(() -> new ItemStack(ModItems.SYMBOLS.get(SymbolMaterial.IRON).get(SymbolType.LETTER_A).get()))
                 .displayItems((params, output) -> ModItems.populateCreativeTab(output))
                 .build());
     }

@@ -1,6 +1,7 @@
 {
-  "parent": "factory_symbols:item/template_gold",
+  "parent": "minecraft:item/generated",
   "textures": {
+    "layer0": "factory_symbols:item/template/gold",
     "layer1": "factory_symbols:item/symbol/letter/o_black"
   }
 }

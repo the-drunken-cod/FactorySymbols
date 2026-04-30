@@ -8,11 +8,11 @@
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_template_iron": {
+    "has_material_iron": {
       "conditions": {
         "items": [
           {
-            "items": "factory_symbols:template_iron"
+            "items": "minecraft:iron_ingot"
           }
         ]
       },
@@ -28,7 +28,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_template_iron"
+      "has_material_iron"
     ]
   ],
   "rewards": {

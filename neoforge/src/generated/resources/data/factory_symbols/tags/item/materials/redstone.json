@@ -1,6 +1,5 @@
 {
   "values": [
-    "factory_symbols:template_redstone",
     "factory_symbols:symbol_redstone_number_0",
     "factory_symbols:symbol_redstone_number_1",
     "factory_symbols:symbol_redstone_number_2",
@@ -37,6 +36,7 @@
     "factory_symbols:symbol_redstone_letter_x",
     "factory_symbols:symbol_redstone_letter_y",
     "factory_symbols:symbol_redstone_letter_z",
+    "factory_symbols:symbol_redstone_space",
     "factory_symbols:symbol_redstone_instruction_info",
     "factory_symbols:symbol_redstone_instruction_check",
     "factory_symbols:symbol_redstone_instruction_cross",

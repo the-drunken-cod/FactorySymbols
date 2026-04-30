@@ -8,10 +8,10 @@
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "factory_symbols:template_gold"
+    "item": "minecraft:gold_ingot"
   },
   "result": {
-    "count": 1,
+    "count": 4,
     "id": "factory_symbols:symbol_gold_instruction_stop"
   }
 }

@@ -32,19 +32,17 @@ public class FabricItemModelProvider implements DataProvider {
             String colorSuffix = mat.isLightForeground() ? "_white" : "_black";
             String ns = Constants.MOD_ID;
 
-            // #region Template item model — background plate
-            futures.add(save(cache, "template_" + material,
-                    model("minecraft:item/generated", "layer0", ns + ":item/template/" + material)));
-
-            // #region Symbol item models — inherit template, add foreground layer
+            // #region Symbol item models — self-contained with background (layer0) and
+            // foreground (layer1)
             for (SymbolType sym : SymbolType.values()) {
                 String catFolder = sym.getCategory().getId().replaceAll("s$", "");
                 String symName = sym.getId().startsWith(catFolder + "_")
                         ? sym.getId().substring(catFolder.length() + 1)
                         : sym.getId();
                 JsonObject json = new JsonObject();
-                json.addProperty("parent", ns + ":item/template_" + material);
+                json.addProperty("parent", "minecraft:item/generated");
                 JsonObject textures = new JsonObject();
+                textures.addProperty("layer0", ns + ":item/template/" + material);
                 textures.addProperty("layer1", ns + ":item/symbol/" + catFolder + "/" + symName + colorSuffix);
                 json.add("textures", textures);
                 futures.add(save(cache, "symbol_" + material + "_" + sym.getId(), json));
@@ -57,15 +55,6 @@ public class FabricItemModelProvider implements DataProvider {
     private CompletableFuture<?> save(CachedOutput cache, String name, JsonObject json) {
         Path path = pathProvider.json(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
         return DataProvider.saveStable(cache, json, path);
-    }
-
-    private static JsonObject model(String parent, String textureKey, String textureValue) {
-        JsonObject json = new JsonObject();
-        json.addProperty("parent", parent);
-        JsonObject textures = new JsonObject();
-        textures.addProperty(textureKey, textureValue);
-        json.add("textures", textures);
-        return json;
     }
 
     @Override

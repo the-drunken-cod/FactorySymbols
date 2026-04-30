@@ -8,11 +8,11 @@
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_template_gold": {
+    "has_material_gold": {
       "conditions": {
         "items": [
           {
-            "items": "factory_symbols:template_gold"
+            "items": "minecraft:gold_ingot"
           }
         ]
       },
@@ -28,7 +28,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_template_gold"
+      "has_material_gold"
     ]
   ],
   "rewards": {

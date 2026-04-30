@@ -1,6 +1,7 @@
 {
-  "parent": "factory_symbols:item/template_coal",
+  "parent": "minecraft:item/generated",
   "textures": {
+    "layer0": "factory_symbols:item/template/coal",
     "layer1": "factory_symbols:item/symbol/arrow/inward_white"
   }
 }

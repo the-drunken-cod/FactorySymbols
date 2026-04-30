@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "emerald",
+      "symbol": "letter_b"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "factory_symbols:materials/emerald"
+  },
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:symbol_emerald_letter_b"
+  }
+}

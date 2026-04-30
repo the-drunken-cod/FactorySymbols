@@ -34,10 +34,6 @@ public class FabricItemTagsProvider implements DataProvider {
 
         for (SymbolMaterial mat : SymbolMaterial.values()) {
             String prefix = mat.getPrefix();
-            String templateId = BuiltInRegistries.ITEM.getKey(ModItems.TEMPLATES.get(mat).get()).toString();
-
-            tagValues.computeIfAbsent("templates", k -> new ArrayList<>()).add(templateId);
-            tagValues.computeIfAbsent("materials/" + prefix, k -> new ArrayList<>()).add(templateId);
 
             for (SymbolType sym : SymbolType.values()) {
                 String symbolId = BuiltInRegistries.ITEM.getKey(ModItems.SYMBOLS.get(mat).get(sym).get()).toString();

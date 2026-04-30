@@ -8,10 +8,10 @@
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "factory_symbols:template_redstone"
+    "item": "minecraft:redstone"
   },
   "result": {
-    "count": 1,
+    "count": 4,
     "id": "factory_symbols:symbol_redstone_letter_u"
   }
 }

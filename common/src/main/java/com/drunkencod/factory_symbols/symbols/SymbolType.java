@@ -39,6 +39,7 @@ public enum SymbolType {
     LETTER_X("letter_x", SymbolCategory.LETTER),
     LETTER_Y("letter_y", SymbolCategory.LETTER),
     LETTER_Z("letter_z", SymbolCategory.LETTER),
+    SPACE("space", SymbolCategory.LETTER),
     // #region instructions
     INSTRUCTION_INFO("instruction_info", SymbolCategory.INSTRUCTION),
     INSTRUCTION_CHECK("instruction_check", SymbolCategory.INSTRUCTION),

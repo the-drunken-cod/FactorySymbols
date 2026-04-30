@@ -8,11 +8,11 @@
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_template_emerald": {
+    "has_material_emerald": {
       "conditions": {
         "items": [
           {
-            "items": "factory_symbols:template_emerald"
+            "items": "minecraft:emerald"
           }
         ]
       },
@@ -28,7 +28,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_template_emerald"
+      "has_material_emerald"
     ]
   ],
   "rewards": {

@@ -26,6 +26,7 @@
     "factory_symbols:symbol_coal_letter_x",
     "factory_symbols:symbol_coal_letter_y",
     "factory_symbols:symbol_coal_letter_z",
+    "factory_symbols:symbol_coal_space",
     "factory_symbols:symbol_iron_letter_a",
     "factory_symbols:symbol_iron_letter_b",
     "factory_symbols:symbol_iron_letter_c",
@@ -52,6 +53,7 @@
     "factory_symbols:symbol_iron_letter_x",
     "factory_symbols:symbol_iron_letter_y",
     "factory_symbols:symbol_iron_letter_z",
+    "factory_symbols:symbol_iron_space",
     "factory_symbols:symbol_gold_letter_a",
     "factory_symbols:symbol_gold_letter_b",
     "factory_symbols:symbol_gold_letter_c",
@@ -78,6 +80,7 @@
     "factory_symbols:symbol_gold_letter_x",
     "factory_symbols:symbol_gold_letter_y",
     "factory_symbols:symbol_gold_letter_z",
+    "factory_symbols:symbol_gold_space",
     "factory_symbols:symbol_lapis_letter_a",
     "factory_symbols:symbol_lapis_letter_b",
     "factory_symbols:symbol_lapis_letter_c",
@@ -104,6 +107,7 @@
     "factory_symbols:symbol_lapis_letter_x",
     "factory_symbols:symbol_lapis_letter_y",
     "factory_symbols:symbol_lapis_letter_z",
+    "factory_symbols:symbol_lapis_space",
     "factory_symbols:symbol_redstone_letter_a",
     "factory_symbols:symbol_redstone_letter_b",
     "factory_symbols:symbol_redstone_letter_c",
@@ -130,6 +134,7 @@
     "factory_symbols:symbol_redstone_letter_x",
     "factory_symbols:symbol_redstone_letter_y",
     "factory_symbols:symbol_redstone_letter_z",
+    "factory_symbols:symbol_redstone_space",
     "factory_symbols:symbol_emerald_letter_a",
     "factory_symbols:symbol_emerald_letter_b",
     "factory_symbols:symbol_emerald_letter_c",
@@ -155,6 +160,7 @@
     "factory_symbols:symbol_emerald_letter_w",
     "factory_symbols:symbol_emerald_letter_x",
     "factory_symbols:symbol_emerald_letter_y",
-    "factory_symbols:symbol_emerald_letter_z"
+    "factory_symbols:symbol_emerald_letter_z",
+    "factory_symbols:symbol_emerald_space"
   ]
 }

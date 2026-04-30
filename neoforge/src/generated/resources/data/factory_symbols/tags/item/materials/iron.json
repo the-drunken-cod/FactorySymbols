@@ -1,6 +1,5 @@
 {
   "values": [
-    "factory_symbols:template_iron",
     "factory_symbols:symbol_iron_number_0",
     "factory_symbols:symbol_iron_number_1",
     "factory_symbols:symbol_iron_number_2",
@@ -37,6 +36,7 @@
     "factory_symbols:symbol_iron_letter_x",
     "factory_symbols:symbol_iron_letter_y",
     "factory_symbols:symbol_iron_letter_z",
+    "factory_symbols:symbol_iron_space",
     "factory_symbols:symbol_iron_instruction_info",
     "factory_symbols:symbol_iron_instruction_check",
     "factory_symbols:symbol_iron_instruction_cross",

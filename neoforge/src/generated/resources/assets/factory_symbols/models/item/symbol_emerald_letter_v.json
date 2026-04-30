@@ -1,6 +1,7 @@
 {
-  "parent": "factory_symbols:item/template_emerald",
+  "parent": "minecraft:item/generated",
   "textures": {
+    "layer0": "factory_symbols:item/template/emerald",
     "layer1": "factory_symbols:item/symbol/letter/v_black"
   }
 }
