@@ -1,0 +1,17 @@
+{
+    "itemGroup.factory_symbols": "Factory Symbols",
+    "tag.factory_symbols.categories.arrow": "Arrow Symbols",
+    "tag.factory_symbols.categories.environment": "Environment Symbols",
+    "tag.factory_symbols.categories.instruction": "Instruction Symbols",
+    "tag.factory_symbols.categories.mathematical": "Mathematical Symbols",
+    "tag.factory_symbols.categories.misc": "Miscellaneous Symbols",
+    "tag.factory_symbols.categories.science": "Science Symbols",
+    "tag.factory_symbols.categories.warning": "Warning Symbols",
+    "tag.factory_symbols.materials.coal": "Coal Symbols",
+    "tag.factory_symbols.materials.emerald": "Emerald Symbols",
+    "tag.factory_symbols.materials.gold": "Gold Symbols",
+    "tag.factory_symbols.materials.iron": "Iron Symbols",
+    "tag.factory_symbols.materials.lapis": "Lapis Lazuli Symbols",
+    "tag.factory_symbols.materials.redstone": "Redstone Symbols",
+    "tag.factory_symbols.symbols": "Symbols"
+}
