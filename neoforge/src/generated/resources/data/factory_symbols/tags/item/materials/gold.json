@@ -54,6 +54,12 @@
     "factory_symbols:symbol_gold_arrow_up_down",
     "factory_symbols:symbol_gold_arrow_cycle",
     "factory_symbols:symbol_gold_arrow_inward",
-    "factory_symbols:symbol_gold_arrow_outward"
+    "factory_symbols:symbol_gold_arrow_outward",
+    "factory_symbols:symbol_gold_warning_generic",
+    "factory_symbols:symbol_gold_warning_fire",
+    "factory_symbols:symbol_gold_warning_cold",
+    "factory_symbols:symbol_gold_warning_electric",
+    "factory_symbols:symbol_gold_warning_explosive",
+    "factory_symbols:symbol_gold_warning_laser"
   ]
 }

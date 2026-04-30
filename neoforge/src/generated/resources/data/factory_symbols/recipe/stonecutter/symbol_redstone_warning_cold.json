@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "redstone",
+      "symbol": "warning_cold"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:redstone"
+  },
+  "result": {
+    "count": 4,
+    "id": "factory_symbols:symbol_redstone_warning_cold"
+  }
+}

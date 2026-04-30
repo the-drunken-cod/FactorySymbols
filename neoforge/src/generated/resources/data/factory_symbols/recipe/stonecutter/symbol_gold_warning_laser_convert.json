@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "gold",
+      "symbol": "warning_laser"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "factory_symbols:materials/gold"
+  },
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:symbol_gold_warning_laser"
+  }
+}

@@ -1,5 +1,20 @@
 package com.drunkencod.factory_symbols.symbols;
 
+/*
+Non-exhaustive list of symbols:
+| Category | Emoji | Symbol |
+| :-- | :-- | :-- |
+| Numbers | 0️⃣ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ | `0-9` |
+| Letters | 🇦 🇧 🇨 🇩 🇪 🇫 🇬 ... | `A-Z` |
+| Instructive | ✔️ ❌ ⛔ 🛑 ... | checkmark, cross, forbidden, stop, info |
+| Arrows | ⬆️ ⬇️ ⬅️ ➡️ ... | up, down, left, right, up-down, cycle, double-horizontal, double-vertical, inward, outward |
+| Mathematical | π ∞ ➕ ➖ ✖️ ➗ ... | pi, infinity, plus, minus, multiplication, division, greater than, less than, equal to, not equal to, modulo |
+| Warning | ⚠️ 🔥 ⚡ ☣️ ... | general warning, fire hazard, electric hazard, biohazard, radiation hazard, explosive hazard, laser hazard |
+| Science | ⚛️ 🧬 ☢️ ... | atom, DNA, radioactive, low temp, med temp, high temp, location |
+| Environment | 🏠 🌳 💧 ❄️ ☀️ ... | house, tree, water drop, snowflake, sun, moon, lightning bolt, flame, haze, spray |
+| Misc | ❤️ ⭐ 🎵 💀 🙂 ... | heart, star, music note, skull, happy face, sad face, neutral face |
+*/
+
 public enum SymbolType {
     // #region Numbers
     NUM_0("number_0", SymbolCategory.NUMBER),
@@ -59,7 +74,14 @@ public enum SymbolType {
     ARROW_UP_DOWN("arrow_up_down", SymbolCategory.ARROW),
     ARROW_CYCLE("arrow_cycle", SymbolCategory.ARROW),
     ARROW_INWARD("arrow_inward", SymbolCategory.ARROW),
-    ARROW_OUTWARD("arrow_outward", SymbolCategory.ARROW);
+    ARROW_OUTWARD("arrow_outward", SymbolCategory.ARROW),
+    // #region warning
+    WARNING_GENERIC("warning_generic", SymbolCategory.WARNING),
+    WARNING_FIRE("warning_fire", SymbolCategory.WARNING),
+    WARNING_COLD("warning_cold", SymbolCategory.WARNING),
+    WARNING_ELECTRIC("warning_electric", SymbolCategory.WARNING),
+    WARNING_EXPLOSIVE("warning_explosive", SymbolCategory.WARNING),
+    WARNING_LASER("warning_laser", SymbolCategory.WARNING);
 
     private final String id;
     private final SymbolCategory category;

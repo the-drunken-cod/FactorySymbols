@@ -54,6 +54,12 @@
     "factory_symbols:symbol_lapis_arrow_up_down",
     "factory_symbols:symbol_lapis_arrow_cycle",
     "factory_symbols:symbol_lapis_arrow_inward",
-    "factory_symbols:symbol_lapis_arrow_outward"
+    "factory_symbols:symbol_lapis_arrow_outward",
+    "factory_symbols:symbol_lapis_warning_generic",
+    "factory_symbols:symbol_lapis_warning_fire",
+    "factory_symbols:symbol_lapis_warning_cold",
+    "factory_symbols:symbol_lapis_warning_electric",
+    "factory_symbols:symbol_lapis_warning_explosive",
+    "factory_symbols:symbol_lapis_warning_laser"
   ]
 }

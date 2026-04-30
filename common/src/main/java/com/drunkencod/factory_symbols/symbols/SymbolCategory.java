@@ -5,11 +5,11 @@ public enum SymbolCategory {
     LETTER("letter"),
     INSTRUCTION("instruction"),
     ARROW("arrow"),
-    MATHEMATICAL("mathematical"),
+    MATHEMATICAL("mathematical"), // TODO
     WARNING("warning"),
-    SCIENCE("science"),
-    ENVIRONMENT("environment"),
-    MISC("misc");
+    SCIENCE("science"), // TODO
+    ENVIRONMENT("environment"), // TODO
+    MISC("misc"); // TODO
 
     private final String id;
 
