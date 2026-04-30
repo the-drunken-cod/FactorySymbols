@@ -6,7 +6,7 @@ public enum SymbolCategory {
     INSTRUCTION("instruction"),
     ARROW("arrow"),
     MATHEMATICAL("mathematical"), // TODO
-    SCIENCE("science"), // TODO
+    SCIENCE("science"),
     ENVIRONMENT("environment"),
     MISC("misc"), // TODO
     WARNING("warning", SymbolShape.TRIANGLE);

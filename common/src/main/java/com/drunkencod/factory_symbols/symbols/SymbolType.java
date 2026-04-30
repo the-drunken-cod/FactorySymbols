@@ -79,6 +79,12 @@ public enum SymbolType {
     ARROW_CYCLE_CCW("arrow_cycle_counterclockwise", SymbolCategory.ARROW),
     ARROW_INWARD("arrow_inward", SymbolCategory.ARROW),
     ARROW_OUTWARD("arrow_outward", SymbolCategory.ARROW),
+    // #region science
+    SCIENCE_ATOM("science_atom", SymbolCategory.SCIENCE),
+    SCIENCE_DNA("science_dna", SymbolCategory.SCIENCE),
+    SCIENCE_TEMP_LOW("science_temp_low", SymbolCategory.SCIENCE),
+    SCIENCE_TEMP_MED("science_temp_med", SymbolCategory.SCIENCE),
+    SCIENCE_TEMP_HIGH("science_temp_high", SymbolCategory.SCIENCE),
     // #region environment
     ENVIRONMENT_HOUSE("environment_house", SymbolCategory.ENVIRONMENT),
     ENVIRONMENT_TREE("environment_tree", SymbolCategory.ENVIRONMENT),
@@ -86,6 +92,7 @@ public enum SymbolType {
     ENVIRONMENT_SUN("environment_sun", SymbolCategory.ENVIRONMENT),
     ENVIRONMENT_MOON("environment_moon", SymbolCategory.ENVIRONMENT),
     ENVIRONMENT_STAR("environment_star", SymbolCategory.ENVIRONMENT),
+    ENVIRONMENT_LOCATION("environment_location", SymbolCategory.ENVIRONMENT),
     // #region warning
     WARNING_GENERIC("warning_generic", SymbolCategory.WARNING),
     WARNING_FIRE("warning_fire", SymbolCategory.WARNING),
