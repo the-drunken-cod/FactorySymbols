@@ -5,8 +5,8 @@ public enum SymbolCategory {
     NUMBER("number"),
     INSTRUCTION("instruction"),
     ARROW("arrow"),
-    MATHEMATICAL("mathematical"), // TODO
     SCIENCE("science"),
+    MATH("math"),
     ENVIRONMENT("environment"),
     MISC("misc"), // TODO
     WARNING("warning", SymbolShape.TRIANGLE);

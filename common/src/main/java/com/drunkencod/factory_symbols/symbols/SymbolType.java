@@ -85,6 +85,19 @@ public enum SymbolType {
     SCIENCE_TEMP_LOW("science_temp_low", SymbolCategory.SCIENCE),
     SCIENCE_TEMP_MED("science_temp_med", SymbolCategory.SCIENCE),
     SCIENCE_TEMP_HIGH("science_temp_high", SymbolCategory.SCIENCE),
+    // #region mathematical
+    MATH_INFINITY("math_infinity", SymbolCategory.MATH),
+    MATH_PLUS("math_plus", SymbolCategory.MATH),
+    MATH_MINUS("math_minus", SymbolCategory.MATH),
+    MATH_DIVISION("math_division", SymbolCategory.MATH),
+    MATH_MODULO("math_modulo", SymbolCategory.MATH),
+    MATH_LESS_THAN("math_less_than", SymbolCategory.MATH),
+    MATH_GREATER_THAN("math_greater_than", SymbolCategory.MATH),
+    MATH_LESS_THAN_EQUAL("math_less_than_equal", SymbolCategory.MATH),
+    MATH_GREATER_THAN_EQUAL("math_greater_than_equal", SymbolCategory.MATH),
+    MATH_EQUAL("math_equal", SymbolCategory.MATH),
+    MATH_NOT_EQUAL("math_not_equal", SymbolCategory.MATH),
+    MATH_APPROX_EQUAL("math_approx_equal", SymbolCategory.MATH),
     // #region environment
     ENVIRONMENT_HOUSE("environment_house", SymbolCategory.ENVIRONMENT),
     ENVIRONMENT_TREE("environment_tree", SymbolCategory.ENVIRONMENT),
@@ -93,6 +106,7 @@ public enum SymbolType {
     ENVIRONMENT_MOON("environment_moon", SymbolCategory.ENVIRONMENT),
     ENVIRONMENT_STAR("environment_star", SymbolCategory.ENVIRONMENT),
     ENVIRONMENT_LOCATION("environment_location", SymbolCategory.ENVIRONMENT),
+    ENVIRONMENT_TIME("environment_time", SymbolCategory.ENVIRONMENT),
     // #region warning
     WARNING_GENERIC("warning_generic", SymbolCategory.WARNING),
     WARNING_FIRE("warning_fire", SymbolCategory.WARNING),
