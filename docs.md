@@ -31,7 +31,7 @@ IDEA:
 Base items that can be crafted into the actual symbol items.  
 Can be made from different materials, yielding different background colors in the textures, and a different registry ID prefix.  
 The yield when crafting one material item into templates depends on the material's abundance and value.  
-Template items have registry IDs in the format `factory_symbols:template_<material>` and the item tags `#factory_symbols:templates` and `#factory_symbols:material/<material>`.  
+Template items have registry IDs in the format `factory_symbols:template_<material>` and the item tags `#factory_symbols:templates` and `#factory_symbols:materials/<material>`.  
   
 | Material | BG Color | FG Color | Yield | Prefix |
 | :-- | :-- | :-- | :-- |
@@ -53,16 +53,17 @@ Template items have registry IDs in the format `factory_symbols:template_<materi
 Crafted from the symbol templates in a stonecutter, yielding 1 symbol item per craft.  
 The symbol items can be uncrafted back into the symbol template in a crafting grid, yielding 1 template per craft.  
 The symbol items have a uniform texture design with the symbol in the center and the material's color as a square background, allowing for good contrast and recognizability even at small sizes.  
-The symbol items have registry IDs in the format `factory_symbols:symbol_<material>_<symbol_name>` and the item tags `#factory_symbols:symbols`, `#factory_symbols:category/<category>`, and `#factory_symbols:material/<material>`.
+The symbol items have registry IDs in the format `factory_symbols:symbol_<material>_<symbol_name>` and the item tags `#factory_symbols:symbols`, `#factory_symbols:categories/<category>`, and `#factory_symbols:materials/<material>`.
   
 | Category | Emoji | Symbol |
 | :-- | :-- | :-- |
 | Numbers | 0️⃣ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ | `0-9` |
 | Letters | 🇦 🇧 🇨 🇩 🇪 🇫 🇬 ... | `A-Z` |
-| Instructive | ✔️ ❌ ⛔ 🛑 ⬆️ ... | checkmark, cross, forbidden, stop, 8-directional arrows, advanced arrows (double-ended, bi-directional, etc.) |
+| Instructive | ✔️ ❌ ⛔ 🛑 ... | checkmark, cross, forbidden, stop, info |
+| Arrows | ⬆️ ⬇️ ⬅️ ➡️ ... | up, down, left, right, up-down, cycle, double-horizontal, double-vertical, inward, outward |
 | Mathematical | π ∞ ➕ ➖ ✖️ ➗ ... | pi, infinity, plus, minus, multiplication, division, greater than, less than, equal to, not equal to, modulo |
 | Warning | ⚠️ 🔥 ⚡ ☣️ ... | general warning, fire hazard, electric hazard, biohazard, radiation hazard, explosive hazard, laser hazard |
-| Science | ⚛️ 🧬 ☢️ ... | atom, DNA, radioactive, low temp, med temp, high temp |
+| Science | ⚛️ 🧬 ☢️ ... | atom, DNA, radioactive, low temp, med temp, high temp, location |
 | Environment | 🏠 🌳 💧 ❄️ ☀️ ... | house, tree, water drop, snowflake, sun, moon, lightning bolt, flame, haze, spray |
 | Misc | ❤️ ⭐ 🎵 💀 🙂 ... | heart, star, music note, skull, happy face, sad face, neutral face |
 

@@ -1,9 +1,10 @@
 package com.drunkencod.factory_symbols.symbols;
 
 public enum SymbolCategory {
-    NUMBERS("numbers"),
-    LETTERS("letters"),
-    INSTRUCTIVE("instructive"),
+    NUMBER("number"),
+    LETTER("letter"),
+    INSTRUCTION("instruction"),
+    ARROW("arrow"),
     MATHEMATICAL("mathematical"),
     WARNING("warning"),
     SCIENCE("science"),

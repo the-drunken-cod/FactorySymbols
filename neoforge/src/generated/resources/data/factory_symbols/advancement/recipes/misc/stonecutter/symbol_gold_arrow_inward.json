@@ -1,0 +1,39 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "gold",
+      "symbol": "arrow_inward"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_template_gold": {
+      "conditions": {
+        "items": [
+          {
+            "items": "factory_symbols:template_gold"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "factory_symbols:stonecutter/symbol_gold_arrow_inward"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_template_gold"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "factory_symbols:stonecutter/symbol_gold_arrow_inward"
+    ]
+  }
+}

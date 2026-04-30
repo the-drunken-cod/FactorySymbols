@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "factory_symbols:material/coal"
+      "tag": "factory_symbols:materials/coal"
     }
   ],
   "result": {

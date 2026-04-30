@@ -56,9 +56,10 @@ public class FabricConfigHelper implements IConfigHelper {
     public boolean isCategoryEnabled(SymbolCategory category) {
         CategoriesSection cats = AutoConfig.getConfigHolder(CommonConfigData.class).getConfig().categories;
         return switch (category) {
-            case NUMBERS -> cats.numbers;
-            case LETTERS -> cats.letters;
-            case INSTRUCTIVE -> cats.instructive;
+            case NUMBER -> cats.numbers;
+            case LETTER -> cats.letters;
+            case INSTRUCTION -> cats.instruction;
+            case ARROW -> cats.arrow;
             case MATHEMATICAL -> cats.mathematical;
             case WARNING -> cats.warning;
             case SCIENCE -> cats.science;
@@ -152,7 +153,8 @@ public class FabricConfigHelper implements IConfigHelper {
     public static class CategoriesSection {
         public boolean numbers = true;
         public boolean letters = true;
-        public boolean instructive = true;
+        public boolean instruction = true;
+        public boolean arrow = true;
         public boolean mathematical = true;
         public boolean warning = true;
         public boolean science = true;

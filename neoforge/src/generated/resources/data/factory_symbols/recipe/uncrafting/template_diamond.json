@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "factory_symbols:material/diamond"
+      "tag": "factory_symbols:materials/diamond"
     }
   ],
   "result": {

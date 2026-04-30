@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "factory_symbols:material/redstone"
+      "tag": "factory_symbols:materials/redstone"
     }
   ],
   "result": {

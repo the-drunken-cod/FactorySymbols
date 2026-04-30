@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#factory_symbols:material/gold"
+            "items": "#factory_symbols:materials/gold"
           }
         ]
       },

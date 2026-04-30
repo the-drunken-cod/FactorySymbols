@@ -1,0 +1,6 @@
+{
+  "parent": "factory_symbols:item/template_diamond",
+  "textures": {
+    "layer1": "factory_symbols:item/symbol/instruction/forbidden_black"
+  }
+}

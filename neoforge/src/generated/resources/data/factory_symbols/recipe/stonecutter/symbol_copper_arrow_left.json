@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "copper",
+      "symbol": "arrow_left"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "factory_symbols:template_copper"
+  },
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:symbol_copper_arrow_left"
+  }
+}

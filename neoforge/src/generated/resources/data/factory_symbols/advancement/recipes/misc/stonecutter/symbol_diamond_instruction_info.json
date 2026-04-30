@@ -1,0 +1,39 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "diamond",
+      "symbol": "instruction_info"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_template_diamond": {
+      "conditions": {
+        "items": [
+          {
+            "items": "factory_symbols:template_diamond"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "factory_symbols:stonecutter/symbol_diamond_instruction_info"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_template_diamond"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "factory_symbols:stonecutter/symbol_diamond_instruction_info"
+    ]
+  }
+}

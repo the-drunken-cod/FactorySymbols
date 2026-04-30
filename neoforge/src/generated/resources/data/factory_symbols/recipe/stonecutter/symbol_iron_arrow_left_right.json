@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "iron",
+      "symbol": "arrow_left_right"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "factory_symbols:template_iron"
+  },
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:symbol_iron_arrow_left_right"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "gold",
+      "symbol": "arrow_cycle"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "factory_symbols:template_gold"
+  },
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:symbol_gold_arrow_cycle"
+  }
+}

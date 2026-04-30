@@ -1,0 +1,39 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "emerald",
+      "symbol": "num_1"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_template_emerald": {
+      "conditions": {
+        "items": [
+          {
+            "items": "factory_symbols:template_emerald"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "factory_symbols:stonecutter/symbol_emerald_number_1"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_template_emerald"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "factory_symbols:stonecutter/symbol_emerald_number_1"
+    ]
+  }
+}

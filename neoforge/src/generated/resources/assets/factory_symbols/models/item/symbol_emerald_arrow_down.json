@@ -1,0 +1,6 @@
+{
+  "parent": "factory_symbols:item/template_emerald",
+  "textures": {
+    "layer1": "factory_symbols:item/symbol/arrow/down_black"
+  }
+}

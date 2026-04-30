@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "diamond",
+      "symbol": "num_0"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "factory_symbols:template_diamond"
+  },
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:symbol_diamond_number_0"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "amethyst",
+      "symbol": "arrow_left"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_template_amethyst": {
+      "conditions": {
+        "items": [
+          {
+            "items": "factory_symbols:template_amethyst"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "factory_symbols:stonecutter/symbol_amethyst_arrow_left"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_template_amethyst"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "factory_symbols:stonecutter/symbol_amethyst_arrow_left"
+    ]
+  }
+}

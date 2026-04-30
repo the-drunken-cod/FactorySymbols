@@ -3,7 +3,7 @@
   "category": "misc",
   "ingredients": [
     {
-      "tag": "factory_symbols:material/iron"
+      "tag": "factory_symbols:materials/iron"
     }
   ],
   "result": {

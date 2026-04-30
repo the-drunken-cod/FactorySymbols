@@ -1,0 +1,6 @@
+{
+  "parent": "factory_symbols:item/template_redstone",
+  "textures": {
+    "layer1": "factory_symbols:item/symbol/arrow/up_down_white"
+  }
+}

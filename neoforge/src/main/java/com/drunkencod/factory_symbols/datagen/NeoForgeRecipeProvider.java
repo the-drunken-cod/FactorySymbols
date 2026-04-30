@@ -42,10 +42,17 @@ public class NeoForgeRecipeProvider extends RecipeProvider {
                                 "stonecutter/symbol_" + prefix + "_" + sym.getId()));
             }
 
+            // #region Crafting recipe: material item → template (static)
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, template, mat.getYield())
+                    .requires(mat.getMaterialItem())
+                    .unlockedBy("has_material_" + prefix, has(mat.getMaterialItem()))
+                    .save(output, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID,
+                            "crafting/template_" + prefix));
+
             // #region Uncrafting recipe: any symbol of this material → template (static)
             TagKey<Item> materialTag = TagKey.create(
                     net.minecraft.core.registries.Registries.ITEM,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "material/" + prefix));
+                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "materials/" + prefix));
 
             ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, template)
                     .requires(materialTag)

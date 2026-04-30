@@ -37,14 +37,14 @@ public class FabricItemTagsProvider implements DataProvider {
             String templateId = BuiltInRegistries.ITEM.getKey(ModItems.TEMPLATES.get(mat).get()).toString();
 
             tagValues.computeIfAbsent("templates", k -> new ArrayList<>()).add(templateId);
-            tagValues.computeIfAbsent("material/" + prefix, k -> new ArrayList<>()).add(templateId);
+            tagValues.computeIfAbsent("materials/" + prefix, k -> new ArrayList<>()).add(templateId);
 
             for (SymbolType sym : SymbolType.values()) {
                 String symbolId = BuiltInRegistries.ITEM.getKey(ModItems.SYMBOLS.get(mat).get(sym).get()).toString();
 
                 tagValues.computeIfAbsent("symbols", k -> new ArrayList<>()).add(symbolId);
-                tagValues.computeIfAbsent("material/" + prefix, k -> new ArrayList<>()).add(symbolId);
-                tagValues.computeIfAbsent("category/" + sym.getCategory().getId(), k -> new ArrayList<>())
+                tagValues.computeIfAbsent("materials/" + prefix, k -> new ArrayList<>()).add(symbolId);
+                tagValues.computeIfAbsent("categories/" + sym.getCategory().getId(), k -> new ArrayList<>())
                         .add(symbolId);
             }
         }

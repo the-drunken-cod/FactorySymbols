@@ -1,0 +1,6 @@
+{
+  "parent": "factory_symbols:item/template_amethyst",
+  "textures": {
+    "layer1": "factory_symbols:item/symbol/arrow/up_right_black"
+  }
+}
