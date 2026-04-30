@@ -42,6 +42,9 @@
     "factory_symbols:symbol_gold_instruction_cross",
     "factory_symbols:symbol_gold_instruction_forbidden",
     "factory_symbols:symbol_gold_instruction_stop",
+    "factory_symbols:symbol_gold_instruction_turn_left",
+    "factory_symbols:symbol_gold_instruction_turn_right",
+    "factory_symbols:symbol_gold_instruction_turn_around",
     "factory_symbols:symbol_gold_arrow_up",
     "factory_symbols:symbol_gold_arrow_down",
     "factory_symbols:symbol_gold_arrow_left",
@@ -52,7 +55,8 @@
     "factory_symbols:symbol_gold_arrow_down_right",
     "factory_symbols:symbol_gold_arrow_left_right",
     "factory_symbols:symbol_gold_arrow_up_down",
-    "factory_symbols:symbol_gold_arrow_cycle",
+    "factory_symbols:symbol_gold_arrow_cycle_clockwise",
+    "factory_symbols:symbol_gold_arrow_cycle_counterclockwise",
     "factory_symbols:symbol_gold_arrow_inward",
     "factory_symbols:symbol_gold_arrow_outward",
     "factory_symbols:symbol_gold_warning_generic",
@@ -60,6 +64,11 @@
     "factory_symbols:symbol_gold_warning_machinery",
     "factory_symbols:symbol_gold_warning_electric",
     "factory_symbols:symbol_gold_warning_explosive",
-    "factory_symbols:symbol_gold_warning_laser"
+    "factory_symbols:symbol_gold_warning_laser",
+    "factory_symbols:symbol_gold_environment_house",
+    "factory_symbols:symbol_gold_environment_tree",
+    "factory_symbols:symbol_gold_environment_water",
+    "factory_symbols:symbol_gold_environment_sun",
+    "factory_symbols:symbol_gold_environment_moon"
   ]
 }

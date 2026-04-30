@@ -9,8 +9,8 @@ public enum SymbolMaterial {
     COAL("coal", 4, true),
     IRON("iron", "iron_ingot", 4, false),
     GOLD("gold", "gold_ingot", 4, false),
-    LAPIS("lapis", "lapis_lazuli", 4, true),
-    REDSTONE("redstone", 4, true),
+    LAPIS("lapis", "lapis_lazuli", 2, true),
+    REDSTONE("redstone", 2, true),
     EMERALD("emerald", 4, false);
 
     private final String prefix;

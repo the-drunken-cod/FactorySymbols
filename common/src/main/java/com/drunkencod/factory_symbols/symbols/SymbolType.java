@@ -61,6 +61,9 @@ public enum SymbolType {
     INSTRUCTION_CROSS("instruction_cross", SymbolCategory.INSTRUCTION),
     INSTRUCTION_FORBIDDEN("instruction_forbidden", SymbolCategory.INSTRUCTION),
     INSTRUCTION_STOP("instruction_stop", SymbolCategory.INSTRUCTION),
+    INSTRUCTION_TURN_LEFT("instruction_turn_left", SymbolCategory.INSTRUCTION),
+    INSTRUCTION_TURN_RIGHT("instruction_turn_right", SymbolCategory.INSTRUCTION),
+    INSTRUCTION_TURN_AROUND("instruction_turn_around", SymbolCategory.INSTRUCTION),
     // #region arrows
     ARROW_UP("arrow_up", SymbolCategory.ARROW),
     ARROW_DOWN("arrow_down", SymbolCategory.ARROW),
@@ -72,9 +75,16 @@ public enum SymbolType {
     ARROW_DOWN_RIGHT("arrow_down_right", SymbolCategory.ARROW),
     ARROW_LEFT_RIGHT("arrow_left_right", SymbolCategory.ARROW),
     ARROW_UP_DOWN("arrow_up_down", SymbolCategory.ARROW),
-    ARROW_CYCLE("arrow_cycle", SymbolCategory.ARROW),
+    ARROW_CYCLE_CW("arrow_cycle_clockwise", SymbolCategory.ARROW),
+    ARROW_CYCLE_CCW("arrow_cycle_counterclockwise", SymbolCategory.ARROW),
     ARROW_INWARD("arrow_inward", SymbolCategory.ARROW),
     ARROW_OUTWARD("arrow_outward", SymbolCategory.ARROW),
+    // #region environment
+    ENVIRONMENT_HOUSE("environment_house", SymbolCategory.ENVIRONMENT),
+    ENVIRONMENT_TREE("environment_tree", SymbolCategory.ENVIRONMENT),
+    ENVIRONMENT_WATER("environment_water", SymbolCategory.ENVIRONMENT),
+    ENVIRONMENT_SUN("environment_sun", SymbolCategory.ENVIRONMENT),
+    ENVIRONMENT_MOON("environment_moon", SymbolCategory.ENVIRONMENT),
     // #region warning
     WARNING_GENERIC("warning_generic", SymbolCategory.WARNING),
     WARNING_FIRE("warning_fire", SymbolCategory.WARNING),

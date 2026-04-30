@@ -1,4 +1,9 @@
 {
     "java.compile.nullAnalysis.mode": "disabled",
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "search.exclude": {
+        "**/.gradle": true,
+        "**/generated": true,
+        "**/build": true,
+    }
 }

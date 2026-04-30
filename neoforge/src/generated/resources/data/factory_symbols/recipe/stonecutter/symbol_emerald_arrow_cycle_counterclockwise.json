@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "emerald",
+      "symbol": "arrow_cycle_ccw"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:emerald"
+  },
+  "result": {
+    "count": 4,
+    "id": "factory_symbols:symbol_emerald_arrow_cycle_counterclockwise"
+  }
+}

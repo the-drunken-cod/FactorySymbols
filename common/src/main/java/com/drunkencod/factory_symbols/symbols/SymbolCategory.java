@@ -1,15 +1,15 @@
 package com.drunkencod.factory_symbols.symbols;
 
 public enum SymbolCategory {
-    NUMBER("number"),
     LETTER("letter"),
+    NUMBER("number"),
     INSTRUCTION("instruction"),
     ARROW("arrow"),
     MATHEMATICAL("mathematical"), // TODO
-    WARNING("warning", SymbolShape.TRIANGLE),
     SCIENCE("science"), // TODO
-    ENVIRONMENT("environment"), // TODO
-    MISC("misc"); // TODO
+    ENVIRONMENT("environment"),
+    MISC("misc"), // TODO
+    WARNING("warning", SymbolShape.TRIANGLE);
 
     private final String id;
     private final SymbolShape shape;

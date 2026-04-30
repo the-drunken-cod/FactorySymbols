@@ -69,6 +69,9 @@
     "symbol.factory_symbols.instruction_cross": "Cross",
     "symbol.factory_symbols.instruction_forbidden": "Forbidden",
     "symbol.factory_symbols.instruction_stop": "Stop",
+    "symbol.factory_symbols.instruction_turn_left": "Turn Left",
+    "symbol.factory_symbols.instruction_turn_right": "Turn Right",
+    "symbol.factory_symbols.instruction_turn_around": "Turn Around",
     "symbol.factory_symbols.arrow_up": "Up Arrow",
     "symbol.factory_symbols.arrow_down": "Down Arrow",
     "symbol.factory_symbols.arrow_left": "Left Arrow",
@@ -79,7 +82,8 @@
     "symbol.factory_symbols.arrow_down_right": "Down-Right Arrow",
     "symbol.factory_symbols.arrow_left_right": "Left-Right Arrow",
     "symbol.factory_symbols.arrow_up_down": "Up-Down Arrow",
-    "symbol.factory_symbols.arrow_cycle": "Cycle Arrow",
+    "symbol.factory_symbols.arrow_cycle_clockwise": "Clockwise Cycle Arrow",
+    "symbol.factory_symbols.arrow_cycle_counterclockwise": "Counterclockwise Cycle Arrow",
     "symbol.factory_symbols.arrow_inward": "Inward Arrow",
     "symbol.factory_symbols.arrow_outward": "Outward Arrow",
     "symbol.factory_symbols.warning_generic": "Warning",
@@ -87,5 +91,10 @@
     "symbol.factory_symbols.warning_machinery": "Machinery Hazard",
     "symbol.factory_symbols.warning_electric": "Electric Hazard",
     "symbol.factory_symbols.warning_explosive": "Explosive Hazard",
-    "symbol.factory_symbols.warning_laser": "Laser Hazard"
+    "symbol.factory_symbols.warning_laser": "Laser Hazard",
+    "symbol.factory_symbols.environment_house": "House",
+    "symbol.factory_symbols.environment_tree": "Tree",
+    "symbol.factory_symbols.environment_water": "Water",
+    "symbol.factory_symbols.environment_sun": "Sun",
+    "symbol.factory_symbols.environment_moon": "Moon"
 }
