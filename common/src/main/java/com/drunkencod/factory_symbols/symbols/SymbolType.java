@@ -78,7 +78,7 @@ public enum SymbolType {
     // #region warning
     WARNING_GENERIC("warning_generic", SymbolCategory.WARNING),
     WARNING_FIRE("warning_fire", SymbolCategory.WARNING),
-    WARNING_COLD("warning_cold", SymbolCategory.WARNING),
+    WARNING_MACHINERY("warning_machinery", SymbolCategory.WARNING),
     WARNING_ELECTRIC("warning_electric", SymbolCategory.WARNING),
     WARNING_EXPLOSIVE("warning_explosive", SymbolCategory.WARNING),
     WARNING_LASER("warning_laser", SymbolCategory.WARNING);

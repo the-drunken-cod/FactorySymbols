@@ -35,6 +35,7 @@ public class FabricItemModelProvider implements DataProvider {
             // #region Symbol item models — self-contained with background (layer0) and
             // foreground (layer1)
             for (SymbolType sym : SymbolType.values()) {
+                String shape = sym.getCategory().getShape().getId();
                 String catFolder = sym.getCategory().getId().replaceAll("s$", "");
                 String symName = sym.getId().startsWith(catFolder + "_")
                         ? sym.getId().substring(catFolder.length() + 1)
@@ -42,7 +43,7 @@ public class FabricItemModelProvider implements DataProvider {
                 JsonObject json = new JsonObject();
                 json.addProperty("parent", "minecraft:item/generated");
                 JsonObject textures = new JsonObject();
-                textures.addProperty("layer0", ns + ":item/template/" + material);
+                textures.addProperty("layer0", ns + ":item/base/" + shape + "/" + material);
                 textures.addProperty("layer1", ns + ":item/symbol/" + catFolder + "/" + symName + colorSuffix);
                 json.add("textures", textures);
                 futures.add(save(cache, "symbol_" + material + "_" + sym.getId(), json));
