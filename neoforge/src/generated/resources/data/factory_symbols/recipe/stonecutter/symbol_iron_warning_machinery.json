@@ -2,16 +2,16 @@
   "neoforge:conditions": [
     {
       "type": "factory_symbols:symbol_enabled",
-      "material": "redstone",
-      "symbol": "warning_cold"
+      "material": "iron",
+      "symbol": "warning_machinery"
     }
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "minecraft:redstone"
+    "item": "minecraft:iron_ingot"
   },
   "result": {
     "count": 4,
-    "id": "factory_symbols:symbol_redstone_warning_cold"
+    "id": "factory_symbols:symbol_iron_warning_machinery"
   }
 }

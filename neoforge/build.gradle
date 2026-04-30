@@ -42,3 +42,10 @@ neoForge {
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+// The lang file is produced in full by NeoForgeLanguageProvider during datagen and
+// lives in src/generated/resources. Keep that copy (processed first, as part of the
+// main source set) and silently drop the duplicate coming from commonResources.
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}

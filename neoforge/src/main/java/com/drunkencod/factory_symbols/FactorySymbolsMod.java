@@ -4,6 +4,7 @@ import com.drunkencod.factory_symbols.conditions.NeoForgeSymbolCondition;
 import com.drunkencod.factory_symbols.config.NeoForgeConfigHelper;
 import com.drunkencod.factory_symbols.datagen.NeoForgeItemModelProvider;
 import com.drunkencod.factory_symbols.datagen.NeoForgeItemTagsProvider;
+import com.drunkencod.factory_symbols.datagen.NeoForgeLanguageProvider;
 import com.drunkencod.factory_symbols.datagen.NeoForgeRecipeProvider;
 import com.drunkencod.factory_symbols.platform.Services;
 import com.drunkencod.factory_symbols.registry.NeoForgeCreativeTabHelper;
@@ -46,6 +47,9 @@ public class FactorySymbolsMod {
 
                 generator.addProvider(event.includeClient(),
                                 new NeoForgeItemModelProvider(output));
+
+                generator.addProvider(event.includeClient(),
+                                new NeoForgeLanguageProvider(output));
 
                 generator.addProvider(event.includeServer(),
                                 new NeoForgeRecipeProvider(output, event.getLookupProvider()));

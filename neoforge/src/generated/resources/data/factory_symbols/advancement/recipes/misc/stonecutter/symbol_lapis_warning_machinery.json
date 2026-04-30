@@ -2,17 +2,17 @@
   "neoforge:conditions": [
     {
       "type": "factory_symbols:symbol_enabled",
-      "material": "redstone",
-      "symbol": "warning_cold"
+      "material": "lapis",
+      "symbol": "warning_machinery"
     }
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_symbol_redstone": {
+    "has_material_lapis": {
       "conditions": {
         "items": [
           {
-            "items": "#factory_symbols:materials/redstone"
+            "items": "minecraft:lapis_lazuli"
           }
         ]
       },
@@ -20,7 +20,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "factory_symbols:stonecutter/symbol_redstone_warning_cold_convert"
+        "recipe": "factory_symbols:stonecutter/symbol_lapis_warning_machinery"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,12 +28,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_symbol_redstone"
+      "has_material_lapis"
     ]
   ],
   "rewards": {
     "recipes": [
-      "factory_symbols:stonecutter/symbol_redstone_warning_cold_convert"
+      "factory_symbols:stonecutter/symbol_lapis_warning_machinery"
     ]
   }
 }

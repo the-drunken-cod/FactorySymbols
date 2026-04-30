@@ -16,18 +16,8 @@ Non-exhaustive list of symbols:
 */
 
 public enum SymbolType {
-    // #region Numbers
-    NUM_0("number_0", SymbolCategory.NUMBER),
-    NUM_1("number_1", SymbolCategory.NUMBER),
-    NUM_2("number_2", SymbolCategory.NUMBER),
-    NUM_3("number_3", SymbolCategory.NUMBER),
-    NUM_4("number_4", SymbolCategory.NUMBER),
-    NUM_5("number_5", SymbolCategory.NUMBER),
-    NUM_6("number_6", SymbolCategory.NUMBER),
-    NUM_7("number_7", SymbolCategory.NUMBER),
-    NUM_8("number_8", SymbolCategory.NUMBER),
-    NUM_9("number_9", SymbolCategory.NUMBER),
     // #region Letters
+    SPACE("space", SymbolCategory.LETTER),
     LETTER_A("letter_a", SymbolCategory.LETTER),
     LETTER_B("letter_b", SymbolCategory.LETTER),
     LETTER_C("letter_c", SymbolCategory.LETTER),
@@ -54,7 +44,17 @@ public enum SymbolType {
     LETTER_X("letter_x", SymbolCategory.LETTER),
     LETTER_Y("letter_y", SymbolCategory.LETTER),
     LETTER_Z("letter_z", SymbolCategory.LETTER),
-    SPACE("space", SymbolCategory.LETTER),
+    // #region Numbers
+    NUM_0("number_0", SymbolCategory.NUMBER),
+    NUM_1("number_1", SymbolCategory.NUMBER),
+    NUM_2("number_2", SymbolCategory.NUMBER),
+    NUM_3("number_3", SymbolCategory.NUMBER),
+    NUM_4("number_4", SymbolCategory.NUMBER),
+    NUM_5("number_5", SymbolCategory.NUMBER),
+    NUM_6("number_6", SymbolCategory.NUMBER),
+    NUM_7("number_7", SymbolCategory.NUMBER),
+    NUM_8("number_8", SymbolCategory.NUMBER),
+    NUM_9("number_9", SymbolCategory.NUMBER),
     // #region instructions
     INSTRUCTION_INFO("instruction_info", SymbolCategory.INSTRUCTION),
     INSTRUCTION_CHECK("instruction_check", SymbolCategory.INSTRUCTION),

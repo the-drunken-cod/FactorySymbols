@@ -2,17 +2,17 @@
   "neoforge:conditions": [
     {
       "type": "factory_symbols:symbol_enabled",
-      "material": "emerald",
-      "symbol": "warning_cold"
+      "material": "gold",
+      "symbol": "warning_machinery"
     }
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_symbol_emerald": {
+    "has_symbol_gold": {
       "conditions": {
         "items": [
           {
-            "items": "#factory_symbols:materials/emerald"
+            "items": "#factory_symbols:materials/gold"
           }
         ]
       },
@@ -20,7 +20,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "factory_symbols:stonecutter/symbol_emerald_warning_cold_convert"
+        "recipe": "factory_symbols:stonecutter/symbol_gold_warning_machinery_convert"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,12 +28,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_symbol_emerald"
+      "has_symbol_gold"
     ]
   ],
   "rewards": {
     "recipes": [
-      "factory_symbols:stonecutter/symbol_emerald_warning_cold_convert"
+      "factory_symbols:stonecutter/symbol_gold_warning_machinery_convert"
     ]
   }
 }

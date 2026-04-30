@@ -3,15 +3,15 @@
     {
       "type": "factory_symbols:symbol_enabled",
       "material": "redstone",
-      "symbol": "warning_cold"
+      "symbol": "warning_machinery"
     }
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "tag": "factory_symbols:materials/redstone"
+    "item": "minecraft:redstone"
   },
   "result": {
-    "count": 1,
-    "id": "factory_symbols:symbol_redstone_warning_cold"
+    "count": 4,
+    "id": "factory_symbols:symbol_redstone_warning_machinery"
   }
 }

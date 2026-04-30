@@ -2,16 +2,16 @@
   "neoforge:conditions": [
     {
       "type": "factory_symbols:symbol_enabled",
-      "material": "iron",
-      "symbol": "warning_cold"
+      "material": "lapis",
+      "symbol": "warning_machinery"
     }
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "minecraft:iron_ingot"
+    "item": "minecraft:lapis_lazuli"
   },
   "result": {
     "count": 4,
-    "id": "factory_symbols:symbol_iron_warning_cold"
+    "id": "factory_symbols:symbol_lapis_warning_machinery"
   }
 }

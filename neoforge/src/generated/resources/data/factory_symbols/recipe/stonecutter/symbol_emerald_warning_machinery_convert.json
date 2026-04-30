@@ -3,15 +3,15 @@
     {
       "type": "factory_symbols:symbol_enabled",
       "material": "emerald",
-      "symbol": "warning_cold"
+      "symbol": "warning_machinery"
     }
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "item": "minecraft:emerald"
+    "tag": "factory_symbols:materials/emerald"
   },
   "result": {
-    "count": 4,
-    "id": "factory_symbols:symbol_emerald_warning_cold"
+    "count": 1,
+    "id": "factory_symbols:symbol_emerald_warning_machinery"
   }
 }

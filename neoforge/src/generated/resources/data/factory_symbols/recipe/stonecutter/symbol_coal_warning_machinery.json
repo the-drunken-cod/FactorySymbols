@@ -3,15 +3,15 @@
     {
       "type": "factory_symbols:symbol_enabled",
       "material": "coal",
-      "symbol": "warning_cold"
+      "symbol": "warning_machinery"
     }
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "tag": "factory_symbols:materials/coal"
+    "item": "minecraft:coal"
   },
   "result": {
-    "count": 1,
-    "id": "factory_symbols:symbol_coal_warning_cold"
+    "count": 4,
+    "id": "factory_symbols:symbol_coal_warning_machinery"
   }
 }

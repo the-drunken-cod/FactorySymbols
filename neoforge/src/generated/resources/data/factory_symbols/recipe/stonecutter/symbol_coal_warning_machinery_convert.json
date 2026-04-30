@@ -2,16 +2,16 @@
   "neoforge:conditions": [
     {
       "type": "factory_symbols:symbol_enabled",
-      "material": "emerald",
-      "symbol": "warning_cold"
+      "material": "coal",
+      "symbol": "warning_machinery"
     }
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "tag": "factory_symbols:materials/emerald"
+    "tag": "factory_symbols:materials/coal"
   },
   "result": {
     "count": 1,
-    "id": "factory_symbols:symbol_emerald_warning_cold"
+    "id": "factory_symbols:symbol_coal_warning_machinery"
   }
 }

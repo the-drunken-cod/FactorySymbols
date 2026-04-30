@@ -2,17 +2,17 @@
   "neoforge:conditions": [
     {
       "type": "factory_symbols:symbol_enabled",
-      "material": "gold",
-      "symbol": "warning_cold"
+      "material": "redstone",
+      "symbol": "warning_machinery"
     }
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_symbol_gold": {
+    "has_symbol_redstone": {
       "conditions": {
         "items": [
           {
-            "items": "#factory_symbols:materials/gold"
+            "items": "#factory_symbols:materials/redstone"
           }
         ]
       },
@@ -20,7 +20,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "factory_symbols:stonecutter/symbol_gold_warning_cold_convert"
+        "recipe": "factory_symbols:stonecutter/symbol_redstone_warning_machinery_convert"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,12 +28,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_symbol_gold"
+      "has_symbol_redstone"
     ]
   ],
   "rewards": {
     "recipes": [
-      "factory_symbols:stonecutter/symbol_gold_warning_cold_convert"
+      "factory_symbols:stonecutter/symbol_redstone_warning_machinery_convert"
     ]
   }
 }

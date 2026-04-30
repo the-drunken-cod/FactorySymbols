@@ -2,17 +2,17 @@
   "neoforge:conditions": [
     {
       "type": "factory_symbols:symbol_enabled",
-      "material": "coal",
-      "symbol": "warning_cold"
+      "material": "iron",
+      "symbol": "warning_machinery"
     }
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_symbol_coal": {
+    "has_material_iron": {
       "conditions": {
         "items": [
           {
-            "items": "#factory_symbols:materials/coal"
+            "items": "minecraft:iron_ingot"
           }
         ]
       },
@@ -20,7 +20,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "factory_symbols:stonecutter/symbol_coal_warning_cold_convert"
+        "recipe": "factory_symbols:stonecutter/symbol_iron_warning_machinery"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,12 +28,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_symbol_coal"
+      "has_material_iron"
     ]
   ],
   "rewards": {
     "recipes": [
-      "factory_symbols:stonecutter/symbol_coal_warning_cold_convert"
+      "factory_symbols:stonecutter/symbol_iron_warning_machinery"
     ]
   }
 }

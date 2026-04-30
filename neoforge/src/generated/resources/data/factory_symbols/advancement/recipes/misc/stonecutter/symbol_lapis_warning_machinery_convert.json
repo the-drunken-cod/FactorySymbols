@@ -3,7 +3,7 @@
     {
       "type": "factory_symbols:symbol_enabled",
       "material": "lapis",
-      "symbol": "warning_cold"
+      "symbol": "warning_machinery"
     }
   ],
   "parent": "minecraft:recipes/root",
@@ -20,7 +20,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "factory_symbols:stonecutter/symbol_lapis_warning_cold_convert"
+        "recipe": "factory_symbols:stonecutter/symbol_lapis_warning_machinery_convert"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -33,7 +33,7 @@
   ],
   "rewards": {
     "recipes": [
-      "factory_symbols:stonecutter/symbol_lapis_warning_cold_convert"
+      "factory_symbols:stonecutter/symbol_lapis_warning_machinery_convert"
     ]
   }
 }

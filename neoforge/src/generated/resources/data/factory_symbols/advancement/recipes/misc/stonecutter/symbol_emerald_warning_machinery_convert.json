@@ -3,16 +3,16 @@
     {
       "type": "factory_symbols:symbol_enabled",
       "material": "emerald",
-      "symbol": "warning_cold"
+      "symbol": "warning_machinery"
     }
   ],
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_material_emerald": {
+    "has_symbol_emerald": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:emerald"
+            "items": "#factory_symbols:materials/emerald"
           }
         ]
       },
@@ -20,7 +20,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "factory_symbols:stonecutter/symbol_emerald_warning_cold"
+        "recipe": "factory_symbols:stonecutter/symbol_emerald_warning_machinery_convert"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,12 +28,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_material_emerald"
+      "has_symbol_emerald"
     ]
   ],
   "rewards": {
     "recipes": [
-      "factory_symbols:stonecutter/symbol_emerald_warning_cold"
+      "factory_symbols:stonecutter/symbol_emerald_warning_machinery_convert"
     ]
   }
 }

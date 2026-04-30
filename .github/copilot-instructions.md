@@ -13,6 +13,7 @@ Modding Framework: NeoForge v21.1
 
 # Conventions
 
+- Always try to implement a modloader-agnostic solution in `common/`. If not possible, implement a service interface and a modloader-specific implementation in `fabric/` and `neoforge/`. Deduplicate as much code as possible in the common implementation and only override the necessary parts in the modloader-specific implementations.
 - Don't give up on a problem and suggest adding a `// TODO: fix` comment. Realize dead ends and think about solutions or alternatives. Interject with questions if needed and speak up when there's an objectively better path.
 - Don't add comments for the sake of comments. Code should be self-explanatory and comments reserved for explanations or important notes.
 - Try to use datapack JSONs before writing any Java code.

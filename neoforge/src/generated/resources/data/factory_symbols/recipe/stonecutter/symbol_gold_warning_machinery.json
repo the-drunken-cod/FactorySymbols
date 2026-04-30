@@ -2,16 +2,16 @@
   "neoforge:conditions": [
     {
       "type": "factory_symbols:symbol_enabled",
-      "material": "iron",
-      "symbol": "warning_cold"
+      "material": "gold",
+      "symbol": "warning_machinery"
     }
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "tag": "factory_symbols:materials/iron"
+    "item": "minecraft:gold_ingot"
   },
   "result": {
-    "count": 1,
-    "id": "factory_symbols:symbol_iron_warning_cold"
+    "count": 4,
+    "id": "factory_symbols:symbol_gold_warning_machinery"
   }
 }
