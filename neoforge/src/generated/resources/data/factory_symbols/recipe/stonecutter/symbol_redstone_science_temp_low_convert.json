@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "redstone",
+      "symbol": "science_temp_low"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "factory_symbols:materials/redstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:symbol_redstone_science_temp_low"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "lapis",
+      "symbol": "environment_location"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "factory_symbols:materials/lapis"
+  },
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:symbol_lapis_environment_location"
+  }
+}

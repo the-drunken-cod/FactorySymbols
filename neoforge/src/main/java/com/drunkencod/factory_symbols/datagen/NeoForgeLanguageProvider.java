@@ -43,7 +43,7 @@ public class NeoForgeLanguageProvider extends LanguageProvider {
         // material/symbol part keys.
         for (Map.Entry<String, JsonElement> entry : lang.entrySet()) {
             String key = entry.getKey();
-            if (key.startsWith("_") || key.equals("factory_symbols.item_name_template")
+            if (key.startsWith("_") || key.startsWith("factory_symbols.item_name_template")
                     || key.startsWith("material.") || key.startsWith("symbol.")) {
                 continue;
             }
@@ -51,18 +51,27 @@ public class NeoForgeLanguageProvider extends LanguageProvider {
         }
 
         // #region Generated item keys
-        String template = lang.get("factory_symbols.item_name_template").getAsString();
+        String template = requireKey(lang, "factory_symbols.item_name_template");
 
         for (SymbolMaterial mat : SymbolMaterial.values()) {
-            String materialName = lang.get("material." + Constants.MOD_ID + "." + mat.getPrefix()).getAsString();
+            String materialKey = "material." + Constants.MOD_ID + "." + mat.getPrefix();
+            String materialName = requireKey(lang, materialKey);
 
             for (SymbolType sym : SymbolType.values()) {
-                String symbolName = lang.get("symbol." + Constants.MOD_ID + "." + sym.getId()).getAsString();
+                String symbolKey = "symbol." + Constants.MOD_ID + "." + sym.getId();
+                String symbolName = requireKey(lang, symbolKey);
                 String itemName = template
                         .replace("${material_name}", materialName)
                         .replace("${symbol_name}", symbolName);
                 add("item." + Constants.MOD_ID + ".symbol_" + mat.getPrefix() + "_" + sym.getId(), itemName);
             }
         }
+    }
+
+    private String requireKey(JsonObject lang, String key) {
+        JsonElement element = lang.get(key);
+        if (element == null)
+            throw new IllegalStateException("Missing translation key '" + key + "' in " + sourceLangFile);
+        return element.getAsString();
     }
 }

@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "emerald",
+      "symbol": "math_not_equal"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:emerald"
+  },
+  "result": {
+    "count": 4,
+    "id": "factory_symbols:symbol_emerald_math_not_equal"
+  }
+}
