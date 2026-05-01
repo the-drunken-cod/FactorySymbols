@@ -218,4 +218,17 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
         }
         super.onRemove(state, level, pos, newState, movedByPiston);
     }
+
+    // #region redstone
+
+    @Override
+    public boolean hasAnalogOutputSignal(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
+        return level.getBlockEntity(pos) instanceof DisplayPanelBlockEntity be && !be.getStoredItem().isEmpty() ? 15
+                : 0;
+    }
 }
