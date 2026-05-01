@@ -23,6 +23,7 @@ build
 eclipse
 run
 runs
+source/
 
 # datagen
 **/generated/**/.cache/

@@ -1,6 +1,8 @@
 {
     "itemGroup.factory_symbols": "Factory Symbols",
+
     "block.factory_symbols.display_panel": "Display Panel",
+    "block.factory_symbols.display_panel.tooltip": "Item Frame in block form. Can be dyed.",
 
     "tag.factory_symbols.categories.arrow": "Arrow Symbols",
     "tag.factory_symbols.categories.environment": "Environment Symbols",
@@ -18,6 +20,8 @@
     "tag.factory_symbols.materials.iron": "Iron Symbols",
     "tag.factory_symbols.materials.lapis": "Lapis Lazuli Symbols",
     "tag.factory_symbols.materials.redstone": "Redstone Symbols",
+
+    "tag.factory_symbols.displays": "Displays",
     "tag.factory_symbols.symbols": "Symbols",
 
     "factory_symbols.item_name_template.__comment__": "Template used by datagen to compose item display names. Use ${material_name} and ${symbol_name} as placeholders.",

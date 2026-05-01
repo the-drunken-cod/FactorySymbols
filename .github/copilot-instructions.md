@@ -11,6 +11,12 @@ Application Type: Minecraft mod named "Factory Symbols" that adds a bunch of sym
 Minecraft Version: 1.21.1  
 Modding Framework: NeoForge v21.1
 
+# Source Reference
+The full Minecraft source code and assets are available under `source/` (if set up properly):
+- `source/assets/` contains all assets in the format of a standard resource pack.
+- `source/data/` contains the default datapack, like vanilla tags and more.
+- `source/src/` contains the actual Java classes.
+
 # Conventions
 
 - Always try to implement a modloader-agnostic solution in `common/`. If not possible, implement a service interface and a modloader-specific implementation in `fabric/` and `neoforge/`. Deduplicate as much code as possible in the common implementation and only override the necessary parts in the modloader-specific implementations.

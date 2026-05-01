@@ -1,11 +1,16 @@
 package com.drunkencod.factory_symbols.registry;
 
+import com.drunkencod.factory_symbols.block.DisplayPanelBlock;
 import com.drunkencod.factory_symbols.platform.Services;
 import com.drunkencod.factory_symbols.symbols.SymbolCategory;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
 import com.drunkencod.factory_symbols.symbols.SymbolType;
+
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomModelData;
 
 import java.util.Collections;
 import java.util.EnumMap;
@@ -32,15 +37,20 @@ public class ModItems {
 
     // #region Creative tab
     public static void populateCreativeTab(CreativeModeTab.Output output) {
-        output.accept(ModBlocks.DISPLAY_PANEL_ITEM.get());
-        for (SymbolMaterial mat : SymbolMaterial.values()) {
-            for (SymbolCategory cat : SymbolCategory.values()) {
-                for (SymbolType sym : SymbolType.values()) {
-                    if (sym.getCategory() == cat) {
-                        output.accept(SYMBOLS.get(mat).get(sym).get());
-                    }
-                }
-            }
+        // output.accept(ModBlocks.DISPLAY_PANEL_ITEM.get());
+
+        // display panel colors:
+        for (int i : DisplayPanelBlock.COLORS_ORDERED) {
+            ItemStack itm = ModBlocks.DISPLAY_PANEL_ITEM.get().getDefaultInstance();
+            itm.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(i));
+            output.accept(itm);
         }
+
+        // symbols:
+        for (SymbolMaterial mat : SymbolMaterial.values())
+            for (SymbolCategory cat : SymbolCategory.values())
+                for (SymbolType sym : SymbolType.values())
+                    if (sym.getCategory() == cat)
+                        output.accept(SYMBOLS.get(mat).get(sym).get());
     }
 }

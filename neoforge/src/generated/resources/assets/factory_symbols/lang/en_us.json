@@ -1,5 +1,6 @@
 {
   "block.factory_symbols.display_panel": "Display Panel",
+  "block.factory_symbols.display_panel.tooltip": "Item Frame in block form. Can be dyed.",
   "item.factory_symbols.symbol_coal_arrow_cycle_clockwise": "Coal Clockwise Cycle Arrow Symbol",
   "item.factory_symbols.symbol_coal_arrow_cycle_counterclockwise": "Coal Counterclockwise Cycle Arrow Symbol",
   "item.factory_symbols.symbol_coal_arrow_down": "Coal Down Arrow Symbol",
@@ -707,6 +708,7 @@
   "tag.factory_symbols.categories.number": "Number Symbols",
   "tag.factory_symbols.categories.science": "Science Symbols",
   "tag.factory_symbols.categories.warning": "Warning Symbols",
+  "tag.factory_symbols.displays": "Displays",
   "tag.factory_symbols.materials.coal": "Coal Symbols",
   "tag.factory_symbols.materials.emerald": "Emerald Symbols",
   "tag.factory_symbols.materials.gold": "Gold Symbols",

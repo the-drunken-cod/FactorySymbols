@@ -1,92 +1,49 @@
-<!--
-IDEA:
-- **Factory Symbols** [1]
-    - Placeholder items with basic meanings associated with their name and texture that can be used with other mods like Create to have more specific wireless redstone channels
-    - Inspired by Factorio
-    - Items:
-        - Cheaply crafted in a stonecutter using a blank signal template
-        - Signal items can be uncrafted back to the blank template in a crafting grid
-        - Symbol Sets:
-            - Basic: [1]
-                - Numbers: 0-9
-                - Letters: A-Z
-                - Instructive: checkmark, cross, forbidden, stop, 8-directional arrows, advanced arrows (double-ended, bi-directional, etc.)
-            - Advanced: [2]
-                - Mathematical: pi, infinity, plus, minus, multiplication, division, greater than, less than, equal to, not equal to
-                - Warning: general warning, fire hazard, electric hazard, biohazard, radiation hazard, explosive hazard, laser hazard
-                - Science: atom, DNA, radioactive, low temp, med temp, high temp
-                - Environment: house, tree, water drop, snowflake, sun, moon, lightning bolt
-                - Miscellaneous: heart, star, music note, skull, happy face, sad face, neutral face
-    - Blocks [2]:
-        - Purely visual blocks for displaying the signal textures in the world
-        - Blocks:
-            - Signal Block: displays the applied signal item on all faces
-            - Horizontal Signal Block: displays the applied signal item on its horizontal faces
-            - Signal Panel: displays the applied signal item on its front face
-            - Signal Projector: projects the applied signal item in the air above it
-
--->
-
-## Roadmap:
-- [x] **[P1] - Symbol Items:**
-    - items with a symbol texture and a material-based background color that can be crafted and uncrafted in a stonecutter
-    - [x] Crafting & Uncrafting / Transmuting
-    - [x] Item Models: base model for each material + overlay for each symbol
-    - [x] Item Textures:
-        - odd-numbered texture width & height
-        - black and white textures for contrast
-- [x] **[P2] - Display Panel:**
-    - blockentity alternative to item frames
-        + has hitbox
-        + doesnt need supporting block
-        - cant rotate contained items
-        - cant place multiple per block
-        - cant place on top or bottom block faces
-    - [x] Block Model: panel with flat front face and thin borders
-    - [x] Block Texture: simple texture with a border to show the edges
-    - [x] Dyeable: 16 color variants saved in blockstate & item NBT
-- [ ] **[P3] Sign Fixture:**
-    - blockentity that can attach to top or bottom faces of blocks that are center-supporting
-    - can hold a symbol item and display it on a flat surface facing toward and away from the camera when placing, like a road sign
-    - can contain any item and display it in the same way
-    - [ ] Block Model: very small fixture that grips onto the top or bottom center of the displayed item
-    - [ ] Dyeable: 16 color variants saved in blockstate & item NBT
-
-## Symbol Materials:
-Materials for crafting the symbol items, each with a distinct background color and a fixed yield of symbol items per craft:  
-| Material | BG Color | FG Color | Yield | Prefix |
-| :-- | :-- | :-- | :-- |
-| Iron | Light Gray | Black | 8 | `iron` |
-| Redstone | Red | White | 8 | `redstone` |
-| Coal | Black | White | 8 | `coal` |
-| Gold | Yellow | Black | 16 | `gold` |
-| Emerald | Lime Green | Black | 16 | `emerald` |
-| Lapis | Blue | Black | 16 | `diamond` |
-
-<br>
-
+# Items
 
 ## Symbols:
-Crafted from the symbol templates in a stonecutter, yielding 1 symbol item per craft.  
-The symbol items can be uncrafted back into the symbol template in a crafting grid, yielding 1 template per craft.  
-The symbol items have a uniform texture design with the symbol in the center and the material's color as a square background, allowing for good contrast and recognizability even at small sizes.  
-The symbol items have registry IDs in the format `factory_symbols:symbol_<material>_<symbol_name>` and the item tags `#factory_symbols:symbols`, `#factory_symbols:categories/<category>`, and `#factory_symbols:materials/<material>`.
+Symbol items are plain items that don't do anything on their own. Their only purpose is to be used for decoration or as a meaningful placeholder.  
+This can come in handy when labeling machines or storage, to have more meaningful frequencies when setting up Create mod Redstone Links, or as decoration around your base.  
   
-| Category | Emoji | Symbol |
-| :-- | :-- | :-- |
-| Numbers | 0️⃣ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ | `0-9` |
-| Letters | 🇦 🇧 🇨 🇩 🇪 🇫 🇬 ... | `A-Z` |
-| Instructive | ✔️ ❌ ⛔ 🛑 ... | checkmark, cross, forbidden, stop, info |
-| Arrows | ⬆️ ⬇️ ⬅️ ➡️ ... | up, down, left, right, up-down, cycle, double-horizontal, double-vertical, inward, outward |
-| Mathematical | π ∞ ➕ ➖ ✖️ ➗ ... | pi, infinity, plus, minus, multiplication, division, greater than, less than, equal to, not equal to, modulo |
-| Warning | ⚠️ 🔥 ⚡ ☣️ ... | general warning, fire hazard, electric hazard, biohazard, radiation hazard, explosive hazard, laser hazard |
-| Science | ⚛️ 🧬 ☢️ ... | atom, DNA, radioactive, low temp, med temp, high temp, location |
-| Environment | 🏠 🌳 💧 ❄️ ☀️ ... | house, tree, water drop, snowflake, sun, moon, lightning bolt, flame, haze, spray |
-| Misc | ❤️ ⭐ 🎵 💀 🙂 ... | heart, star, music note, skull, happy face, sad face, neutral face |
+Symbols come in 6 material variants (Coal, Iron, Gold, Lapis, Redstone, Emerald), which can be placed into a stonecutter to obtain any symbol variant.  
+Symbols can also be placed into a stonecutter to transmute them into different symbols of the same material.  
+Some categories of symbols have special shapes, like a triangular base for the "Warning" category.
 
 <br>
 
+# Block Entities
 
-## Item Models and Textures:
-For each material type, there needs to be a base item model with the material's texture as the background.  
-For each symbol, there needs to be a datagenned item model that uses the corresponding material's base item model as the parent and applies the symbol texture as an overlay. For contrast to work there needs to be a black and white version of each symbol texture.
+## Display Panel:
+Reminiscent of an Item Frame, the Display Panel is a block entity that can display a single item on its front face.  
+16 dye color variants are available, crafted by combining the panel with the corresponding dye in a crafting grid.  
+  
+Interactions:
+- Right-clicking an empty panel with an item in hand will place the item on the panel
+- Shift-right-clicking a panel with an empty hand will pick up the item from the panel
+  
+Comparison with Item Frames:  
+| Pro/Con | Description |
+| :-- | :-- |
+| Pro | Doesn't need a supporting block to be placed. |
+| Pro | Is a block instead of an entity |
+| Pro | Has a hitbox, allowing it to be walked on. |
+| Pro | Can be dyed in 16 colors. |
+| Neutral | Also emits a redstone signal when containing an item, but at a constant strength of 15. |
+| Con | Can't rotate contained items. |
+| Con | Can't place multiple on different faces in the same block space. |
+| Con | Can't place on top or bottom block faces. |
+| Con | Always renders dynamic items like compasses, clocks or maps in their default state. |
+
+<br>
+
+# Tags
+
+## Block Tags:
+- `factory_symbols:displays` - All blocks that can display items.
+
+## Item Tags:
+- `factory_symbols:symbols` - All symbol items.
+- `factory_symbols:materials/<material>` - Symbol items of a specific material.
+    - e.g.: `factory_symbols:materials/coal` - Coal symbol items.
+- `factory_symbols:categories/<category>` - Symbol items of a specific category.
+    - e.g. `factory_symbols:categories/arrow` - Arrow symbol items.
+    - Find all categories in `common/src/main/resources/assets/factory_symbols/textures/item/symbol/` (and all the symbol variants within each subfolder).

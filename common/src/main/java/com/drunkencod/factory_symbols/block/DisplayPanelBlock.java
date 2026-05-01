@@ -18,6 +18,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -27,6 +28,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.List;
+
 import org.jetbrains.annotations.Nullable;
 
 public class DisplayPanelBlock extends Block implements EntityBlock {
@@ -34,7 +37,25 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<DyeColor> COLOR = EnumProperty.create("color", DyeColor.class);
 
-    // #region Color ↔ model-id helpers (BLACK = 0, no component needed)
+    // #region Color ↔ model-id helpers (BLACK = 0, component not strictly needed)
+
+    public static final List<Integer> COLORS_ORDERED = List.of(
+            1, // WHITE
+            9, // LIGHT_GRAY
+            8, // GRAY
+            0, // BLACK
+            13, // BROWN
+            15, // RED
+            2, // ORANGE
+            5, // YELLOW
+            6, // LIME
+            14, // GREEN
+            10, // CYAN
+            4, // LIGHT_BLUE
+            12, // BLUE
+            11, // PURPLE
+            3, // MAGENTA
+            7); // PINK
 
     public static int colorToModelId(DyeColor color) {
         return switch (color) {
@@ -85,7 +106,8 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
     private static final VoxelShape SHAPE_EAST = Block.box(0, 0, 0, 1, 16, 16);
 
     public DisplayPanelBlock(Properties properties) {
-        super(properties);
+        super(properties
+                .pushReaction(PushReaction.NORMAL));
         registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(COLOR, DyeColor.BLACK));
     }
 
@@ -209,7 +231,7 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
 
     @Override
     public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean movedByPiston) {
-        if (!state.is(newState.getBlock())) {
+        if (!state.is(newState.getBlock()) && !movedByPiston) {
             if (level.getBlockEntity(pos) instanceof DisplayPanelBlockEntity be) {
                 ItemStack stored = be.getStoredItem();
                 if (!stored.isEmpty())
@@ -228,7 +250,9 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
 
     @Override
     public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
-        return level.getBlockEntity(pos) instanceof DisplayPanelBlockEntity be && !be.getStoredItem().isEmpty() ? 15
+        return level.getBlockEntity(pos) instanceof DisplayPanelBlockEntity be && !be.getStoredItem().isEmpty()
+                ? 15
                 : 0;
     }
+
 }
