@@ -34,7 +34,7 @@ public class DisplayPanelBlockEntityRenderer implements BlockEntityRenderer<Disp
 
         poseStack.pushPose();
 
-        // #region center position, then rotate
+        // center position, then rotate
         poseStack.translate(0.5, 0.5, 0.5);
         poseStack.mulPose(Axis.YP.rotationDegrees(switch (facing) {
             case SOUTH -> 0f;
@@ -47,14 +47,17 @@ public class DisplayPanelBlockEntityRenderer implements BlockEntityRenderer<Disp
         boolean isFactorySymbol = symbol
                 .is(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "symbols")));
 
-        // #region move to display surface, re-center
+        // move to display surface, re-center
         if (isFactorySymbol)
             poseStack.translate((0.5f / 16f), -(0.5f / 16f), -(1f / 16f) * 7f);
         else
             poseStack.translate(0f, 0f, -(1f / 16f) * 7f);
 
-        // #region flip horizontally
+        // flip horizontally
         poseStack.mulPose(Axis.YP.rotationDegrees(180f));
+
+        // scale down a tiny bit against z-fighting
+        poseStack.scale(0.999f, 0.999f, 0.999f);
 
         Minecraft.getInstance().getItemRenderer().renderStatic(
                 symbol,

@@ -1,7 +1,7 @@
 {
 	"textures": {
-		"0": "factory_symbols:block/display_panel_atlas",
-		"particle": "factory_symbols:block/display_panel_atlas"
+		"0": "#atlas",
+		"particle": "#atlas"
 	},
 	"elements": [
 		{

@@ -1,0 +1,6 @@
+{
+    "parent": "factory_symbols:item/display_panel_item_base",
+    "textures": {
+        "atlas": "factory_symbols:block/display_panel/atlas_cyan"
+    }
+}

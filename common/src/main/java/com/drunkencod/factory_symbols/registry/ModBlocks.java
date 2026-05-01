@@ -2,8 +2,8 @@ package com.drunkencod.factory_symbols.registry;
 
 import com.drunkencod.factory_symbols.block.DisplayPanelBlock;
 import com.drunkencod.factory_symbols.block.DisplayPanelBlockEntity;
+import com.drunkencod.factory_symbols.block.DisplayPanelItem;
 import com.drunkencod.factory_symbols.platform.Services;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -26,7 +26,7 @@ public class ModBlocks {
 
     public static final Supplier<Item> DISPLAY_PANEL_ITEM = Services.REGISTRY.registerItem(
             "display_panel",
-            () -> new BlockItem(DISPLAY_PANEL.get(), new Item.Properties()));
+            () -> new DisplayPanelItem(DISPLAY_PANEL.get(), new Item.Properties()));
 
     public static final Supplier<BlockEntityType<DisplayPanelBlockEntity>> DISPLAY_PANEL_BE_TYPE = Services.REGISTRY
             .registerBlockEntityType("display_panel", ModBlocks::makeDisplayPanelBEType);

@@ -1,35 +1,20 @@
 {
-    "parent": "factory_symbols:block/display_panel",
-    "display": {
-        "gui": {
-            "rotation": [30, 45, 0],
-            "translation": [4.5, 0, 4.5],
-            "scale": [0.8, 0.8, 0.8]
-        },
-        "ground": {
-            "rotation": [0, 0, 0],
-            "translation": [0, 1.5, 0],
-            "scale": [0.5, 0.5, 0.5]
-        },
-        "fixed": {
-            "rotation": [0, 0, 0],
-            "translation": [0, 0, 0],
-            "scale": [0.5, 0.5, 0.5]
-        },
-        "thirdperson_righthand": {
-            "rotation": [75, 0, 0],
-            "translation": [0, 0, 0],
-            "scale": [0.5, 0.5, 0.5]
-        },
-        "firstperson_righthand": {
-            "rotation": [0, 30, 0],
-            "translation": [2, 0, 2],
-            "scale": [0.5, 0.5, 0.5]
-        },
-        "firstperson_lefthand": {
-            "rotation": [0, 210, 0],
-            "translation": [-2, 0, -2],
-            "scale": [0.5, 0.5, 0.5]
-        }
-    }
+    "parent": "factory_symbols:item/display_panel_item_base",
+    "overrides": [
+        { "predicate": { "custom_model_data":  1 }, "model": "factory_symbols:item/display_panel_white"      },
+        { "predicate": { "custom_model_data":  2 }, "model": "factory_symbols:item/display_panel_orange"     },
+        { "predicate": { "custom_model_data":  3 }, "model": "factory_symbols:item/display_panel_magenta"    },
+        { "predicate": { "custom_model_data":  4 }, "model": "factory_symbols:item/display_panel_light_blue" },
+        { "predicate": { "custom_model_data":  5 }, "model": "factory_symbols:item/display_panel_yellow"     },
+        { "predicate": { "custom_model_data":  6 }, "model": "factory_symbols:item/display_panel_lime"       },
+        { "predicate": { "custom_model_data":  7 }, "model": "factory_symbols:item/display_panel_pink"       },
+        { "predicate": { "custom_model_data":  8 }, "model": "factory_symbols:item/display_panel_gray"       },
+        { "predicate": { "custom_model_data":  9 }, "model": "factory_symbols:item/display_panel_light_gray" },
+        { "predicate": { "custom_model_data": 10 }, "model": "factory_symbols:item/display_panel_cyan"       },
+        { "predicate": { "custom_model_data": 11 }, "model": "factory_symbols:item/display_panel_purple"     },
+        { "predicate": { "custom_model_data": 12 }, "model": "factory_symbols:item/display_panel_blue"       },
+        { "predicate": { "custom_model_data": 13 }, "model": "factory_symbols:item/display_panel_brown"      },
+        { "predicate": { "custom_model_data": 14 }, "model": "factory_symbols:item/display_panel_green"      },
+        { "predicate": { "custom_model_data": 15 }, "model": "factory_symbols:item/display_panel_red"        }
+    ]
 }

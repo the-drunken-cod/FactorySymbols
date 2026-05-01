@@ -2,12 +2,15 @@ package com.drunkencod.factory_symbols.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -19,6 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -28,6 +32,51 @@ import org.jetbrains.annotations.Nullable;
 public class DisplayPanelBlock extends Block implements EntityBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final EnumProperty<DyeColor> COLOR = EnumProperty.create("color", DyeColor.class);
+
+    // #region Color ↔ model-id helpers (BLACK = 0, no component needed)
+
+    public static int colorToModelId(DyeColor color) {
+        return switch (color) {
+            case BLACK -> 0;
+            case WHITE -> 1;
+            case ORANGE -> 2;
+            case MAGENTA -> 3;
+            case LIGHT_BLUE -> 4;
+            case YELLOW -> 5;
+            case LIME -> 6;
+            case PINK -> 7;
+            case GRAY -> 8;
+            case LIGHT_GRAY -> 9;
+            case CYAN -> 10;
+            case PURPLE -> 11;
+            case BLUE -> 12;
+            case BROWN -> 13;
+            case GREEN -> 14;
+            case RED -> 15;
+        };
+    }
+
+    public static DyeColor modelIdToColor(int id) {
+        return switch (id) {
+            case 1 -> DyeColor.WHITE;
+            case 2 -> DyeColor.ORANGE;
+            case 3 -> DyeColor.MAGENTA;
+            case 4 -> DyeColor.LIGHT_BLUE;
+            case 5 -> DyeColor.YELLOW;
+            case 6 -> DyeColor.LIME;
+            case 7 -> DyeColor.PINK;
+            case 8 -> DyeColor.GRAY;
+            case 9 -> DyeColor.LIGHT_GRAY;
+            case 10 -> DyeColor.CYAN;
+            case 11 -> DyeColor.PURPLE;
+            case 12 -> DyeColor.BLUE;
+            case 13 -> DyeColor.BROWN;
+            case 14 -> DyeColor.GREEN;
+            case 15 -> DyeColor.RED;
+            default -> DyeColor.BLACK;
+        };
+    }
 
     // #region Voxel shapes — 1-pixel slab on each face
     private static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 15, 16, 16, 16);
@@ -37,15 +86,20 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
 
     public DisplayPanelBlock(Properties properties) {
         super(properties);
-        registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH));
+        registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(COLOR, DyeColor.BLACK));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING);
+        builder.add(FACING, COLOR);
     }
 
     // #region Shape
+
+    @Override
+    public VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
+        return getShape(state, level, pos, CollisionContext.empty());
+    }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
@@ -64,9 +118,14 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         Direction clickedFace = context.getClickedFace();
+        BlockState state;
         if (clickedFace.getAxis().isHorizontal())
-            return defaultBlockState().setValue(FACING, clickedFace);
-        return defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+            state = defaultBlockState().setValue(FACING, clickedFace);
+        else
+            state = defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        CustomModelData cmd = context.getItemInHand().get(DataComponents.CUSTOM_MODEL_DATA);
+        int id = cmd != null ? cmd.value() : 0;
+        return state.setValue(COLOR, modelIdToColor(id));
     }
 
     // #region Interaction
@@ -133,7 +192,11 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
             if (!stored.isEmpty())
                 return stored.copy();
         }
-        return super.getCloneItemStack(level, pos, state);
+        ItemStack stack = super.getCloneItemStack(level, pos, state);
+        int id = colorToModelId(state.getValue(COLOR));
+        if (id != 0)
+            stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(id));
+        return stack;
     }
 
     // #region BlockEntity

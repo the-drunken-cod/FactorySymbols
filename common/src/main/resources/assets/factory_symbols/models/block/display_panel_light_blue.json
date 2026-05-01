@@ -1,0 +1,6 @@
+{
+	"parent": "factory_symbols:block/display_panel",
+	"textures": {
+		"atlas": "factory_symbols:block/display_panel/atlas_light_blue"
+	}
+}
