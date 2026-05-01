@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "redstone",
+      "symbol": "misc_padlock"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "minecraft:redstone"
+  },
+  "result": {
+    "count": 2,
+    "id": "factory_symbols:symbol_redstone_misc_padlock"
+  }
+}

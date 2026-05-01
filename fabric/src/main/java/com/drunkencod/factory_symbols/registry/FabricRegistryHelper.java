@@ -5,6 +5,8 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.core.Registry;
 
 import java.util.function.Supplier;
@@ -23,5 +25,13 @@ public class FabricRegistryHelper implements IRegistryHelper {
         T block = Registry.register(BuiltInRegistries.BLOCK,
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id), factory.get());
         return () -> block;
+    }
+
+    @Override
+    public <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntityType(String id,
+            Supplier<BlockEntityType<T>> factory) {
+        BlockEntityType<T> type = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id), factory.get());
+        return () -> type;
     }
 }

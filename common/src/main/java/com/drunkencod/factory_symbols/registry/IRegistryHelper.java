@@ -3,6 +3,8 @@ package com.drunkencod.factory_symbols.registry;
 import java.util.function.Supplier;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 
 /**
  * Cross-loader service interface for registering items and blocks.
@@ -36,4 +38,14 @@ public interface IRegistryHelper {
      * @return A supplier that returns the registered block
      */
     <T extends Block> Supplier<T> registerBlock(String id, Supplier<T> factory);
+
+    /**
+     * Register a block entity type under the mod's namespace.
+     *
+     * @param id      Registry path (e.g. {@code "my_block_entity"})
+     * @param factory Supplier that creates the {@link BlockEntityType} instance
+     * @return A supplier that returns the registered block entity type
+     */
+    <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntityType(String id,
+            Supplier<BlockEntityType<T>> factory);
 }

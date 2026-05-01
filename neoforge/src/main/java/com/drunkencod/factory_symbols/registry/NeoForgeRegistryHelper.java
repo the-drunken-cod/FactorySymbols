@@ -2,8 +2,11 @@ package com.drunkencod.factory_symbols.registry;
 
 import com.drunkencod.factory_symbols.Constants;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -12,8 +15,9 @@ import java.util.function.Supplier;
 public class NeoForgeRegistryHelper implements IRegistryHelper {
 
     private final DeferredRegister<Item> items = DeferredRegister.create(BuiltInRegistries.ITEM, Constants.MOD_ID);
-
     private final DeferredRegister<Block> blocks = DeferredRegister.create(BuiltInRegistries.BLOCK, Constants.MOD_ID);
+    private final DeferredRegister<BlockEntityType<?>> blockEntityTypes = DeferredRegister
+            .create(Registries.BLOCK_ENTITY_TYPE, Constants.MOD_ID);
 
     @Override
     public <T extends Item> Supplier<T> registerItem(String id, Supplier<T> factory) {
@@ -25,6 +29,13 @@ public class NeoForgeRegistryHelper implements IRegistryHelper {
         return (Supplier<T>) blocks.register(id, factory);
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntityType(String id,
+            Supplier<BlockEntityType<T>> factory) {
+        return (Supplier<BlockEntityType<T>>) (Supplier<?>) blockEntityTypes.register(id, factory);
+    }
+
     /**
      * Must be called in the NeoForge mod constructor with the mod event bus so that
      * DeferredRegisters can fire their registration events.
@@ -32,5 +43,6 @@ public class NeoForgeRegistryHelper implements IRegistryHelper {
     public void initialize(IEventBus eventBus) {
         items.register(eventBus);
         blocks.register(eventBus);
+        blockEntityTypes.register(eventBus);
     }
 }

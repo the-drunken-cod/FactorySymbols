@@ -60,7 +60,7 @@ public class FabricConfigHelper implements IConfigHelper {
             case LETTER -> cats.letters;
             case INSTRUCTION -> cats.instruction;
             case ARROW -> cats.arrow;
-            case MATHEMATICAL -> cats.mathematical;
+            case MATH -> cats.mathematical;
             case WARNING -> cats.warning;
             case SCIENCE -> cats.science;
             case ENVIRONMENT -> cats.environment;

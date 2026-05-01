@@ -32,6 +32,7 @@ public class ModItems {
 
     // #region Creative tab
     public static void populateCreativeTab(CreativeModeTab.Output output) {
+        output.accept(ModBlocks.DISPLAY_PANEL_ITEM.get());
         for (SymbolMaterial mat : SymbolMaterial.values()) {
             for (SymbolCategory cat : SymbolCategory.values()) {
                 for (SymbolType sym : SymbolType.values()) {

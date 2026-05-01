@@ -1,0 +1,69 @@
+{
+	"textures": {
+		"0": "factory_symbols:block/display_panel_atlas",
+		"particle": "factory_symbols:block/display_panel_atlas"
+	},
+	"elements": [
+		{
+			"name": "frame_u",
+			"from": [0, 15, 0],
+			"to": [16, 16, 1],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#0", "cullface": "north"},
+				"east": {"uv": [15, 0, 16, 1], "texture": "#0"},
+				"south": {"uv": [0, 0, 16, 1], "texture": "#0"},
+				"west": {"uv": [0, 0, 1, 1], "texture": "#0"},
+				"up": {"uv": [0, 0, 16, 1], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 1], "texture": "#0"}
+			}
+		},
+		{
+			"name": "frame_d",
+			"from": [0, 0, 0],
+			"to": [16, 1, 1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -15, 0]},
+			"faces": {
+				"north": {"uv": [0, 15, 16, 16], "texture": "#0", "cullface": "north"},
+				"east": {"uv": [15, 15, 16, 16], "texture": "#0"},
+				"south": {"uv": [0, 15, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 15, 1, 16], "texture": "#0"},
+				"up": {"uv": [0, 15, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 15, 16, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "frame_l",
+			"from": [0, 1, 0],
+			"to": [1, 15, 1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [0, -15, 0]},
+			"faces": {
+				"north": {"uv": [0, 1, 1, 15], "texture": "#0", "cullface": "north"},
+				"east": {"uv": [0, 1, 1, 15], "texture": "#0"},
+				"south": {"uv": [0, 1, 1, 15], "texture": "#0"},
+				"west": {"uv": [0, 1, 1, 15], "texture": "#0"}
+			}
+		},
+		{
+			"name": "frame_r",
+			"from": [15, 1, 0],
+			"to": [16, 15, 1],
+			"rotation": {"angle": 0, "axis": "y", "origin": [15, -15, 0]},
+			"faces": {
+				"north": {"uv": [15, 1, 16, 15], "texture": "#0", "cullface": "north"},
+				"east": {"uv": [15, 1, 16, 15], "texture": "#0"},
+				"south": {"uv": [15, 1, 16, 15], "texture": "#0"},
+				"west": {"uv": [15, 1, 16, 15], "texture": "#0"}
+			}
+		},
+		{
+			"name": "backdrop",
+			"from": [1, 1, 0.01],
+			"to": [15, 15, 0.01],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, -15, 0.01]},
+			"faces": {
+				"north": {"uv": [1, 1, 15, 15], "texture": "#0", "cullface": "north"},
+				"south": {"uv": [1, 1, 15, 15], "texture": "#0"}
+			}
+		}
+	]
+}

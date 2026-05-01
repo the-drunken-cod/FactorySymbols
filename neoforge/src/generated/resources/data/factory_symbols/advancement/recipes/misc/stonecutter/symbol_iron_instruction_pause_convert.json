@@ -1,0 +1,39 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "iron",
+      "symbol": "instruction_pause"
+    }
+  ],
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_symbol_iron": {
+      "conditions": {
+        "items": [
+          {
+            "items": "#factory_symbols:materials/iron"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "factory_symbols:stonecutter/symbol_iron_instruction_pause_convert"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_symbol_iron"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "factory_symbols:stonecutter/symbol_iron_instruction_pause_convert"
+    ]
+  }
+}

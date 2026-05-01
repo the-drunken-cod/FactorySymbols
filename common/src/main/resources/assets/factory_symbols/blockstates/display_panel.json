@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "factory_symbols:block/display_panel", "y": 180 },
+        "facing=east":  { "model": "factory_symbols:block/display_panel", "y": 270 },
+        "facing=south": { "model": "factory_symbols:block/display_panel" },
+        "facing=west":  { "model": "factory_symbols:block/display_panel", "y": 90 }
+    }
+}

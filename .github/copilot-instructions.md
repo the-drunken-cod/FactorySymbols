@@ -18,6 +18,6 @@ Modding Framework: NeoForge v21.1
 - Don't add comments for the sake of comments. Code should be self-explanatory and comments reserved for explanations or important notes.
 - Try to use datapack JSONs before writing any Java code.
 - Use 4 spaces for indentation.
-- Add `//#region` indicators for logical code sections (without `#endregion`).
+- Add `//#region` indicators for logical code sections (without `#endregion`). Keep the initial region comment concise and descriptive.
 - Respect the existing code style and don't use javax annotations.
 - In the output, instead of including unmodified members, only show the new or modified code and make use of comments like `/* existing code */`.

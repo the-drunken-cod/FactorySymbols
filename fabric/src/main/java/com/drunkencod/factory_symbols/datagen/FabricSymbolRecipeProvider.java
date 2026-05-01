@@ -8,6 +8,7 @@ import com.drunkencod.factory_symbols.symbols.SymbolType;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.data.recipes.SingleItemRecipeBuilder;
@@ -32,7 +33,7 @@ public class FabricSymbolRecipeProvider extends FabricRecipeProvider {
             Item materialItem = mat.getMaterialItem();
 
             TagKey<Item> materialTag = TagKey.create(
-                    net.minecraft.core.registries.Registries.ITEM,
+                    Registries.ITEM,
                     ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "materials/" + prefix));
 
             // #region Stonecutter recipes: raw material or existing symbol → symbol

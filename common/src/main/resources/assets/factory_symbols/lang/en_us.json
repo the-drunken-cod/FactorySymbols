@@ -66,7 +66,6 @@
     "symbol.factory_symbols.instruction_turn_around": "Turn Around",
     "symbol.factory_symbols.instruction_turn_left": "Turn Left",
     "symbol.factory_symbols.instruction_turn_right": "Turn Right",
-
     "symbol.factory_symbols.instruction_eject": "Eject",
     "symbol.factory_symbols.instruction_next": "Next",
     "symbol.factory_symbols.instruction_no_entry": "No Entry",
@@ -75,6 +74,9 @@
     "symbol.factory_symbols.instruction_play": "Play",
     "symbol.factory_symbols.instruction_previous": "Previous",
     "symbol.factory_symbols.instruction_record": "Record",
+    "symbol.factory_symbols.instruction_mute": "Mute",
+    "symbol.factory_symbols.instruction_volume_down": "Volume Down",
+    "symbol.factory_symbols.instruction_volume_up": "Volume Up",
 
     "symbol.factory_symbols.math_approx_equal": "Approximately Equal",
     "symbol.factory_symbols.math_division": "Division",

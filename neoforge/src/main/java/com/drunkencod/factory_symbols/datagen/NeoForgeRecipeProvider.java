@@ -6,6 +6,7 @@ import com.drunkencod.factory_symbols.registry.ModItems;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
 import com.drunkencod.factory_symbols.symbols.SymbolType;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -31,7 +32,7 @@ public class NeoForgeRecipeProvider extends RecipeProvider {
             Item materialItem = mat.getMaterialItem();
 
             TagKey<Item> materialTag = TagKey.create(
-                    net.minecraft.core.registries.Registries.ITEM,
+                    Registries.ITEM,
                     ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "materials/" + prefix));
 
             // #region Stonecutter recipes: raw material or existing symbol → symbol

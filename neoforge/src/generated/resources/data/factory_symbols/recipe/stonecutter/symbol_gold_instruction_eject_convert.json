@@ -1,0 +1,17 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "factory_symbols:symbol_enabled",
+      "material": "gold",
+      "symbol": "instruction_eject"
+    }
+  ],
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "factory_symbols:materials/gold"
+  },
+  "result": {
+    "count": 1,
+    "id": "factory_symbols:symbol_gold_instruction_eject"
+  }
+}

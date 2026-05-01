@@ -14,9 +14,13 @@
     "license": "${license}",
     "icon": "${mod_id}.png",
     "environment": "*",
+    "accessWidener": "${mod_id}.accesswidener",
     "entrypoints": {
         "main": [
             "com.drunkencod.factory_symbols.FactorySymbolsMod"
+        ],
+        "client": [
+            "com.drunkencod.factory_symbols.FactorySymbolsClientMod"
         ],
         "fabric-datagen": [
             "com.drunkencod.factory_symbols.FactorySymbolsDataGen"
