@@ -8,7 +8,7 @@ public enum SymbolCategory {
     SCIENCE("science"),
     MATH("math"),
     ENVIRONMENT("environment"),
-    MISC("misc"), // TODO
+    MISC("misc"),
     WARNING("warning", SymbolShape.TRIANGLE);
 
     private final String id;
