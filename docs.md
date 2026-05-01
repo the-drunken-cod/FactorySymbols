@@ -27,6 +27,31 @@ IDEA:
 
 -->
 
+## Roadmap:
+- [x] **[P1] - Symbol Items:**
+    - items with a symbol texture and a material-based background color that can be crafted and uncrafted in a stonecutter
+    - [x] Crafting & Uncrafting / Transmuting
+    - [x] Item Models: base model for each material + overlay for each symbol
+    - [x] Item Textures:
+        - odd-numbered texture width & height
+        - black and white textures for contrast
+- [x] **[P2] - Display Panel:**
+    - blockentity alternative to item frames
+        + has hitbox
+        + doesnt need supporting block
+        - cant rotate contained items
+        - cant place multiple per block
+        - cant place on top or bottom block faces
+    - [x] Block Model: panel with flat front face and thin borders
+    - [x] Block Texture: simple texture with a border to show the edges
+    - [x] Dyeable: 16 color variants saved in blockstate & item NBT
+- [ ] **[P3] Sign Fixture:**
+    - blockentity that can attach to top or bottom faces of blocks that are center-supporting
+    - can hold a symbol item and display it on a flat surface facing toward and away from the camera when placing, like a road sign
+    - can contain any item and display it in the same way
+    - [ ] Block Model: very small fixture that grips onto the top or bottom center of the displayed item
+    - [ ] Dyeable: 16 color variants saved in blockstate & item NBT
+
 ## Symbol Materials:
 Materials for crafting the symbol items, each with a distinct background color and a fixed yield of symbol items per craft:  
 | Material | BG Color | FG Color | Yield | Prefix |
