@@ -251,14 +251,12 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
     private static final float SOUND_PITCH = 1.3f;
 
     private void playAddItemSound(Level level, Player player, BlockPos pos) {
-        if (level.isClientSide())
-            level.playSound(player, pos, SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, SOUND_VOL, SOUND_PITCH);
+        level.playSound(player, pos, SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, SOUND_VOL, SOUND_PITCH);
     }
 
     private void playRemoveItemSound(Level level, Player player, BlockPos pos) {
-        if (level.isClientSide())
-            level.playSound(player, pos, SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, SOUND_VOL,
-                    SOUND_PITCH);
+        level.playSound(player, pos, SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, SOUND_VOL,
+                SOUND_PITCH);
     }
 
     private void playLockedSound(Level level, Player player, BlockPos pos) {
