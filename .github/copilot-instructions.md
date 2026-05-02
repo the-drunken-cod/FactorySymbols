@@ -11,11 +11,15 @@ Application Type: Minecraft mod named "Factory Symbols" that adds a bunch of sym
 Minecraft Version: 1.21.1  
 Modding Framework: NeoForge v21.1
 
-# Source Reference
+# Reference
+
 The full Minecraft source code and assets are available under `source/` (if set up properly):
+
 - `source/assets/` contains all assets in the format of a standard resource pack.
 - `source/data/` contains the default datapack, like vanilla tags and more.
 - `source/src/` contains the actual Java classes.
+
+The datagenned JSONs can be found under `src/generated/` for reference, but don't edit those directly.
 
 # Conventions
 

@@ -3,6 +3,8 @@ package com.drunkencod.factory_symbols.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -22,6 +24,7 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
@@ -36,6 +39,7 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
 
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<DyeColor> COLOR = EnumProperty.create("color", DyeColor.class);
+    public static final BooleanProperty LOCKED = BooleanProperty.create("locked");
 
     // #region Color ↔ model-id helpers (BLACK = 0, component not strictly needed)
 
@@ -108,12 +112,13 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
     public DisplayPanelBlock(Properties properties) {
         super(properties
                 .pushReaction(PushReaction.NORMAL));
-        registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(COLOR, DyeColor.BLACK));
+        registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(COLOR, DyeColor.BLACK)
+                .setValue(LOCKED, false));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, COLOR);
+        builder.add(FACING, COLOR, LOCKED);
     }
 
     // #region Shape
@@ -137,12 +142,31 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
     // #region Placement
 
     @Override
+    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+        if (!state.is(oldState.getBlock()))
+            updateLocked(state, level, pos);
+    }
+
+    @Override
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos,
+            boolean movedByPiston) {
+        updateLocked(state, level, pos);
+    }
+
+    private void updateLocked(BlockState state, Level level, BlockPos pos) {
+        boolean powered = level.hasNeighborSignal(pos);
+        if (state.getValue(LOCKED) != powered)
+            level.setBlock(pos, state.setValue(LOCKED, powered), Block.UPDATE_CLIENTS);
+    }
+
+    @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
         CustomModelData cmd = context.getItemInHand().get(DataComponents.CUSTOM_MODEL_DATA);
         int id = cmd != null ? cmd.value() : 0;
-        return state.setValue(COLOR, modelIdToColor(id));
+        boolean powered = context.getLevel().hasNeighborSignal(context.getClickedPos());
+        return state.setValue(COLOR, modelIdToColor(id)).setValue(LOCKED, powered);
     }
 
     // #region Interaction
@@ -154,13 +178,17 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
         if (!heldStack.isEmpty()) {
+            if (isLockedPlaySound(level, player, state, pos))
+                return ItemInteractionResult.FAIL;
+
             ItemStack toStore = heldStack.copyWithCount(1);
 
             // abort if already contains an item
             if (!be.getStoredItem().isEmpty())
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                return ItemInteractionResult.FAIL;
 
             be.setStoredItem(toStore);
+            playAddItemSound(level, player, pos);
 
             if (!level.isClientSide()) {
                 if (!player.isCreative())
@@ -177,16 +205,25 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
     @Override
     public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
             BlockHitResult hit) {
-        if (!player.isShiftKeyDown())
-            return InteractionResult.PASS;
         if (!(level.getBlockEntity(pos) instanceof DisplayPanelBlockEntity be))
             return InteractionResult.PASS;
+
+        if (!player.isShiftKeyDown())
+            return InteractionResult.PASS;
+
+        if (isLockedPlaySound(level, player, state, pos))
+            return InteractionResult.FAIL;
+
         ItemStack existing = be.getStoredItem();
+
         if (!existing.isEmpty()) {
             be.setStoredItem(ItemStack.EMPTY);
+            playRemoveItemSound(level, player, pos);
+
             if (!level.isClientSide()) {
                 if (!player.isCreative())
                     giveOrDrop(player, existing.copy());
+
                 be.setChanged();
                 level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL);
             }
@@ -195,9 +232,38 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
         return InteractionResult.PASS;
     }
 
+    private boolean isLockedPlaySound(Level level, Player player, BlockState state, BlockPos pos) {
+        if (state.getValue(LOCKED)) {
+            playLockedSound(level, player, pos);
+            return true;
+        }
+        return false;
+    }
+
     private static void giveOrDrop(Player player, ItemStack stack) {
         if (!player.getInventory().add(stack))
             player.drop(stack, false);
+    }
+
+    // #region sound
+
+    private static final float SOUND_VOL = 0.75f;
+    private static final float SOUND_PITCH = 1.3f;
+
+    private void playAddItemSound(Level level, Player player, BlockPos pos) {
+        if (level.isClientSide())
+            level.playSound(player, pos, SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, SOUND_VOL, SOUND_PITCH);
+    }
+
+    private void playRemoveItemSound(Level level, Player player, BlockPos pos) {
+        if (level.isClientSide())
+            level.playSound(player, pos, SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, SOUND_VOL,
+                    SOUND_PITCH);
+    }
+
+    private void playLockedSound(Level level, Player player, BlockPos pos) {
+        if (level.isClientSide())
+            level.playSound(player, pos, SoundEvents.DISPENSER_FAIL, SoundSource.BLOCKS, SOUND_VOL, SOUND_PITCH);
     }
 
     // #region Pick block

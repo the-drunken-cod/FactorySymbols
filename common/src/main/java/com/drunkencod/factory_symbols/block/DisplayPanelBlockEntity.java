@@ -37,6 +37,10 @@ public class DisplayPanelBlockEntity extends BlockEntity implements WorldlyConta
         storedItem = stack.isEmpty() ? ItemStack.EMPTY : stack;
     }
 
+    private boolean isLocked() {
+        return level != null && level.getBlockState(worldPosition).getValue(DisplayPanelBlock.LOCKED);
+    }
+
     // #region NBT
 
     @Override
@@ -128,12 +132,12 @@ public class DisplayPanelBlockEntity extends BlockEntity implements WorldlyConta
 
     @Override
     public boolean canPlaceItemThroughFace(int index, ItemStack stack, @Nullable Direction direction) {
-        return index == 0 && storedItem.isEmpty();
+        return index == 0 && storedItem.isEmpty() && !isLocked();
     }
 
     @Override
     public boolean canTakeItemThroughFace(int index, ItemStack stack, Direction direction) {
-        return index == 0;
+        return index == 0 && !isLocked();
     }
 
     private void syncToClient() {
