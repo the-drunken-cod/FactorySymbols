@@ -56,9 +56,12 @@ public class DisplayPanelBlockEntityRenderer implements BlockEntityRenderer<Disp
         // flip horizontally
         poseStack.mulPose(Axis.YP.rotationDegrees(180f));
 
-        // scale down a tiny bit against z-fighting
+        // scale down and shift a tiny bit against z-fighting:
+        float cardinalFactor = facing == Direction.NORTH || facing == Direction.EAST ? 1f : -1f;
         poseStack.scale(0.999f, 0.999f, 0.999f);
+        poseStack.translate(0.0005f, 0.0005f * cardinalFactor, 0.0005f);
 
+        // render item
         Minecraft.getInstance().getItemRenderer().renderStatic(
                 symbol,
                 ItemDisplayContext.FIXED,
