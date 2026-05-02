@@ -1,0 +1,10 @@
+{
+  "values": [
+    "factory_symbols:coal_symbol",
+    "factory_symbols:iron_symbol",
+    "factory_symbols:gold_symbol",
+    "factory_symbols:lapis_symbol",
+    "factory_symbols:redstone_symbol",
+    "factory_symbols:emerald_symbol"
+  ]
+}

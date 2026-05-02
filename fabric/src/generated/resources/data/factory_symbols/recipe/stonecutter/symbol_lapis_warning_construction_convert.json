@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "tag": "factory_symbols:symbols/lapis"
+  },
+  "result": {
+    "components": {
+      "minecraft:custom_model_data": 111
+    },
+    "count": 1,
+    "id": "factory_symbols:lapis_symbol"
+  }
+}
