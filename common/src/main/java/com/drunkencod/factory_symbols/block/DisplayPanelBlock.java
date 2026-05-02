@@ -309,9 +309,22 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
 
     @Override
     public int getAnalogOutputSignal(BlockState state, Level level, BlockPos pos) {
-        return level.getBlockEntity(pos) instanceof DisplayPanelBlockEntity be && !be.getStoredItem().isEmpty()
-                ? (be.getStoredItem().getMaxStackSize() == 1 ? 15 : 1)
-                : 0;
+        if (level.getBlockEntity(pos) instanceof DisplayPanelBlockEntity be) {
+            ItemStack stack = be.getStoredItem();
+            if (stack.isEmpty())
+                return 0;
+            int stackSize = stack.getMaxStackSize();
+            if (stackSize <= 1)
+                return 15;
+            if (stackSize <= 8)
+                return 11;
+            if (stackSize <= 16)
+                return 7;
+            if (stackSize <= 32)
+                return 3;
+            if (stackSize <= 64)
+                return 1;
+        }
+        return 1;
     }
-
 }
