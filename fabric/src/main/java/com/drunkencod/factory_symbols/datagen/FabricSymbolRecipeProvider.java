@@ -3,7 +3,6 @@ package com.drunkencod.factory_symbols.datagen;
 import com.drunkencod.factory_symbols.Constants;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
 import com.drunkencod.factory_symbols.symbols.SymbolType;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.core.HolderLookup;
@@ -39,13 +38,10 @@ public class FabricSymbolRecipeProvider implements DataProvider {
             // #region Stonecutter recipes: raw material or existing symbol → symbol
             // (conditioned)
             for (SymbolType sym : SymbolType.values()) {
-                JsonObject condition = buildCondition(mat, sym);
-
                 // material → symbol
                 JsonObject fromMaterial = buildStonecutterRecipe(
                         materialItemId, false,
-                        resultId, mat.getYield(), sym.ordinal(),
-                        condition);
+                        resultId, mat.getYield(), sym.ordinal());
                 futures.add(save(cache,
                         "stonecutter/symbol_" + prefix + "_" + sym.getId(),
                         fromMaterial));
@@ -53,8 +49,7 @@ public class FabricSymbolRecipeProvider implements DataProvider {
                 // any symbol of same material → this symbol
                 JsonObject fromSymbol = buildStonecutterRecipe(
                         materialTagId, true,
-                        resultId, 1, sym.ordinal(),
-                        condition);
+                        resultId, 1, sym.ordinal());
                 futures.add(save(cache,
                         "stonecutter/symbol_" + prefix + "_" + sym.getId() + "_convert",
                         fromSymbol));
@@ -64,24 +59,11 @@ public class FabricSymbolRecipeProvider implements DataProvider {
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }
 
-    private static JsonObject buildCondition(SymbolMaterial mat, SymbolType sym) {
-        JsonObject condition = new JsonObject();
-        condition.addProperty("type", Constants.MOD_ID + ":symbol_enabled");
-        condition.addProperty("material", mat.getPrefix());
-        condition.addProperty("symbol", sym.name().toLowerCase());
-        return condition;
-    }
-
     private static JsonObject buildStonecutterRecipe(
             String ingredientId, boolean isTag,
-            String resultId, int count, int customModelData,
-            JsonObject condition) {
+            String resultId, int count, int customModelData) {
         JsonObject recipe = new JsonObject();
         recipe.addProperty("type", "minecraft:stonecutting");
-
-        JsonArray conditions = new JsonArray();
-        conditions.add(condition);
-        recipe.add("fabric:load_conditions", conditions);
 
         JsonObject ingredient = new JsonObject();
         if (isTag)

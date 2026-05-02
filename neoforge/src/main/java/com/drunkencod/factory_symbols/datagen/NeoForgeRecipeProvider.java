@@ -35,13 +35,10 @@ public class NeoForgeRecipeProvider implements DataProvider {
             // #region Stonecutter recipes: raw material or existing symbol → symbol
             // (conditioned)
             for (SymbolType sym : SymbolType.values()) {
-                JsonObject condition = buildCondition(mat, sym);
-
                 // material → symbol
                 JsonObject fromMaterial = buildStonecutterRecipe(
                         materialItemId, false,
-                        resultId, mat.getYield(), sym.ordinal(),
-                        condition);
+                        resultId, mat.getYield(), sym.ordinal());
                 futures.add(save(cache,
                         "stonecutter/symbol_" + prefix + "_" + sym.getId(),
                         fromMaterial));
@@ -49,8 +46,7 @@ public class NeoForgeRecipeProvider implements DataProvider {
                 // any symbol of same material → this symbol
                 JsonObject fromSymbol = buildStonecutterRecipe(
                         materialTagId, true,
-                        resultId, 1, sym.ordinal(),
-                        condition);
+                        resultId, 1, sym.ordinal());
                 futures.add(save(cache,
                         "stonecutter/symbol_" + prefix + "_" + sym.getId() + "_convert",
                         fromSymbol));
@@ -60,24 +56,11 @@ public class NeoForgeRecipeProvider implements DataProvider {
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }
 
-    private static JsonObject buildCondition(SymbolMaterial mat, SymbolType sym) {
-        JsonObject condition = new JsonObject();
-        condition.addProperty("type", Constants.MOD_ID + ":symbol_enabled");
-        condition.addProperty("material", mat.getPrefix());
-        condition.addProperty("symbol", sym.name().toLowerCase());
-        return condition;
-    }
-
     private static JsonObject buildStonecutterRecipe(
             String ingredientId, boolean isTag,
-            String resultId, int count, int customModelData,
-            JsonObject condition) {
+            String resultId, int count, int customModelData) {
         JsonObject recipe = new JsonObject();
         recipe.addProperty("type", "minecraft:stonecutting");
-
-        com.google.gson.JsonArray conditions = new com.google.gson.JsonArray();
-        conditions.add(condition);
-        recipe.add("neoforge:conditions", conditions);
 
         JsonObject ingredient = new JsonObject();
         if (isTag)
