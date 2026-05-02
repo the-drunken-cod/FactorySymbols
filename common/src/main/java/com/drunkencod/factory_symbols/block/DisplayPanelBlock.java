@@ -139,12 +139,7 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
     @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
-        Direction clickedFace = context.getClickedFace();
-        BlockState state;
-        if (clickedFace.getAxis().isHorizontal())
-            state = defaultBlockState().setValue(FACING, clickedFace);
-        else
-            state = defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
+        BlockState state = defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
         CustomModelData cmd = context.getItemInHand().get(DataComponents.CUSTOM_MODEL_DATA);
         int id = cmd != null ? cmd.value() : 0;
         return state.setValue(COLOR, modelIdToColor(id));
