@@ -160,5 +160,5 @@
     "symbol.factory_symbols.warning_fire": "Fire Hazard",
     "symbol.factory_symbols.warning_generic": "Warning",
     "symbol.factory_symbols.warning_laser": "Laser Hazard",
-    "symbol.factory_symbols.warning_machinery": "Machinery Hazard"
+    "symbol.factory_symbols.warning_construction": "Construction"
 }
