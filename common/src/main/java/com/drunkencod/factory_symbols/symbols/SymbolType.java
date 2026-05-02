@@ -17,7 +17,6 @@ Non-exhaustive list of symbols:
 
 public enum SymbolType {
     // #region Letters
-    SPACE("space", SymbolCategory.LETTER),
     LETTER_A("letter_a", SymbolCategory.LETTER),
     LETTER_B("letter_b", SymbolCategory.LETTER),
     LETTER_C("letter_c", SymbolCategory.LETTER),
@@ -44,6 +43,7 @@ public enum SymbolType {
     LETTER_X("letter_x", SymbolCategory.LETTER),
     LETTER_Y("letter_y", SymbolCategory.LETTER),
     LETTER_Z("letter_z", SymbolCategory.LETTER),
+    SPACE("space", SymbolCategory.LETTER),
     // #region Numbers
     NUM_0("number_0", SymbolCategory.NUMBER),
     NUM_1("number_1", SymbolCategory.NUMBER),
