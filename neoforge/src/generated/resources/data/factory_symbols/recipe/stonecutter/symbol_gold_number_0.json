@@ -11,7 +11,10 @@
     "item": "minecraft:gold_ingot"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 27
+    },
     "count": 4,
-    "id": "factory_symbols:symbol_gold_number_0"
+    "id": "factory_symbols:gold_symbol"
   }
 }

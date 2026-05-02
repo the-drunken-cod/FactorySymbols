@@ -11,7 +11,10 @@
     "item": "minecraft:lapis_lazuli"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 69
+    },
     "count": 2,
-    "id": "factory_symbols:symbol_lapis_arrow_outward"
+    "id": "factory_symbols:lapis_symbol"
   }
 }

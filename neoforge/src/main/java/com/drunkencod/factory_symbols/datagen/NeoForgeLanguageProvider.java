@@ -1,8 +1,6 @@
 package com.drunkencod.factory_symbols.datagen;
 
 import com.drunkencod.factory_symbols.Constants;
-import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
-import com.drunkencod.factory_symbols.symbols.SymbolType;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -38,40 +36,16 @@ public class NeoForgeLanguageProvider extends LanguageProvider {
             throw new RuntimeException("Failed to read source lang file: " + sourceLangFile, e);
         }
 
-        // #region Pass-through runtime keys (tab name, tag names)
-        // Skip datagen-source-only keys: the template, comments, and the
-        // material/symbol part keys.
+        // #region Pass-through runtime keys (tab name, tag names, item name template,
+        // material/symbol names)
+        // Skip only comment keys; all other keys are needed at runtime.
         for (Map.Entry<String, JsonElement> entry : lang.entrySet()) {
             String key = entry.getKey();
-            if (key.startsWith("_") || key.startsWith("factory_symbols.item_name_template")
-                    || key.startsWith("material.") || key.startsWith("symbol.")) {
+            if (key.contains("__comment__")) {
                 continue;
             }
             add(key, entry.getValue().getAsString());
         }
-
-        // #region Generated item keys
-        String template = requireKey(lang, "factory_symbols.item_name_template");
-
-        for (SymbolMaterial mat : SymbolMaterial.values()) {
-            String materialKey = "material." + Constants.MOD_ID + "." + mat.getPrefix();
-            String materialName = requireKey(lang, materialKey);
-
-            for (SymbolType sym : SymbolType.values()) {
-                String symbolKey = "symbol." + Constants.MOD_ID + "." + sym.getId();
-                String symbolName = requireKey(lang, symbolKey);
-                String itemName = template
-                        .replace("${material_name}", materialName)
-                        .replace("${symbol_name}", symbolName);
-                add("item." + Constants.MOD_ID + ".symbol_" + mat.getPrefix() + "_" + sym.getId(), itemName);
-            }
-        }
     }
 
-    private String requireKey(JsonObject lang, String key) {
-        JsonElement element = lang.get(key);
-        if (element == null)
-            throw new IllegalStateException("Missing translation key '" + key + "' in " + sourceLangFile);
-        return element.getAsString();
-    }
 }

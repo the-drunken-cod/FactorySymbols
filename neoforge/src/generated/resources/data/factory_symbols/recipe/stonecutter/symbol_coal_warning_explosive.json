@@ -11,7 +11,10 @@
     "item": "minecraft:coal"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 114
+    },
     "count": 4,
-    "id": "factory_symbols:symbol_coal_warning_explosive"
+    "id": "factory_symbols:coal_symbol"
   }
 }

@@ -11,7 +11,10 @@
     "item": "minecraft:iron_ingot"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 111
+    },
     "count": 4,
-    "id": "factory_symbols:symbol_iron_warning_fire"
+    "id": "factory_symbols:iron_symbol"
   }
 }

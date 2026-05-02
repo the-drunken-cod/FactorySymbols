@@ -1,13 +1,10 @@
 package com.drunkencod.factory_symbols.datagen;
 
 import com.drunkencod.factory_symbols.Constants;
-import com.drunkencod.factory_symbols.registry.ModItems;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
-import com.drunkencod.factory_symbols.symbols.SymbolType;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
@@ -33,16 +30,9 @@ public class FabricItemTagsProvider implements DataProvider {
         Map<String, List<String>> tagValues = new LinkedHashMap<>();
 
         for (SymbolMaterial mat : SymbolMaterial.values()) {
-            String prefix = mat.getPrefix();
-
-            for (SymbolType sym : SymbolType.values()) {
-                String symbolId = BuiltInRegistries.ITEM.getKey(ModItems.SYMBOLS.get(mat).get(sym).get()).toString();
-
-                tagValues.computeIfAbsent("symbols", k -> new ArrayList<>()).add(symbolId);
-                tagValues.computeIfAbsent("materials/" + prefix, k -> new ArrayList<>()).add(symbolId);
-                tagValues.computeIfAbsent("categories/" + sym.getCategory().getId(), k -> new ArrayList<>())
-                        .add(symbolId);
-            }
+            String symbolId = Constants.MOD_ID + ":" + mat.getPrefix() + "_symbol";
+            tagValues.computeIfAbsent("symbols", k -> new ArrayList<>()).add(symbolId);
+            tagValues.computeIfAbsent("symbols/" + mat.getPrefix(), k -> new ArrayList<>()).add(symbolId);
         }
 
         List<CompletableFuture<?>> futures = new ArrayList<>();

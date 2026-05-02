@@ -70,7 +70,7 @@ Materials for crafting the symbol items, each with a distinct background color a
 Crafted from the symbol templates in a stonecutter, yielding 1 symbol item per craft.  
 The symbol items can be uncrafted back into the symbol template in a crafting grid, yielding 1 template per craft.  
 The symbol items have a uniform texture design with the symbol in the center and the material's color as a square background, allowing for good contrast and recognizability even at small sizes.  
-The symbol items have registry IDs in the format `factory_symbols:symbol_<material>_<symbol_name>` and the item tags `#factory_symbols:symbols`, `#factory_symbols:categories/<category>`, and `#factory_symbols:materials/<material>`.
+The symbol items have registry IDs in the format `factory_symbols:symbol_<material>_<symbol_name>` and the item tags `#factory_symbols:symbols`, `#factory_symbols:categories/<category>`, and `#factory_symbols:symbols/<material>`.
   
 | Category | Emoji | Symbol |
 | :-- | :-- | :-- |

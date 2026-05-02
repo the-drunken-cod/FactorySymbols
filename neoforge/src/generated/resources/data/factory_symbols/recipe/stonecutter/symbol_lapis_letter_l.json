@@ -11,7 +11,10 @@
     "item": "minecraft:lapis_lazuli"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 12
+    },
     "count": 2,
-    "id": "factory_symbols:symbol_lapis_letter_l"
+    "id": "factory_symbols:lapis_symbol"
   }
 }

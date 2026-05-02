@@ -42,8 +42,8 @@ Comparison with Item Frames:
 
 ## Item Tags:
 - `factory_symbols:symbols` - All symbol items.
-- `factory_symbols:materials/<material>` - Symbol items of a specific material.
-    - e.g.: `factory_symbols:materials/coal` - Coal symbol items.
+- `factory_symbols:symbols/<material>` - Symbol items of a specific material.
+    - e.g.: `factory_symbols:symbols/coal` - Coal symbol items.
 - `factory_symbols:categories/<category>` - Symbol items of a specific category.
     - e.g. `factory_symbols:categories/arrow` - Arrow symbol items.
     - Find all categories in `common/src/main/resources/assets/factory_symbols/textures/item/symbol/` (and all the symbol variants within each subfolder).

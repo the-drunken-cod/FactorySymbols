@@ -8,10 +8,13 @@
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "tag": "factory_symbols:materials/gold"
+    "tag": "factory_symbols:symbols/gold"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 108
+    },
     "count": 1,
-    "id": "factory_symbols:symbol_gold_misc_mars"
+    "id": "factory_symbols:gold_symbol"
   }
 }

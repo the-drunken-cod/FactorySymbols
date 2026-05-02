@@ -11,7 +11,10 @@
     "item": "minecraft:iron_ingot"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 109
+    },
     "count": 4,
-    "id": "factory_symbols:symbol_iron_misc_venus"
+    "id": "factory_symbols:iron_symbol"
   }
 }

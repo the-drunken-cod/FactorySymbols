@@ -11,7 +11,10 @@
     "item": "minecraft:coal"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 74
+    },
     "count": 4,
-    "id": "factory_symbols:symbol_coal_science_temp_med"
+    "id": "factory_symbols:coal_symbol"
   }
 }

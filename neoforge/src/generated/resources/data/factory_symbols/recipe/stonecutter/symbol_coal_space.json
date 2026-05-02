@@ -11,7 +11,10 @@
     "item": "minecraft:coal"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 0
+    },
     "count": 4,
-    "id": "factory_symbols:symbol_coal_space"
+    "id": "factory_symbols:coal_symbol"
   }
 }

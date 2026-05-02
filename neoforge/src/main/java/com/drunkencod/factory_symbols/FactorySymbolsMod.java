@@ -52,7 +52,7 @@ public class FactorySymbolsMod {
                                 new NeoForgeLanguageProvider(output));
 
                 generator.addProvider(event.includeServer(),
-                                new NeoForgeRecipeProvider(output, event.getLookupProvider()));
+                                new NeoForgeRecipeProvider(output));
 
                 generator.addProvider(event.includeServer(),
                                 new NeoForgeItemTagsProvider(output));

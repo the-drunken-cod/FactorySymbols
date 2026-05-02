@@ -1,63 +1,113 @@
 package com.drunkencod.factory_symbols.datagen;
 
 import com.drunkencod.factory_symbols.Constants;
-import com.drunkencod.factory_symbols.conditions.FabricSymbolCondition;
-import com.drunkencod.factory_symbols.registry.ModItems;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
 import com.drunkencod.factory_symbols.symbols.SymbolType;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
-import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.data.CachedOutput;
+import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.Ingredient;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-public class FabricSymbolRecipeProvider extends FabricRecipeProvider {
+public class FabricSymbolRecipeProvider implements DataProvider {
+
+    private final PackOutput.PathProvider pathProvider;
 
     public FabricSymbolRecipeProvider(FabricDataOutput output,
             CompletableFuture<HolderLookup.Provider> registriesFuture) {
-        super(output, registriesFuture);
+        this.pathProvider = output.createPathProvider(PackOutput.Target.DATA_PACK, "recipe");
     }
 
     @Override
-    public void buildRecipes(RecipeOutput output) {
+    public CompletableFuture<?> run(CachedOutput cache) {
+        List<CompletableFuture<?>> futures = new ArrayList<>();
+
         for (SymbolMaterial mat : SymbolMaterial.values()) {
             String prefix = mat.getPrefix();
-            Item materialItem = mat.getMaterialItem();
-
-            TagKey<Item> materialTag = TagKey.create(
-                    Registries.ITEM,
-                    ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "materials/" + prefix));
+            String resultId = Constants.MOD_ID + ":" + prefix + "_symbol";
+            String materialItemId = "minecraft:" + mat.getMaterialItemId();
+            String materialTagId = Constants.MOD_ID + ":symbols/" + prefix;
 
             // #region Stonecutter recipes: raw material or existing symbol → symbol
             // (conditioned)
             for (SymbolType sym : SymbolType.values()) {
-                Item symbol = ModItems.SYMBOLS.get(mat).get(sym).get();
-                RecipeOutput conditional = withConditions(output, new FabricSymbolCondition(mat, sym));
+                JsonObject condition = buildCondition(mat, sym);
 
-                SingleItemRecipeBuilder
-                        .stonecutting(Ingredient.of(materialItem), RecipeCategory.MISC, symbol, mat.getYield())
-                        .unlockedBy("has_material_" + prefix, has(materialItem))
-                        .save(conditional, ResourceLocation.fromNamespaceAndPath(
-                                Constants.MOD_ID,
-                                "stonecutter/symbol_" + prefix + "_" + sym.getId()));
+                // material → symbol
+                JsonObject fromMaterial = buildStonecutterRecipe(
+                        materialItemId, false,
+                        resultId, mat.getYield(), sym.ordinal(),
+                        condition);
+                futures.add(save(cache,
+                        "stonecutter/symbol_" + prefix + "_" + sym.getId(),
+                        fromMaterial));
 
-                SingleItemRecipeBuilder
-                        .stonecutting(Ingredient.of(materialTag), RecipeCategory.MISC, symbol, 1)
-                        .unlockedBy("has_symbol_" + prefix, has(materialTag))
-                        .save(conditional,
-                                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID,
-                                        "stonecutter/symbol_" + prefix + "_"
-                                                + sym.getId()
-                                                + "_convert"));
+                // any symbol of same material → this symbol
+                JsonObject fromSymbol = buildStonecutterRecipe(
+                        materialTagId, true,
+                        resultId, 1, sym.ordinal(),
+                        condition);
+                futures.add(save(cache,
+                        "stonecutter/symbol_" + prefix + "_" + sym.getId() + "_convert",
+                        fromSymbol));
             }
         }
+
+        return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
+    }
+
+    private static JsonObject buildCondition(SymbolMaterial mat, SymbolType sym) {
+        JsonObject condition = new JsonObject();
+        condition.addProperty("type", Constants.MOD_ID + ":symbol_enabled");
+        condition.addProperty("material", mat.getPrefix());
+        condition.addProperty("symbol", sym.name().toLowerCase());
+        return condition;
+    }
+
+    private static JsonObject buildStonecutterRecipe(
+            String ingredientId, boolean isTag,
+            String resultId, int count, int customModelData,
+            JsonObject condition) {
+        JsonObject recipe = new JsonObject();
+        recipe.addProperty("type", "minecraft:stonecutting");
+
+        JsonArray conditions = new JsonArray();
+        conditions.add(condition);
+        recipe.add("fabric:load_conditions", conditions);
+
+        JsonObject ingredient = new JsonObject();
+        if (isTag)
+            ingredient.addProperty("tag", ingredientId);
+        else
+            ingredient.addProperty("item", ingredientId);
+        recipe.add("ingredient", ingredient);
+
+        JsonObject result = new JsonObject();
+        result.addProperty("id", resultId);
+        result.addProperty("count", count);
+        JsonObject components = new JsonObject();
+        components.addProperty("minecraft:custom_model_data", customModelData);
+        result.add("components", components);
+        recipe.add("result", result);
+
+        return recipe;
+    }
+
+    private CompletableFuture<?> save(CachedOutput cache, String name, JsonObject json) {
+        Path path = pathProvider.json(ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, name));
+        return DataProvider.saveStable(cache, json, path);
+    }
+
+    @Override
+    public String getName() {
+        return "Factory Symbols Recipes";
     }
 }

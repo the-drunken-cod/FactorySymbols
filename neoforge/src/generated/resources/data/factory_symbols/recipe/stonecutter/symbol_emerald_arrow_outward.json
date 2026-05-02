@@ -11,7 +11,10 @@
     "item": "minecraft:emerald"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 69
+    },
     "count": 4,
-    "id": "factory_symbols:symbol_emerald_arrow_outward"
+    "id": "factory_symbols:emerald_symbol"
   }
 }

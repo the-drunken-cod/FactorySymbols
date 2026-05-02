@@ -8,10 +8,13 @@
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "tag": "factory_symbols:materials/iron"
+    "tag": "factory_symbols:symbols/iron"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 3
+    },
     "count": 1,
-    "id": "factory_symbols:symbol_iron_letter_c"
+    "id": "factory_symbols:iron_symbol"
   }
 }

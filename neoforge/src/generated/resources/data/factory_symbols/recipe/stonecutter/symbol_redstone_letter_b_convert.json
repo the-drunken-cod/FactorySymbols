@@ -8,10 +8,13 @@
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "tag": "factory_symbols:materials/redstone"
+    "tag": "factory_symbols:symbols/redstone"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 2
+    },
     "count": 1,
-    "id": "factory_symbols:symbol_redstone_letter_b"
+    "id": "factory_symbols:redstone_symbol"
   }
 }

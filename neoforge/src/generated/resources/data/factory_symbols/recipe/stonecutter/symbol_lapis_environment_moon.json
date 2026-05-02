@@ -11,7 +11,10 @@
     "item": "minecraft:lapis_lazuli"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 92
+    },
     "count": 2,
-    "id": "factory_symbols:symbol_lapis_environment_moon"
+    "id": "factory_symbols:lapis_symbol"
   }
 }

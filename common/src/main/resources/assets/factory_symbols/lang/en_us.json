@@ -24,8 +24,8 @@
     "tag.factory_symbols.displays": "Displays",
     "tag.factory_symbols.symbols": "Symbols",
 
-    "factory_symbols.item_name_template.__comment__": "Template used by datagen to compose item display names. Use ${material_name} and ${symbol_name} as placeholders.",
-    "factory_symbols.item_name_template": "${material_name} ${symbol_name} Symbol",
+    "factory_symbols.item_name_template.__comment__": "Template used at runtime to compose item display names. %1$s = material name, %2$s = symbol name.",
+    "factory_symbols.item_name_template": "%1$s %2$s Symbol",
 
     "material.factory_symbols.coal": "Coal",
     "material.factory_symbols.emerald": "Emerald",

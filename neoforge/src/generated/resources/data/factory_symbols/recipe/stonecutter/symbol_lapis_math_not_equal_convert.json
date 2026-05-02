@@ -8,10 +8,13 @@
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "tag": "factory_symbols:materials/lapis"
+    "tag": "factory_symbols:symbols/lapis"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 86
+    },
     "count": 1,
-    "id": "factory_symbols:symbol_lapis_math_not_equal"
+    "id": "factory_symbols:lapis_symbol"
   }
 }

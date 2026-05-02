@@ -8,10 +8,13 @@
   ],
   "type": "minecraft:stonecutting",
   "ingredient": {
-    "tag": "factory_symbols:materials/coal"
+    "tag": "factory_symbols:symbols/coal"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 37
+    },
     "count": 1,
-    "id": "factory_symbols:symbol_coal_instruction_check"
+    "id": "factory_symbols:coal_symbol"
   }
 }

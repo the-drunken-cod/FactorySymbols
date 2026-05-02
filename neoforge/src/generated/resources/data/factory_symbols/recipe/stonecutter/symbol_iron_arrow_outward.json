@@ -11,7 +11,10 @@
     "item": "minecraft:iron_ingot"
   },
   "result": {
+    "components": {
+      "minecraft:custom_model_data": 69
+    },
     "count": 4,
-    "id": "factory_symbols:symbol_iron_arrow_outward"
+    "id": "factory_symbols:iron_symbol"
   }
 }

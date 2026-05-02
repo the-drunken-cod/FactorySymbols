@@ -1,0 +1,704 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "factory_symbols:item/emerald_symbol/space",
+      "predicate": {
+        "custom_model_data": 0
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_a",
+      "predicate": {
+        "custom_model_data": 1
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_b",
+      "predicate": {
+        "custom_model_data": 2
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_c",
+      "predicate": {
+        "custom_model_data": 3
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_d",
+      "predicate": {
+        "custom_model_data": 4
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_e",
+      "predicate": {
+        "custom_model_data": 5
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_f",
+      "predicate": {
+        "custom_model_data": 6
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_g",
+      "predicate": {
+        "custom_model_data": 7
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_h",
+      "predicate": {
+        "custom_model_data": 8
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_i",
+      "predicate": {
+        "custom_model_data": 9
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_j",
+      "predicate": {
+        "custom_model_data": 10
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_k",
+      "predicate": {
+        "custom_model_data": 11
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_l",
+      "predicate": {
+        "custom_model_data": 12
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_m",
+      "predicate": {
+        "custom_model_data": 13
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_n",
+      "predicate": {
+        "custom_model_data": 14
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_o",
+      "predicate": {
+        "custom_model_data": 15
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_p",
+      "predicate": {
+        "custom_model_data": 16
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_q",
+      "predicate": {
+        "custom_model_data": 17
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_r",
+      "predicate": {
+        "custom_model_data": 18
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_s",
+      "predicate": {
+        "custom_model_data": 19
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_t",
+      "predicate": {
+        "custom_model_data": 20
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_u",
+      "predicate": {
+        "custom_model_data": 21
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_v",
+      "predicate": {
+        "custom_model_data": 22
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_w",
+      "predicate": {
+        "custom_model_data": 23
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_x",
+      "predicate": {
+        "custom_model_data": 24
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_y",
+      "predicate": {
+        "custom_model_data": 25
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/letter_z",
+      "predicate": {
+        "custom_model_data": 26
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/number_0",
+      "predicate": {
+        "custom_model_data": 27
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/number_1",
+      "predicate": {
+        "custom_model_data": 28
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/number_2",
+      "predicate": {
+        "custom_model_data": 29
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/number_3",
+      "predicate": {
+        "custom_model_data": 30
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/number_4",
+      "predicate": {
+        "custom_model_data": 31
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/number_5",
+      "predicate": {
+        "custom_model_data": 32
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/number_6",
+      "predicate": {
+        "custom_model_data": 33
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/number_7",
+      "predicate": {
+        "custom_model_data": 34
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/number_8",
+      "predicate": {
+        "custom_model_data": 35
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/number_9",
+      "predicate": {
+        "custom_model_data": 36
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_check",
+      "predicate": {
+        "custom_model_data": 37
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_cross",
+      "predicate": {
+        "custom_model_data": 38
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_forbidden",
+      "predicate": {
+        "custom_model_data": 39
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_info",
+      "predicate": {
+        "custom_model_data": 40
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_no_entry",
+      "predicate": {
+        "custom_model_data": 41
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_turn_around",
+      "predicate": {
+        "custom_model_data": 42
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_turn_left",
+      "predicate": {
+        "custom_model_data": 43
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_turn_right",
+      "predicate": {
+        "custom_model_data": 44
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_eject",
+      "predicate": {
+        "custom_model_data": 45
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_next",
+      "predicate": {
+        "custom_model_data": 46
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_pause",
+      "predicate": {
+        "custom_model_data": 47
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_play_pause",
+      "predicate": {
+        "custom_model_data": 48
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_play",
+      "predicate": {
+        "custom_model_data": 49
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_previous",
+      "predicate": {
+        "custom_model_data": 50
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_record",
+      "predicate": {
+        "custom_model_data": 51
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_stop",
+      "predicate": {
+        "custom_model_data": 52
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_mute",
+      "predicate": {
+        "custom_model_data": 53
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_volume_down",
+      "predicate": {
+        "custom_model_data": 54
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/instruction_volume_up",
+      "predicate": {
+        "custom_model_data": 55
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_up",
+      "predicate": {
+        "custom_model_data": 56
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_down",
+      "predicate": {
+        "custom_model_data": 57
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_left",
+      "predicate": {
+        "custom_model_data": 58
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_right",
+      "predicate": {
+        "custom_model_data": 59
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_up_left",
+      "predicate": {
+        "custom_model_data": 60
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_up_right",
+      "predicate": {
+        "custom_model_data": 61
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_down_left",
+      "predicate": {
+        "custom_model_data": 62
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_down_right",
+      "predicate": {
+        "custom_model_data": 63
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_left_right",
+      "predicate": {
+        "custom_model_data": 64
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_up_down",
+      "predicate": {
+        "custom_model_data": 65
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_cycle_clockwise",
+      "predicate": {
+        "custom_model_data": 66
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_cycle_counterclockwise",
+      "predicate": {
+        "custom_model_data": 67
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_inward",
+      "predicate": {
+        "custom_model_data": 68
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/arrow_outward",
+      "predicate": {
+        "custom_model_data": 69
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/science_atom",
+      "predicate": {
+        "custom_model_data": 70
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/science_battery",
+      "predicate": {
+        "custom_model_data": 71
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/science_dna",
+      "predicate": {
+        "custom_model_data": 72
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/science_temp_low",
+      "predicate": {
+        "custom_model_data": 73
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/science_temp_med",
+      "predicate": {
+        "custom_model_data": 74
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/science_temp_high",
+      "predicate": {
+        "custom_model_data": 75
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/math_infinity",
+      "predicate": {
+        "custom_model_data": 76
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/math_plus",
+      "predicate": {
+        "custom_model_data": 77
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/math_minus",
+      "predicate": {
+        "custom_model_data": 78
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/math_division",
+      "predicate": {
+        "custom_model_data": 79
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/math_modulo",
+      "predicate": {
+        "custom_model_data": 80
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/math_less_than",
+      "predicate": {
+        "custom_model_data": 81
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/math_greater_than",
+      "predicate": {
+        "custom_model_data": 82
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/math_less_than_equal",
+      "predicate": {
+        "custom_model_data": 83
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/math_greater_than_equal",
+      "predicate": {
+        "custom_model_data": 84
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/math_equal",
+      "predicate": {
+        "custom_model_data": 85
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/math_not_equal",
+      "predicate": {
+        "custom_model_data": 86
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/math_approx_equal",
+      "predicate": {
+        "custom_model_data": 87
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/environment_carrot",
+      "predicate": {
+        "custom_model_data": 88
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/environment_fish",
+      "predicate": {
+        "custom_model_data": 89
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/environment_house",
+      "predicate": {
+        "custom_model_data": 90
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/environment_location",
+      "predicate": {
+        "custom_model_data": 91
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/environment_moon",
+      "predicate": {
+        "custom_model_data": 92
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/environment_star",
+      "predicate": {
+        "custom_model_data": 93
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/environment_sun",
+      "predicate": {
+        "custom_model_data": 94
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/environment_time",
+      "predicate": {
+        "custom_model_data": 95
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/environment_tree",
+      "predicate": {
+        "custom_model_data": 96
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/environment_water",
+      "predicate": {
+        "custom_model_data": 97
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/misc_smiling",
+      "predicate": {
+        "custom_model_data": 98
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/misc_meh",
+      "predicate": {
+        "custom_model_data": 99
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/misc_frowning",
+      "predicate": {
+        "custom_model_data": 100
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/misc_heart",
+      "predicate": {
+        "custom_model_data": 101
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/misc_key",
+      "predicate": {
+        "custom_model_data": 102
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/misc_message",
+      "predicate": {
+        "custom_model_data": 103
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/misc_music",
+      "predicate": {
+        "custom_model_data": 104
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/misc_padlock",
+      "predicate": {
+        "custom_model_data": 105
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/misc_trend_down",
+      "predicate": {
+        "custom_model_data": 106
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/misc_trend_up",
+      "predicate": {
+        "custom_model_data": 107
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/misc_mars",
+      "predicate": {
+        "custom_model_data": 108
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/misc_venus",
+      "predicate": {
+        "custom_model_data": 109
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/warning_generic",
+      "predicate": {
+        "custom_model_data": 110
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/warning_fire",
+      "predicate": {
+        "custom_model_data": 111
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/warning_machinery",
+      "predicate": {
+        "custom_model_data": 112
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/warning_electric",
+      "predicate": {
+        "custom_model_data": 113
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/warning_explosive",
+      "predicate": {
+        "custom_model_data": 114
+      }
+    },
+    {
+      "model": "factory_symbols:item/emerald_symbol/warning_laser",
+      "predicate": {
+        "custom_model_data": 115
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "factory_symbols:item/base/square/emerald"
+  }
+}
