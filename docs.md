@@ -8,7 +8,7 @@ Symbols come in 6 material variants (Coal, Iron, Gold, Lapis, Redstone, Emerald)
 Symbols can also be placed into a stonecutter to transmute them into different symbols of the same material.  
 Some categories of symbols have special shapes, like a triangular base for the "Warning" category.
 
-<br>
+<br><br>
 
 # Block Entities
 
@@ -20,7 +20,9 @@ Interactions:
 - Right-clicking an empty panel with an item in hand will place the item on the panel.
 - Shift-right-clicking a panel with an empty hand will pick up the item from the panel.
 - Powering the panel with redstone will lock it, preventing any interactions until the redstone signal is removed again.
-- Using a comparator, the panel emits a redstone signal strength of 15 when containing a non-stackable item, 1 when containing a stackable item, and 0 when empty.
+- Using a comparator, the panel emits a redstone signal strength between 0 and 15 relative to how stackable the displayed item is. An empty panel emits a signal strength of 0.
+
+<br>
   
 Comparison with Item Frames:  
 | Pro/Con | Description |
@@ -37,15 +39,31 @@ Comparison with Item Frames:
 | Con | Can't place multiple panels on different faces in the same block space. |
 | Con | Can't place panels on top or bottom block faces. |
 | Con | Panels always render dynamic items like compasses, clocks or maps in their default state. |
+  
+<br>
+
+Comparator signal strengths:
+| Max Stack Size | Signal Strength |
+| :-- | :-- |
+| 0 (empty) | 0 |
+| 1 | 15 |
+| 2-8 | 11 |
+| 9-16 | 7 |
+| 17-32 | 3 |
+| 33-64 | 1 |
 
 <br>
+
+<br><br>
 
 # Tags
 
 ## Block Tags:
 - `factory_symbols:displays` - All blocks that can display items.
 
+<br>
+
 ## Item Tags:
 - `factory_symbols:symbols` - All symbol items.
-- `factory_symbols:symbols/<material>` - Symbol items of a specific material.
-    - e.g.: `factory_symbols:symbols/coal` - Coal symbol items.
+- `factory_symbols:symbols/<material>` - Symbol items of a specific material.  
+  e.g.: `factory_symbols:symbols/iron` for symbol items made of iron.
