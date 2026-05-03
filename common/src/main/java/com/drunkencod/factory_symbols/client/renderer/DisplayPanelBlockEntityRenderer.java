@@ -5,6 +5,8 @@ import com.mojang.math.Axis;
 import com.drunkencod.factory_symbols.Constants;
 import com.drunkencod.factory_symbols.block.DisplayPanelBlock;
 import com.drunkencod.factory_symbols.block.DisplayPanelBlockEntity;
+import com.drunkencod.factory_symbols.platform.Services;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -57,9 +59,11 @@ public class DisplayPanelBlockEntityRenderer implements BlockEntityRenderer<Disp
         poseStack.mulPose(Axis.YP.rotationDegrees(180f));
 
         // scale down and shift a tiny bit against z-fighting:
-        float cardinalFactor = facing == Direction.NORTH || facing == Direction.EAST ? 1f : -1f;
-        poseStack.scale(0.995f, 0.995f, 0.995f);
-        poseStack.translate(0.0005f, 0.0005f * cardinalFactor, 0.0005f);
+        poseStack.scale(0.997f, 0.997f, 0.997f);
+        if (Services.CONFIG.displayPanelShiftRenderedItem()) {
+            float cardinalFactor = facing == Direction.NORTH || facing == Direction.EAST ? 1f : -1f;
+            poseStack.translate(0.0003f, 0.0003f * cardinalFactor, 0.0003f);
+        }
 
         // render item
         Minecraft.getInstance().getItemRenderer().renderStatic(

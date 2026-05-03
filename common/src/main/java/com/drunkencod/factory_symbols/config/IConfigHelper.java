@@ -13,9 +13,8 @@ package com.drunkencod.factory_symbols.config;
  */
 public interface IConfigHelper {
 
-    boolean getExampleStartupBool();
+    // #region client
 
-    boolean getExampleServerBool();
-
-    boolean getExampleClientBool();
+    /** Whether to shift the rendered item slightly to prevent z-fighting */
+    boolean displayPanelShiftRenderedItem();
 }

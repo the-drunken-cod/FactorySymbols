@@ -54,50 +54,40 @@ public class NeoForgeConfigHelper implements IConfigHelper {
     // #region IConfigHelper implementation
 
     @Override
-    public boolean getExampleStartupBool() {
-        return COMMON.exampleStartupBool.get();
-    }
-
-    @Override
-    public boolean getExampleServerBool() {
-        return SERVER.exampleServerBool.get();
-    }
-
-    @Override
-    public boolean getExampleClientBool() {
-        return CLIENT.exampleClientBool.get();
+    public boolean displayPanelShiftRenderedItem() {
+        return CLIENT.displayPanelShiftRenderedItem.get();
     }
 
     // #region Inner config classes
 
     public static class CommonConfig {
-        public final ModConfigSpec.BooleanValue exampleStartupBool;
+        // public final ModConfigSpec.BooleanValue exampleStartupBool;
 
         CommonConfig(ModConfigSpec.Builder builder) {
-            exampleStartupBool = builder
-                    .comment("Example common (startup) config boolean")
-                    .define("exampleStartupBool", false);
+            // exampleStartupBool = builder
+            // .comment("Example common (startup) config boolean")
+            // .define("exampleStartupBool", false);
 
         }
     }
 
     public static class ServerConfig {
-        public final ModConfigSpec.BooleanValue exampleServerBool;
+        // public final ModConfigSpec.BooleanValue exampleServerBool;
 
         ServerConfig(ModConfigSpec.Builder builder) {
-            exampleServerBool = builder
-                    .comment("Example server config boolean")
-                    .define("exampleServerBool", false);
+            // exampleServerBool = builder
+            // .comment("Example server config boolean")
+            // .define("exampleServerBool", false);
         }
     }
 
     public static class ClientConfig {
-        public final ModConfigSpec.BooleanValue exampleClientBool;
+        public final ModConfigSpec.BooleanValue displayPanelShiftRenderedItem;
 
         ClientConfig(ModConfigSpec.Builder builder) {
-            exampleClientBool = builder
-                    .comment("Example client config boolean")
-                    .define("exampleClientBool", false);
+            displayPanelShiftRenderedItem = builder
+                    .comment("Whether to slightly shift the rendered item on the display panel to prevent z-fighting")
+                    .define("displayPanelShiftRenderedItem", false);
         }
     }
 }

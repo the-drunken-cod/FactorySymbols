@@ -20,37 +20,27 @@ public class FabricConfigHelper implements IConfigHelper {
     // #region IConfigHelper implementation
 
     @Override
-    public boolean getExampleStartupBool() {
-        return AutoConfig.getConfigHolder(CommonConfigData.class).getConfig().exampleStartupBool;
-    }
-
-    @Override
-    public boolean getExampleServerBool() {
-        return AutoConfig.getConfigHolder(ServerConfigData.class).getConfig().exampleServerBool;
-    }
-
-    @Override
-    public boolean getExampleClientBool() {
-        return AutoConfig.getConfigHolder(ClientConfigData.class).getConfig().exampleClientBool;
+    public boolean displayPanelShiftRenderedItem() {
+        return AutoConfig.getConfigHolder(ClientConfigData.class).getConfig().displayPanelShiftRenderedItem;
     }
 
     // #region Config data classes
 
     @Config(name = Constants.MOD_ID + "_common")
     public static class CommonConfigData implements ConfigData {
-        public boolean exampleStartupBool = false;
+        // public boolean exampleStartupBool = false;
     }
 
     @Config(name = Constants.MOD_ID + "_server")
     public static class ServerConfigData implements ConfigData {
-        @ConfigEntry.Gui.Tooltip
-        public boolean exampleServerBool = false;
+        // @ConfigEntry.Gui.Tooltip
+        // public boolean exampleServerBool = false;
     }
 
     @Config(name = Constants.MOD_ID + "_client")
     public static class ClientConfigData implements ConfigData {
         @ConfigEntry.Gui.Tooltip
-        public boolean exampleClientBool = false;
+        public boolean displayPanelShiftRenderedItem = true;
     }
 
 }
