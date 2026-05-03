@@ -1,4 +1,4 @@
-![Factory Symbols banner showing off all symbol items and the Display Panel block entities](https://raw.githubusercontent.com/the-drunken-cod/FactorySymbols/refs/heads/develop/.github/assets/banner.jpg)
+![Factory Symbols banner showing off all symbol items and the Display Panel block entities](https://raw.githubusercontent.com/the-drunken-cod/FactorySymbols/refs/heads/develop/.github/assets/banner.png)
 
 <br>
 
