@@ -158,4 +158,8 @@ public enum SymbolType {
     public SymbolCategory getCategory() {
         return category;
     }
+
+    public SymbolShape getShape() {
+        return category.getShape();
+    }
 }

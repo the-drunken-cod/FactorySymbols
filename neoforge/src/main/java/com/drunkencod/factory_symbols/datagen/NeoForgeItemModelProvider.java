@@ -35,7 +35,6 @@ public class NeoForgeItemModelProvider implements DataProvider {
 
             // #region Sub-models — one per symbol, placed in a subfolder
             for (SymbolType sym : types) {
-                String shape = sym.getCategory().getShape().getId();
                 String catFolder = sym.getCategory().getId().replaceAll("s$", "");
                 String symName = sym.getId().startsWith(catFolder + "_")
                         ? sym.getId().substring(catFolder.length() + 1)
@@ -43,7 +42,7 @@ public class NeoForgeItemModelProvider implements DataProvider {
                 JsonObject json = new JsonObject();
                 json.addProperty("parent", "minecraft:item/generated");
                 JsonObject textures = new JsonObject();
-                textures.addProperty("layer0", ns + ":item/base/" + shape + "/" + material);
+                textures.addProperty("layer0", ns + ":item/base/" + sym.getShape().getId() + "/" + material);
                 textures.addProperty("layer1", ns + ":item/symbol/" + catFolder + "/" + symName + colorSuffix);
                 json.add("textures", textures);
                 futures.add(save(cache, material + "_symbol/" + sym.getId(), json));
