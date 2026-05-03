@@ -25,6 +25,18 @@
     - can contain any item and display it in the same way
     - [ ] Block Model: very small fixture that grips onto the top or bottom center of the displayed item
     - [ ] Dyeable: 16 color variants saved in blockstate & item NBT
+- [ ] **[P4] - More Symbols:**
+    - [ ] expand by more emoji and unicode symbols
+    - [ ] add road signs (one material per symbol with single-file, non-layered textures)
+- [ ] **[P4] - Data Fixer:**
+    - since models are enum-ordinal-based, a data fixer will be needed to prevent textures changing after adding new symbols
+    - each mod version has its own SymbolType enum, and the data fixer will convert between versions by matching the symbol names
+- [ ] **[P5] - v1.0.0 Release**
+- [ ] **[P6] - Future Features:**
+    - more symbol materials (e.g. netherite, quartz, prismarine, etc.)
+    - user-defined symbols: allows modpack creators to add their own symbols
+
+<br>
 
 ## Symbol Materials:
 Materials for crafting the symbol items, each with a distinct background color and a fixed yield of symbol items per craft:  
@@ -38,7 +50,6 @@ Materials for crafting the symbol items, each with a distinct background color a
 | Lapis | Blue | Black | 4 | `diamond` |
 
 <br>
-
 
 ## Symbols:
 Crafted from the symbol templates in a stonecutter, yielding 1 symbol item per craft.  
