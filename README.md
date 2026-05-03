@@ -3,7 +3,7 @@
 # Factory Symbols
 Collection of meaningful symbol items for Minecraft Java Edition and ways to display them.
 
-![Factory Symbols banner showing off all symbol items and the Display Panel block entities](./.github/assets/banner.jpg)
+![Factory Symbols banner showing off all symbol items and the Display Panel block entities](./.github/assets/banner.png)
 
 </div>
 
