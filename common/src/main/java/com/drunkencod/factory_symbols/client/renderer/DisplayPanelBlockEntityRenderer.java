@@ -59,10 +59,10 @@ public class DisplayPanelBlockEntityRenderer implements BlockEntityRenderer<Disp
         poseStack.mulPose(Axis.YP.rotationDegrees(180f));
 
         // scale down and shift a tiny bit against z-fighting:
-        poseStack.scale(0.997f, 0.997f, 0.997f);
+        poseStack.scale(0.995f, 0.995f, 0.995f);
         if (Services.CONFIG.displayPanelShiftRenderedItem()) {
             float cardinalFactor = facing == Direction.NORTH || facing == Direction.EAST ? 1f : -1f;
-            poseStack.translate(0.0003f, 0.0003f * cardinalFactor, 0.0003f);
+            poseStack.translate(0.00025f, 0.00025f * cardinalFactor, 0.00025f);
         }
 
         // render item
