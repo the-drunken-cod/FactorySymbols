@@ -111,7 +111,7 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
 
     public DisplayPanelBlock(Properties properties) {
         super(properties
-                .pushReaction(PushReaction.NORMAL));
+                .pushReaction(PushReaction.BLOCK));
         registerDefaultState(stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(COLOR, DyeColor.BLACK)
                 .setValue(LOCKED, false));
     }
@@ -268,11 +268,6 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
 
     @Override
     public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-        if (level.getBlockEntity(pos) instanceof DisplayPanelBlockEntity be) {
-            ItemStack stored = be.getStoredItem();
-            if (!stored.isEmpty())
-                return stored.copy();
-        }
         ItemStack stack = super.getCloneItemStack(level, pos, state);
         int id = colorToModelId(state.getValue(COLOR));
         if (id != 0)
