@@ -24,8 +24,11 @@
     - allows for item checks that only check the registry ID, like Create Redstone Link frequencies
     - makes it so there's no need for datafixing when adding or modifying symbols
 4. [ ] **Sign Post & Fixture:**
-    - [ ] **Sign Post:** thin pole shaped block that can connect to any of 6 adjacent post blocks or fixtures
+    - [ ] **Sign Post:** thin pole shaped block for realistic looking signs
         - allows for IRL road-sign-like structures
+        - can connect to any center-supporting top or bottom blockface
+        - can horizontally branch off by connecting to adjacent sign post blocks
+        - behaves similar to a chorus plant stalk for self-connection purposes
     - [ ] **Sign Fixture:** blockentity that can attach to any blockface that is center-supporting
         - can hold a symbol item and display it on a flat surface facing toward the camera when placing, like a road sign
         - can contain any item and display it in the same way
