@@ -19,7 +19,7 @@
     - [x] Hopper Interaction
     - [x] Redstone Locking: prevent any interaction while powered
     - [x] Comparator Output: emits a signal strength relative to item stackability
-3. [ ] **Migration to namespaced ID per symbol:**
+3. [x] **Migration to namespaced ID per symbol:**
     - change from `factory_symbols:symbol_<material>` to `factory_symbols:<category>_<symbol>_<material>`
     - allows for item checks that only check the registry ID, like Create Redstone Link frequencies
     - makes it so there's no need for datafixing when adding or modifying symbols
