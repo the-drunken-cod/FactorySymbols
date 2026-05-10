@@ -3,7 +3,6 @@ package com.drunkencod.factory_symbols.datagen;
 import com.drunkencod.factory_symbols.Constants;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
 import com.drunkencod.factory_symbols.symbols.SymbolType;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
@@ -27,14 +26,13 @@ public class NeoForgeItemModelProvider implements DataProvider {
     public CompletableFuture<?> run(CachedOutput cache) {
         List<CompletableFuture<?>> futures = new ArrayList<>();
         String ns = Constants.MOD_ID;
-        SymbolType[] types = SymbolType.values();
 
         for (SymbolMaterial mat : SymbolMaterial.values()) {
             String material = mat.getPrefix();
             String colorSuffix = mat.isLightForeground() ? "_white" : "_black";
 
-            // #region Sub-models — one per symbol, placed in a subfolder
-            for (SymbolType sym : types) {
+            // #region One model per symbol item
+            for (SymbolType sym : SymbolType.values()) {
                 String catFolder = sym.getCategory().getId().replaceAll("s$", "");
                 String symName = sym.getId().startsWith(catFolder + "_")
                         ? sym.getId().substring(catFolder.length() + 1)
@@ -45,26 +43,8 @@ public class NeoForgeItemModelProvider implements DataProvider {
                 textures.addProperty("layer0", ns + ":item/base/" + sym.getShape().getId() + "/" + material);
                 textures.addProperty("layer1", ns + ":item/symbol/" + catFolder + "/" + symName + colorSuffix);
                 json.add("textures", textures);
-                futures.add(save(cache, material + "_symbol/" + sym.getId(), json));
+                futures.add(save(cache, sym.getId() + "_" + material, json));
             }
-
-            // #region Main model — delegates to sub-models via custom_model_data overrides
-            JsonObject main = new JsonObject();
-            main.addProperty("parent", "minecraft:item/generated");
-            JsonObject mainTextures = new JsonObject();
-            mainTextures.addProperty("layer0", ns + ":item/base/square/" + material);
-            main.add("textures", mainTextures);
-            JsonArray overrides = new JsonArray();
-            for (SymbolType sym : types) {
-                JsonObject entry = new JsonObject();
-                JsonObject predicate = new JsonObject();
-                predicate.addProperty("custom_model_data", sym.ordinal());
-                entry.add("predicate", predicate);
-                entry.addProperty("model", ns + ":item/" + material + "_symbol/" + sym.getId());
-                overrides.add(entry);
-            }
-            main.add("overrides", overrides);
-            futures.add(save(cache, material + "_symbol", main));
         }
 
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));

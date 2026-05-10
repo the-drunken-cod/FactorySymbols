@@ -31,6 +31,7 @@
         - can contain any item and display it in the same way
         - very small fixture model that grips onto the top or bottom center of the displayed item
         - 16 color variants saved in blockstate & item NBT
+        - if attached to a vertical sign post, transforms the block into a special blockentity that allows the sign to render much closer to the post
     - [ ] **Lamp Fixture:** block that attaches to any blockface and emits light
         - can be dyed in 16 colors
         - special model when placed on center-supporting faces, like sign posts
@@ -42,6 +43,8 @@
     - [ ] add road signs (one material per symbol with single-file, non-layered textures)
 6. [ ] **v1.0.0 Release**
 7. [ ] **Future Features:**
+    - make display panel items rotatable like item frames (maybe via a wrench item or something?)
+    - make display panels placeable on the ceiling and floor
     - more symbol materials (e.g. netherite, quartz, prismarine, etc.)
     - user-defined symbols: allows modpack creators to add their own symbols
 

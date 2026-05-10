@@ -19,23 +19,25 @@ import java.util.function.Supplier;
 
 public class ModItems {
 
-    // #region Symbol items — one item per material, symbol encoded as
-    // CustomModelData
-    public static final Map<SymbolMaterial, Supplier<Item>> SYMBOLS = new EnumMap<>(SymbolMaterial.class);
+    // #region Symbol items — one item per material × symbol
+    public static final Map<SymbolMaterial, Map<SymbolType, Supplier<Item>>> SYMBOLS = new EnumMap<>(
+            SymbolMaterial.class);
 
     public static void register() {
         for (SymbolMaterial mat : SymbolMaterial.values()) {
-            Supplier<Item> item = Services.REGISTRY.registerItem(
-                    mat.getPrefix() + "_symbol",
-                    () -> new SymbolItem(mat, new Item.Properties()));
-            SYMBOLS.put(mat, item);
+            Map<SymbolType, Supplier<Item>> symMap = new EnumMap<>(SymbolType.class);
+            for (SymbolType sym : SymbolType.values()) {
+                Supplier<Item> item = Services.REGISTRY.registerItem(
+                        sym.getId() + "_" + mat.getPrefix(),
+                        () -> new SymbolItem(mat, sym, new Item.Properties()));
+                symMap.put(sym, item);
+            }
+            SYMBOLS.put(mat, symMap);
         }
     }
 
     public static ItemStack getSymbolStack(SymbolMaterial mat, SymbolType sym) {
-        ItemStack stack = SYMBOLS.get(mat).get().getDefaultInstance();
-        stack.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(sym.ordinal()));
-        return stack;
+        return SYMBOLS.get(mat).get(sym).get().getDefaultInstance();
     }
 
     // #region Creative tab
@@ -47,8 +49,7 @@ public class ModItems {
             output.accept(itm);
         }
 
-        // symbols — grouped by category within each material, symbol encoded as
-        // CustomModelData:
+        // symbols — grouped by category within each material:
         for (SymbolMaterial mat : SymbolMaterial.values())
             for (SymbolCategory cat : SymbolCategory.values())
                 for (SymbolType sym : SymbolType.values())

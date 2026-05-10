@@ -28,25 +28,24 @@ public class NeoForgeRecipeProvider implements DataProvider {
 
         for (SymbolMaterial mat : SymbolMaterial.values()) {
             String prefix = mat.getPrefix();
-            String resultId = Constants.MOD_ID + ":" + prefix + "_symbol";
             String materialItemId = "minecraft:" + mat.getMaterialItemId();
             String materialTagId = Constants.MOD_ID + ":symbols/" + prefix;
 
             // #region Stonecutter recipes: raw material or existing symbol → symbol
             // (conditioned)
             for (SymbolType sym : SymbolType.values()) {
+                String resultId = Constants.MOD_ID + ":" + sym.getId() + "_" + prefix;
+
                 // material → symbol
                 JsonObject fromMaterial = buildStonecutterRecipe(
-                        materialItemId, false,
-                        resultId, mat.getYield(), sym.ordinal());
+                        materialItemId, false, resultId, mat.getYield());
                 futures.add(save(cache,
                         "stonecutter/symbol_" + prefix + "_" + sym.getId(),
                         fromMaterial));
 
                 // any symbol of same material → this symbol
                 JsonObject fromSymbol = buildStonecutterRecipe(
-                        materialTagId, true,
-                        resultId, 1, sym.ordinal());
+                        materialTagId, true, resultId, 1);
                 futures.add(save(cache,
                         "stonecutter/symbol_" + prefix + "_" + sym.getId() + "_convert",
                         fromSymbol));
@@ -57,8 +56,7 @@ public class NeoForgeRecipeProvider implements DataProvider {
     }
 
     private static JsonObject buildStonecutterRecipe(
-            String ingredientId, boolean isTag,
-            String resultId, int count, int customModelData) {
+            String ingredientId, boolean isTag, String resultId, int count) {
         JsonObject recipe = new JsonObject();
         recipe.addProperty("type", "minecraft:stonecutting");
 
@@ -72,9 +70,6 @@ public class NeoForgeRecipeProvider implements DataProvider {
         JsonObject result = new JsonObject();
         result.addProperty("id", resultId);
         result.addProperty("count", count);
-        JsonObject components = new JsonObject();
-        components.addProperty("minecraft:custom_model_data", customModelData);
-        result.add("components", components);
         recipe.add("result", result);
 
         return recipe;

@@ -2,6 +2,7 @@ package com.drunkencod.factory_symbols.datagen;
 
 import com.drunkencod.factory_symbols.Constants;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
+import com.drunkencod.factory_symbols.symbols.SymbolType;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.minecraft.data.CachedOutput;
@@ -29,9 +30,11 @@ public class NeoForgeItemTagsProvider implements DataProvider {
         Map<String, List<String>> tagValues = new LinkedHashMap<>();
 
         for (SymbolMaterial mat : SymbolMaterial.values()) {
-            String symbolId = Constants.MOD_ID + ":" + mat.getPrefix() + "_symbol";
-            tagValues.computeIfAbsent("symbols", k -> new ArrayList<>()).add(symbolId);
-            tagValues.computeIfAbsent("symbols/" + mat.getPrefix(), k -> new ArrayList<>()).add(symbolId);
+            for (SymbolType sym : SymbolType.values()) {
+                String symbolId = Constants.MOD_ID + ":" + sym.getId() + "_" + mat.getPrefix();
+                tagValues.computeIfAbsent("symbols", k -> new ArrayList<>()).add(symbolId);
+                tagValues.computeIfAbsent("symbols/" + mat.getPrefix(), k -> new ArrayList<>()).add(symbolId);
+            }
         }
 
         List<CompletableFuture<?>> futures = new ArrayList<>();
