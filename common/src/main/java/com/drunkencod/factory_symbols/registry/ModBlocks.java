@@ -1,8 +1,8 @@
 package com.drunkencod.factory_symbols.registry;
 
-import com.drunkencod.factory_symbols.block.DisplayPanelBlock;
-import com.drunkencod.factory_symbols.block.DisplayPanelBlockEntity;
-import com.drunkencod.factory_symbols.block.DisplayPanelItem;
+import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelBlock;
+import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelBlockEntity;
+import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelItem;
 import com.drunkencod.factory_symbols.platform.Services;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;

@@ -1,4 +1,4 @@
-package com.drunkencod.factory_symbols.block;
+package com.drunkencod.factory_symbols.block.display_panel;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

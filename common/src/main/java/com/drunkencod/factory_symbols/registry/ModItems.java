@@ -1,6 +1,6 @@
 package com.drunkencod.factory_symbols.registry;
 
-import com.drunkencod.factory_symbols.block.DisplayPanelBlock;
+import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelBlock;
 import com.drunkencod.factory_symbols.item.SymbolItem;
 import com.drunkencod.factory_symbols.platform.Services;
 import com.drunkencod.factory_symbols.symbols.SymbolCategory;

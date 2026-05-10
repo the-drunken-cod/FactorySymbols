@@ -3,8 +3,8 @@ package com.drunkencod.factory_symbols.client.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.drunkencod.factory_symbols.Constants;
-import com.drunkencod.factory_symbols.block.DisplayPanelBlock;
-import com.drunkencod.factory_symbols.block.DisplayPanelBlockEntity;
+import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelBlock;
+import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelBlockEntity;
 import com.drunkencod.factory_symbols.platform.Services;
 
 import net.minecraft.client.Minecraft;
