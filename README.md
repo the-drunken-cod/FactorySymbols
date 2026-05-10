@@ -30,6 +30,12 @@ For multiplayer, ensure the mod is installed on the server and all clients conne
 
 <br>
 
+## Compatibility:
+- **Sable / Create Aeronautics:**
+  - Block weight support
+
+<br>
+
 ## Attribution:
 - Created with [jaredlll08/MultiLoader-Template](https://github.com/jaredlll08/MultiLoader-Template)
 - Inspired by the [virtual circuit network symbols](https://wiki.factorio.com/Circuit_network#Virtual_signals) from the game [Factorio](https://www.factorio.com/)

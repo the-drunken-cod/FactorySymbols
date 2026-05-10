@@ -1,12 +1,12 @@
 ## Roadmap:
-- [x] **[P1] - Symbol Items:**
+1. [x] **Symbol Items:**
     - items with a symbol texture and a material-based background color that can be crafted and uncrafted in a stonecutter
     - [x] Crafting & Uncrafting / Transmuting
     - [x] Item Models: base model for each material + overlay for each symbol
     - [x] Item Textures:
         - odd-numbered texture width & height
         - black and white textures for contrast
-- [x] **[P2] - Display Panel:**
+2. [x] **Display Panel:**
     - blockentity alternative to item frames
         + has hitbox
         + doesnt need supporting block
@@ -19,20 +19,21 @@
     - [x] Hopper Interaction
     - [x] Redstone Locking: prevent any interaction while powered
     - [x] Comparator Output: emits a signal strength relative to item stackability
-- [ ] **[P3] Sign Fixture:**
+3. [ ] **Migration to namespaced ID per symbol:**
+    - change from `factory_symbols:symbol_<material>` to `factory_symbols:<category>_<symbol>_<material>`
+    - allows for item checks that only check the registry ID, like Create Redstone Link frequencies
+    - makes it so there's no need for datafixing when adding or modifying symbols
+4. [ ] **[P4] Sign Fixture:**
     - blockentity that can attach to top or bottom faces of blocks that are center-supporting
     - can hold a symbol item and display it on a flat surface facing toward and away from the camera when placing, like a road sign
     - can contain any item and display it in the same way
     - [ ] Block Model: very small fixture that grips onto the top or bottom center of the displayed item
     - [ ] Dyeable: 16 color variants saved in blockstate & item NBT
-- [ ] **[P4] - More Symbols:**
+5. [ ] **More Symbols:**
     - [ ] expand by more emoji and unicode symbols
     - [ ] add road signs (one material per symbol with single-file, non-layered textures)
-- [ ] **[P4] - Data Fixer:**
-    - since models are enum-ordinal-based, a data fixer will be needed to prevent textures changing after adding new symbols
-    - each mod version has its own SymbolType enum, and the data fixer will convert between versions by matching the symbol names
-- [ ] **[P5] - v1.0.0 Release**
-- [ ] **[P6] - Future Features:**
+6. [ ] **v1.0.0 Release**
+7. [ ] **Future Features:**
     - more symbol materials (e.g. netherite, quartz, prismarine, etc.)
     - user-defined symbols: allows modpack creators to add their own symbols
 

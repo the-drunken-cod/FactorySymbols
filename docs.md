@@ -1,3 +1,15 @@
+# Table of Contents
+
+- [Items](#items)
+  - [Symbols](#symbols)
+- [Block Entities](#block-entities)
+  - [Display Panel](#display-panel)
+- [Tags](#tags)
+  - [Block Tags](#block-tags)
+  - [Item Tags](#item-tags)
+
+<br><br>
+
 # Items
 
 ## Symbols:
@@ -15,12 +27,14 @@ Some categories of symbols have special shapes, like a triangular base for the "
 ## Display Panel:
 Reminiscent of an Item Frame, the Display Panel is a block entity that can display a single item on its front face.  
 16 dye color variants are available, crafted by combining the panel with the corresponding dye in a crafting grid.  
+Use it for displaying blocks or items like [symbols](#symbols), as a 2px wide "vertical slab" for decoration, as a single-item buffer for contraptions, and much more!  
   
 Interactions:
-- Right-clicking an empty panel with an item in hand will place the item on the panel.
-- Shift-right-clicking a panel with an empty hand will pick up the item from the panel.
-- Powering the panel with redstone will lock it, preventing any interactions until the redstone signal is removed again.
-- Using a comparator, the panel emits a redstone signal strength between 0 and 15 relative to how stackable the displayed item is. An empty panel emits a signal strength of 0.
+- **Right-clicking an empty panel** with an item in hand will place the item on the panel.
+- **Shift-right-clicking a filled panel** with an empty hand will pick up the item from the panel.
+- **Powering the panel with redstone** will lock it, preventing items from being inserted or extracted until the power is removed.
+- **Using a comparator**, the panel emits a redstone signal strength relative to the max stack size of the contained item (see table below).
+- **Using hoppers**, items can be inserted into and extracted from the panel.
 
 <br>
   
@@ -31,9 +45,9 @@ Comparison with Item Frames:
 | Pro | Hoppers can insert and extract items. |
 | Pro | Can be dyed in 16 colors. |
 | Pro | Items are rendered at around twice the scale. |
-| Pro | Emits a comparator signal that indicates whether the panel is emtpy, or contains stackable or non-stackable item. |
-| Neutral | Is a block instead of an entity. |
-| Neutral | Has a hitbox, allowing it to be walked on. |
+| Pro | Emits a comparator signal that is proportional to the item's max stack size (see table below). |
+| Neutral | Is a block entity instead of an entity. This means it also can't be moved by pistons. |
+| Neutral | Has a 2x16x16 px hitbox, allowing entities to collide with it. |
 | Neutral | The full panel size is 16x16 instead of 12x12, obscuring the entire block it's placed on. |
 | Con | Contained items can't be rotated. |
 | Con | Can't place multiple panels on different faces in the same block space. |
@@ -45,7 +59,7 @@ Comparison with Item Frames:
 Comparator signal strengths:
 | Max Stack Size | Signal Strength |
 | :-- | :-- |
-| 0 (empty) | 0 |
+| (empty panel) | 0 |
 | 1 | 15 |
 | 2-8 | 11 |
 | 9-16 | 7 |
