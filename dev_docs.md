@@ -23,12 +23,20 @@
     - change from `factory_symbols:symbol_<material>` to `factory_symbols:<category>_<symbol>_<material>`
     - allows for item checks that only check the registry ID, like Create Redstone Link frequencies
     - makes it so there's no need for datafixing when adding or modifying symbols
-4. [ ] **[P4] Sign Fixture:**
-    - blockentity that can attach to top or bottom faces of blocks that are center-supporting
-    - can hold a symbol item and display it on a flat surface facing toward and away from the camera when placing, like a road sign
-    - can contain any item and display it in the same way
-    - [ ] Block Model: very small fixture that grips onto the top or bottom center of the displayed item
-    - [ ] Dyeable: 16 color variants saved in blockstate & item NBT
+4. [ ] **Sign Post & Fixture:**
+    - [ ] **Sign Post:** thin pole shaped block that can connect to any of 6 adjacent post blocks or fixtures
+        - allows for IRL road-sign-like structures
+    - [ ] **Sign Fixture:** blockentity that can attach to any blockface that is center-supporting
+        - can hold a symbol item and display it on a flat surface facing toward the camera when placing, like a road sign
+        - can contain any item and display it in the same way
+        - very small fixture model that grips onto the top or bottom center of the displayed item
+        - 16 color variants saved in blockstate & item NBT
+    - [ ] **Lamp Fixture:** block that attaches to any blockface and emits light
+        - can be dyed in 16 colors
+        - special model when placed on center-supporting faces, like sign posts
+    - [ ] **Button Fixture:** placed on vertical sign posts
+        - transforms the targeted post into a special blockentity
+        - when clicked, makes the block below the post emit a redstone signal, allowing redstone dust below to be powered
 5. [ ] **More Symbols:**
     - [ ] expand by more emoji and unicode symbols
     - [ ] add road signs (one material per symbol with single-file, non-layered textures)
