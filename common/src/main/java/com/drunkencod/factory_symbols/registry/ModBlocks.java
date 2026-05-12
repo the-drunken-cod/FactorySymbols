@@ -5,6 +5,9 @@ import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelBlockEntit
 import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelItem;
 import com.drunkencod.factory_symbols.block.sign_post.SignPostBlock;
 import com.drunkencod.factory_symbols.platform.Services;
+import com.drunkencod.factory_symbols.util.TooltipUtil;
+
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
@@ -50,7 +53,10 @@ public class ModBlocks {
 
         public static final Supplier<Item> SIGN_POST_ITEM = Services.REGISTRY.registerItem(
                         "sign_post",
-                        () -> new BlockItem(SIGN_POST.get(), new Item.Properties()));
+                        () -> new BlockItem(SIGN_POST.get(), new Item.Properties()
+                                        .component(DataComponents.LORE,
+                                                        TooltipUtil.getTooltip(
+                                                                        "block.factory_symbols.sign_post.tooltip"))));
 
         public static void register() {
                 // Triggers static field initialization
