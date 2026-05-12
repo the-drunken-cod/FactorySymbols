@@ -1,5 +1,6 @@
 {
-    "itemGroup.factory_symbols": "Factory Symbols",
+    "itemGroup.factory_symbols.blocks": "[Factory Symbols] Blocks",
+    "itemGroup.factory_symbols.symbols": "[Factory Symbols] Symbols",
 
     "block.factory_symbols.display_panel": "Display Panel",
     "block.factory_symbols.display_panel.tooltip": "Item Frame in block form. Can be dyed.",
@@ -7,6 +8,7 @@
     "block.factory_symbols.sign_post.tooltip": "For making classic road signs. Fixtures can also be attached.",
 
     "tag.item.factory_symbols.displays": "Displays",
+    "tag.item.factory_symbols.sign_post_fixtures": "Sign Post Fixtures",
     "tag.item.factory_symbols.symbols.coal": "Coal Symbols",
     "tag.item.factory_symbols.symbols.emerald": "Emerald Symbols",
     "tag.item.factory_symbols.symbols.gold": "Gold Symbols",

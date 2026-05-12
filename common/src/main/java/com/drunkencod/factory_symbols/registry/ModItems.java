@@ -40,19 +40,18 @@ public class ModItems {
         return SYMBOLS.get(mat).get(sym).get().getDefaultInstance();
     }
 
-    // #region Creative tab
-    public static void populateCreativeTab(CreativeModeTab.Output output) {
-        // display panel colors:
+    // #region Creative tabs
+    public static void populateBlocksTab(CreativeModeTab.Output output) {
+        output.accept(ModBlocks.SIGN_POST_ITEM.get().getDefaultInstance());
+
         for (int i : DisplayPanelBlock.COLORS_ORDERED) {
             ItemStack itm = ModBlocks.DISPLAY_PANEL_ITEM.get().getDefaultInstance();
             itm.set(DataComponents.CUSTOM_MODEL_DATA, new CustomModelData(i));
             output.accept(itm);
         }
+    }
 
-        // sign post blocks:
-        output.accept(ModBlocks.SIGN_POST_ITEM.get().getDefaultInstance());
-
-        // symbols — grouped by category within each material:
+    public static void populateSymbolsTab(CreativeModeTab.Output output) {
         for (SymbolMaterial mat : SymbolMaterial.values())
             for (SymbolCategory cat : SymbolCategory.values())
                 for (SymbolType sym : SymbolType.values())

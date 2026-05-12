@@ -15,10 +15,15 @@ public class NeoForgeCreativeTabHelper implements ICreativeTabHelper {
             Constants.MOD_ID);
 
     public NeoForgeCreativeTabHelper() {
+        creativeTabs.register(Constants.MOD_ID + "_blocks", () -> CreativeModeTab.builder()
+                .title(Component.translatable("itemGroup." + Constants.MOD_ID + ".blocks"))
+                .icon(() -> ModBlocks.SIGN_POST_ITEM.get().getDefaultInstance())
+                .displayItems((params, output) -> ModItems.populateBlocksTab(output))
+                .build());
         creativeTabs.register(Constants.MOD_ID, () -> CreativeModeTab.builder()
-                .title(Component.translatable("itemGroup." + Constants.MOD_ID))
+                .title(Component.translatable("itemGroup." + Constants.MOD_ID + ".symbols"))
                 .icon(() -> ModItems.getSymbolStack(SymbolMaterial.IRON, SymbolType.LETTER_A))
-                .displayItems((params, output) -> ModItems.populateCreativeTab(output))
+                .displayItems((params, output) -> ModItems.populateSymbolsTab(output))
                 .build());
     }
 
