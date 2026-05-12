@@ -3,7 +3,7 @@
 	"ambientocclusion": false,
 	"textures": {
 		"0": "factory_symbols:block/sign_post/sign_post_atlas",
-		"particle": "factory_symbols:block/sign_post/sign_post_atlas"
+		"particle": "factory_symbols:block/sign_post/sign_post_particle"
 	},
     "display": {
         "gui": {
