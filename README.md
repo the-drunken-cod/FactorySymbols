@@ -17,7 +17,7 @@ They are regular items that are cheaply craftable and transmutable and have unif
 <br>
 
 ## Installation:
-You can visit the [releases page](https://github.com/Sv443/FactorySymbols/releases), the [Modrinth page](https://modrinth.com/mod/factory-symbols), or the [CurseForge page](https://www.curseforge.com/minecraft/mc-mods/factory-symbols) to download the latest version of Factory Symbols.  
+You can visit the [releases page](https://github.com/the-drunken-cod/FactorySymbols/releases), the [Modrinth page](https://modrinth.com/mod/factory-symbols), or the [CurseForge page](https://www.curseforge.com/minecraft/mc-mods/factory-symbols) to download the latest version of Factory Symbols.  
 Then simply place the downloaded JAR file into your Minecraft `mods` folder and launch the game with either NeoForge or Fabric.  
 For multiplayer, ensure the mod is installed on the server and all clients connecting to it. [Automodpack](https://modrinth.com/mod/automodpack) can make this process easier.
   
