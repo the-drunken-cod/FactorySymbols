@@ -1,6 +1,6 @@
 {
-    "itemGroup.factory_symbols.blocks": "[Factory Symbols] Blocks",
-    "itemGroup.factory_symbols.symbols": "[Factory Symbols] Symbols",
+    "itemGroup.factory_symbols.blocks": "Factory Symbols - Blocks",
+    "itemGroup.factory_symbols.symbols": "Factory Symbols",
 
     "block.factory_symbols.display_panel": "Display Panel",
     "block.factory_symbols.display_panel.tooltip": "Item Frame in block form. Can be dyed.",

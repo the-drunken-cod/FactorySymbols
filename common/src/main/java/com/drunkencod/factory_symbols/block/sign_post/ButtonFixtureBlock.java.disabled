@@ -1,0 +1,7 @@
+package com.drunkencod.factory_symbols.block.sign_post;
+
+public class ButtonFixtureBlock extends AbstractSignPostFixtureBlock {
+    public ButtonFixtureBlock(Properties properties) {
+        super(properties);
+    }
+}
