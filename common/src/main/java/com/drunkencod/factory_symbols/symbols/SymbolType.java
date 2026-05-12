@@ -120,7 +120,7 @@ public enum SymbolType {
     ENVIRONMENT_SUN("environment_sun", SymbolCategory.ENVIRONMENT),
     ENVIRONMENT_TIME("environment_time", SymbolCategory.ENVIRONMENT),
     ENVIRONMENT_TREE("environment_tree", SymbolCategory.ENVIRONMENT),
-    ENVIRONMENT_WATER("environment_water", SymbolCategory.ENVIRONMENT),
+    ENVIRONMENT_DROPLET("environment_droplet", SymbolCategory.ENVIRONMENT),
     // #region misc
     MISC_SMILING("misc_smiling", SymbolCategory.MISC),
     MISC_MEH("misc_meh", SymbolCategory.MISC),
