@@ -1,0 +1,6 @@
+{
+    "parent": "factory_symbols:block/sign_post/full",
+    "textures": {
+        "atlas": "factory_symbols:block/sign_post/sign_post_atlas"
+    }
+}

@@ -49,6 +49,9 @@ public class ModItems {
             output.accept(itm);
         }
 
+        // sign post blocks:
+        output.accept(ModBlocks.SIGN_POST_ITEM.get().getDefaultInstance());
+
         // symbols — grouped by category within each material:
         for (SymbolMaterial mat : SymbolMaterial.values())
             for (SymbolCategory cat : SymbolCategory.values())

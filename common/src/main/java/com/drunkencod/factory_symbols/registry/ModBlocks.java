@@ -3,11 +3,14 @@ package com.drunkencod.factory_symbols.registry;
 import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelBlock;
 import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelBlockEntity;
 import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelItem;
+import com.drunkencod.factory_symbols.block.sign_post.SignPostBlock;
 import com.drunkencod.factory_symbols.platform.Services;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.material.PushReaction;
 
 import java.util.function.Supplier;
 
@@ -16,26 +19,40 @@ import java.util.function.Supplier;
  */
 public class ModBlocks {
 
-    // #region Display Panel
-    public static final Supplier<DisplayPanelBlock> DISPLAY_PANEL = Services.REGISTRY.registerBlock(
-            "display_panel",
-            () -> new DisplayPanelBlock(BlockBehaviour.Properties.of()
-                    .strength(1.0f, 3.0f)
-                    .sound(SoundType.METAL)
-                    .noOcclusion()));
+        // #region Display Panel
+        public static final Supplier<DisplayPanelBlock> DISPLAY_PANEL = Services.REGISTRY.registerBlock(
+                        "display_panel",
+                        () -> new DisplayPanelBlock(BlockBehaviour.Properties.of()
+                                        .strength(0.85f, 3.0f)
+                                        .sound(SoundType.METAL)
+                                        .noOcclusion()));
 
-    public static final Supplier<Item> DISPLAY_PANEL_ITEM = Services.REGISTRY.registerItem(
-            "display_panel",
-            () -> new DisplayPanelItem(DISPLAY_PANEL.get(), new Item.Properties()));
+        public static final Supplier<Item> DISPLAY_PANEL_ITEM = Services.REGISTRY.registerItem(
+                        "display_panel",
+                        () -> new DisplayPanelItem(DISPLAY_PANEL.get(), new Item.Properties()));
 
-    public static final Supplier<BlockEntityType<DisplayPanelBlockEntity>> DISPLAY_PANEL_BE_TYPE = Services.REGISTRY
-            .registerBlockEntityType("display_panel", ModBlocks::makeDisplayPanelBEType);
+        public static final Supplier<BlockEntityType<DisplayPanelBlockEntity>> DISPLAY_PANEL_BE_TYPE = Services.REGISTRY
+                        .registerBlockEntityType("display_panel", ModBlocks::makeDisplayPanelBEType);
 
-    private static BlockEntityType<DisplayPanelBlockEntity> makeDisplayPanelBEType() {
-        return BlockEntityType.Builder.of(DisplayPanelBlockEntity::new, DISPLAY_PANEL.get()).build(null);
-    }
+        private static BlockEntityType<DisplayPanelBlockEntity> makeDisplayPanelBEType() {
+                return BlockEntityType.Builder.of(DisplayPanelBlockEntity::new, DISPLAY_PANEL.get()).build(null);
+        }
 
-    public static void register() {
-        // Triggers static field initialization
-    }
+        // #region Sign Post
+        public static final Supplier<SignPostBlock> SIGN_POST = Services.REGISTRY.registerBlock(
+                        "sign_post",
+                        () -> new SignPostBlock(BlockBehaviour.Properties.of()
+                                        .strength(0.85f, 2.0f)
+                                        .sound(SoundType.COPPER_GRATE)
+                                        .pushReaction(PushReaction.NORMAL)
+                                        .requiresCorrectToolForDrops()
+                                        .noOcclusion()));
+
+        public static final Supplier<Item> SIGN_POST_ITEM = Services.REGISTRY.registerItem(
+                        "sign_post",
+                        () -> new BlockItem(SIGN_POST.get(), new Item.Properties()));
+
+        public static void register() {
+                // Triggers static field initialization
+        }
 }
