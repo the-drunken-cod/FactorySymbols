@@ -1,6 +1,6 @@
 {
 	"format_version": "1.9.0",
-	"ambientocclusion": false,
+	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "factory_symbols:block/sign_post/fixture/lamp_atlas",
 		"particle": "factory_symbols:block/sign_post/fixture/lamp_atlas"
