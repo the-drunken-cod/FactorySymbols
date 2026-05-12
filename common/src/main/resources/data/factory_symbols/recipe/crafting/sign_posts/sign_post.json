@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "pattern": [
+        "NIN",
+        "NIN",
+        "NIN"
+    ],
+    "key": {
+        "N": {
+            "tag": "c:nuggets/iron"
+        },
+        "I": {
+            "item": "minecraft:iron_ingot"
+        }
+    },
+    "result": {
+        "id": "factory_symbols:sign_post",
+        "count": 4
+    }
+}
