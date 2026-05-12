@@ -20,6 +20,11 @@ public class FabricConfigHelper implements IConfigHelper {
     // #region IConfigHelper implementation
 
     @Override
+    public int signPostRelayMaxDepth() {
+        return AutoConfig.getConfigHolder(ServerConfigData.class).getConfig().signPostRelayMaxDepth;
+    }
+
+    @Override
     public boolean displayPanelShiftRenderedItem() {
         return AutoConfig.getConfigHolder(ClientConfigData.class).getConfig().displayPanelShiftRenderedItem;
     }
@@ -33,8 +38,9 @@ public class FabricConfigHelper implements IConfigHelper {
 
     @Config(name = Constants.MOD_ID + "_server")
     public static class ServerConfigData implements ConfigData {
-        // @ConfigEntry.Gui.Tooltip
-        // public boolean exampleServerBool = false;
+        @ConfigEntry.Gui.Tooltip
+        @ConfigEntry.BoundedDiscrete(min = 1, max = 64)
+        public int signPostRelayMaxDepth = 15;
     }
 
     @Config(name = Constants.MOD_ID + "_client")

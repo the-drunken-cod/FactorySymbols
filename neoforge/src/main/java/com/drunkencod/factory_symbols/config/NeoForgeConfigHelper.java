@@ -54,6 +54,11 @@ public class NeoForgeConfigHelper implements IConfigHelper {
     // #region IConfigHelper implementation
 
     @Override
+    public int signPostRelayMaxDepth() {
+        return SERVER.signPostRelayMaxDepth.get();
+    }
+
+    @Override
     public boolean displayPanelShiftRenderedItem() {
         return CLIENT.displayPanelShiftRenderedItem.get();
     }
@@ -72,12 +77,12 @@ public class NeoForgeConfigHelper implements IConfigHelper {
     }
 
     public static class ServerConfig {
-        // public final ModConfigSpec.BooleanValue exampleServerBool;
+        public final ModConfigSpec.IntValue signPostRelayMaxDepth;
 
         ServerConfig(ModConfigSpec.Builder builder) {
-            // exampleServerBool = builder
-            // .comment("Example server config boolean")
-            // .define("exampleServerBool", false);
+            signPostRelayMaxDepth = builder
+                    .comment("Maximum number of sign post hops a block-update relay signal propagates")
+                    .defineInRange("signPostRelayMaxDepth", 15, 1, 64);
         }
     }
 
