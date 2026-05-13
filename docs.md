@@ -2,7 +2,8 @@
 
 - [Items](#items)
   - [Symbols](#symbols)
-- [Block Entities](#block-entities)
+- [Blocks](#blocks)
+  - [Sign Post](#sign-post)
   - [Display Panel](#display-panel)
 - [Tags](#tags)
   - [Block Tags](#block-tags)
@@ -22,7 +23,24 @@ Some categories of symbols have special shapes, like a triangular base for the "
 
 <br><br>
 
-# Block Entities
+# Blocks
+
+## Sign Post:
+This pipe-like block can be used in combination with [sign post fixtures](#sign-post-fixtures) to create custom road signs in any shape.  
+Redstone signals can also be tunneled through connected sign posts, allowing attached buttons, levers or redstone wire to be read from a distance using comparators or observers.  
+  
+Block interactions:
+- Connects to adjacent sign posts and solid blocks that are center-supporting.
+- Sets its own `powered` block state to `true` if it receives a direct redstone signal.  
+  All posts within the configured max depth (15 blocks by default) will also mirror the state.  
+  Using a comparator or observer, the value can be read.
+- Every time the `powered` state changes, all blocks adjacent to any post within the max depth limit will receive a block update.
+- Can be waterlogged.
+- Can be pushed and pulled by pistons.
+- Will support and connect to buttons, levers, signs and other attachable blocks on any valid side.  
+  Can be augmented via block tags ([see block tags section](#block-tags)).
+
+<br><br>
 
 ## Display Panel:
 Reminiscent of an Item Frame, the Display Panel is a block entity that can display a single item on its front face.  
@@ -73,11 +91,21 @@ Comparator signal strengths:
 # Tags
 
 ## Block Tags:
-- `factory_symbols:displays` - All blocks that can display items.
+- Displays:
+  - `factory_symbols:displays` - All blocks that can display items.
+- Sign Post:
+  - `factory_symbols:sign_post_blocks` - Contains the Sign Post and every Sign Post fixture block.
+  - `factory_symbols:sign_post_connects_to_bottom` - Blocks that Sign Posts will connect to, but only via their bottom face.
+  - `factory_symbols:sign_post_connects_to_top` - Blocks that Sign Posts will connect to, but only via their top face.
+  - `factory_symbols:sign_post_connects_to_sides` - Blocks that Sign Posts will connect to via their sides.
+  - `factory_symbols:sign_post_connects_to` - Blocks that Sign Posts will connect to via all faces, despite not being center-supporting.
+  - `factory_symbols:sign_post_does_not_connect_to` - Blocks whose center is unstable / can't connect to Sign Posts.
+  - `factory_symbols:sign_post_fixtures` - All Sign Post fixture blocks.
 
 <br>
 
 ## Item Tags:
-- `factory_symbols:symbols` - All symbol items.
-- `factory_symbols:symbols/<material>` - Symbol items of a specific material.  
-  e.g.: `factory_symbols:symbols/iron` for symbol items made of iron.
+- Symbols:
+  - `factory_symbols:symbols` - All symbol items.
+  - `factory_symbols:symbols/<material>` - Symbol items of a specific material.  
+    e.g.: `factory_symbols:symbols/iron` for symbol items made of iron.
