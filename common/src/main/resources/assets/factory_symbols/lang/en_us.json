@@ -1,5 +1,5 @@
 {
-    "itemGroup.factory_symbols.blocks": "Factory Symbols: Blocks",
+    "itemGroup.factory_symbols.blocks": "Factory Symbols - Blocks",
     "itemGroup.factory_symbols.symbols": "Factory Symbols",
 
     "block.factory_symbols.display_panel": "Display Panel",
@@ -130,6 +130,8 @@
     "symbol.factory_symbols.misc_trend_down": "Trend Down",
     "symbol.factory_symbols.misc_trend_up": "Trend Up",
     "symbol.factory_symbols.misc_venus": "Venus",
+
+    "symbol.factory_symbols.a_mogus": "A Mogus",
 
     "symbol.factory_symbols.number_0": "Number 0",
     "symbol.factory_symbols.number_1": "Number 1",

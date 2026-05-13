@@ -3,7 +3,8 @@ package com.drunkencod.factory_symbols.symbols;
 public enum SymbolShape {
     // #region Entries
     SQUARE("square"),
-    TRIANGLE("triangle");
+    TRIANGLE("triangle"),
+    AMOGUS("amogus");
 
     private final String id;
 

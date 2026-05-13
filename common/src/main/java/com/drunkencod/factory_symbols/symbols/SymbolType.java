@@ -134,6 +134,8 @@ public enum SymbolType {
     MISC_TREND_UP("misc_trend_up", SymbolCategory.MISC),
     MISC_MARS("misc_mars", SymbolCategory.MISC),
     MISC_VENUS("misc_venus", SymbolCategory.MISC),
+    // #region amogus
+    A_MOGUS("a_mogus", SymbolCategory.AMOGUS),
     // #region warning
     WARNING_GENERIC("warning_generic", SymbolCategory.WARNING),
     WARNING_CONSTRUCTION("warning_construction", SymbolCategory.WARNING),

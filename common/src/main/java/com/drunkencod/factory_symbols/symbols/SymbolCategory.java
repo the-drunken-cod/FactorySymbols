@@ -9,6 +9,7 @@ public enum SymbolCategory {
     MATH("math"),
     ENVIRONMENT("environment"),
     MISC("misc"),
+    AMOGUS("a", SymbolShape.AMOGUS),
     WARNING("warning", SymbolShape.TRIANGLE);
 
     private final String id;
