@@ -1,4 +1,5 @@
 {
+    "replace": false,
     "values": [
         "factory_symbols:display_panel"
     ]

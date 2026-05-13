@@ -1,11 +1,11 @@
 {
-    "itemGroup.factory_symbols.blocks": "Factory Symbols - Blocks",
+    "itemGroup.factory_symbols.blocks": "Factory Symbols: Blocks",
     "itemGroup.factory_symbols.symbols": "Factory Symbols",
 
     "block.factory_symbols.display_panel": "Display Panel",
     "block.factory_symbols.display_panel.tooltip": "Item Frame in block form. Can be dyed.",
     "block.factory_symbols.sign_post": "Sign Post",
-    "block.factory_symbols.sign_post.tooltip": "Used with fixtures to make road signs.",
+    "block.factory_symbols.sign_post.tooltip": "For displaying signs using fixtures. Relays redstone signals.",
 
     "tag.item.factory_symbols.displays": "Displays",
     "tag.item.factory_symbols.sign_post_blocks": "Sign Post Blocks",

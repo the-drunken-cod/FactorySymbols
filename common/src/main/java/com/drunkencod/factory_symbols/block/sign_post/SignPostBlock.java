@@ -1,10 +1,14 @@
 package com.drunkencod.factory_symbols.block.sign_post;
 
+import com.drunkencod.factory_symbols.Constants;
 import com.drunkencod.factory_symbols.platform.Services;
 import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -33,6 +37,21 @@ public class SignPostBlock extends PipeBlock implements SimpleWaterloggedBlock {
     /** Thickness of the sign post's segments in pixels */
     public static final float APOTHEM = 2f / 16f;
 
+    public static final TagKey<Block> TAG_DOES_NOT_CONNECT_TO = TagKey.create(Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_does_not_connect_to"));
+
+    public static final TagKey<Block> TAG_CONNECTS_TO = TagKey.create(Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_connects_to"));
+
+    public static final TagKey<Block> TAG_CONNECTS_TO_BOTTOM_FACE = TagKey.create(Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_connects_to_bottom"));
+
+    public static final TagKey<Block> TAG_CONNECTS_TO_TOP_FACE = TagKey.create(Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_connects_to_top"));
+
+    public static final TagKey<Block> TAG_CONNECTS_TO_SIDES = TagKey.create(Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_connects_to_sides"));
+
     public static final MapCodec<SignPostBlock> CODEC = SignPostBlock.simpleCodec(SignPostBlock::new);
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -60,26 +79,27 @@ public class SignPostBlock extends PipeBlock implements SimpleWaterloggedBlock {
     }
 
     @Override
-    protected BlockState updateShape(BlockState blockState, Direction direction, BlockState blockState2,
-            LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPos2) {
-        if (!blockState.canSurvive(levelAccessor, blockPos))
-            levelAccessor.scheduleTick(blockPos, this, 1);
+    protected BlockState updateShape(BlockState ownState, Direction direction, BlockState neighborState,
+            LevelAccessor level, BlockPos ownPos, BlockPos neighborPos) {
+        if (!ownState.canSurvive(level, ownPos))
+            level.scheduleTick(ownPos, this, 1);
 
-        if (blockState.getValue(WATERLOGGED))
-            levelAccessor.scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
+        if (ownState.getValue(WATERLOGGED))
+            level.scheduleTick(ownPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 
         // Connection Logic:
         // 1. If the block in the given direction is a sign post, connect to it
         // 2. If the block's face in the given direction is center-supporting, connect
         // to it
-        // 3. If the block is a face-attached block (sign, button, lever, …) pointing
+        // 3. If the block is a face-attached block (sign, button, lever, ...) pointing
         // away from us, connect to it
         // 4. Otherwise, disconnect from that direction
 
-        boolean shouldConnect = blockState2.is(this)
-                || blockState2.isFaceSturdy(levelAccessor, blockPos2, direction.getOpposite(), SupportType.CENTER)
-                || isAttachedToFace(blockState2, direction);
-        return blockState.setValue(PROPERTY_BY_DIRECTION.get(direction), shouldConnect);
+        boolean shouldConnect = neighborState.is(this)
+                || isCenterSupporting(level, neighborState, neighborPos, direction.getOpposite())
+                || isAttachedToFace(neighborState, direction);
+
+        return ownState.setValue(PROPERTY_BY_DIRECTION.get(direction), shouldConnect);
     }
 
     @Override
@@ -108,22 +128,22 @@ public class SignPostBlock extends PipeBlock implements SimpleWaterloggedBlock {
         return blockState
                 .trySetValue(DOWN,
                         belowState.is(block) || isCenterSupporting(level, belowState, blockPos, Direction.UP)
-                                || isAttachedToFace(belowState, Direction.DOWN))
+                                || isAttachedToFace(belowState, Direction.UP))
                 .trySetValue(UP,
                         aboveState.is(block) || isCenterSupporting(level, aboveState, blockPos, Direction.DOWN)
-                                || isAttachedToFace(aboveState, Direction.UP))
+                                || isAttachedToFace(aboveState, Direction.DOWN))
                 .trySetValue(NORTH,
                         northState.is(block) || isCenterSupporting(level, northState, blockPos, Direction.SOUTH)
-                                || isAttachedToFace(northState, Direction.NORTH))
+                                || isAttachedToFace(northState, Direction.SOUTH))
                 .trySetValue(EAST,
                         eastState.is(block) || isCenterSupporting(level, eastState, blockPos, Direction.WEST)
-                                || isAttachedToFace(eastState, Direction.EAST))
+                                || isAttachedToFace(eastState, Direction.WEST))
                 .trySetValue(SOUTH,
                         southState.is(block) || isCenterSupporting(level, southState, blockPos, Direction.NORTH)
-                                || isAttachedToFace(southState, Direction.SOUTH))
+                                || isAttachedToFace(southState, Direction.NORTH))
                 .trySetValue(WEST,
                         westState.is(block) || isCenterSupporting(level, westState, blockPos, Direction.EAST)
-                                || isAttachedToFace(westState, Direction.WEST));
+                                || isAttachedToFace(westState, Direction.EAST));
     }
 
     @Override
@@ -131,6 +151,7 @@ public class SignPostBlock extends PipeBlock implements SimpleWaterloggedBlock {
             BlockPos neighborPos, boolean movedByPiston) {
         if (!state.canSurvive(level, pos))
             level.scheduleTick(pos, this, 1);
+
         updateShape(state, Direction.DOWN, level.getBlockState(pos.below()), level, pos, pos.below());
         updateShape(state, Direction.UP, level.getBlockState(pos.above()), level, pos, pos.above());
         updateShape(state, Direction.NORTH, level.getBlockState(pos.north()), level, pos, pos.north());
@@ -262,15 +283,47 @@ public class SignPostBlock extends PipeBlock implements SimpleWaterloggedBlock {
      * post)
      */
     private static boolean isAttachedToFace(BlockState neighbor, Direction directionFromPost) {
+        // wall-attached blocks (signs, buttons, levers facing a direction)
         if (neighbor.hasProperty(BlockStateProperties.HORIZONTAL_FACING)
-                && neighbor.getValue(BlockStateProperties.HORIZONTAL_FACING) == directionFromPost) {
+                && neighbor.getValue(BlockStateProperties.HORIZONTAL_FACING) == directionFromPost)
             return true;
-        }
+        // floor/ceiling attached blocks (lever, button on floor/ceiling)
         if (neighbor.hasProperty(BlockStateProperties.ATTACH_FACE)) {
             AttachFace face = neighbor.getValue(BlockStateProperties.ATTACH_FACE);
-            return (directionFromPost == Direction.UP && face == AttachFace.FLOOR)
-                    || (directionFromPost == Direction.DOWN && face == AttachFace.CEILING);
+            if ((directionFromPost == Direction.UP && face == AttachFace.FLOOR)
+                    || (directionFromPost == Direction.DOWN && face == AttachFace.CEILING))
+                return true;
         }
+        // 6-directional facing blocks (end rods, lightning rods) whose tip points away
+        // from the post
+        if (neighbor.hasProperty(BlockStateProperties.FACING)
+                && neighbor.getValue(BlockStateProperties.FACING) == directionFromPost)
+            return true;
+        // axis-oriented blocks (chains) — connect along the chain's axis
+        if (neighbor.hasProperty(BlockStateProperties.AXIS)
+                && neighbor.getValue(BlockStateProperties.AXIS) == directionFromPost.getAxis())
+            return true;
+        // hanging blocks (lanterns) that hang from the post above them
+        if (directionFromPost == Direction.DOWN
+                && neighbor.hasProperty(BlockStateProperties.HANGING)
+                && neighbor.getValue(BlockStateProperties.HANGING))
+            return true;
+        // floor-mounted rotatable blocks (standing banners, signs, skulls on floor)
+        if (directionFromPost == Direction.UP
+                && neighbor.hasProperty(BlockStateProperties.ROTATION_16))
+            return true;
+        // explicitly tagged connectable blocks (pressure plates, ...)
+        if (neighbor.is(TAG_CONNECTS_TO))
+            return true;
+        // blocks that only connect on their bottom face (rails, ...)
+        if (directionFromPost == Direction.UP && neighbor.is(TAG_CONNECTS_TO_BOTTOM_FACE))
+            return true;
+        // blocks that only connect on their top face (weeping vines, cave vines, ...)
+        if (directionFromPost == Direction.DOWN && neighbor.is(TAG_CONNECTS_TO_TOP_FACE))
+            return true;
+        // blocks that only connect on horizontal sides (cauldron, ...)
+        if (directionFromPost.getAxis().isHorizontal() && neighbor.is(TAG_CONNECTS_TO_SIDES))
+            return true;
         return false;
     }
 
@@ -278,6 +331,12 @@ public class SignPostBlock extends PipeBlock implements SimpleWaterloggedBlock {
         // ignore air
         if (state.isAir())
             return false;
+        // ignore everything in does_not_connect tag
+        if (state.is(TAG_DOES_NOT_CONNECT_TO))
+            return false;
+        // force explicitly tagged center-supporting blocks through
+        if (state.is(TAG_CONNECTS_TO))
+            return true;
         return state.isFaceSturdy(level, pos, face, SupportType.CENTER);
     }
 
