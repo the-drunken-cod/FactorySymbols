@@ -1,3 +1,7 @@
+# datagen
+neoforge/src/generated/
+fabric/src/generated/
+
 # eclipse
 bin
 *.launch

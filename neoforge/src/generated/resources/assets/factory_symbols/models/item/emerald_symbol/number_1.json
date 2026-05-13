@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "factory_symbols:item/base/square/emerald",
-    "layer1": "factory_symbols:item/symbol/number/1_black"
-  }
-}
