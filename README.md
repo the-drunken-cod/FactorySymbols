@@ -30,6 +30,13 @@ For multiplayer, ensure the mod is installed on the server and all clients conne
 
 <br>
 
+## Development Notes:
+- This mod is still in early development, so expect major changes and breaking updates until the v1.0.0 release.
+- Developer docs can be found in the [`dev_docs.md` file.](./dev_docs.md)
+- DataGen JSONs (in `neoforge/src/generated` and `fabric/src/generated`) will be excluded from the repo until the v1.0.0 release. If you still want access to those files, you can either unzip the released JAR file, or set up the Java dev env and run the `./gradlew :neoforge:runData` or `./gradlew :fabric:runData` command.
+
+<br>
+
 ## Compatibility:
 - **Sable / Create Aeronautics:**
   - Block weight support
