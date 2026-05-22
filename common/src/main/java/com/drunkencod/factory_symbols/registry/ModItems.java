@@ -1,7 +1,7 @@
 package com.drunkencod.factory_symbols.registry;
 
 import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelBlock;
-import com.drunkencod.factory_symbols.item.RetroreflectiveIronSheetItem;
+import com.drunkencod.factory_symbols.item.RetroreflectiveSheetItem;
 import com.drunkencod.factory_symbols.item.SignItem;
 import com.drunkencod.factory_symbols.item.SymbolItem;
 import com.drunkencod.factory_symbols.platform.Services;
@@ -30,7 +30,7 @@ public class ModItems {
     public static final Map<SignType, Supplier<Item>> SIGN = new EnumMap<>(SignType.class);
 
     // #region One-off items
-    public static Supplier<Item> RETROREFLECTIVE_IRON_SHEET;
+    public static Supplier<Item> RETROREFLECTIVE_SHEET;
 
     public static void register() {
         // register symbol items from enums:
@@ -46,9 +46,9 @@ public class ModItems {
         }
 
         // retroreflective iron sheet:
-        RETROREFLECTIVE_IRON_SHEET = Services.REGISTRY.registerItem(
-                RetroreflectiveIronSheetItem.ID,
-                () -> new RetroreflectiveIronSheetItem(new Item.Properties()));
+        RETROREFLECTIVE_SHEET = Services.REGISTRY.registerItem(
+                RetroreflectiveSheetItem.ID,
+                () -> new RetroreflectiveSheetItem(new Item.Properties()));
 
         // register sign items from enums:
         for (SignType sym : SignType.values()) {
@@ -87,7 +87,7 @@ public class ModItems {
     }
 
     public static void populateSignsTab(CreativeModeTab.Output output) {
-        output.accept(RETROREFLECTIVE_IRON_SHEET.get().getDefaultInstance());
+        output.accept(RETROREFLECTIVE_SHEET.get().getDefaultInstance());
 
         for (SignType sym : SignType.values())
             output.accept(getSignStack(sym));

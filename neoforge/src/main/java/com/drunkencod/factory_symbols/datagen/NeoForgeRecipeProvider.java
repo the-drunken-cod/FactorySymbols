@@ -1,7 +1,7 @@
 package com.drunkencod.factory_symbols.datagen;
 
 import com.drunkencod.factory_symbols.Constants;
-import com.drunkencod.factory_symbols.item.RetroreflectiveIronSheetItem;
+import com.drunkencod.factory_symbols.item.RetroreflectiveSheetItem;
 import com.drunkencod.factory_symbols.signs.SignType;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
 import com.drunkencod.factory_symbols.symbols.SymbolType;
@@ -55,7 +55,7 @@ public class NeoForgeRecipeProvider implements DataProvider {
         }
 
         // #region Stonecutter recipes: retroreflective iron sheet ↔ sign
-        String signMaterialId = Constants.MOD_ID + ":" + RetroreflectiveIronSheetItem.ID;
+        String signMaterialId = Constants.MOD_ID + ":" + RetroreflectiveSheetItem.ID;
         String signsTagId = Constants.MOD_ID + ":signs";
 
         for (SignType sign : SignType.values()) {
@@ -65,7 +65,7 @@ public class NeoForgeRecipeProvider implements DataProvider {
         }
 
         JsonObject signToMaterial = buildStonecutterRecipe(signsTagId, true, signMaterialId, 1);
-        futures.add(save(cache, "stonecutter/sign_to_retroreflective_iron_sheet", signToMaterial));
+        futures.add(save(cache, "stonecutter/sign_to_retroreflective_sheet", signToMaterial));
 
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }

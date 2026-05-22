@@ -8,7 +8,7 @@
     "block.factory_symbols.sign_post": "Sign Post",
     "block.factory_symbols.sign_post.tooltip": "For displaying signs using fixtures. Relays redstone signals.",
 
-    "item.factory_symbols.retroreflective_iron_sheet": "Retroreflective Iron Sheet",
+    "item.factory_symbols.retroreflective_sheet": "Retroreflective Sheet",
 
     "tag.item.c.plates.retroreflective": "Retroreflective Plates",
     "tag.item.factory_symbols.displays": "Displays",
