@@ -6,5 +6,8 @@
         "**/.gradle": true,
         "**/generated": true,
         "**/build": true,
+    },
+    "files.associations": {
+        "*.mcmeta": "json"
     }
 }
