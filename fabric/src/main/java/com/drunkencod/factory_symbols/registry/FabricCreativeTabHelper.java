@@ -32,7 +32,7 @@ public class FabricCreativeTabHelper implements ICreativeTabHelper {
                         .displayItems((params, output) -> ModItems.populateSymbolsTab(output))
                         .build());
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, Constants.MOD_ID),
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, Constants.MOD_ID + "_signs"),
                 FabricItemGroup.builder()
                         .title(Component.translatable(
                                 "itemGroup." + Constants.MOD_ID + ".signs"))

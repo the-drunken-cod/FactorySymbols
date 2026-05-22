@@ -12,7 +12,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class NeoForgeCreativeTabHelper implements ICreativeTabHelper {
 
-    private final DeferredRegister<CreativeModeTab> creativeTabs = DeferredRegister.create(Registries.CREATIVE_MODE_TAB,
+    private final DeferredRegister<CreativeModeTab> creativeTabs = DeferredRegister.create(
+            Registries.CREATIVE_MODE_TAB,
             Constants.MOD_ID);
 
     public NeoForgeCreativeTabHelper() {
@@ -26,7 +27,7 @@ public class NeoForgeCreativeTabHelper implements ICreativeTabHelper {
                 .icon(() -> ModItems.getSymbolStack(SymbolMaterial.IRON, SymbolType.LETTER_A))
                 .displayItems((params, output) -> ModItems.populateSymbolsTab(output))
                 .build());
-        creativeTabs.register(Constants.MOD_ID, () -> CreativeModeTab.builder()
+        creativeTabs.register(Constants.MOD_ID + "_signs", () -> CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup." + Constants.MOD_ID + ".signs"))
                 .icon(() -> ModItems.getSignStack(SignType.REGULATORY_GIVE_WAY))
                 .displayItems((params, output) -> ModItems.populateSignsTab(output))
