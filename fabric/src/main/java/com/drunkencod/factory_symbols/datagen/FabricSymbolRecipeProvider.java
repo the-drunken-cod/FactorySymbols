@@ -1,6 +1,8 @@
 package com.drunkencod.factory_symbols.datagen;
 
 import com.drunkencod.factory_symbols.Constants;
+import com.drunkencod.factory_symbols.item.RetroreflectiveIronSheetItem;
+import com.drunkencod.factory_symbols.signs.SignType;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
 import com.drunkencod.factory_symbols.symbols.SymbolType;
 import com.google.gson.JsonObject;
@@ -54,6 +56,19 @@ public class FabricSymbolRecipeProvider implements DataProvider {
                         fromSymbol));
             }
         }
+
+        // #region Stonecutter recipes: retroreflective iron sheet ↔ sign
+        String signMaterialId = Constants.MOD_ID + ":" + RetroreflectiveIronSheetItem.ID;
+        String signsTagId = Constants.MOD_ID + ":signs";
+
+        for (SignType sign : SignType.values()) {
+            String resultId = Constants.MOD_ID + ":sign_" + sign.getId();
+            JsonObject fromMaterial = buildStonecutterRecipe(signMaterialId, false, resultId, 1);
+            futures.add(save(cache, "stonecutter/sign_" + sign.getId(), fromMaterial));
+        }
+
+        JsonObject signToMaterial = buildStonecutterRecipe(signsTagId, true, signMaterialId, 1);
+        futures.add(save(cache, "stonecutter/sign_to_retroreflective_iron_sheet", signToMaterial));
 
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));
     }

@@ -1,8 +1,11 @@
 package com.drunkencod.factory_symbols.registry;
 
 import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelBlock;
+import com.drunkencod.factory_symbols.item.RetroreflectiveIronSheetItem;
+import com.drunkencod.factory_symbols.item.SignItem;
 import com.drunkencod.factory_symbols.item.SymbolItem;
 import com.drunkencod.factory_symbols.platform.Services;
+import com.drunkencod.factory_symbols.signs.SignType;
 import com.drunkencod.factory_symbols.symbols.SymbolCategory;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
 import com.drunkencod.factory_symbols.symbols.SymbolType;
@@ -23,7 +26,11 @@ public class ModItems {
     public static final Map<SymbolMaterial, Map<SymbolType, Supplier<Item>>> SYMBOLS = new EnumMap<>(
             SymbolMaterial.class);
 
+    // #region Sign items
+    public static final Map<SignType, Supplier<Item>> SIGN = new EnumMap<>(SignType.class);
+
     public static void register() {
+        // register symbol items from enums:
         for (SymbolMaterial mat : SymbolMaterial.values()) {
             Map<SymbolType, Supplier<Item>> symMap = new EnumMap<>(SymbolType.class);
             for (SymbolType sym : SymbolType.values()) {
@@ -34,10 +41,27 @@ public class ModItems {
             }
             SYMBOLS.put(mat, symMap);
         }
+
+        // retroreflective iron sheet:
+        Services.REGISTRY.registerItem(
+                RetroreflectiveIronSheetItem.ID,
+                () -> new RetroreflectiveIronSheetItem(new Item.Properties()));
+
+        // register sign items from enums:
+        for (SignType sym : SignType.values()) {
+            Supplier<Item> item = Services.REGISTRY.registerItem(
+                    "sign_" + sym.getId(),
+                    () -> new SignItem(sym, new Item.Properties()));
+            SIGN.put(sym, item);
+        }
     }
 
     public static ItemStack getSymbolStack(SymbolMaterial mat, SymbolType sym) {
         return SYMBOLS.get(mat).get(sym).get().getDefaultInstance();
+    }
+
+    public static ItemStack getSignStack(SignType sym) {
+        return SIGN.get(sym).get().getDefaultInstance();
     }
 
     // #region Creative tabs
@@ -57,5 +81,10 @@ public class ModItems {
                 for (SymbolType sym : SymbolType.values())
                     if (sym.getCategory() == cat)
                         output.accept(getSymbolStack(mat, sym));
+    }
+
+    public static void populateSignsTab(CreativeModeTab.Output output) {
+        for (SignType sym : SignType.values())
+            output.accept(getSignStack(sym));
     }
 }

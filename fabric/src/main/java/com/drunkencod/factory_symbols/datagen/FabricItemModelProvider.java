@@ -1,6 +1,7 @@
 package com.drunkencod.factory_symbols.datagen;
 
 import com.drunkencod.factory_symbols.Constants;
+import com.drunkencod.factory_symbols.signs.SignType;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
 import com.drunkencod.factory_symbols.symbols.SymbolType;
 import com.google.gson.JsonObject;
@@ -46,6 +47,20 @@ public class FabricItemModelProvider implements DataProvider {
                 json.add("textures", textures);
                 futures.add(save(cache, sym.getId() + "_" + material, json));
             }
+        }
+
+        // #region One model per sign item
+        for (SignType sign : SignType.values()) {
+            String catId = sign.getCategory().getId();
+            String stripped = sign.getId().startsWith(catId + "_")
+                    ? sign.getId().substring(catId.length() + 1)
+                    : sign.getId();
+            JsonObject signJson = new JsonObject();
+            signJson.addProperty("parent", "minecraft:item/generated");
+            JsonObject signTextures = new JsonObject();
+            signTextures.addProperty("layer0", ns + ":item/sign/" + catId + "/" + stripped);
+            signJson.add("textures", signTextures);
+            futures.add(save(cache, "sign_" + sign.getId(), signJson));
         }
 
         return CompletableFuture.allOf(futures.toArray(CompletableFuture[]::new));

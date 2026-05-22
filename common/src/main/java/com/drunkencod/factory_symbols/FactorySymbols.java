@@ -5,7 +5,6 @@ import com.drunkencod.factory_symbols.registry.ModBlocks;
 import com.drunkencod.factory_symbols.registry.ModItems;
 
 public class FactorySymbols {
-
     public static void init() {
         ModBlocks.register();
         ModItems.register();

@@ -1,6 +1,7 @@
 package com.drunkencod.factory_symbols.datagen;
 
 import com.drunkencod.factory_symbols.Constants;
+import com.drunkencod.factory_symbols.signs.SignType;
 import com.drunkencod.factory_symbols.symbols.SymbolMaterial;
 import com.drunkencod.factory_symbols.symbols.SymbolType;
 import com.google.gson.JsonArray;
@@ -36,6 +37,13 @@ public class FabricItemTagsProvider implements DataProvider {
                 tagValues.computeIfAbsent("symbols", k -> new ArrayList<>()).add(symbolId);
                 tagValues.computeIfAbsent("symbols/" + mat.getPrefix(), k -> new ArrayList<>()).add(symbolId);
             }
+        }
+
+        // #region Sign tags
+        for (SignType sign : SignType.values()) {
+            String signId = Constants.MOD_ID + ":sign_" + sign.getId();
+            tagValues.computeIfAbsent("signs", k -> new ArrayList<>()).add(signId);
+            tagValues.computeIfAbsent("signs/" + sign.getCategory().getId(), k -> new ArrayList<>()).add(signId);
         }
 
         List<CompletableFuture<?>> futures = new ArrayList<>();

@@ -1,11 +1,14 @@
 {
     "itemGroup.factory_symbols.blocks": "Factory Symbols - Blocks",
+    "itemGroup.factory_symbols.signs": "Factory Symbols - Signs",
     "itemGroup.factory_symbols.symbols": "Factory Symbols",
 
     "block.factory_symbols.display_panel": "Display Panel",
     "block.factory_symbols.display_panel.tooltip": "Item Frame in block form. Can be dyed.",
     "block.factory_symbols.sign_post": "Sign Post",
     "block.factory_symbols.sign_post.tooltip": "For displaying signs using fixtures. Relays redstone signals.",
+
+    "item.factory_symbols.retroreflective_iron_sheet": "Retroreflective Iron Sheet",
 
     "tag.item.factory_symbols.displays": "Displays",
     "tag.item.factory_symbols.sign_post_blocks": "Sign Post Blocks",
@@ -18,8 +21,10 @@
     "tag.item.factory_symbols.symbols.redstone": "Redstone Symbols",
     "tag.item.factory_symbols.symbols": "Symbols",
 
-    "factory_symbols.item_name_template.__comment__": "Template used at runtime to compose item display names. %1$s = material name, %2$s = symbol name.",
-    "factory_symbols.item_name_template": "%1$s %2$s Symbol",
+    "factory_symbols.symbol_item_name_template.__comment__": "Template used at runtime to compose item display names. %1$s = material name, %2$s = symbol name.",
+    "factory_symbols.symbol_item_name_template": "%1$s %2$s Symbol",
+    "factory_symbols.sign_item_name_template.__comment__": "Template used at runtime to compose item display names. %1$s = sign name.",
+    "factory_symbols.sign_item_name_template": "%1$s Sign",
 
     "material.factory_symbols.coal": "Coal",
     "material.factory_symbols.emerald": "Emerald",

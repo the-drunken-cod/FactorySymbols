@@ -21,7 +21,7 @@ public class SymbolItem extends Item {
     @Override
     public Component getName(ItemStack stack) {
         return Component.translatable(
-                "factory_symbols.item_name_template",
+                "factory_symbols.symbol_item_name_template",
                 Component.translatable("material." + Constants.MOD_ID + "." + material.getPrefix()),
                 Component.translatable("symbol." + Constants.MOD_ID + "." + symbolType.getId()));
     }
