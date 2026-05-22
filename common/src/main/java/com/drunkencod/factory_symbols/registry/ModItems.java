@@ -29,6 +29,9 @@ public class ModItems {
     // #region Sign items
     public static final Map<SignType, Supplier<Item>> SIGN = new EnumMap<>(SignType.class);
 
+    // #region One-off items
+    public static Supplier<Item> RETROREFLECTIVE_IRON_SHEET;
+
     public static void register() {
         // register symbol items from enums:
         for (SymbolMaterial mat : SymbolMaterial.values()) {
@@ -43,7 +46,7 @@ public class ModItems {
         }
 
         // retroreflective iron sheet:
-        Services.REGISTRY.registerItem(
+        RETROREFLECTIVE_IRON_SHEET = Services.REGISTRY.registerItem(
                 RetroreflectiveIronSheetItem.ID,
                 () -> new RetroreflectiveIronSheetItem(new Item.Properties()));
 
@@ -84,6 +87,8 @@ public class ModItems {
     }
 
     public static void populateSignsTab(CreativeModeTab.Output output) {
+        output.accept(RETROREFLECTIVE_IRON_SHEET.get().getDefaultInstance());
+
         for (SignType sym : SignType.values())
             output.accept(getSignStack(sym));
     }
