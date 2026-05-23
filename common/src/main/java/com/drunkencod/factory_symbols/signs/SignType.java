@@ -2,23 +2,25 @@ package com.drunkencod.factory_symbols.signs;
 
 public enum SignType {
     // #region Hazard
-    HAZARD_PRIORITY("hazard_priority", SignCategory.HAZARD), // [ ]
-    HAZARD_MERGE_LEFT("hazard_merge_left", SignCategory.HAZARD), // [ ]
-    HAZARD_MERGE_RIGHT("hazard_merge_right", SignCategory.HAZARD), // [ ]
-    HAZARD_STEEP_DOWNGRADE("hazard_steep_downgrade", SignCategory.HAZARD), // [ ]
-    HAZARD_STEEP_UPGRADE("hazard_steep_upgrade", SignCategory.HAZARD), // [ ]
-    HAZARD_UNCONTROLLED_INTERSECTION_AHEAD("hazard_uncontrolled_intersection_ahead", SignCategory.HAZARD), // [ ]
-    HAZARD_UNEVEN_ROAD_SURFACE_AHEAD("hazard_uneven_road_surface_ahead", SignCategory.HAZARD), // [ ]
-    HAZARD_NARROW_ROAD_AHEAD("hazard_narrow_road_ahead", SignCategory.HAZARD), // [ ]
-    HAZARD_PEDESTRIANS_AHEAD("hazard_pedestrians_ahead", SignCategory.HAZARD), // [ ]
-    HAZARD_RAILWAY_CROSSING_AHEAD("hazard_railway_crossing_ahead", SignCategory.HAZARD), // [ ]
-    HAZARD_BRIDGE_AHEAD("hazard_bridge_ahead", SignCategory.HAZARD), // [ ]
-    HAZARD_ONCOMING_TRAFFIC("hazard_oncoming_traffic", SignCategory.HAZARD), // [ ]
-    HAZARD_TRAFFIC_LIGHT("hazard_traffic_light", SignCategory.HAZARD), // [ ]
-    HAZARD_ANIMALS_CROSSING("hazard_animals_crossing", SignCategory.HAZARD), // [ ]
-    HAZARD_RAILWAY_CROSSING("hazard_railway_crossing", SignCategory.HAZARD), // [ ]
+    HAZARD_STEEP_DOWNGRADE("hazard_steep_downgrade", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
+    HAZARD_STEEP_UPGRADE("hazard_steep_upgrade", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
+    HAZARD_UNCONTROLLED_INTERSECTION_AHEAD("hazard_uncontrolled_intersection_ahead", SignCategory.HAZARD,
+            SignSupportType.BOTTOM), // [ ]
+    HAZARD_UNEVEN_ROAD_SURFACE_AHEAD("hazard_uneven_road_surface_ahead", SignCategory.HAZARD,
+            SignSupportType.BOTTOM), // [ ]
+    HAZARD_NARROW_ROAD_AHEAD("hazard_narrow_road_ahead", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
+    HAZARD_PEDESTRIANS_AHEAD("hazard_pedestrians_ahead", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
+    HAZARD_RAILWAY_CROSSING_AHEAD("hazard_railway_crossing_ahead", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
+    HAZARD_BRIDGE_AHEAD("hazard_bridge_ahead", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
+    HAZARD_ONCOMING_TRAFFIC("hazard_oncoming_traffic", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
+    HAZARD_TRAFFIC_LIGHT("hazard_traffic_light", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
+    HAZARD_ANIMALS_CROSSING("hazard_animals_crossing", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
+    HAZARD_RAILWAY_CROSSING("hazard_railway_crossing", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
 
     // #region Regulatory
+    REGULATORY_PRIORITY("regulatory_priority", SignCategory.REGULATORY, SignSupportType.BOTTOM), // [ ]
+    REGULATORY_MERGE_LEFT("regulatory_merge_left", SignCategory.REGULATORY, SignSupportType.BOTTOM), // [ ]
+    REGULATORY_MERGE_RIGHT("regulatory_merge_right", SignCategory.REGULATORY, SignSupportType.BOTTOM), // [ ]
     REGULATORY_GO_LEFT("regulatory_go_left", SignCategory.REGULATORY), // [ ]
     REGULATORY_GO_RIGHT("regulatory_go_right", SignCategory.REGULATORY), // [ ]
     REGULATORY_GO_STRAIGHT("regulatory_go_straight", SignCategory.REGULATORY), // [ ]
@@ -52,10 +54,11 @@ public enum SignType {
     REGULATORY_U_TURN_LEFT("regulatory_u_turn_left", SignCategory.REGULATORY), // [ ]
     REGULATORY_U_TURN_RIGHT("regulatory_u_turn_right", SignCategory.REGULATORY), // [ ]
     REGULATORY_PRIORITY_ROAD("regulatory_priority_road", SignCategory.REGULATORY), // [ ]
-    REGULATORY_GIVE_WAY("regulatory_give_way", SignCategory.REGULATORY), // [ ]
+    REGULATORY_PRIORITY_ROAD_END("regulatory_priority_road_end", SignCategory.REGULATORY), // [ ]
+    REGULATORY_GIVE_WAY("regulatory_give_way", SignCategory.REGULATORY, SignSupportType.BOTTOM), // [ ]
     REGULATORY_STOP("regulatory_stop", SignCategory.REGULATORY), // [ ]
-    REGULATORY_ONE_WAY_LEFT("regulatory_one_way_left", SignCategory.REGULATORY), // [ ]
-    REGULATORY_ONE_WAY_RIGHT("regulatory_one_way_right", SignCategory.REGULATORY), // [ ]
+    REGULATORY_ONE_WAY_LEFT("regulatory_one_way_left", SignCategory.REGULATORY, SignSupportType.HORIZONTAL), // [ ]
+    REGULATORY_ONE_WAY_RIGHT("regulatory_one_way_right", SignCategory.REGULATORY, SignSupportType.HORIZONTAL), // [ ]
     REGULATORY_PARKING("regulatory_parking", SignCategory.REGULATORY), // [ ]
     REGULATORY_PARKING_GARAGE("regulatory_parking_garage", SignCategory.REGULATORY), // [ ]
     REGULATORY_DEAD_END("regulatory_dead_end", SignCategory.REGULATORY), // [ ]
@@ -65,8 +68,10 @@ public enum SignType {
     REGULATORY_HIGHWAY_BEGINNING("regulatory_highway_beginning", SignCategory.REGULATORY), // [ ]
     REGULATORY_HIGHWAY_END("regulatory_highway_end", SignCategory.REGULATORY), // [ ]
     REGULATORY_TUNNEL("regulatory_tunnel", SignCategory.REGULATORY), // [ ]
-    REGULATORY_GREEN_ARROW_LEFT("regulatory_green_arrow_left", SignCategory.REGULATORY), // [ ]
-    REGULATORY_GREEN_ARROW_RIGHT("regulatory_green_arrow_right", SignCategory.REGULATORY), // [ ]
+    REGULATORY_GREEN_ARROW_LEFT("regulatory_green_arrow_left", SignCategory.REGULATORY,
+            SignSupportType.CENTER_ONLY), // [ ]
+    REGULATORY_GREEN_ARROW_RIGHT("regulatory_green_arrow_right", SignCategory.REGULATORY,
+            SignSupportType.CENTER_ONLY), // [ ]
 
     // #region Prohibition
     PROHIBITION_NO_ENTRY("prohibition_no_entry", SignCategory.PROHIBITION), // [ ]
@@ -82,27 +87,45 @@ public enum SignType {
     PROHIBITION_NO_PEDESTRIANS("prohibition_no_pedestrians", SignCategory.PROHIBITION), // [ ]
 
     // #region Extra
-    EXTRA_TRANSIT_STOP_H("extra_transit_stop_h", SignCategory.EXTRA), // [ ]
     EXTRA_NATO_BRIDGE_LOAD("extra_nato_bridge_load", SignCategory.EXTRA), // [ ]
-    EXTRA_NATURE_RESERVE("extra_nature_reserve", SignCategory.EXTRA), // [ ]
-    EXTRA_TRAFFIC_CALMED_ZONE_BEGINNING("extra_traffic_calmed_zone_beginning", SignCategory.EXTRA), // [ ]
-    EXTRA_TRAFFIC_CALMED_ZONE_END("extra_traffic_calmed_zone_end", SignCategory.EXTRA), // [ ]
-    EXTRA_TRANSIT_STOP("extra_transit_stop", SignCategory.EXTRA), // [ ]
-    EXTRA_GAS_STATION("extra_gas_station", SignCategory.EXTRA), // [ ]
-    EXTRA_RECHARGING_STATION("extra_recharging_station", SignCategory.EXTRA), // [ ]
-    EXTRA_EMERGENCY_STOPPING_BAY("extra_emergency_stopping_bay", SignCategory.EXTRA), // [ ]
-    EXTRA_EMERGENCY_TELEPHONE("extra_emergency_telephone", SignCategory.EXTRA), // [ ]
-    EXTRA_INFORMATION("extra_information", SignCategory.EXTRA), // [ ]
-    EXTRA_MOTEL("extra_motel", SignCategory.EXTRA), // [ ]
-    EXTRA_INN("extra_inn", SignCategory.EXTRA), // [ ]
-    EXTRA_TOILET("extra_toilet", SignCategory.EXTRA); // [ ]
+    EXTRA_NATURE_RESERVE("extra_nature_reserve", SignCategory.EXTRA, SignSupportType.BOTTOM), // [ ]
+    EXTRA_TRAFFIC_CALMED_ZONE_BEGINNING("extra_traffic_calmed_zone_beginning", SignCategory.EXTRA,
+            SignSupportType.HORIZONTAL), // [ ]
+    EXTRA_TRAFFIC_CALMED_ZONE_END("extra_traffic_calmed_zone_end", SignCategory.EXTRA,
+            SignSupportType.HORIZONTAL), // [ ]
+    EXTRA_TRANSIT_STOP("extra_transit_stop", SignCategory.EXTRA,
+            SignSupportType.CENTER_ONLY), // [ ]
+    EXTRA_TRANSIT_STOP_H("extra_transit_stop_h", SignCategory.EXTRA,
+            SignSupportType.CENTER_ONLY), // [ ]
+    EXTRA_GAS_STATION("extra_gas_station", SignCategory.EXTRA,
+            SignSupportType.CENTER_ONLY), // [ ]
+    EXTRA_RECHARGING_STATION("extra_recharging_station", SignCategory.EXTRA,
+            SignSupportType.CENTER_ONLY), // [ ]
+    EXTRA_EMERGENCY_STOPPING_BAY("extra_emergency_stopping_bay", SignCategory.EXTRA,
+            SignSupportType.CENTER_ONLY), // [ ]
+    EXTRA_EMERGENCY_TELEPHONE("extra_emergency_telephone", SignCategory.EXTRA,
+            SignSupportType.CENTER_ONLY), // [ ]
+    EXTRA_INFORMATION("extra_information", SignCategory.EXTRA,
+            SignSupportType.CENTER_ONLY), // [ ]
+    EXTRA_MOTEL("extra_motel", SignCategory.EXTRA,
+            SignSupportType.CENTER_ONLY), // [ ]
+    EXTRA_INN("extra_inn", SignCategory.EXTRA,
+            SignSupportType.CENTER_ONLY), // [ ]
+    EXTRA_TOILET("extra_toilet", SignCategory.EXTRA,
+            SignSupportType.CENTER_ONLY); // [ ]
 
     private final String id;
     private final SignCategory category;
+    private final SignSupportType supportType;
 
-    SignType(String id, SignCategory category) {
+    SignType(String id, SignCategory category, SignSupportType supportType) {
         this.id = id;
         this.category = category;
+        this.supportType = supportType;
+    }
+
+    SignType(String id, SignCategory category) {
+        this(id, category, SignSupportType.ANY);
     }
 
     /** Registry path segment, e.g. {@code "0"} or {@code "letter_a"}. */
@@ -112,5 +135,9 @@ public enum SignType {
 
     public SignCategory getCategory() {
         return category;
+    }
+
+    public SignSupportType getSupportType() {
+        return supportType;
     }
 }
