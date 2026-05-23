@@ -15,14 +15,20 @@ public enum SignType {
     HAZARD_ONCOMING_TRAFFIC("hazard_oncoming_traffic", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
     HAZARD_TRAFFIC_LIGHT("hazard_traffic_light", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
     HAZARD_ANIMALS_CROSSING("hazard_animals_crossing", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
-    HAZARD_RAILWAY_CROSSING("hazard_railway_crossing", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
+    HAZARD_RAILWAY_CROSSING("hazard_railway_crossing", SignCategory.HAZARD, SignSupportType.BOTTOM), // [x]
+    HAZARD_RAILWAY_CROSSING_ELECTRIFIED("hazard_railway_crossing_electrified", SignCategory.HAZARD,
+            SignSupportType.BOTTOM), // [x]
+    HAZARD_MERGE_LEFT("hazard_merge_left", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
+    HAZARD_MERGE_RIGHT("hazard_merge_right", SignCategory.HAZARD, SignSupportType.BOTTOM), // [ ]
 
     // #region Regulatory
-    REGULATORY_PRIORITY("regulatory_priority", SignCategory.REGULATORY, SignSupportType.BOTTOM), // [ ]
-    REGULATORY_MERGE_LEFT("regulatory_merge_left", SignCategory.REGULATORY, SignSupportType.BOTTOM), // [ ]
-    REGULATORY_MERGE_RIGHT("regulatory_merge_right", SignCategory.REGULATORY, SignSupportType.BOTTOM), // [ ]
-    REGULATORY_GO_LEFT("regulatory_go_left", SignCategory.REGULATORY), // [ ]
-    REGULATORY_GO_RIGHT("regulatory_go_right", SignCategory.REGULATORY), // [ ]
+    REGULATORY_STOP("regulatory_stop", SignCategory.REGULATORY), // [x]
+    REGULATORY_GIVE_WAY("regulatory_give_way", SignCategory.REGULATORY, SignSupportType.BOTTOM), // [x]
+    REGULATORY_PRIORITY("regulatory_priority", SignCategory.REGULATORY, SignSupportType.BOTTOM), // [x]
+    REGULATORY_PRIORITY_ROAD("regulatory_priority_road", SignCategory.REGULATORY), // [x]
+    REGULATORY_PRIORITY_ROAD_END("regulatory_priority_road_end", SignCategory.REGULATORY), // [x]
+    REGULATORY_GO_LEFT("regulatory_go_left", SignCategory.REGULATORY), // [x]
+    REGULATORY_GO_RIGHT("regulatory_go_right", SignCategory.REGULATORY), // [x]
     REGULATORY_GO_STRAIGHT("regulatory_go_straight", SignCategory.REGULATORY), // [ ]
     REGULATORY_GO_LEFT_HERE("regulatory_go_left_here", SignCategory.REGULATORY), // [ ]
     REGULATORY_GO_RIGHT_HERE("regulatory_go_right_here", SignCategory.REGULATORY), // [ ]
@@ -49,29 +55,24 @@ public enum SignType {
     REGULATORY_SPEED_LIMIT_130("regulatory_speed_limit_130", SignCategory.REGULATORY), // [ ]
     REGULATORY_SPEED_LIMIT_140("regulatory_speed_limit_140", SignCategory.REGULATORY), // [ ]
     REGULATORY_SPEED_LIMIT_150("regulatory_speed_limit_150", SignCategory.REGULATORY), // [ ]
-    REGULATORY_SPEED_LIMIT_END("regulatory_speed_limit_end", SignCategory.REGULATORY), // [ ]
     REGULATORY_OVERTAKING_ALLOWED("regulatory_overtaking_allowed", SignCategory.REGULATORY), // [ ]
     REGULATORY_U_TURN_LEFT("regulatory_u_turn_left", SignCategory.REGULATORY), // [ ]
     REGULATORY_U_TURN_RIGHT("regulatory_u_turn_right", SignCategory.REGULATORY), // [ ]
-    REGULATORY_PRIORITY_ROAD("regulatory_priority_road", SignCategory.REGULATORY), // [ ]
-    REGULATORY_PRIORITY_ROAD_END("regulatory_priority_road_end", SignCategory.REGULATORY), // [ ]
-    REGULATORY_GIVE_WAY("regulatory_give_way", SignCategory.REGULATORY, SignSupportType.BOTTOM), // [ ]
-    REGULATORY_STOP("regulatory_stop", SignCategory.REGULATORY), // [ ]
-    REGULATORY_ONE_WAY_LEFT("regulatory_one_way_left", SignCategory.REGULATORY, SignSupportType.HORIZONTAL), // [ ]
-    REGULATORY_ONE_WAY_RIGHT("regulatory_one_way_right", SignCategory.REGULATORY, SignSupportType.HORIZONTAL), // [ ]
-    REGULATORY_PARKING("regulatory_parking", SignCategory.REGULATORY), // [ ]
-    REGULATORY_PARKING_GARAGE("regulatory_parking_garage", SignCategory.REGULATORY), // [ ]
+    REGULATORY_ONE_WAY_LEFT("regulatory_one_way_left", SignCategory.REGULATORY, SignSupportType.HORIZONTAL), // [x]
+    REGULATORY_ONE_WAY_RIGHT("regulatory_one_way_right", SignCategory.REGULATORY, SignSupportType.HORIZONTAL), // [x]
+    REGULATORY_PARKING("regulatory_parking", SignCategory.REGULATORY), // [x]
+    REGULATORY_PARKING_GARAGE("regulatory_parking_garage", SignCategory.REGULATORY), // [x]
     REGULATORY_DEAD_END("regulatory_dead_end", SignCategory.REGULATORY), // [ ]
     REGULATORY_CURVE_MARKER_LEFT("regulatory_curve_marker_left", SignCategory.REGULATORY), // [ ]
     REGULATORY_CURVE_MARKER_RIGHT("regulatory_curve_marker_right", SignCategory.REGULATORY), // [ ]
     REGULATORY_PEDESTRIAN_CROSSING("regulatory_pedestrian_crossing", SignCategory.REGULATORY), // [ ]
-    REGULATORY_HIGHWAY_BEGINNING("regulatory_highway_beginning", SignCategory.REGULATORY), // [ ]
+    REGULATORY_HIGHWAY("regulatory_highway", SignCategory.REGULATORY), // [ ]
     REGULATORY_HIGHWAY_END("regulatory_highway_end", SignCategory.REGULATORY), // [ ]
     REGULATORY_TUNNEL("regulatory_tunnel", SignCategory.REGULATORY), // [ ]
     REGULATORY_GREEN_ARROW_LEFT("regulatory_green_arrow_left", SignCategory.REGULATORY,
-            SignSupportType.CENTER_ONLY), // [ ]
+            SignSupportType.CENTER_ONLY), // [x]
     REGULATORY_GREEN_ARROW_RIGHT("regulatory_green_arrow_right", SignCategory.REGULATORY,
-            SignSupportType.CENTER_ONLY), // [ ]
+            SignSupportType.CENTER_ONLY), // [x]
 
     // #region Prohibition
     PROHIBITION_NO_ENTRY("prohibition_no_entry", SignCategory.PROHIBITION), // [ ]
@@ -89,10 +90,10 @@ public enum SignType {
     // #region Extra
     EXTRA_NATO_BRIDGE_LOAD("extra_nato_bridge_load", SignCategory.EXTRA), // [ ]
     EXTRA_NATURE_RESERVE("extra_nature_reserve", SignCategory.EXTRA, SignSupportType.BOTTOM), // [ ]
-    EXTRA_TRAFFIC_CALMED_ZONE_BEGINNING("extra_traffic_calmed_zone_beginning", SignCategory.EXTRA,
-            SignSupportType.HORIZONTAL), // [ ]
+    EXTRA_TRAFFIC_CALMED_ZONE("extra_traffic_calmed_zone", SignCategory.EXTRA,
+            SignSupportType.HORIZONTAL), // [x]
     EXTRA_TRAFFIC_CALMED_ZONE_END("extra_traffic_calmed_zone_end", SignCategory.EXTRA,
-            SignSupportType.HORIZONTAL), // [ ]
+            SignSupportType.HORIZONTAL), // [x]
     EXTRA_TRANSIT_STOP("extra_transit_stop", SignCategory.EXTRA,
             SignSupportType.CENTER_ONLY), // [ ]
     EXTRA_TRANSIT_STOP_H("extra_transit_stop_h", SignCategory.EXTRA,
