@@ -169,9 +169,6 @@
     "symbol.factory_symbols.warning_laser": "Laser Hazard",
     "symbol.factory_symbols.warning_construction": "Construction",
 
-    "sign.factory_symbols.hazard_priority": "Priority",
-    "sign.factory_symbols.hazard_merge_left": "Merge Left",
-    "sign.factory_symbols.hazard_merge_right": "Merge Right",
     "sign.factory_symbols.hazard_steep_downgrade": "Steep Downgrade",
     "sign.factory_symbols.hazard_steep_upgrade": "Steep Upgrade",
     "sign.factory_symbols.hazard_uncontrolled_intersection_ahead": "Uncontrolled Intersection Ahead",
@@ -184,7 +181,10 @@
     "sign.factory_symbols.hazard_traffic_light": "Traffic Light Ahead",
     "sign.factory_symbols.hazard_animals_crossing": "Animals Crossing",
     "sign.factory_symbols.hazard_railway_crossing": "Railway Crossing",
-
+    
+    "sign.factory_symbols.regulatory_priority": "Priority",
+    "sign.factory_symbols.regulatory_merge_left": "Merge Left",
+    "sign.factory_symbols.regulatory_merge_right": "Merge Right",
     "sign.factory_symbols.regulatory_go_left": "Go Left",
     "sign.factory_symbols.regulatory_go_right": "Go Right",
     "sign.factory_symbols.regulatory_go_straight": "Go Straight",
@@ -218,6 +218,7 @@
     "sign.factory_symbols.regulatory_u_turn_left": "U-Turn Left",
     "sign.factory_symbols.regulatory_u_turn_right": "U-Turn Right",
     "sign.factory_symbols.regulatory_priority_road": "Priority Road",
+    "sign.factory_symbols.regulatory_priority_road_end": "Priority Road End",
     "sign.factory_symbols.regulatory_give_way": "Give Way",
     "sign.factory_symbols.regulatory_stop": "Stop",
     "sign.factory_symbols.regulatory_one_way_left": "One Way Left",
