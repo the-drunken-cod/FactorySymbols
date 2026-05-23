@@ -11,14 +11,18 @@
     "item.factory_symbols.retroreflective_sheet": "Retroreflective Sheet",
 
     "tag.item.c.plates.retroreflective": "Retroreflective Plates",
+
     "tag.item.factory_symbols.displays": "Displays",
+
     "tag.item.factory_symbols.sign_post_blocks": "Sign Post Blocks",
     "tag.item.factory_symbols.sign_post_fixtures": "Sign Post Fixtures",
+
     "tag.item.factory_symbols.signs": "Signs",
     "tag.item.factory_symbols.signs.hazard": "Hazard Signs",
     "tag.item.factory_symbols.signs.regulatory": "Regulatory Signs",
     "tag.item.factory_symbols.signs.prohibition": "Prohibition Signs",
     "tag.item.factory_symbols.signs.extra": "Extra Signs",
+
     "tag.item.factory_symbols.symbols.coal": "Coal Symbols",
     "tag.item.factory_symbols.symbols.emerald": "Emerald Symbols",
     "tag.item.factory_symbols.symbols.gold": "Gold Symbols",
@@ -181,10 +185,11 @@
     "sign.factory_symbols.hazard_traffic_light": "Traffic Light Ahead",
     "sign.factory_symbols.hazard_animals_crossing": "Animals Crossing",
     "sign.factory_symbols.hazard_railway_crossing": "Railway Crossing",
+    "sign.factory_symbols.hazard_railway_crossing_electrified": "Railway Crossing (Electrified)",
     
     "sign.factory_symbols.regulatory_priority": "Priority",
-    "sign.factory_symbols.regulatory_merge_left": "Merge Left",
-    "sign.factory_symbols.regulatory_merge_right": "Merge Right",
+    "sign.factory_symbols.hazard_merge_left": "Merge Left",
+    "sign.factory_symbols.hazard_merge_right": "Merge Right",
     "sign.factory_symbols.regulatory_go_left": "Go Left",
     "sign.factory_symbols.regulatory_go_right": "Go Right",
     "sign.factory_symbols.regulatory_go_straight": "Go Straight",
@@ -213,7 +218,6 @@
     "sign.factory_symbols.regulatory_speed_limit_130": "Speed Limit 130",
     "sign.factory_symbols.regulatory_speed_limit_140": "Speed Limit 140",
     "sign.factory_symbols.regulatory_speed_limit_150": "Speed Limit 150",
-    "sign.factory_symbols.regulatory_speed_limit_end": "End of Speed Limit",
     "sign.factory_symbols.regulatory_overtaking_allowed": "Overtaking Allowed",
     "sign.factory_symbols.regulatory_u_turn_left": "U-Turn Left",
     "sign.factory_symbols.regulatory_u_turn_right": "U-Turn Right",
@@ -229,7 +233,7 @@
     "sign.factory_symbols.regulatory_curve_marker_left": "Curve Marker Left",
     "sign.factory_symbols.regulatory_curve_marker_right": "Curve Marker Right",
     "sign.factory_symbols.regulatory_pedestrian_crossing": "Pedestrian Crossing",
-    "sign.factory_symbols.regulatory_highway_beginning": "Highway Beginning",
+    "sign.factory_symbols.regulatory_highway": "Highway Beginning",
     "sign.factory_symbols.regulatory_highway_end": "Highway End",
     "sign.factory_symbols.regulatory_tunnel": "Tunnel",
     "sign.factory_symbols.regulatory_green_arrow_left": "Green Arrow Left",
@@ -250,7 +254,7 @@
     "sign.factory_symbols.extra_transit_stop_h": "Transit Stop (H)",
     "sign.factory_symbols.extra_nato_bridge_load": "NATO Bridge Load",
     "sign.factory_symbols.extra_nature_reserve": "Nature Reserve",
-    "sign.factory_symbols.extra_traffic_calmed_zone_beginning": "Traffic Calmed Zone Beginning",
+    "sign.factory_symbols.extra_traffic_calmed_zone": "Traffic Calmed Zone",
     "sign.factory_symbols.extra_traffic_calmed_zone_end": "Traffic Calmed Zone End",
     "sign.factory_symbols.extra_transit_stop": "Transit Stop",
     "sign.factory_symbols.extra_gas_station": "Gas Station",
