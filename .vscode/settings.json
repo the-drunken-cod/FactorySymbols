@@ -9,5 +9,6 @@
     },
     "files.associations": {
         "*.mcmeta": "json"
-    }
+    },
+    "editor.tabSize": 4
 }
