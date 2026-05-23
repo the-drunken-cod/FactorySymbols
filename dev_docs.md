@@ -93,78 +93,79 @@ These behave differently from the symbol items, because they only come in a sing
 The crafting recipe also slightly differs, requiring retroreflective iron sheets.  
   
 Example signs (not final):  
-| Category | Shape | Sign |
-| :-- | :-- | :-- |
-| Hazard | Triangle | Priority |
-| Hazard | Triangle | Merge Left |
-| Hazard | Triangle | Merge Right |
-| Hazard | Triangle | Steep Downgrade |
-| Hazard | Triangle | Steep Upgrade |
-| Hazard | Triangle | Uncontrolled Intersection Ahead |
-| Hazard | Triangle | Uneven Road Surface Ahead |
-| Hazard | Triangle | Narrow Road Ahead |
-| Hazard | Triangle | Pedestrians Ahead |
-| Hazard | Triangle | Railway Crossing Ahead |
-| Hazard | Triangle | Bridge Ahead |
-| Hazard | Triangle | Oncoming Traffic |
-| Hazard | Triangle | Traffic Light |
-| Hazard | Triangle | Animals Crossing |
-| Hazard | St. Andrew's Cross | Railway Crossing |
-| Regulatory | Circle | Go Left |
-| Regulatory | Circle | Go Right |
-| Regulatory | Circle | Go Straight |
-| Regulatory | Circle | Go Left Here (horiz. left) |
-| Regulatory | Circle | Go Right Here (horiz. right) |
-| Regulatory | Circle | Along Left (diag. down-left) |
-| Regulatory | Circle | Along Right (diag. down-right) |
-| Regulatory | Circle | Straight or Right |
-| Regulatory | Circle | Straight or Left |
-| Regulatory | Circle | Roundabout |
-| Regulatory | Circle | Pedestrians Only |
-| Regulatory | Circle | No Speed Limit |
-| Regulatory | Circle | Speed Limit 5, 10-150 (incr. by 10) |
-| Regulatory | Circle | No Speed Limit |
-| Regulatory | Circle | Overtaking allowed |
-| Regulatory | Circle | U-Turn Left |
-| Regulatory | Circle | U-Turn Right |
-| Regulatory | Diamond | Priority Road |
-| Regulatory | Inverted Triangle | Give Way / Yield |
-| Regulatory | Octagon | Stop |
-| Regulatory | Rectangle | One-Way Left |
-| Regulatory | Rectangle | One-Way Right |
-| Regulatory | Square | Parking |
-| Regulatory | Square | Parking Garage |
-| Regulatory | Square | Dead End |
-| Regulatory | Square | Curve Marker Left |
-| Regulatory | Square | Curve Marker Right |
-| Regulatory | Square | Pedestrian Crossing |
-| Regulatory | Square | Highway Beginning |
-| Regulatory | Square | Highway End |
-| Regulatory | Square | Tunnel |
-| Regulatory | Square | Green Arrow Left |
-| Regulatory | Square | Green Arrow Right |
-| Prohibition | Circle | No Entry |
-| Prohibition | Circle | No Stopping |
-| Prohibition | Circle | No Parking |
-| Prohibition | Circle | No Overtaking |
-| Prohibition | Circle | U-Turn Prohibited Left |
-| Prohibition | Circle | U-Turn Prohibited Right |
-| Prohibition | Circle | No Vehicles |
-| Prohibition | Circle | No Heavy Vehicles |
-| Prohibition | Circle | No Cars |
-| Prohibition | Circle | No Bicycles |
-| Prohibition | Circle | No Pedestrians |
-| Extra | Circle | Bus/Tram/Train Stop "H" |
-| Extra | Circle | NATO Bridge Load Classification |
-| Extra | Inverted Triangle | Nature Reserve |
-| Extra | Rectangle | Traffic-Calmed Zone Beginning |
-| Extra | Rectangle | Traffic-Calmed Zone End |
-| Extra | Square | Bus/Tram/Train Stop |
-| Extra | Square | Gas Station |
-| Extra | Square | Recharging Station |
-| Extra | Square | Emergency Stopping Bay |
-| Extra | Square | Emergency Telephone |
-| Extra | Square | Information |
-| Extra | Square | Motel |
-| Extra | Square | Inn |
-| Extra | Square | Toilet |
+|  | Category | Shape | Sign |
+| :-- | :-- | :-- | :-- |
+|   | Hazard | Triangle | Steep Downgrade |
+|   | Hazard | Triangle | Steep Upgrade |
+|   | Hazard | Triangle | Uncontrolled Intersection Ahead |
+|   | Hazard | Triangle | Uneven Road Surface Ahead |
+|   | Hazard | Triangle | Narrow Road Ahead |
+|   | Hazard | Triangle | Pedestrians Ahead |
+|   | Hazard | Triangle | Railway Crossing Ahead |
+|   | Hazard | Triangle | Bridge Ahead |
+|   | Hazard | Triangle | Oncoming Traffic |
+|   | Hazard | Triangle | Traffic Light |
+|   | Hazard | Triangle | Animals Crossing |
+|   | Hazard | St. Andrew's Cross | Railway Crossing |
+|   | Regulatory | Triangle | Priority |
+|   | Regulatory | Triangle | Merge Left |
+|   | Regulatory | Triangle | Merge Right |
+|   | Regulatory | Circle | Go Left |
+|   | Regulatory | Circle | Go Right |
+|   | Regulatory | Circle | Go Straight |
+|   | Regulatory | Circle | Go Left Here (horiz. left) |
+|   | Regulatory | Circle | Go Right Here (horiz. right) |
+|   | Regulatory | Circle | Along Left (diag. down-left) |
+|   | Regulatory | Circle | Along Right (diag. down-right) |
+|   | Regulatory | Circle | Straight or Right |
+|   | Regulatory | Circle | Straight or Left |
+|   | Regulatory | Circle | Roundabout |
+|   | Regulatory | Circle | Pedestrians Only |
+|   | Regulatory | Circle | No Speed Limit |
+|   | Regulatory | Circle | Speed Limit 5, 10-150 (incr. by 10) |
+|   | Regulatory | Circle | No Speed Limit |
+|   | Regulatory | Circle | Overtaking allowed |
+|   | Regulatory | Circle | U-Turn Left |
+|   | Regulatory | Circle | U-Turn Right |
+|   | Regulatory | Diamond | Priority Road |
+|   | Regulatory | Diamond | Priority Road End |
+|   | Regulatory | Inverted Triangle | Give Way / Yield |
+|   | Regulatory | Octagon | Stop |
+|   | Regulatory | Rectangle | One-Way Left |
+|   | Regulatory | Rectangle | One-Way Right |
+|   | Regulatory | Square | Parking |
+|   | Regulatory | Square | Parking Garage |
+|   | Regulatory | Square | Dead End |
+|   | Regulatory | Square | Curve Marker Left |
+|   | Regulatory | Square | Curve Marker Right |
+|   | Regulatory | Square | Pedestrian Crossing |
+|   | Regulatory | Square | Highway Beginning |
+|   | Regulatory | Square | Highway End |
+|   | Regulatory | Square | Tunnel |
+|   | Regulatory | Square | Green Arrow Left |
+|   | Regulatory | Square | Green Arrow Right |
+|   | Prohibition | Circle | No Entry |
+|   | Prohibition | Circle | No Stopping |
+|   | Prohibition | Circle | No Parking |
+|   | Prohibition | Circle | No Overtaking |
+|   | Prohibition | Circle | U-Turn Prohibited Left |
+|   | Prohibition | Circle | U-Turn Prohibited Right |
+|   | Prohibition | Circle | No Vehicles |
+|   | Prohibition | Circle | No Heavy Vehicles |
+|   | Prohibition | Circle | No Cars |
+|   | Prohibition | Circle | No Bicycles |
+|   | Prohibition | Circle | No Pedestrians |
+|   | Extra | Circle | Bus/Tram/Train Stop "H" |
+|   | Extra | Circle | NATO Bridge Load Classification |
+|   | Extra | Inverted Triangle | Nature Reserve |
+|   | Extra | Rectangle | Traffic-Calmed Zone Beginning |
+|   | Extra | Rectangle | Traffic-Calmed Zone End |
+|   | Extra | Square | Bus/Tram/Train Stop |
+|   | Extra | Square | Gas Station |
+|   | Extra | Square | Recharging Station |
+|   | Extra | Square | Emergency Stopping Bay |
+|   | Extra | Square | Emergency Telephone |
+|   | Extra | Square | Information |
+|   | Extra | Square | Motel |
+|   | Extra | Square | Inn |
+|   | Extra | Square | Toilet |
