@@ -247,6 +247,8 @@
     "sign.factory_symbols.regulatory_tunnel": "Tunnel",
     "sign.factory_symbols.regulatory_green_arrow_left": "Grünpfeil Links",
     "sign.factory_symbols.regulatory_green_arrow_right": "Grünpfeil Rechts",
+    "sign.factory_symbols.regulatory_traffic_calmed_zone": "Verkehrsberuhigter Bereich",
+    "sign.factory_symbols.regulatory_traffic_calmed_zone_end": "Ende des Verkehrsberuhigten Bereichs",
 
     "sign.factory_symbols.prohibition_no_entry": "Verbot der Einfahrt",
     "sign.factory_symbols.prohibition_no_stopping": "Absolutes Haltverbot",
@@ -260,12 +262,9 @@
     "sign.factory_symbols.prohibition_no_bicycles": "Verbot für Radverkehr",
     "sign.factory_symbols.prohibition_no_pedestrians": "Verbot für Fußgänger",
 
-    "sign.factory_symbols.extra_transit_stop_h": "Haltestelle (H)",
+    "sign.factory_symbols.extra_transit_stop": "Haltestelle",
     "sign.factory_symbols.extra_nato_bridge_load": "NATO-Brückenlastklasse",
     "sign.factory_symbols.extra_nature_reserve": "Naturschutzgebiet",
-    "sign.factory_symbols.extra_traffic_calmed_zone": "Verkehrsberuhigter Bereich",
-    "sign.factory_symbols.extra_traffic_calmed_zone_end": "Ende des Verkehrsberuhigten Bereichs",
-    "sign.factory_symbols.extra_transit_stop": "Haltestelle",
     "sign.factory_symbols.extra_gas_station": "Tankstelle",
     "sign.factory_symbols.extra_recharging_station": "Ladestation",
     "sign.factory_symbols.extra_emergency_stopping_bay": "Nothaltebucht",

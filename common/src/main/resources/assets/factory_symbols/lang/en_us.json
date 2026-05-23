@@ -248,6 +248,8 @@
     "sign.factory_symbols.regulatory_tunnel": "Tunnel",
     "sign.factory_symbols.regulatory_green_arrow_left": "Green Arrow Left",
     "sign.factory_symbols.regulatory_green_arrow_right": "Green Arrow Right",
+    "sign.factory_symbols.regulatory_traffic_calmed_zone": "Traffic Calmed Zone",
+    "sign.factory_symbols.regulatory_traffic_calmed_zone_end": "Traffic Calmed Zone End",
 
     "sign.factory_symbols.prohibition_no_entry": "No Entry",
     "sign.factory_symbols.prohibition_no_stopping": "No Stopping",
@@ -261,12 +263,9 @@
     "sign.factory_symbols.prohibition_no_bicycles": "No Bicycles",
     "sign.factory_symbols.prohibition_no_pedestrians": "No Pedestrians",
 
-    "sign.factory_symbols.extra_transit_stop_h": "Transit Stop (H)",
+    "sign.factory_symbols.extra_transit_stop": "Transit Stop",
     "sign.factory_symbols.extra_nato_bridge_load": "NATO Bridge Load",
     "sign.factory_symbols.extra_nature_reserve": "Nature Reserve",
-    "sign.factory_symbols.extra_traffic_calmed_zone": "Traffic Calmed Zone",
-    "sign.factory_symbols.extra_traffic_calmed_zone_end": "Traffic Calmed Zone End",
-    "sign.factory_symbols.extra_transit_stop": "Transit Stop",
     "sign.factory_symbols.extra_gas_station": "Gas Station",
     "sign.factory_symbols.extra_recharging_station": "Recharging Station",
     "sign.factory_symbols.extra_emergency_stopping_bay": "Emergency Stopping Bay",
