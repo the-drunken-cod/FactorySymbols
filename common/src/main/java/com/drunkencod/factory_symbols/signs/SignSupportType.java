@@ -1,11 +1,16 @@
 package com.drunkencod.factory_symbols.signs;
 
 public enum SignSupportType {
+    /** Sign texture can only be supported at the bottom edge. */
     BOTTOM("bottom"),
+    /** Sign texture can only be supported at the top or bottom edge. */
     VERTICAL("vertical"),
+    /** Sign texture can only be supported at the left or right edge. */
     HORIZONTAL("horizontal"),
+    /** Sign texture can be supported at the top, bottom, left, right and back. */
     ANY("any"),
-    CENTER_ONLY("center_only");
+    /** Sign texture can only be supported at the back. */
+    BACK_ONLY("back_only");
 
     private final String id;
 
