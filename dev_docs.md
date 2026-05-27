@@ -185,19 +185,49 @@ Fixtures are items that convert the sign post block into a special blockentity t
 
 ## Sign Post Fixtures:
 These are items that can be right-clicked onto sign posts to convert them into special blockentities.  
+Each type of fixture has a different function and model (not stored via blockdata, but via NBT), but also some shared functionality like passing through the POWERED state and preventing other blocks from connecting to the face that the fixture is attached to.  
+Each fixture block needs a loot table that makes it drop both a sign post and the fixture item.
 
 <br>
 
 ### Ratchet Wrench:
-- Item that makes clicked fixtures rotate.
+- Item that allows for configuring sign post fixtures, as well as potentially other blocks in the future.
 - Uses the same mechanisms as wrenches from other mods like Create, Mekanism, etc. so that they are interoperable.
+- Interaction is the same as the Debug Stick from Vanilla (left-click to change mode, which gets displayed above the hotbar, right-click to change the selected mode's value).
+    - Modes are internally enumerated, but should not show this integer to the player. Instead, translations like `factory_symbols.ratchet_wrench.mode.button_fixture.orientation` and `factory_symbols.ratchet_wrench.mode.button_fixture.orientation.value.0` should be used to allow for more descriptive values.
+    - Modes should be easily defineable and extensible in the code by modifying an enum class or something.
+- Two tooltip lines to explain the interactions:
+    - "L-Click on Fixture: Switch Mode"
+    - "R-Click on Fixture: Change Value"
+- Modes:
+    - Button Fixture:
+        - Fixture Orientation: 0-3 for all 4 possible horizontal rotations of the button on the post
+        - Button Mode: 0 (default) for stone button behavior, 1 for wooden button behavior, 2 for toggle button behavior
+        - Active High: 0 for emitting a redstone signal when not powered, 1 (default) for emitting a redstone signal when powered
+    - Sign Fixture:
+        - Sign Orientation: 0-7 for 8 possible rotations of the contained sign
+        - Sign Scale: 0-2 for scaling the contained sign's model up or down (default is 1)
+        - Fixture Orientation: 0-5 for all 6 possible faces of the post to attach the fixture to
+        - Double-sided: 0 (default) for only rendering the sign on the fixture's front side, 1 for also rendering a flipped version of the sign on the back side of the fixture
+    - Lamp Fixture:
+        - Fixture Orientation: 0-1 for the 2 possible orientations of the lamp on the post (long side facing north-south or east-west)
+        - Light Level: 0-15 for the light level emitted by the lamp (default is 15)
+
+<br>
+
+### Button Fixture:
+- If clicked on a *horizontal* face of a sign post, the fixture renders a button model attached to the sign post that, when pressed, sends a redstone signal into the adjacent sign post by setting the POWERED blockstate and propagating it along the post, like a regular sign post does. The details of which need to be read from NBT (to respect what was configured with the wrench item).
+- The blockentity should allow one button to be placed on any *horizontal* face and prevent other posts from connecting when a face is occupied by a button.
+- Redstone signals should propagate through this fixture blockentity as if it was a regular post.
+- Cannot be placed anywhere else besides sign posts.
 
 <br>
 
 ### Sign Fixture:
-- If clicked on a horizontal face of a sign post, the fixture can render a sign flat against the post, or sticking out from the post rotated by 90°, if the sign's shape is horizontally supporting.
-- If clicked on a vertical face of a sign post, the fixture can render a sign sticking out from the post rotated by 90°, if the sign's shape is vertically supporting.
-- The blockentity should allow signs to be placed on all valid faces and prevent other posts from connecting when a face is occupied by a fixture, meaning up to 6 signs can be attached to a single post, also meaning the blockentity will need to keep track of them individually in NBT.
+- If clicked on a *horizontal* face of a sign post, the fixture can render a sign flat against the post, or sticking out from the post rotated by 90°, if the sign's shape is horizontally supporting.
+- If clicked on a *vertical* face of a sign post, the fixture can render a sign sticking out from the post rotated by 90°, if the sign's shape is vertically supporting.
+- The rotation, scale, and whether the sign is double-sided or not should be configurable with the wrench item, and needs to be read from NBT when rendering.
+- The blockentity should allow signs to be placed on all valid faces and prevent other posts from connecting when a face is occupied by a fixture, meaning up to 6 signs can be attached to a single post, also meaning the blockentity will need to keep track of them individually in NBT. Each contained sign needs to be *fully* stored, including its own NBT, since signs might have custom text, colors, etc. in the future.
 - Redstone signals should propagate through this fixture blockentity as if it was a regular post.
 - Cannot be placed anywhere else besides sign posts.
 
@@ -206,13 +236,5 @@ These are items that can be right-clicked onto sign posts to convert them into s
 ### Lamp Fixture:
 - If clicked on a vertical face of a sign post, the fixture can render a lamp model that emits light and is attached to the post.
 - Once converted, the sign post will always keep two faces active, so that the lamp's model can attach to the post and render properly. E.g. if the lamp is attached so that its 2 long sides are facing north and south, then the north and south faces, as well as the bottom face of the post can no longer connect.
-- Redstone signals should propagate through this fixture blockentity as if it was a regular post.
-- Cannot be placed anywhere else besides sign posts.
-
-<br>
-
-### Button Fixture:
-- If clicked on a horizontal face of a sign post, the fixture renders a button model that, when pressed, sends a redstone signal into the sign post by setting the POWERED blockstate and propagating it along the post.
-- The blockentity should allow one button to be placed on any horizontal face and prevent other posts from connecting when a face is occupied by a button.
 - Redstone signals should propagate through this fixture blockentity as if it was a regular post.
 - Cannot be placed anywhere else besides sign posts.
