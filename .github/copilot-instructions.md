@@ -31,3 +31,4 @@ The datagenned JSONs can be found under `src/generated/` for reference, but don'
 - Add `//#region` indicators for logical code sections (without `#endregion`). Keep the initial region comment concise and descriptive.
 - Respect the existing code style and don't use javax annotations.
 - In the output, instead of including unmodified members, only show the new or modified code and make use of comments like `/* existing code */`.
+- When playing sound effects, call the method on _both_ the client and the server to ensure it plays for all players.

@@ -1,6 +1,7 @@
 package com.drunkencod.factory_symbols.registry;
 
 import java.util.function.Supplier;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -48,4 +49,13 @@ public interface IRegistryHelper {
      */
     <T extends BlockEntity> Supplier<BlockEntityType<T>> registerBlockEntityType(String id,
             Supplier<BlockEntityType<T>> factory);
+
+    /**
+     * Register a sound event under the mod's namespace.
+     *
+     * @param id      Registry path (e.g. {@code "my_sound"})
+     * @param factory Supplier that creates the {@link SoundEvent} instance
+     * @return A supplier that returns the registered sound event
+     */
+    Supplier<SoundEvent> registerSoundEvent(String id, Supplier<SoundEvent> factory);
 }

@@ -1,0 +1,17 @@
+{
+    "item.ratchet_wrench.change_mode": {
+        "sounds": [
+            "minecraft:random/click"
+        ],
+        "subtitle": "subtitles.factory_symbols.ratchet_wrench.change_mode"
+    },
+    "item.ratchet_wrench.use": {
+        "sounds": [
+            "factory_symbols:item/ratchet_wrench/use0",
+            "factory_symbols:item/ratchet_wrench/use1",
+            "factory_symbols:item/ratchet_wrench/use2",
+            "factory_symbols:item/ratchet_wrench/use3"
+        ],
+        "subtitle": "subtitles.factory_symbols.ratchet_wrench.use"
+    }
+}

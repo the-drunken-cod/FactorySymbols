@@ -1,6 +1,8 @@
 package com.drunkencod.factory_symbols.block.sign_post;
 
+import com.drunkencod.factory_symbols.Constants;
 import com.drunkencod.factory_symbols.item.IWrenchConfigurable;
+import com.drunkencod.factory_symbols.item.RatchetWrenchItem;
 import com.drunkencod.factory_symbols.platform.Services;
 import com.drunkencod.factory_symbols.registry.ModBlocks;
 
@@ -9,6 +11,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -28,6 +31,7 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -126,6 +130,21 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
         return state;
     }
 
+    // #region Interaction
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
+            BlockHitResult hit) {
+        ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
+        if (!wrench.isEmpty()) {
+            if (!level.isClientSide()) {
+                onWrenchRightClick(level, pos, state, player);
+            }
+            return InteractionResult.sidedSuccess(level.isClientSide());
+        }
+        return InteractionResult.PASS;
+    }
+
     // #region Redstone
 
     @Override
@@ -211,11 +230,26 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
         return false;
     }
 
+    protected static String getModeKey(String baseKey, String valueKey) {
+        return Constants.MOD_ID + ".ratchet_wrench.mode." + baseKey + "." + valueKey;
+    }
+
+    protected static String getModeName(String baseKey, String valueKey) {
+        String modeName = Component.translatable(getModeKey(baseKey, valueKey)).getString();
+        String template = Component.translatable(getModeKey(baseKey, "name_template")).getString();
+        return String.format(template, modeName);
+    }
+
     // #region IWrenchConfigurable defaults
 
     @Override
     public int getWrenchModeCount(BlockState state) {
         return 0;
+    }
+
+    @Override
+    public String getWrenchModeString(BlockState state, int modeIndex) {
+        throw new UnsupportedOperationException("This fixture has no wrench modes");
     }
 
     @Override

@@ -1,6 +1,9 @@
 package com.drunkencod.factory_symbols.block.sign_post;
 
+import java.util.List;
+
 import com.drunkencod.factory_symbols.Constants;
+import com.drunkencod.factory_symbols.item.RatchetWrenchItem;
 import com.drunkencod.factory_symbols.platform.Services;
 import com.mojang.datafixers.kinds.Applicative;
 import com.mojang.serialization.MapCodec;
@@ -9,12 +12,15 @@ import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -109,6 +115,9 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
             BlockHitResult hit) {
+        InteractionResult wrenchResult = super.useWithoutItem(state, level, pos, player, hit);
+        if (wrenchResult != InteractionResult.PASS)
+            return wrenchResult;
         if (state.getValue(PRESSED))
             return InteractionResult.CONSUME;
         level.setBlock(pos, state.setValue(PRESSED, true), Block.UPDATE_CLIENTS);
@@ -180,6 +189,9 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
     private static final int MODE_ACTIVE_HIGH = 1;
     private static final int MODE_COUNT = 2;
 
+    private static final List<Direction> HORIZONTAL_DIRS = List.of(
+            Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST);
+
     @Override
     public int getWrenchModeCount(BlockState state) {
         return MODE_COUNT;
@@ -188,42 +200,77 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
     @Override
     public String getWrenchModeKey(BlockState state, int modeIndex) {
         return switch (modeIndex) {
-            case MODE_ORIENTATION -> Constants.MOD_ID + ".ratchet_wrench.mode.button_fixture.orientation";
-            case MODE_ACTIVE_HIGH -> Constants.MOD_ID + ".ratchet_wrench.mode.button_fixture.active_high";
+            case MODE_ORIENTATION -> getModeKey("button_fixture", "orientation");
+            case MODE_ACTIVE_HIGH -> getModeKey("button_fixture", "active_high");
+            default -> Constants.MOD_ID + ".ratchet_wrench.mode.unknown";
+        };
+    }
+
+    @Override
+    public String getWrenchModeString(BlockState state, int modeIndex) {
+        return switch (modeIndex) {
+            case MODE_ORIENTATION -> getModeName("button_fixture", "orientation");
+            case MODE_ACTIVE_HIGH -> getModeName("button_fixture", "active_high");
             default -> Constants.MOD_ID + ".ratchet_wrench.mode.unknown";
         };
     }
 
     @Override
     public Component getCurrentModeComponent(BlockState state, Player player) {
-        // Selected mode index is stored in the wrench item's NBT (handled by the wrench
-        // item when implemented)
-        return Component.translatable(Constants.MOD_ID + ".ratchet_wrench.mode.button_fixture.orientation");
+        ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
+        if (wrench.isEmpty())
+            return Component.empty();
+        ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
+        int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId);
+        return Component.literal(getWrenchModeString(state, mode));
     }
 
     @Override
     public InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Player player) {
-        // Cycle selected mode — mode selection is managed by the wrench item itself
-        return InteractionResult.PASS;
+        if (!level.isClientSide()) {
+            ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
+            if (wrench.isEmpty())
+                return InteractionResult.PASS;
+            ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
+            int next = (RatchetWrenchItem.getSelectedMode(wrench, blockId) + 1) % MODE_COUNT;
+            RatchetWrenchItem.setSelectedMode(wrench, blockId, next);
+            player.displayClientMessage(Component.literal(getWrenchModeString(state, next)), true);
+        }
+        return InteractionResult.SUCCESS;
     }
 
     @Override
     public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Player player) {
-        // Cycle the currently-selected mode's value on the block state
-        // (The wrench item will call this and pass which mode is active via its own
-        // NBT.)
-        // For now, default to cycling ACTIVE_HIGH as a placeholder:
         if (!level.isClientSide()) {
-            boolean current = state.getValue(ACTIVE_HIGH);
-            level.setBlock(pos, state.setValue(ACTIVE_HIGH, !current), Block.UPDATE_CLIENTS);
-            evaluateAndPropagate(level, pos);
-            player.displayClientMessage(
-                    Component.translatable(Constants.MOD_ID + ".ratchet_wrench.mode.button_fixture.active_high")
-                            .append(": ")
-                            .append(Component.translatable(Constants.MOD_ID
-                                    + ".ratchet_wrench.mode.button_fixture.active_high.value."
-                                    + (!current ? 1 : 0))),
-                    true);
+            ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
+            if (wrench.isEmpty())
+                return InteractionResult.PASS;
+            ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
+            int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId);
+            switch (mode) {
+                case MODE_ORIENTATION -> {
+                    int idx = HORIZONTAL_DIRS.indexOf(state.getValue(FACING));
+                    Direction next = HORIZONTAL_DIRS.get((idx + 1) % HORIZONTAL_DIRS.size());
+                    level.setBlock(pos, state.setValue(FACING, next), Block.UPDATE_CLIENTS);
+                    player.displayClientMessage(
+                            Component.literal(getWrenchModeString(state, MODE_ORIENTATION))
+                                    .append(": ")
+                                    .append(Component.translatable(
+                                            getWrenchModeKey(state, MODE_ORIENTATION) + ".value." + next.getName())),
+                            true);
+                }
+                case MODE_ACTIVE_HIGH -> {
+                    boolean next = !state.getValue(ACTIVE_HIGH);
+                    level.setBlock(pos, state.setValue(ACTIVE_HIGH, next), Block.UPDATE_CLIENTS);
+                    evaluateAndPropagate(level, pos);
+                    player.displayClientMessage(
+                            Component.translatable(getWrenchModeKey(state, MODE_ACTIVE_HIGH))
+                                    .append(": ")
+                                    .append(Component.translatable(
+                                            getWrenchModeKey(state, MODE_ACTIVE_HIGH) + ".value." + (next ? 1 : 0))),
+                            true);
+                }
+            }
         }
         return InteractionResult.SUCCESS;
     }

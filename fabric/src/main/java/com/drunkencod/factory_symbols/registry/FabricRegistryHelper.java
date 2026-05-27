@@ -3,6 +3,7 @@ package com.drunkencod.factory_symbols.registry;
 import com.drunkencod.factory_symbols.Constants;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -33,5 +34,12 @@ public class FabricRegistryHelper implements IRegistryHelper {
         BlockEntityType<T> type = Registry.register(BuiltInRegistries.BLOCK_ENTITY_TYPE,
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id), factory.get());
         return () -> type;
+    }
+
+    @Override
+    public Supplier<SoundEvent> registerSoundEvent(String id, Supplier<SoundEvent> factory) {
+        SoundEvent soundEvent = Registry.register(BuiltInRegistries.SOUND_EVENT,
+                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id), factory.get());
+        return () -> soundEvent;
     }
 }

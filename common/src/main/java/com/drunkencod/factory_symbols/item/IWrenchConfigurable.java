@@ -31,6 +31,12 @@ public interface IWrenchConfigurable {
     String getWrenchModeKey(BlockState state, int modeIndex);
 
     /**
+     * Returns the translation for the mode at the given index, e.g.
+     * {@code "factory_symbols.ratchet_wrench.mode.button_fixture.orientation"}.
+     */
+    String getWrenchModeString(BlockState state, int modeIndex);
+
+    /**
      * Returns a display component describing the current value of the selected
      * mode.
      * Used for the hotbar overlay message when switching modes.
