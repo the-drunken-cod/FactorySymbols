@@ -1,6 +1,7 @@
 package com.drunkencod.factory_symbols.registry;
 
 import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelBlock;
+import com.drunkencod.factory_symbols.item.RatchetWrenchItem;
 import com.drunkencod.factory_symbols.item.RetroreflectiveSheetItem;
 import com.drunkencod.factory_symbols.item.SignItem;
 import com.drunkencod.factory_symbols.item.SymbolItem;
@@ -29,8 +30,11 @@ public class ModItems {
     // #region Sign items
     public static final Map<SignType, Supplier<Item>> SIGN = new EnumMap<>(SignType.class);
 
-    // #region One-off items
+    // #region R.R. Sheet
     public static Supplier<Item> RETROREFLECTIVE_SHEET;
+
+    // #region Ratchet Wrench
+    public static Supplier<Item> RATCHET_WRENCH;
 
     public static void register() {
         // register symbol items from enums:
@@ -50,8 +54,15 @@ public class ModItems {
                 RetroreflectiveSheetItem.ID,
                 () -> new RetroreflectiveSheetItem(new Item.Properties()));
 
+        // ratchet wrench:
+        RATCHET_WRENCH = Services.REGISTRY.registerItem(
+                RatchetWrenchItem.ID,
+                () -> new RatchetWrenchItem(new Item.Properties()));
+
         // register sign items from enums:
-        for (SignType sym : SignType.values()) {
+        for (
+
+        SignType sym : SignType.values()) {
             Supplier<Item> item = Services.REGISTRY.registerItem(
                     "sign_" + sym.getId(),
                     () -> new SignItem(sym, new Item.Properties()));
@@ -69,6 +80,7 @@ public class ModItems {
 
     // #region Creative tabs
     public static void populateBlocksTab(CreativeModeTab.Output output) {
+        output.accept(RATCHET_WRENCH.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_ITEM.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_BUTTON_FIXTURE_ITEM.get().getDefaultInstance());
 
@@ -88,6 +100,7 @@ public class ModItems {
     }
 
     public static void populateSignsTab(CreativeModeTab.Output output) {
+        output.accept(RATCHET_WRENCH.get().getDefaultInstance());
         output.accept(RETROREFLECTIVE_SHEET.get().getDefaultInstance());
 
         for (SignType sym : SignType.values())

@@ -6,8 +6,6 @@ import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelItem;
 import com.drunkencod.factory_symbols.block.sign_post.SignPostBlock;
 import com.drunkencod.factory_symbols.block.sign_post.SignPostButtonFixtureBlock;
 import com.drunkencod.factory_symbols.block.sign_post.SignPostButtonFixtureBlockEntity;
-// import com.drunkencod.factory_symbols.block.sign_post.SignPostButtonFixtureBlock;
-// import com.drunkencod.factory_symbols.block.sign_post.SignPostButtonFixtureBlockEntity;
 import com.drunkencod.factory_symbols.platform.Services;
 import com.drunkencod.factory_symbols.util.TooltipUtil;
 
@@ -78,7 +76,9 @@ public class ModBlocks {
 
     public static final Supplier<Item> SIGN_POST_BUTTON_FIXTURE_ITEM = Services.REGISTRY.registerItem(
             "sign_post_button_fixture",
-            () -> new BlockItem(SIGN_POST_BUTTON_FIXTURE.get(), new Item.Properties()));
+            () -> new BlockItem(SIGN_POST_BUTTON_FIXTURE.get(), new Item.Properties()
+                    .component(DataComponents.LORE,
+                            TooltipUtil.getTooltip("block.factory_symbols.sign_post_button_fixture.tooltip"))));
 
     public static final Supplier<BlockEntityType<SignPostButtonFixtureBlockEntity>> SIGN_POST_BUTTON_FIXTURE_BE_TYPE = Services.REGISTRY
             .registerBlockEntityType(

@@ -7,8 +7,13 @@
     "block.factory_symbols.display_panel.tooltip": "Item Frame in block form. Can be dyed.",
     "block.factory_symbols.sign_post": "Sign Post",
     "block.factory_symbols.sign_post.tooltip": "For displaying signs using fixtures. Relays redstone signals.",
+    "block.factory_symbols.sign_post_button_fixture": "Sign Post Button Fixture",
+    "block.factory_symbols.sign_post_button_fixture.tooltip": "Attached to Sign Posts.",
 
     "item.factory_symbols.retroreflective_sheet": "Retroreflective Sheet",
+    "item.factory_symbols.ratchet_wrench": "Ratchet Wrench",
+    "item.factory_symbols.ratchet_wrench.tooltip.1": "L-Click on Fixture: Switch Wrench Mode",
+    "item.factory_symbols.ratchet_wrench.tooltip.2": "R-Click on Fixture: Change Value",
 
     "tag.item.c.plates.retroreflective": "Retroreflective Plates",
 
