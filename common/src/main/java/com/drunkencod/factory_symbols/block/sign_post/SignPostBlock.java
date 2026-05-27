@@ -24,10 +24,6 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.ArrayDeque;
-import java.util.HashMap;
-import java.util.Map;
-
 public class SignPostBlock extends PipeBlock implements SimpleWaterloggedBlock {
 
     /** Thickness of the sign post's segments in pixels */
@@ -132,110 +128,20 @@ public class SignPostBlock extends PipeBlock implements SimpleWaterloggedBlock {
         if (updated != state)
             level.setBlock(pos, updated, Block.UPDATE_CLIENTS);
 
-        // Relay: propagate power state change to connected sign posts.
-        // Only react to non-sign-post neighbors to avoid feedback from our own BFS.
-        // Read live state from the world instead of using the passed-in state to avoid
-        // acting on a stale snapshot when updates are deferred by the neighbor updater.
-        if (!level.isClientSide() && neighborBlock != this && !level.getBlockState(neighborPos).is(this)) {
-            boolean shouldBePowered = isDirectlyPowered(level, pos);
+        // Relay: propagate power state change to connected sign post network.
+        // Only react to non-network neighbors to avoid feedback from BFS
+        // updateNeighborsAt calls.
+        if (!level.isClientSide() && !level.getBlockState(neighborPos).is(SignPostNetworkUtil.TAG_SIGN_POST_BLOCKS)) {
             BlockState liveState = level.getBlockState(pos);
-            // When powering down, verify no other post in the network still has a direct
+            boolean shouldBePowered = SignPostNetworkUtil.hasDirectPower(level, pos, liveState);
+            // When powering down, verify no other node in the network still has a direct
             // signal — secondary updates from comparators/dust reading our powered state
             // would otherwise incorrectly collapse the network.
             if (liveState.is(this) && liveState.getValue(POWERED) != shouldBePowered)
-                if (shouldBePowered || !isNetworkDirectlyPowered(level, pos))
-                    propagatePower(level, pos, shouldBePowered);
-        }
-    }
-
-    /**
-     * Returns true when this position receives any direct redstone signal from its
-     * non-sign-post neighbors (dust, lever, button, repeater, comparator, observer,
-     * etc.). Sign posts don't override getSignal, so they contribute 0 and don't
-     * create feedback through this check.
-     */
-    private static boolean isDirectlyPowered(Level level, BlockPos pos) {
-        return level.getBestNeighborSignal(pos) > 0;
-    }
-
-    /**
-     * BFS through the connected network to find any post that has a direct signal.
-     */
-    private boolean isNetworkDirectlyPowered(Level level, BlockPos start) {
-        int maxDepth = Services.CONFIG.signPostRelayMaxDepth();
-        Map<BlockPos, Integer> depthMap = new HashMap<>();
-        ArrayDeque<BlockPos> queue = new ArrayDeque<>();
-        depthMap.put(start, 0);
-        queue.add(start);
-
-        while (!queue.isEmpty()) {
-            BlockPos current = queue.poll();
-            int depth = depthMap.get(current);
-
-            if (isDirectlyPowered(level, current))
-                return true;
-
-            if (depth >= maxDepth)
-                continue;
-
-            BlockState currentState = level.getBlockState(current);
-            if (!currentState.is(this))
-                continue;
-
-            for (Map.Entry<Direction, BooleanProperty> entry : PROPERTY_BY_DIRECTION.entrySet()) {
-                if (!currentState.getValue(entry.getValue()))
-                    continue;
-                BlockPos neighbor = current.relative(entry.getKey());
-                if (depthMap.containsKey(neighbor))
-                    continue;
-                if (!level.getBlockState(neighbor).is(this))
-                    continue;
-                depthMap.put(neighbor, depth + 1);
-                queue.add(neighbor);
-            }
-        }
-        return false;
-    }
-
-    /**
-     * BFS through connected sign posts, setting each to the given powered state.
-     * Uses a depth map (shortest-path distance from source) so that every post
-     * reachable within MAX_DEPTH is correctly included even in branching networks.
-     */
-    private void propagatePower(Level level, BlockPos source, boolean powered) {
-        int maxDepth = Services.CONFIG.signPostRelayMaxDepth();
-
-        Map<BlockPos, Integer> depthMap = new HashMap<>();
-        ArrayDeque<BlockPos> queue = new ArrayDeque<>();
-        depthMap.put(source, 0);
-        queue.add(source);
-
-        while (!queue.isEmpty()) {
-            BlockPos current = queue.poll();
-            int depth = depthMap.get(current);
-
-            BlockState currentState = level.getBlockState(current);
-            if (!currentState.is(this))
-                continue;
-
-            if (currentState.getValue(POWERED) != powered)
-                level.setBlock(current, currentState.setValue(POWERED, powered), Block.UPDATE_ALL);
-
-            if (depth >= maxDepth)
-                continue;
-
-            for (Map.Entry<Direction, BooleanProperty> entry : PROPERTY_BY_DIRECTION.entrySet()) {
-                if (!currentState.getValue(entry.getValue()))
-                    continue;
-                BlockPos neighbor = current.relative(entry.getKey());
-                if (depthMap.containsKey(neighbor))
-                    continue;
-                BlockState neighborState = level.getBlockState(neighbor);
-                if (!neighborState.is(this))
-                    continue;
-                depthMap.put(neighbor, depth + 1);
-                queue.add(neighbor);
-            }
+                if (shouldBePowered || !SignPostNetworkUtil.isNetworkDirectlyPowered(level, pos,
+                        Services.CONFIG.signPostRelayMaxDepth()))
+                    SignPostNetworkUtil.propagatePower(level, pos, shouldBePowered,
+                            Services.CONFIG.signPostRelayMaxDepth());
         }
     }
 

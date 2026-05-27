@@ -7,6 +7,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PipeBlock;
@@ -18,6 +19,10 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -174,5 +179,120 @@ public final class SignPostNetworkUtil {
      */
     public static Map<Direction, BooleanProperty> getDirectionProperties() {
         return PipeBlock.PROPERTY_BY_DIRECTION;
+    }
+
+    // #region Power relay utilities
+
+    /**
+     * Returns true when the sign post network block at pos has a direct external
+     * redstone signal (from non-network neighbors). For button fixtures, also
+     * accounts for ACTIVE_HIGH and returns true when the button's own pressed state
+     * warrants power output.
+     */
+    public static boolean hasDirectPower(Level level, BlockPos pos, BlockState state) {
+        if (state.getBlock() instanceof SignPostButtonFixtureBlock) {
+            boolean pressed = state.getValue(SignPostButtonFixtureBlock.PRESSED);
+            boolean activeHigh = state.getValue(SignPostButtonFixtureBlock.ACTIVE_HIGH);
+            return activeHigh ? pressed : !pressed;
+        }
+        for (Direction dir : Direction.values()) {
+            BlockPos neighborPos = pos.relative(dir);
+            if (level.getBlockState(neighborPos).is(TAG_SIGN_POST_BLOCKS))
+                continue;
+            if (level.getSignal(neighborPos, dir) > 0)
+                return true;
+        }
+        return false;
+    }
+
+    /**
+     * BFS through the connected sign post network to find any node with a direct
+     * external power source. Returns true if any such node is found within maxDepth
+     * hops from start.
+     */
+    public static boolean isNetworkDirectlyPowered(Level level, BlockPos start, int maxDepth) {
+        Map<BlockPos, Integer> depthMap = new HashMap<>();
+        ArrayDeque<BlockPos> queue = new ArrayDeque<>();
+        depthMap.put(start, 0);
+        queue.add(start);
+
+        while (!queue.isEmpty()) {
+            BlockPos current = queue.poll();
+            int depth = depthMap.get(current);
+            BlockState currentState = level.getBlockState(current);
+            if (!currentState.is(TAG_SIGN_POST_BLOCKS))
+                continue;
+
+            if (hasDirectPower(level, current, currentState))
+                return true;
+
+            if (depth >= maxDepth)
+                continue;
+
+            for (Map.Entry<Direction, BooleanProperty> entry : PipeBlock.PROPERTY_BY_DIRECTION.entrySet()) {
+                if (!currentState.getValue(entry.getValue()))
+                    continue;
+                BlockPos neighbor = current.relative(entry.getKey());
+                if (depthMap.containsKey(neighbor))
+                    continue;
+                BlockState neighborState = level.getBlockState(neighbor);
+                if (!neighborState.is(TAG_SIGN_POST_BLOCKS))
+                    continue;
+                depthMap.put(neighbor, depth + 1);
+                queue.add(neighbor);
+            }
+        }
+        return false;
+    }
+
+    /**
+     * BFS through the connected sign post network setting each node's POWERED
+     * property to the given value. Uses UPDATE_CLIENTS during traversal to avoid
+     * cascading neighborChanged callbacks; after all nodes are updated, calls
+     * updateNeighborsAt for each changed position so comparators and other redstone
+     * observers are notified exactly once per node.
+     */
+    public static void propagatePower(Level level, BlockPos source, boolean powered, int maxDepth) {
+        Map<BlockPos, Integer> depthMap = new HashMap<>();
+        ArrayDeque<BlockPos> queue = new ArrayDeque<>();
+        List<BlockPos> changed = new ArrayList<>();
+        depthMap.put(source, 0);
+        queue.add(source);
+
+        while (!queue.isEmpty()) {
+            BlockPos current = queue.poll();
+            int depth = depthMap.get(current);
+            BlockState currentState = level.getBlockState(current);
+            if (!currentState.is(TAG_SIGN_POST_BLOCKS))
+                continue;
+
+            if (currentState.hasProperty(BlockStateProperties.POWERED)
+                    && currentState.getValue(BlockStateProperties.POWERED) != powered) {
+                level.setBlock(current, currentState.setValue(BlockStateProperties.POWERED, powered),
+                        Block.UPDATE_CLIENTS);
+                changed.add(current.immutable());
+            }
+
+            if (depth >= maxDepth)
+                continue;
+
+            for (Map.Entry<Direction, BooleanProperty> entry : PipeBlock.PROPERTY_BY_DIRECTION.entrySet()) {
+                if (!currentState.getValue(entry.getValue()))
+                    continue;
+                BlockPos neighbor = current.relative(entry.getKey());
+                if (depthMap.containsKey(neighbor))
+                    continue;
+                BlockState neighborState = level.getBlockState(neighbor);
+                if (!neighborState.is(TAG_SIGN_POST_BLOCKS))
+                    continue;
+                depthMap.put(neighbor, depth + 1);
+                queue.add(neighbor);
+            }
+        }
+
+        for (BlockPos pos : changed) {
+            BlockState state = level.getBlockState(pos);
+            level.updateNeighborsAt(pos, state.getBlock());
+        }
     }
 }

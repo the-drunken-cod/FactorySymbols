@@ -1,6 +1,7 @@
 package com.drunkencod.factory_symbols.block.sign_post;
 
 import com.drunkencod.factory_symbols.Constants;
+import com.drunkencod.factory_symbols.platform.Services;
 import com.mojang.datafixers.kinds.Applicative;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -9,6 +10,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
@@ -19,6 +24,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
 
@@ -28,15 +38,40 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
                             SignPostButtonFixtureBlock::new));
 
     /**
-     * When true (default), the block emits a redstone signal when the sign post
-     * network is powered. When false, it emits when the network is NOT powered
-     * (active-low / inverted output).
+     * When true (default), the block emits a redstone signal when physically
+     * pressed.
+     * When false, it emits when NOT pressed (active-low / normally-on output).
      */
     public static final BooleanProperty ACTIVE_HIGH = BooleanProperty.create("active_high");
 
+    /**
+     * True while the button is physically depressed (distinct from relay POWERED
+     * state).
+     */
+    public static final BooleanProperty PRESSED = BooleanProperty.create("pressed");
+
+    // #region Shape
+
+    /**
+     * 6×10×6 px button body shapes per horizontal facing, biased 1 px toward FACING
+     */
+    private static final VoxelShape BUTTON_NORTH = Block.box(5, 3, 4, 11, 13, 10);
+    private static final VoxelShape BUTTON_SOUTH = Block.box(5, 3, 6, 11, 13, 12);
+    private static final VoxelShape BUTTON_EAST = Block.box(6, 3, 5, 12, 13, 11);
+    private static final VoxelShape BUTTON_WEST = Block.box(4, 3, 5, 10, 13, 11);
+
+    private static VoxelShape getButtonBody(Direction facing) {
+        return switch (facing) {
+            case SOUTH -> BUTTON_SOUTH;
+            case EAST -> BUTTON_EAST;
+            case WEST -> BUTTON_WEST;
+            default -> BUTTON_NORTH;
+        };
+    }
+
     public SignPostButtonFixtureBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.defaultBlockState().setValue(ACTIVE_HIGH, true));
+        this.registerDefaultState(this.defaultBlockState().setValue(ACTIVE_HIGH, true).setValue(PRESSED, false));
     }
 
     // #region Block states
@@ -44,7 +79,7 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
     @Override
     protected void createBlockStateDefinition(Builder<Block, BlockState> builder) {
         super.createBlockStateDefinition(builder);
-        builder.add(ACTIVE_HIGH);
+        builder.add(ACTIVE_HIGH, PRESSED);
     }
 
     @Override
@@ -52,6 +87,11 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
         // Button fixture is WALL-only: the fixture element faces outward in FACING
         // direction
         return state.getValue(FACING);
+    }
+
+    @Override
+    protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext ctx) {
+        return Shapes.or(SignPostNetworkUtil.buildShape(state, DIRECTION_PROPS), getButtonBody(state.getValue(FACING)));
     }
 
     // #region Placement
@@ -64,7 +104,54 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
         return super.canSurvive(state, level, pos);
     }
 
+    // #region Interaction
+
+    @Override
+    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
+            BlockHitResult hit) {
+        if (state.getValue(PRESSED))
+            return InteractionResult.CONSUME;
+        level.setBlock(pos, state.setValue(PRESSED, true), Block.UPDATE_CLIENTS);
+        level.scheduleTick(pos, this, 20);
+        level.playSound(player, pos, SoundEvents.STONE_BUTTON_CLICK_ON, SoundSource.BLOCKS, 0.8f, 1f);
+        level.gameEvent(player, GameEvent.BLOCK_ACTIVATE, pos);
+        evaluateAndPropagate(level, pos);
+        return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    @Override
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+        BlockState live = level.getBlockState(pos);
+        if (!live.is(this) || !live.getValue(PRESSED))
+            return;
+        level.setBlock(pos, live.setValue(PRESSED, false), Block.UPDATE_CLIENTS);
+        level.playSound(null, pos, SoundEvents.STONE_BUTTON_CLICK_OFF, SoundSource.BLOCKS, 0.8f, 1f);
+        evaluateAndPropagate(level, pos);
+    }
+
     // #region Redstone
+
+    @Override
+    protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
+        super.onPlace(state, level, pos, oldState, movedByPiston);
+        if (!level.isClientSide())
+            evaluateAndPropagate(level, pos);
+    }
+
+    private void evaluateAndPropagate(Level level, BlockPos pos) {
+        BlockState current = level.getBlockState(pos);
+        if (!current.is(this))
+            return;
+        boolean shouldBePowered = SignPostNetworkUtil.hasDirectPower(level, pos, current);
+        boolean currentlyPowered = current.getValue(POWERED);
+        if (currentlyPowered == shouldBePowered)
+            return;
+        if (!shouldBePowered && SignPostNetworkUtil.isNetworkDirectlyPowered(level, pos,
+                Services.CONFIG.signPostRelayMaxDepth()))
+            return;
+        SignPostNetworkUtil.propagatePower(level, pos, shouldBePowered,
+                Services.CONFIG.signPostRelayMaxDepth());
+    }
 
     @Override
     protected boolean isSignalSource(BlockState state) {
@@ -73,9 +160,9 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
 
     @Override
     protected int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
-        boolean powered = state.getValue(POWERED);
+        boolean pressed = state.getValue(PRESSED);
         boolean activeHigh = state.getValue(ACTIVE_HIGH);
-        return (activeHigh ? powered : !powered) ? 15 : 0;
+        return (activeHigh ? pressed : !pressed) ? 15 : 0;
     }
 
     @Override
@@ -128,7 +215,8 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
         // For now, default to cycling ACTIVE_HIGH as a placeholder:
         if (!level.isClientSide()) {
             boolean current = state.getValue(ACTIVE_HIGH);
-            level.setBlock(pos, state.setValue(ACTIVE_HIGH, !current), Block.UPDATE_ALL);
+            level.setBlock(pos, state.setValue(ACTIVE_HIGH, !current), Block.UPDATE_CLIENTS);
+            evaluateAndPropagate(level, pos);
             player.displayClientMessage(
                     Component.translatable(Constants.MOD_ID + ".ratchet_wrench.mode.button_fixture.active_high")
                             .append(": ")

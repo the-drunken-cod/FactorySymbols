@@ -1,6 +1,7 @@
 package com.drunkencod.factory_symbols.block.sign_post;
 
 import com.drunkencod.factory_symbols.item.IWrenchConfigurable;
+import com.drunkencod.factory_symbols.platform.Services;
 import com.drunkencod.factory_symbols.registry.ModBlocks;
 
 import net.minecraft.core.BlockPos;
@@ -135,29 +136,37 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
         if (level.isClientSide())
             return;
 
-        // updateShape may have already changed connections before this callback fires;
-        // read the live state so we never act on a stale snapshot.
         BlockState liveState = level.getBlockState(pos);
         if (!liveState.is(this))
             return;
 
-        // Re-validate all connections and compute POWERED in one pass
+        // Update connection states; send to clients only to avoid cascading
+        // neighborChanged calls.
         BlockState updated = setConnectionStates(liveState, level, pos);
-
-        boolean powered = false;
-        for (Map.Entry<Direction, BooleanProperty> entry : DIRECTION_PROPS.entrySet()) {
-            if (!updated.getValue(entry.getValue()))
-                continue;
-            BlockState neighbor = level.getBlockState(pos.relative(entry.getKey()));
-            if (neighbor.hasProperty(POWERED) && neighbor.getValue(POWERED)) {
-                powered = true;
-                break;
-            }
-        }
-
-        updated = updated.setValue(POWERED, powered);
         if (updated != liveState)
-            level.setBlock(pos, updated, Block.UPDATE_ALL);
+            level.setBlock(pos, updated, Block.UPDATE_CLIENTS);
+
+        // Only react to non-network neighbors to avoid feedback from BFS
+        // updateNeighborsAt calls.
+        if (level.getBlockState(neighborPos).is(SignPostNetworkUtil.TAG_SIGN_POST_BLOCKS))
+            return;
+
+        BlockState current = level.getBlockState(pos);
+        if (!current.is(this))
+            return;
+
+        boolean shouldBePowered = SignPostNetworkUtil.hasDirectPower(level, pos, current);
+        boolean currentlyPowered = current.getValue(POWERED);
+        if (currentlyPowered == shouldBePowered)
+            return;
+
+        if (!shouldBePowered
+                && SignPostNetworkUtil.isNetworkDirectlyPowered(level, pos,
+                        Services.CONFIG.signPostRelayMaxDepth()))
+            return;
+
+        SignPostNetworkUtil.propagatePower(level, pos, shouldBePowered,
+                Services.CONFIG.signPostRelayMaxDepth());
     }
 
     @Override
