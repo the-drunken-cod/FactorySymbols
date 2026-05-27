@@ -70,6 +70,7 @@ public class ModItems {
     // #region Creative tabs
     public static void populateBlocksTab(CreativeModeTab.Output output) {
         output.accept(ModBlocks.SIGN_POST_ITEM.get().getDefaultInstance());
+        output.accept(ModBlocks.SIGN_POST_BUTTON_FIXTURE_ITEM.get().getDefaultInstance());
 
         for (int i : DisplayPanelBlock.COLORS_ORDERED) {
             ItemStack itm = ModBlocks.DISPLAY_PANEL_ITEM.get().getDefaultInstance();

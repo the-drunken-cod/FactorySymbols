@@ -1,0 +1,178 @@
+package com.drunkencod.factory_symbols.block.sign_post;
+
+import com.drunkencod.factory_symbols.Constants;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.PipeBlock;
+import net.minecraft.world.level.block.SupportType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.AttachFace;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.shapes.Shapes;
+import net.minecraft.world.phys.shapes.VoxelShape;
+
+import java.util.Map;
+
+/**
+ * Shared connection and shape logic for sign post blocks and fixture blocks.
+ */
+public final class SignPostNetworkUtil {
+
+    private SignPostNetworkUtil() {
+    }
+
+    // #region Tags
+
+    public static final TagKey<Block> TAG_DOES_NOT_CONNECT_TO = TagKey.create(Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_does_not_connect_to"));
+
+    public static final TagKey<Block> TAG_CONNECTS_TO = TagKey.create(Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_connects_to"));
+
+    public static final TagKey<Block> TAG_CONNECTS_TO_BOTTOM_FACE = TagKey.create(Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_connects_to_bottom"));
+
+    public static final TagKey<Block> TAG_CONNECTS_TO_TOP_FACE = TagKey.create(Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_connects_to_top"));
+
+    public static final TagKey<Block> TAG_CONNECTS_TO_SIDES = TagKey.create(Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_connects_to_sides"));
+
+    /** All sign post network blocks: sign_post + sign_post_fixtures */
+    public static final TagKey<Block> TAG_SIGN_POST_BLOCKS = TagKey.create(Registries.BLOCK,
+            ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_blocks"));
+
+    // #region Shapes
+
+    /** Thickness of sign post segments in pixels (matches SignPostBlock.APOTHEM) */
+    public static final float APOTHEM = 2f / 16f;
+
+    private static final float MIN = 0.5f - APOTHEM;
+    private static final float MAX = 0.5f + APOTHEM;
+
+    private static final VoxelShape CENTER_SHAPE = Block.box(MIN * 16, MIN * 16, MIN * 16, MAX * 16, MAX * 16,
+            MAX * 16);
+    private static final VoxelShape ARM_NORTH = Block.box(MIN * 16, MIN * 16, 0, MAX * 16, MAX * 16, MIN * 16);
+    private static final VoxelShape ARM_SOUTH = Block.box(MIN * 16, MIN * 16, MAX * 16, MAX * 16, MAX * 16, 16);
+    private static final VoxelShape ARM_WEST = Block.box(0, MIN * 16, MIN * 16, MIN * 16, MAX * 16, MAX * 16);
+    private static final VoxelShape ARM_EAST = Block.box(MAX * 16, MIN * 16, MIN * 16, 16, MAX * 16, MAX * 16);
+    private static final VoxelShape ARM_DOWN = Block.box(MIN * 16, 0, MIN * 16, MAX * 16, MIN * 16, MAX * 16);
+    private static final VoxelShape ARM_UP = Block.box(MIN * 16, MAX * 16, MIN * 16, MAX * 16, 16, MAX * 16);
+
+    /**
+     * Builds the combined VoxelShape from the center cube and whichever arm
+     * segments are enabled by the directional connection properties.
+     */
+    public static VoxelShape buildShape(BlockState state, Map<Direction, BooleanProperty> props) {
+        VoxelShape shape = CENTER_SHAPE;
+        if (state.getValue(props.get(Direction.NORTH)))
+            shape = Shapes.or(shape, ARM_NORTH);
+        if (state.getValue(props.get(Direction.SOUTH)))
+            shape = Shapes.or(shape, ARM_SOUTH);
+        if (state.getValue(props.get(Direction.WEST)))
+            shape = Shapes.or(shape, ARM_WEST);
+        if (state.getValue(props.get(Direction.EAST)))
+            shape = Shapes.or(shape, ARM_EAST);
+        if (state.getValue(props.get(Direction.DOWN)))
+            shape = Shapes.or(shape, ARM_DOWN);
+        if (state.getValue(props.get(Direction.UP)))
+            shape = Shapes.or(shape, ARM_UP);
+        return shape;
+    }
+
+    // #region Connection logic
+
+    /**
+     * Returns true when the neighbor at (pos + direction) should cause a connection
+     * in that direction from the sign post or fixture at pos.
+     *
+     * @param direction direction from the sign post / fixture to the neighbor
+     */
+    public static boolean shouldConnectTo(LevelAccessor level, BlockState neighborState, BlockPos neighborPos,
+            Direction direction) {
+        // Fixtures block connections on their protruding face; no neighbor should
+        // connect into that face from the opposite side.
+        if (neighborState.getBlock() instanceof AbstractSignPostFixtureBlock fixture
+                && direction == fixture.getFixtureDirection(neighborState).getOpposite())
+            return false;
+        return neighborState.is(TAG_SIGN_POST_BLOCKS)
+                || isCenterSupporting(level, neighborState, neighborPos, direction.getOpposite())
+                || isAttachedToFace(neighborState, direction);
+    }
+
+    /**
+     * Returns true when a neighboring block is face-attached pointing outward in
+     * directionFromPost (e.g. a button on the sign post's east face has
+     * FACING=EAST).
+     *
+     * @param directionFromPost direction from the sign post / fixture toward the
+     *                          neighbor
+     */
+    public static boolean isAttachedToFace(BlockState neighbor, Direction directionFromPost) {
+        // wall-attached blocks (signs, buttons, levers)
+        if (neighbor.hasProperty(BlockStateProperties.HORIZONTAL_FACING)
+                && neighbor.getValue(BlockStateProperties.HORIZONTAL_FACING) == directionFromPost)
+            return true;
+        // floor/ceiling attached blocks
+        if (neighbor.hasProperty(BlockStateProperties.ATTACH_FACE)) {
+            AttachFace face = neighbor.getValue(BlockStateProperties.ATTACH_FACE);
+            if ((directionFromPost == Direction.UP && face == AttachFace.FLOOR)
+                    || (directionFromPost == Direction.DOWN && face == AttachFace.CEILING))
+                return true;
+        }
+        // 6-directional facing blocks (end rods, lightning rods)
+        if (neighbor.hasProperty(BlockStateProperties.FACING)
+                && neighbor.getValue(BlockStateProperties.FACING) == directionFromPost)
+            return true;
+        // axis-oriented blocks (chains)
+        if (neighbor.hasProperty(BlockStateProperties.AXIS)
+                && neighbor.getValue(BlockStateProperties.AXIS) == directionFromPost.getAxis())
+            return true;
+        // hanging blocks (lanterns hanging below the post)
+        if (directionFromPost == Direction.DOWN
+                && neighbor.hasProperty(BlockStateProperties.HANGING)
+                && neighbor.getValue(BlockStateProperties.HANGING))
+            return true;
+        // floor-mounted rotatable blocks (standing banners, signs, skulls)
+        if (directionFromPost == Direction.UP
+                && neighbor.hasProperty(BlockStateProperties.ROTATION_16))
+            return true;
+        // explicitly tagged connectable blocks
+        if (neighbor.is(TAG_CONNECTS_TO))
+            return true;
+        if (directionFromPost == Direction.UP && neighbor.is(TAG_CONNECTS_TO_BOTTOM_FACE))
+            return true;
+        if (directionFromPost == Direction.DOWN && neighbor.is(TAG_CONNECTS_TO_TOP_FACE))
+            return true;
+        if (directionFromPost.getAxis().isHorizontal() && neighbor.is(TAG_CONNECTS_TO_SIDES))
+            return true;
+        return false;
+    }
+
+    public static boolean isCenterSupporting(LevelAccessor level, BlockState state, BlockPos pos, Direction face) {
+        if (state.isAir())
+            return false;
+        if (state.is(TAG_DOES_NOT_CONNECT_TO))
+            return false;
+        if (state.is(TAG_CONNECTS_TO))
+            return true;
+        return state.isFaceSturdy(level, pos, face, SupportType.CENTER);
+    }
+
+    // #region State helpers
+
+    /**
+     * Returns the PROPERTY_BY_DIRECTION map from PipeBlock (N/E/S/W/U/D →
+     * BooleanProperty). Avoids duplicating the map definition outside PipeBlock.
+     */
+    public static Map<Direction, BooleanProperty> getDirectionProperties() {
+        return PipeBlock.PROPERTY_BY_DIRECTION;
+    }
+}
