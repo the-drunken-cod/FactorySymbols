@@ -2,9 +2,9 @@
     "type": "minecraft:crafting_shaped",
     "category": "building",
     "pattern": [
+        " N ",
         "NIN",
-        "NIN",
-        "NIN"
+        "NN "
     ],
     "key": {
         "N": {
@@ -15,7 +15,6 @@
         }
     },
     "result": {
-        "id": "factory_symbols:sign_post",
-        "count": 4
+        "id": "factory_symbols:ratchet_wrench"
     }
 }
