@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -189,6 +190,7 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
 
             be.setStoredItem(toStore);
             playAddItemSound(level, player, pos);
+            level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
 
             if (!level.isClientSide()) {
                 if (!player.isCreative())
@@ -219,6 +221,7 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
         if (!existing.isEmpty()) {
             be.setStoredItem(ItemStack.EMPTY);
             playRemoveItemSound(level, player, pos);
+            level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
 
             if (!level.isClientSide()) {
                 if (!player.isCreative())
