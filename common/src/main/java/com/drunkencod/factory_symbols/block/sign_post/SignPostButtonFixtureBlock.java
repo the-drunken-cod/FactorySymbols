@@ -115,9 +115,6 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
             BlockHitResult hit) {
-        InteractionResult wrenchResult = super.useWithoutItem(state, level, pos, player, hit);
-        if (wrenchResult != InteractionResult.PASS)
-            return wrenchResult;
         if (state.getValue(PRESSED))
             return InteractionResult.CONSUME;
         level.setBlock(pos, state.setValue(PRESSED, true), Block.UPDATE_CLIENTS);
