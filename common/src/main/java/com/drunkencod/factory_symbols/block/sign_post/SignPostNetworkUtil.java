@@ -6,12 +6,20 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.SupportType;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -34,6 +42,9 @@ public final class SignPostNetworkUtil {
     }
 
     // #region Tags
+
+    public static final TagKey<Item> TOOLS_WRENCH = TagKey.create(Registries.ITEM,
+            ResourceLocation.fromNamespaceAndPath("c", "tools/wrench"));
 
     public static final TagKey<Block> TAG_DOES_NOT_CONNECT_TO = TagKey.create(Registries.BLOCK,
             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_does_not_connect_to"));
@@ -294,5 +305,37 @@ public final class SignPostNetworkUtil {
             BlockState state = level.getBlockState(pos);
             level.updateNeighborsAt(pos, state.getBlock());
         }
+    }
+
+    // #region Wrench harvest
+
+    /**
+     * Handles sneak-right-click harvest for sign post blocks. Any item in
+     * {@code #c:tools/wrench} while the player is sneaking will break the block,
+     * play the break sound + particles and item-pickup sound, and deliver the
+     * block's loot-table drops directly into the player's inventory. Overflow items
+     * (when the inventory is full) are dropped from the player's eye position.
+     * In creative mode the block is still broken but no items are given.
+     */
+    public static ItemInteractionResult harvestWithWrench(ItemStack stack, BlockState state, Level level,
+            BlockPos pos, Player player) {
+        if (!player.isShiftKeyDown() || !stack.is(TOOLS_WRENCH))
+            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+
+        if (!level.isClientSide()) {
+            BlockEntity be = level.getBlockEntity(pos);
+            if (!player.isCreative()) {
+                List<ItemStack> drops = Block.getDrops(state, (ServerLevel) level, pos, be, player, stack);
+                for (ItemStack drop : drops) {
+                    player.addItem(drop);
+                    if (!drop.isEmpty())
+                        player.drop(drop, false);
+                }
+            }
+            level.destroyBlock(pos, false);
+            level.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2f,
+                    0.5f + level.random.nextFloat() * 0.4f);
+        }
+        return ItemInteractionResult.sidedSuccess(level.isClientSide());
     }
 }

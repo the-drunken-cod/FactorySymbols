@@ -45,8 +45,9 @@
 5. [ ] **More Symbols:**
     - [ ] expand by more emoji and unicode symbols
     - [ ] add road signs (one material per symbol with single-file, non-layered textures)
-6. [ ] **v1.0.0 Release**
-7. [ ] **Future Features:**
+6. [ ] **Rename to Symbols 'n' Signs**
+7. [ ] **v1.0.0 Release**
+8. [ ] **Future Features:**
     - make display panel items rotatable like item frames (maybe via a wrench item or something?)
     - make display panels placeable on the ceiling and floor
     - more symbol materials (e.g. netherite, quartz, prismarine, etc.)

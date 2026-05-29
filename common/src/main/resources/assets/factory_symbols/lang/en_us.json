@@ -16,15 +16,15 @@
     "item.factory_symbols.ratchet_wrench.tooltip.2": "R-Click Fixture: Change Setting",
 
     "factory_symbols.ratchet_wrench.mode.button_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the button fixture. %1$s = current mode name.",
-    "factory_symbols.ratchet_wrench.mode.button_fixture.name_template": "Mode: %1$s",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.name_template": "[Mode] %1$s",
     "factory_symbols.ratchet_wrench.mode.button_fixture.orientation": "Orientation",
     "factory_symbols.ratchet_wrench.mode.button_fixture.orientation.value.north": "North",
     "factory_symbols.ratchet_wrench.mode.button_fixture.orientation.value.south": "South",
     "factory_symbols.ratchet_wrench.mode.button_fixture.orientation.value.east": "East",
     "factory_symbols.ratchet_wrench.mode.button_fixture.orientation.value.west": "West",
     "factory_symbols.ratchet_wrench.mode.button_fixture.active_high": "Signal Type",
-    "factory_symbols.ratchet_wrench.mode.button_fixture.active_high.value.0": "Active Low (Inverted)",
-    "factory_symbols.ratchet_wrench.mode.button_fixture.active_high.value.1": "Active High (Default)",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.active_high.value.0": "Inverted (Active Low)",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.active_high.value.1": "Normal (Active High)",
     "factory_symbols.ratchet_wrench.mode.unknown": "(Error: wrong mode index)",
 
     "subtitles.factory_symbols.ratchet_wrench.change_mode": "Ratchet Wrench Mode Changed",

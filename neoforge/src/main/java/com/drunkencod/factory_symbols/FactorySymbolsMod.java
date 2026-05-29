@@ -1,5 +1,8 @@
 package com.drunkencod.factory_symbols;
 
+import com.drunkencod.factory_symbols.block.sign_post.AbstractSignPostFixtureBlock;
+import com.drunkencod.factory_symbols.block.sign_post.SignPostBlock;
+import com.drunkencod.factory_symbols.block.sign_post.SignPostNetworkUtil;
 import com.drunkencod.factory_symbols.config.NeoForgeConfigHelper;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +16,8 @@ import com.drunkencod.factory_symbols.item.RatchetWrenchItem;
 import com.drunkencod.factory_symbols.platform.Services;
 import com.drunkencod.factory_symbols.registry.NeoForgeCreativeTabHelper;
 import com.drunkencod.factory_symbols.registry.NeoForgeRegistryHelper;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -34,9 +39,33 @@ public class FactorySymbolsMod {
 
                 eventBus.addListener(this::onGatherData);
                 NeoForge.EVENT_BUS.addListener(FactorySymbolsMod::onLeftClickBlock);
+                NeoForge.EVENT_BUS.addListener(FactorySymbolsMod::onRightClickBlock);
 
                 Constants.LOG.info("Hello from Factory Symbols (NeoForge)!");
                 FactorySymbols.init();
+        }
+
+        // #region Wrench sneak right-click harvest
+
+        private static void onRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+                if (!event.getEntity().isShiftKeyDown())
+                        return;
+                ItemStack stack = event.getEntity().getItemInHand(event.getHand());
+                if (!stack.is(SignPostNetworkUtil.TOOLS_WRENCH))
+                        return;
+                BlockState state = event.getLevel().getBlockState(event.getPos());
+                Block block = state.getBlock();
+                if (!(block instanceof SignPostBlock) && !(block instanceof AbstractSignPostFixtureBlock))
+                        return;
+
+                event.setCanceled(true);
+                event.getEntity().swing(event.getHand());
+
+                if (event.getLevel().isClientSide())
+                        return;
+
+                SignPostNetworkUtil.harvestWithWrench(stack, state, event.getLevel(), event.getPos(),
+                                event.getEntity());
         }
 
         // #region Wrench survival left-click
