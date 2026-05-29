@@ -1,0 +1,7 @@
+{
+    "name": "factory_symbols",
+    "scripts": {
+        "symbol-recolor": "pnpm --filter symbol_recolor start",
+        "clean": "pnpm --filter clean start"
+    }
+}
