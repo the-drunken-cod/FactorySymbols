@@ -4,11 +4,14 @@
     "pattern": [
         " I ",
         "NII",
-        "IN "
+        "TN "
     ],
     "key": {
         "N": {
             "tag": "c:nuggets/iron"
+        },
+        "T": {
+            "item": "minecraft:iron_trapdoor"
         },
         "I": {
             "tag": "c:ingots/iron"
