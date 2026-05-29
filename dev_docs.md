@@ -213,6 +213,9 @@ Each fixture block needs a loot table that makes it drop both a sign post and th
     - Lamp Fixture:
         - Fixture Orientation: 0-1 for the 2 possible orientations of the lamp on the post (long side facing north-south or east-west)
         - Light Level: 0-15 for the light level emitted by the lamp (default is 15)
+    - Redstone Fixture:
+        - Orientation: 0-5 for all 6 possible faces of the post to attach the fixture to.
+        - Inverted: 0 (default) emits when high, 1 emits when low.
 
 <br>
 

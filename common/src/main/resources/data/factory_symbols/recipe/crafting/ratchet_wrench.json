@@ -2,16 +2,16 @@
     "type": "minecraft:crafting_shaped",
     "category": "building",
     "pattern": [
-        " N ",
-        "NIN",
-        "NN "
+        " I ",
+        "NII",
+        "IN "
     ],
     "key": {
         "N": {
             "tag": "c:nuggets/iron"
         },
         "I": {
-            "item": "minecraft:iron_ingot"
+            "tag": "c:ingots/iron"
         }
     },
     "result": {
