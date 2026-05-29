@@ -38,9 +38,10 @@
     - [ ] **Lamp Fixture:** block that attaches to any blockface and emits light
         - can be dyed in 16 colors
         - special model when placed on center-supporting faces, like sign posts
-    - [ ] **Button Fixture:** placed on vertical sign posts
+    - [x] **Button Fixture:** placed on vertical sign posts
         - transforms the targeted post into a special blockentity
         - when clicked, makes the block below the post emit a redstone signal, allowing redstone dust below to be powered
+    - [ ] **Redstone Fixture:** Strongly powers the block it faces when the sign post is powered, eliminating the need for using a comparator to read the post's signal, for better aesthetics and more compact redstone designs.
 5. [ ] **More Symbols:**
     - [ ] expand by more emoji and unicode symbols
     - [ ] add road signs (one material per symbol with single-file, non-layered textures)
@@ -236,5 +237,14 @@ Each fixture block needs a loot table that makes it drop both a sign post and th
 ### Lamp Fixture:
 - If clicked on a vertical face of a sign post, the fixture can render a lamp model that emits light and is attached to the post.
 - Once converted, the sign post will always keep two faces active, so that the lamp's model can attach to the post and render properly. E.g. if the lamp is attached so that its 2 long sides are facing north and south, then the north and south faces, as well as the bottom face of the post can no longer connect.
+- Redstone signals should propagate through this fixture blockentity as if it was a regular post.
+- Cannot be placed anywhere else besides sign posts.
+
+<br>
+
+### Redstone Fixture:
+- If clicked on any face of a sign post, transforms it into a BE that renders a small model attached to the post and emits a redstone signal into the adjacent block in the direction it is facing when the post network's signal is high.
+- The blockentity should allow one fixture to be placed on any face and prevent other posts from connecting when a face is occupied by a fixture.
+- Block at FACING receives a strong signal, allowing dust and other redstone components to be powered across a 1 (transmissive) block gap from the sign post.
 - Redstone signals should propagate through this fixture blockentity as if it was a regular post.
 - Cannot be placed anywhere else besides sign posts.
