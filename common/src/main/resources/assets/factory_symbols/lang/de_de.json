@@ -7,8 +7,28 @@
     "block.factory_symbols.display_panel.tooltip": "Rahmen in Block-Form. Kann gefärbt werden.",
     "block.factory_symbols.sign_post": "Schildermast",
     "block.factory_symbols.sign_post.tooltip": "Zum Befestigen von Schildern mit Vorrichtungen. Leitet Redstone-Signale weiter.",
+    "block.factory_symbols.sign_post_button_fixture": "Schildermast-Knopfvorrichtung",
+    "block.factory_symbols.sign_post_button_fixture.tooltip": "Am Schildermast befestigt.",
 
     "item.factory_symbols.retroreflective_sheet": "Retroreflektives Blech",
+    "item.factory_symbols.ratchet_wrench": "Ratschenschlüssel",
+    "item.factory_symbols.ratchet_wrench.tooltip.1": "L-Klick auf Vorrichtung: Schlüsselmodus wechseln",
+    "item.factory_symbols.ratchet_wrench.tooltip.2": "R-Klick auf Vorrichtung: Einstellung ändern",
+
+    "factory_symbols.ratchet_wrench.mode.button_fixture.name_template.__comment__": "Zur Laufzeit verwendete Vorlage für den Modusnamen der Knopfvorrichtung. %1$s = aktueller Modusname.",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.name_template": "[Modus] %1$s",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.orientation": "Ausrichtung",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.orientation.value.north": "Norden",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.orientation.value.south": "Süden",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.orientation.value.east": "Osten",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.orientation.value.west": "Westen",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.active_high": "Signaltyp",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.active_high.value.0": "Invertiert (Aktiv-Niedrig)",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.active_high.value.1": "Normal (Aktiv-Hoch)",
+    "factory_symbols.ratchet_wrench.mode.unknown": "(Fehler: falscher Modus-Index)",
+
+    "subtitles.factory_symbols.ratchet_wrench.change_mode": "Ratschenschlüssel-Modus gewechselt",
+    "subtitles.factory_symbols.ratchet_wrench.use": "Ratschenschlüssel verwendet",
 
     "tag.item.c.plates.retroreflective": "Retroreflektive Platten",
 
@@ -210,6 +230,7 @@
     "sign.factory_symbols.regulatory_roundabout": "Kreisverkehr",
     "sign.factory_symbols.regulatory_pedestrians_only": "Gehweg",
     "sign.factory_symbols.regulatory_end_of_restrictions": "Ende Aller Streckenverbote",
+    "sign.factory_symbols.regulatory_no_speed_limit": "Keine Höchstgeschwindigkeit",
     "sign.factory_symbols.regulatory_speed_limit_5": "Zulässige Höchstgeschwindigkeit 5",
     "sign.factory_symbols.regulatory_speed_limit_10": "Zulässige Höchstgeschwindigkeit 10",
     "sign.factory_symbols.regulatory_speed_limit_20": "Zulässige Höchstgeschwindigkeit 20",
