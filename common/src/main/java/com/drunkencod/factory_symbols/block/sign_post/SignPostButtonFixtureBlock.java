@@ -21,6 +21,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -101,7 +102,19 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
     // #region Placement
 
     @Override
+    public BlockState getStateForPlacement(BlockPlaceContext ctx) {
+        BlockState base = super.getStateForPlacement(ctx);
+        if (base == null)
+            return null;
+        Direction clicked = ctx.getClickedFace();
+        if (clicked.getAxis() == Direction.Axis.Y)
+            return null;
+        return base.setValue(FACE, AttachFace.WALL).setValue(FACING, clicked);
+    }
+
+    @Override
     public boolean canSurvive(BlockState state, net.minecraft.world.level.LevelReader level, BlockPos pos) {
+        // Only allow wall placement (no top/bottom buttons on sign posts)
         // Only allow wall placement (no top/bottom buttons on sign posts)
         if (state.getValue(FACE) != AttachFace.WALL)
             return false;
