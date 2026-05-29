@@ -22,7 +22,6 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 
 public class RatchetWrenchItem extends Item {
@@ -40,13 +39,16 @@ public class RatchetWrenchItem extends Item {
 
     // #region Click dispatch
 
+    public static void handleWrenchLeftClick(Level level, BlockPos pos, BlockState state, Player player) {
+        if (!(state.getBlock() instanceof IWrenchConfigurable configurable))
+            return;
+        InteractionResult result = configurable.onWrenchLeftClick(level, pos, state, player);
+        if (result.consumesAction())
+            playChangeModeSound(level, pos, player);
+    }
+
     @Override
     public boolean canAttackBlock(BlockState state, Level level, BlockPos pos, Player player) {
-        if (state.getBlock() instanceof IWrenchConfigurable configurable) {
-            InteractionResult result = configurable.onWrenchLeftClick(level, pos, state, player);
-            if (result.consumesAction())
-                playChangeModeSound(level, pos, player);
-        }
         return false;
     }
 
@@ -75,7 +77,7 @@ public class RatchetWrenchItem extends Item {
     // #region Sound
 
     private static void playChangeModeSound(Level level, BlockPos pos, Player player) {
-        level.playSound(player, pos, ModSoundEvents.RATCHET_WRENCH_CHANGE_MODE.get(), SoundSource.PLAYERS, 1.0f, 2.0f);
+        level.playSound(null, pos, ModSoundEvents.RATCHET_WRENCH_CHANGE_MODE.get(), SoundSource.PLAYERS, 1.0f, 2.0f);
     }
 
     private static void playUseSound(Level level, BlockPos pos, Player player) {

@@ -1,8 +1,13 @@
 package com.drunkencod.factory_symbols;
 
 import com.drunkencod.factory_symbols.config.FabricConfigHelper;
+import com.drunkencod.factory_symbols.item.IWrenchConfigurable;
+import com.drunkencod.factory_symbols.item.RatchetWrenchItem;
 import com.drunkencod.factory_symbols.platform.Services;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class FactorySymbolsMod implements ModInitializer {
 
@@ -10,6 +15,20 @@ public class FactorySymbolsMod implements ModInitializer {
     public void onInitialize() {
         // Register Cloth Config configs
         ((FabricConfigHelper) Services.CONFIG).register();
+
+        // #region Wrench survival left-click
+
+        AttackBlockCallback.EVENT.register((player, world, hand, pos, direction) -> {
+            if (world.isClientSide())
+                return InteractionResult.PASS;
+            if (!(player.getMainHandItem().getItem() instanceof RatchetWrenchItem))
+                return InteractionResult.PASS;
+            BlockState state = world.getBlockState(pos);
+            if (!(state.getBlock() instanceof IWrenchConfigurable))
+                return InteractionResult.PASS;
+            RatchetWrenchItem.handleWrenchLeftClick(world, pos, state, player);
+            return InteractionResult.SUCCESS;
+        });
 
         Constants.LOG.info("Hello from Factory Symbols (Fabric)!");
         FactorySymbols.init();

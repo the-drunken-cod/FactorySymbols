@@ -90,8 +90,6 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
 
     @Override
     public Direction getFixtureDirection(BlockState state) {
-        // Button fixture is WALL-only: the fixture element faces outward in FACING
-        // direction
         return state.getValue(FACING);
     }
 
