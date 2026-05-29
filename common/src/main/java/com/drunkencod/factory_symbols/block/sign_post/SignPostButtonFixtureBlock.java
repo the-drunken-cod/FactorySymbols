@@ -250,7 +250,7 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
                     Direction next = HORIZONTAL_DIRS.get((idx + 1) % HORIZONTAL_DIRS.size());
                     level.setBlock(pos, state.setValue(FACING, next), Block.UPDATE_CLIENTS);
                     player.displayClientMessage(
-                            Component.literal(getWrenchModeString(state, MODE_ORIENTATION))
+                            Component.translatable(getWrenchModeKey(state, MODE_ORIENTATION))
                                     .append(": ")
                                     .append(Component.translatable(
                                             getWrenchModeKey(state, MODE_ORIENTATION) + ".value." + next.getName())),
