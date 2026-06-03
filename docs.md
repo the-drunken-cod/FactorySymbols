@@ -1,10 +1,18 @@
 # Table of Contents
 
 - [Items](#items)
-  - [Symbols](#symbols)
+  - [Symbols](#symbols) - Generic symbols, emoticons, arrows and more, in 6 material variants.
+  - [Signs](#signs) - More specific items for labeling and decoration, made from retroreflective sheets.
+  - [Retroreflective Sheet](#retroreflective-sheet) - Material used for crafting signs.
+  - [Ratchet Wrench](#ratchet-wrench) - Tool for configuring and picking up Sign Posts and Fixtures.
 - [Blocks](#blocks)
-  - [Sign Post](#sign-post)
-  - [Display Panel](#display-panel)
+  - [Display Panel](#display-panel) - Item Frame in block form, with 16 color variants and redstone locking.
+  - [Sign Post](#sign-post) - Pipe-like block for making custom road signs.
+    - [Sign Post Fixtures](#sign-post-fixtures) - Attachments for Sign Posts.
+      - [Sign Fixture](#sign-fixture) - Allows placing a sign on any side of a Sign Post.
+      - [Lamp Fixture](#lamp-fixture) - Lamp that can hang on the bottom of Sign Posts.
+      - [Button Fixture](#button-fixture) - Horizontally attached button for Sign Posts.
+      - [Redstone Fixture](#redstone-fixture) - Emits a redstone signal when the attached Sign Post is powered.
 - [Tags](#tags)
   - [Block Tags](#block-tags)
   - [Item Tags](#item-tags)
@@ -17,9 +25,51 @@
 Symbol items are plain items that don't do anything on their own. Their only purpose is to be used for decoration or as a meaningful placeholder.  
 This can come in handy when labeling machines or storage, to have more meaningful frequencies when setting up Create mod Redstone Links, or as decoration around your base.  
   
-Symbols come in 6 material variants (Coal, Iron, Gold, Lapis, Redstone, Emerald), which can be placed into a stonecutter to obtain any symbol variant.  
+Symbols come in 6 material variants (Coal, Iron, Gold, Lapis, Redstone, Emerald), which can be placed into a Stonecutter to obtain any symbol variant.  
 Symbols can also be placed into a stonecutter to transmute them into different symbols of the same material.  
-Some categories of symbols have special shapes, like a triangular base for the "Warning" category.
+  
+Some categories of symbols have special shapes, like a triangular base for the "Warning" category. This is purely cosmetic.
+
+<br><br>
+
+## Signs:
+Sign items are similar to symbol items, but they are only made from one material in a Stonecutter; [Retroreflective Sheets.](#retroreflective-sheets)  
+They can be placed in Item Frames or [Display Panels](#display-panel) as well, but they are also rendered in a unique way when used with [Sign Posts](#sign-posts) and the [Sign Fixture](#sign-fixture) and can make for very detailed road signs.  
+  
+As with [symbols](#symbols), any sign can be transmuted into any other sign using a Stonecutter.  
+  
+Different Signs will have different "attachment points". In general, there are 5 points: top center edge, bottom center edge, left center edge, right center edge and center (back side).  
+Depending on the attachment points of the sign, it may only be placeable when the Sign Fixture is attached to a certain face of the Sign Post.  
+Inspect the tags of each sign to find out its attachment points.
+
+<br><br>
+
+## Retroreflective Sheet:
+This is a material item used solely for crafting [Signs](#signs) in a Stonecutter.  
+  
+Crafting recipe:  
+  
+![Retroreflective Sheet Crafting Recipe](./mod_assets/recipes/retroreflective_sheet.png)  
+
+<br><br>
+
+## Ratchet Wrench:
+This wrench item is used for configuring or picking up [Sign Posts](#sign-posts) and [Sign Post Fixtures](#sign-post-fixtures).  
+  
+Interactions:
+- **Left-clicking a Fixture:** Chooses the configuration mode.  
+  Most fixtures will have an "Orientation" mode for rotating the fixture, and one or more additional modes for changing specific settings.  
+  Each wrench item stores the selected configuration mode for each fixture separately, allowing you to easily switch between multiple preconfigured wrenches.  
+  (The current mode's index is stored in the item's `custom_data` component, as an object keyed by the fixture's ID.)
+- **Right-clicking a Fixture:** Changes the setting of the currently selected configuration mode.  
+  For example, in "Orientation" mode, this will rotate the fixture to the next valid direction.
+- **Sneak-right-clicking a Sign or Fixture:** Breaks the block and picks it up.  
+  This also works with wrenches from other mods, like Create or Mekanism, as long as they have the `c:tools/wrench` tag.  
+  Note that for configuration you will have to use the Ratchet Wrench specifically.
+  
+Crafting recipe:  
+  
+![Ratchet Wrench Crafting Recipe](./mod_assets/recipes/ratchet_wrench.png)  
 
 <br><br>
 
@@ -28,6 +78,7 @@ Some categories of symbols have special shapes, like a triangular base for the "
 ## Sign Post:
 This pipe-like block can be used in combination with [sign post fixtures](#sign-post-fixtures) to create custom road signs in any shape.  
 Redstone signals can also be tunneled through connected sign posts, allowing attached buttons, levers or redstone wire to be read from a distance using comparators or observers.  
+When sneak-right-clicked with a [Ratchet Wrench](#ratchet-wrench), the sign post will break and be added to the player's inventory. This also works with wrenches from other mods.  
   
 Block interactions:
 - Connects to adjacent sign posts and solid blocks that are center-supporting.
@@ -39,6 +90,57 @@ Block interactions:
 - Can be pushed and pulled by pistons.
 - Will support and connect to buttons, levers, signs and other attachable blocks on any valid side.  
   Can be augmented via block tags ([see block tags section](#block-tags)).
+  
+Crafting recipe:  
+  
+![Sign Post Crafting Recipe](./mod_assets/recipes/sign_post.png)  
+
+<br><br>
+
+## Sign Post Fixtures:
+These are items that can be right-clicked onto sign posts to convert them into special blockentities.  
+Each type of fixture has a different function and model (not stored via blockdata, but via NBT), but also some shared functionality like passing through the POWERED state and preventing other blocks from connecting to the face that the fixture is attached to.  
+  
+Each fixture can be configured using the [Ratchet Wrench.](#ratchet-wrench)  
+This allows you to rotate attached fixtures and change other, more specific settings.  
+When sneak-right-clicking a fixture with the wrench, it will break and be picked up instantly. This also works with wrenches from other mods.  
+  
+<br><br>
+
+### Sign Fixture:
+When placed on any face of a sign post, the sign fixture will allow you to place a [Sign](#signs) or [Symbol](#symbols) on it.  
+The sign will be rendered either flat against horizontal faces, 90° perpendicular to horizontal faces, or hanging or standing on vertical faces, depending on the sign's available attachment points, and the fixture's orientation and rotation, which can be configured with the [Ratchet Wrench](#ratchet-wrench).  
+  
+Crafting recipe:  
+  
+![Sign Fixture Crafting Recipe](./mod_assets/recipes/sign_post_sign_fixture.png)  
+
+<br><br>
+
+### Lamp Fixture:
+This fixture can only be attached to the bottom face of a sign post.  
+The lamp will emit a light level of 15 and is always on by default.  
+  
+The [Ratchet Wrench](#ratchet-wrench) can be used to toggle the lamp between the modes "Always On", "Always Off", "Powered" and "Inverted Powered".  
+In "Powered" mode, the lamp will be on when the attached sign post is powered, and off otherwise - in "Inverted Powered" mode, the behavior is reversed.  
+  
+Crafting recipe:  
+  
+![Lamp Fixture Crafting Recipe](./mod_assets/recipes/sign_post_lamp_fixture.png)  
+
+<br><br>
+
+### Button Fixture:
+This fixture can only be attached to the four horizontal faces of a [Sign Post](#sign-post).  
+It functions like a regular stone button, emitting a direct redstone signal with a strength of 15, but will also send the signal through every connected sign post within the max depth limit (15 blocks by default).  
+  
+The [Ratchet Wrench](#ratchet-wrench) can be used to change the button between the modes "Normal (Active High)" and "Inverted (Active Low)".  
+In "Normal" mode, the button will emit a redstone signal when pressed. In "Inverted" mode, the button will emit a redstone signal when not pressed, and turn off when pressed.  
+This means buttons can even be used for creating NAND and OR gates on a Sign Post network.  
+  
+Crafting recipe:  
+  
+![Button Fixture Crafting Recipe](./mod_assets/recipes/sign_post_button_fixture.png)  
 
 <br><br>
 
@@ -94,13 +196,13 @@ Comparator signal strengths:
 - Displays:
   - `factory_symbols:displays` - All blocks that can display items.
 - Sign Post:
-  - `factory_symbols:sign_post_blocks` - Contains the Sign Post and every Sign Post fixture block.
-  - `factory_symbols:sign_post_connects_to_bottom` - Blocks that Sign Posts will connect to, but only via their bottom face.
-  - `factory_symbols:sign_post_connects_to_top` - Blocks that Sign Posts will connect to, but only via their top face.
-  - `factory_symbols:sign_post_connects_to_sides` - Blocks that Sign Posts will connect to via their sides.
-  - `factory_symbols:sign_post_connects_to` - Blocks that Sign Posts will connect to via all faces, despite not being center-supporting.
-  - `factory_symbols:sign_post_does_not_connect_to` - Blocks whose center is unstable / can't connect to Sign Posts.
-  - `factory_symbols:sign_post_fixtures` - All Sign Post fixture blocks.
+  - `factory_symbols:sign_post_blocks` - Contains the [Sign Post](#sign-post) and every [Sign Post Fixture](#sign-post-fixtures) block.
+  - `factory_symbols:sign_post_fixtures` - Contains all [Sign Post Fixture](#sign-post-fixtures) blocks.
+  - `factory_symbols:sign_post_connects_to_bottom` - Blocks that [Sign Posts](#sign-post) will connect to, but only via their bottom face.
+  - `factory_symbols:sign_post_connects_to_top` - Blocks that [Sign Posts](#sign-post) will connect to, but only via their top face.
+  - `factory_symbols:sign_post_connects_to_sides` - Blocks that [Sign Posts](#sign-post) will connect to via their sides.
+  - `factory_symbols:sign_post_connects_to` - Blocks that [Sign Posts](#sign-post) will connect to via all faces, despite not being center-supporting.
+  - `factory_symbols:sign_post_does_not_connect_to` - Blocks whose center face is unstable / Blocks that can't connect to [Sign Posts.](#sign-post)
 
 <br>
 
