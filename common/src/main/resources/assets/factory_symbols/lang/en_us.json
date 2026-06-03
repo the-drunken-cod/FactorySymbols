@@ -8,7 +8,7 @@
     "block.factory_symbols.sign_post": "Sign Post",
     "block.factory_symbols.sign_post.tooltip": "For displaying signs using fixtures. Relays redstone signals.",
     "block.factory_symbols.sign_post_button_fixture": "Sign Post Button Fixture",
-    "block.factory_symbols.sign_post_button_fixture.tooltip": "Attached to Sign Posts.",
+    "block.factory_symbols.sign_post_button_fixture.tooltip": "Attaches to Sign Posts.",
 
     "item.factory_symbols.retroreflective_sheet": "Retroreflective Sheet",
     "item.factory_symbols.ratchet_wrench": "Ratchet Wrench",

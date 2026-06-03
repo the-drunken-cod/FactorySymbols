@@ -8,7 +8,7 @@
     "block.factory_symbols.sign_post": "Schildermast",
     "block.factory_symbols.sign_post.tooltip": "Zum Befestigen von Schildern mit Vorrichtungen. Leitet Redstone-Signale weiter.",
     "block.factory_symbols.sign_post_button_fixture": "Schildermast-Knopfvorrichtung",
-    "block.factory_symbols.sign_post_button_fixture.tooltip": "Am Schildermast befestigt.",
+    "block.factory_symbols.sign_post_button_fixture.tooltip": "Lässt sich an Schildermasten anbringen.",
 
     "item.factory_symbols.retroreflective_sheet": "Retroreflektives Blech",
     "item.factory_symbols.ratchet_wrench": "Ratschenschlüssel",
