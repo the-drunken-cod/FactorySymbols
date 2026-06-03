@@ -227,7 +227,8 @@
     "sign.factory_symbols.regulatory_straight_or_right": "Straight or Right",
     "sign.factory_symbols.regulatory_straight_or_left": "Straight or Left",
     "sign.factory_symbols.regulatory_left_or_right": "Left or Right",
-    "sign.factory_symbols.regulatory_roundabout": "Roundabout",
+    "sign.factory_symbols.regulatory_roundabout_ccw": "Roundabout (Counter-Clockwise)",
+    "sign.factory_symbols.regulatory_roundabout_cw": "Roundabout (Clockwise)",
     "sign.factory_symbols.regulatory_pedestrians_only": "Pedestrians Only",
     "sign.factory_symbols.regulatory_end_of_restrictions": "End of all Restrictions",
     "sign.factory_symbols.regulatory_no_speed_limit": "No Speed Limit",
@@ -290,6 +291,7 @@
     "sign.factory_symbols.prohibition_no_pedestrians": "No Pedestrians",
 
     "sign.factory_symbols.extra_transit_stop": "Transit Stop",
+    "sign.factory_symbols.extra_transit_stop_h": "Transit Stop (H)",
     "sign.factory_symbols.extra_nato_bridge_load": "NATO Bridge Load",
     "sign.factory_symbols.extra_nature_reserve": "Nature Reserve",
     "sign.factory_symbols.extra_gas_station": "Gas Station",

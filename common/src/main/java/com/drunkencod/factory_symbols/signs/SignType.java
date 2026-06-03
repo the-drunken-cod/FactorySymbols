@@ -25,8 +25,6 @@ public enum SignType {
     HAZARD_RAILWAY_CROSSING("hazard_railway_crossing", SignCategory.HAZARD, SignSupportType.BOTTOM),
     HAZARD_RAILWAY_CROSSING_ELECTRIFIED("hazard_railway_crossing_electrified", SignCategory.HAZARD,
             SignSupportType.BOTTOM),
-    HAZARD_MERGE_LEFT("hazard_merge_left", SignCategory.HAZARD, SignSupportType.VERTICAL),
-    HAZARD_MERGE_RIGHT("hazard_merge_right", SignCategory.HAZARD, SignSupportType.VERTICAL),
 
     // #region Regulatory
     REGULATORY_STOP("regulatory_stop", SignCategory.REGULATORY),
@@ -44,7 +42,10 @@ public enum SignType {
     REGULATORY_STRAIGHT_OR_RIGHT("regulatory_straight_or_right", SignCategory.REGULATORY),
     REGULATORY_STRAIGHT_OR_LEFT("regulatory_straight_or_left", SignCategory.REGULATORY),
     REGULATORY_LEFT_OR_RIGHT("regulatory_left_or_right", SignCategory.REGULATORY),
-    REGULATORY_ROUNDABOUT("regulatory_roundabout", SignCategory.REGULATORY),
+    REGULATORY_MERGE_LEFT("regulatory_merge_left", SignCategory.HAZARD, SignSupportType.VERTICAL),
+    REGULATORY_MERGE_RIGHT("regulatory_merge_right", SignCategory.HAZARD, SignSupportType.VERTICAL),
+    REGULATORY_ROUNDABOUT_CCW("regulatory_roundabout_ccw", SignCategory.REGULATORY),
+    REGULATORY_ROUNDABOUT_CW("regulatory_roundabout_cw", SignCategory.REGULATORY),
     REGULATORY_PEDESTRIANS_ONLY("regulatory_pedestrians_only", SignCategory.REGULATORY),
     REGULATORY_END_OF_RESTRICTIONS("regulatory_end_of_restrictions", SignCategory.REGULATORY),
     REGULATORY_SPEED_LIMIT_5("regulatory_speed_limit_5", SignCategory.REGULATORY),
@@ -120,6 +121,7 @@ public enum SignType {
     EXTRA_NATO_BRIDGE_LOAD("extra_nato_bridge_load", SignCategory.EXTRA),
     EXTRA_NATURE_RESERVE("extra_nature_reserve", SignCategory.EXTRA, SignSupportType.BOTTOM),
     EXTRA_TRANSIT_STOP("extra_transit_stop", SignCategory.EXTRA),
+    EXTRA_TRANSIT_STOP_H("extra_transit_stop_h", SignCategory.EXTRA),
     EXTRA_GAS_STATION("extra_gas_station", SignCategory.EXTRA),
     EXTRA_RECHARGING_STATION("extra_recharging_station", SignCategory.EXTRA),
     EXTRA_EMERGENCY_STOPPING_BAY("extra_emergency_stopping_bay", SignCategory.EXTRA),
