@@ -213,8 +213,6 @@
     "sign.factory_symbols.hazard_animals_crossing": "Animals Crossing",
     "sign.factory_symbols.hazard_railway_crossing": "Railway Crossing",
     "sign.factory_symbols.hazard_railway_crossing_electrified": "Railway Crossing (Electrified)",
-    "sign.factory_symbols.hazard_merge_right": "Right Merge",
-    "sign.factory_symbols.hazard_merge_left": "Left Merge",
     
     "sign.factory_symbols.regulatory_priority": "Priority",
     "sign.factory_symbols.regulatory_go_left": "Go Left",
@@ -227,6 +225,8 @@
     "sign.factory_symbols.regulatory_straight_or_right": "Straight or Right",
     "sign.factory_symbols.regulatory_straight_or_left": "Straight or Left",
     "sign.factory_symbols.regulatory_left_or_right": "Left or Right",
+    "sign.factory_symbols.regulatory_merge_right": "Right Merge",
+    "sign.factory_symbols.regulatory_merge_left": "Left Merge",
     "sign.factory_symbols.regulatory_roundabout_ccw": "Roundabout (Counter-Clockwise)",
     "sign.factory_symbols.regulatory_roundabout_cw": "Roundabout (Clockwise)",
     "sign.factory_symbols.regulatory_pedestrians_only": "Pedestrians Only",
