@@ -74,16 +74,16 @@ public enum SignType {
     REGULATORY_SPEED_LIMIT_230("regulatory_speed_limit_230", SignCategory.REGULATORY),
     REGULATORY_SPEED_LIMIT_240("regulatory_speed_limit_240", SignCategory.REGULATORY),
     REGULATORY_SPEED_LIMIT_250("regulatory_speed_limit_250", SignCategory.REGULATORY),
-    REGULATORY_OVERTAKING_ALLOWED("regulatory_overtaking_allowed", SignCategory.REGULATORY), // [ ]
-    REGULATORY_U_TURN_LEFT("regulatory_u_turn_left", SignCategory.REGULATORY), // [ ]
-    REGULATORY_U_TURN_RIGHT("regulatory_u_turn_right", SignCategory.REGULATORY), // [ ]
+    REGULATORY_OVERTAKING_ALLOWED("regulatory_overtaking_allowed", SignCategory.REGULATORY),
+    REGULATORY_U_TURN_LEFT("regulatory_u_turn_left", SignCategory.REGULATORY),
+    REGULATORY_U_TURN_RIGHT("regulatory_u_turn_right", SignCategory.REGULATORY),
     REGULATORY_ONE_WAY_LEFT("regulatory_one_way_left", SignCategory.REGULATORY, SignSupportType.HORIZONTAL),
     REGULATORY_ONE_WAY_RIGHT("regulatory_one_way_right", SignCategory.REGULATORY, SignSupportType.HORIZONTAL),
     REGULATORY_PARKING("regulatory_parking", SignCategory.REGULATORY),
     REGULATORY_PARKING_GARAGE("regulatory_parking_garage", SignCategory.REGULATORY),
     REGULATORY_DEAD_END("regulatory_dead_end", SignCategory.REGULATORY),
-    REGULATORY_CURVE_MARKER_LEFT("regulatory_curve_marker_left", SignCategory.REGULATORY), // [ ]
-    REGULATORY_CURVE_MARKER_RIGHT("regulatory_curve_marker_right", SignCategory.REGULATORY), // [ ]
+    REGULATORY_CURVE_MARKER_LEFT("regulatory_curve_marker_left", SignCategory.REGULATORY),
+    REGULATORY_CURVE_MARKER_RIGHT("regulatory_curve_marker_right", SignCategory.REGULATORY),
     REGULATORY_PEDESTRIAN_CROSSING("regulatory_pedestrian_crossing", SignCategory.REGULATORY),
     REGULATORY_HIGHWAY("regulatory_highway", SignCategory.REGULATORY),
     REGULATORY_HIGHWAY_END("regulatory_highway_end", SignCategory.REGULATORY),
@@ -99,11 +99,17 @@ public enum SignType {
 
     // #region Prohibition
     PROHIBITION_NO_ENTRY("prohibition_no_entry", SignCategory.PROHIBITION),
-    PROHIBITION_NO_STOPPING("prohibition_no_stopping", SignCategory.PROHIBITION), // [ ]
-    PROHIBITION_NO_PARKING("prohibition_no_parking", SignCategory.PROHIBITION), // [ ]
-    PROHIBITION_NO_OVERTAKING("prohibition_no_overtaking", SignCategory.PROHIBITION), // [ ]
-    PROHIBITION_U_TURN_PROHIBITED_LEFT("prohibition_u_turn_prohibited_left", SignCategory.PROHIBITION), // [ ]
-    PROHIBITION_U_TURN_PROHIBITED_RIGHT("prohibition_u_turn_prohibited_right", SignCategory.PROHIBITION), // [ ]
+    PROHIBITION_NO_STOPPING("prohibition_no_stopping", SignCategory.PROHIBITION),
+    PROHIBITION_NO_STOPPING_LEFT("prohibition_no_stopping_left", SignCategory.PROHIBITION),
+    PROHIBITION_NO_STOPPING_RIGHT("prohibition_no_stopping_right", SignCategory.PROHIBITION),
+    PROHIBITION_NO_STOPPING_LEFT_RIGHT("prohibition_no_stopping_left_right", SignCategory.PROHIBITION),
+    PROHIBITION_NO_PARKING("prohibition_no_parking", SignCategory.PROHIBITION),
+    PROHIBITION_NO_PARKING_LEFT("prohibition_no_parking_left", SignCategory.PROHIBITION),
+    PROHIBITION_NO_PARKING_RIGHT("prohibition_no_parking_right", SignCategory.PROHIBITION),
+    PROHIBITION_NO_PARKING_LEFT_RIGHT("prohibition_no_parking_left_right", SignCategory.PROHIBITION),
+    PROHIBITION_NO_OVERTAKING("prohibition_no_overtaking", SignCategory.PROHIBITION),
+    PROHIBITION_NO_U_TURN_LEFT("prohibition_no_u_turn_left", SignCategory.PROHIBITION),
+    PROHIBITION_NO_U_TURN_RIGHT("prohibition_no_u_turn_right", SignCategory.PROHIBITION),
     PROHIBITION_NO_VEHICLES("prohibition_no_vehicles", SignCategory.PROHIBITION),
     PROHIBITION_NO_HEAVY_VEHICLES("prohibition_no_heavy_vehicles", SignCategory.PROHIBITION),
     PROHIBITION_NO_CARS("prohibition_no_cars", SignCategory.PROHIBITION),
