@@ -43,9 +43,11 @@
         - when clicked, makes the block below the post emit a redstone signal, allowing redstone dust below to be powered
     - [ ] **Redstone Fixture:** Strongly powers the block it faces when the sign post is powered, eliminating the need for using a comparator to read the post's signal, for better aesthetics and more compact redstone designs.
 5. [ ] **More Symbols:**
-    - [ ] expand by more emoji and unicode symbols
-    - [ ] add road signs (one material per symbol with single-file, non-layered textures)
-6. [ ] **Rename to Symbols 'n' Signs**
+    - [ ] more emoji and unicode symbols
+    - [ ] signs (one material per symbol with single-file, non-layered textures)
+        - [ ] road signs
+        - [ ] GHS hazard signs
+6. [ ] **Rename to Signs 'n' Symbols**
 7. [ ] **v1.0.0 Release**
 8. [ ] **Future Features:**
     - make display panel items rotatable like item frames (maybe via a wrench item or something?)
