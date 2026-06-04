@@ -8,7 +8,7 @@
     "block.factory_symbols.sign_post": "Sign Post",
     "block.factory_symbols.sign_post.tooltip": "For displaying signs using fixtures. Relays redstone signals.",
     "block.factory_symbols.sign_post_button_fixture": "Sign Post Button Fixture",
-    "block.factory_symbols.sign_post_button_fixture.tooltip": "Attaches to Sign Posts.",
+    "block.factory_symbols.sign_post_button_fixture.tooltip": "Attaches to Sign Posts and sends out redstone signals.",
     "block.factory_symbols.sign_post_lamp_fixture": "Sign Post Lamp Fixture",
     "block.factory_symbols.sign_post_lamp_fixture.tooltip": "Attaches to the bottom of Sign Posts. Can respond to redstone signals.",
 
@@ -25,8 +25,8 @@
     "factory_symbols.ratchet_wrench.mode.button_fixture.orientation.value.east": "East",
     "factory_symbols.ratchet_wrench.mode.button_fixture.orientation.value.west": "West",
     "factory_symbols.ratchet_wrench.mode.button_fixture.active_high": "Signal Type",
-    "factory_symbols.ratchet_wrench.mode.button_fixture.active_high.value.0": "Inverted (Active Low)",
-    "factory_symbols.ratchet_wrench.mode.button_fixture.active_high.value.1": "Normal (Active High)",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.active_high.value.0": "Low when Active (Inverted)",
+    "factory_symbols.ratchet_wrench.mode.button_fixture.active_high.value.1": "High when Active (Normal)",
 
     "factory_symbols.ratchet_wrench.mode.lamp_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the lamp fixture. %1$s = current mode name.",
     "factory_symbols.ratchet_wrench.mode.lamp_fixture.name_template": "[Mode] %1$s",
@@ -35,8 +35,8 @@
     "factory_symbols.ratchet_wrench.mode.lamp_fixture.orientation.value.x": "East/West",
     "factory_symbols.ratchet_wrench.mode.lamp_fixture.signal_mode": "Signal Mode",
     "factory_symbols.ratchet_wrench.mode.lamp_fixture.signal_mode.value.0": "Always On",
-    "factory_symbols.ratchet_wrench.mode.lamp_fixture.signal_mode.value.1": "Powered",
-    "factory_symbols.ratchet_wrench.mode.lamp_fixture.signal_mode.value.2": "Inverted",
+    "factory_symbols.ratchet_wrench.mode.lamp_fixture.signal_mode.value.1": "Lit when Active (Normal)",
+    "factory_symbols.ratchet_wrench.mode.lamp_fixture.signal_mode.value.2": "Unlit when Active (Inverted)",
     "factory_symbols.ratchet_wrench.mode.lamp_fixture.signal_mode.value.3": "Always Off",
 
     "factory_symbols.ratchet_wrench.mode.unknown": "(Error: wrong mode index)",
