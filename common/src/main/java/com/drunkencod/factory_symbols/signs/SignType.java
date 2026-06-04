@@ -21,6 +21,13 @@ public enum SignType {
     HAZARD_OPENING_BRIDGE_AHEAD("hazard_opening_bridge_ahead", SignCategory.HAZARD, SignSupportType.BOTTOM),
     HAZARD_ONCOMING_TRAFFIC("hazard_oncoming_traffic", SignCategory.HAZARD, SignSupportType.BOTTOM),
     HAZARD_TRAFFIC_LIGHT("hazard_traffic_light", SignCategory.HAZARD, SignSupportType.BOTTOM),
+    HAZARD_CROSSWIND_LEFT("hazard_crosswind_left", SignCategory.HAZARD, SignSupportType.BOTTOM),
+    HAZARD_CROSSWIND_RIGHT("hazard_crosswind_right", SignCategory.HAZARD, SignSupportType.BOTTOM),
+    HAZARD_SKID_RISK("hazard_skid_risk", SignCategory.HAZARD, SignSupportType.BOTTOM),
+    HAZARD_FLIGHT_OPERATION("hazard_flight_operation", SignCategory.HAZARD, SignSupportType.BOTTOM),
+    HAZARD_FALLING_ROCKS_LEFT("hazard_falling_rocks_left", SignCategory.HAZARD, SignSupportType.BOTTOM),
+    HAZARD_FALLING_ROCKS_RIGHT("hazard_falling_rocks_right", SignCategory.HAZARD, SignSupportType.BOTTOM),
+    HAZARD_GRAVEL_ROAD("hazard_gravel_road", SignCategory.HAZARD, SignSupportType.BOTTOM),
     HAZARD_ANIMALS_CROSSING("hazard_animals_crossing", SignCategory.HAZARD, SignSupportType.BOTTOM),
     HAZARD_RAILWAY_CROSSING("hazard_railway_crossing", SignCategory.HAZARD, SignSupportType.BOTTOM),
     HAZARD_RAILWAY_CROSSING_ELECTRIFIED("hazard_railway_crossing_electrified", SignCategory.HAZARD,
@@ -97,6 +104,7 @@ public enum SignType {
             SignSupportType.HORIZONTAL),
     REGULATORY_TRAFFIC_CALMED_ZONE_END("regulatory_traffic_calmed_zone_end", SignCategory.REGULATORY,
             SignSupportType.HORIZONTAL),
+    REGULATORY_NATIONAL_SPEED_LIMIT_UK("regulatory_national_speed_limit_uk", SignCategory.REGULATORY),
 
     // #region Prohibition
     PROHIBITION_NO_ENTRY("prohibition_no_entry", SignCategory.PROHIBITION),
@@ -124,12 +132,19 @@ public enum SignType {
     EXTRA_TRANSIT_STOP_H("extra_transit_stop_h", SignCategory.EXTRA),
     EXTRA_GAS_STATION("extra_gas_station", SignCategory.EXTRA),
     EXTRA_RECHARGING_STATION("extra_recharging_station", SignCategory.EXTRA),
-    EXTRA_EMERGENCY_STOPPING_BAY("extra_emergency_stopping_bay", SignCategory.EXTRA),
+    EXTRA_EMERGENCY_STOPPING_BAY_LEFT("extra_emergency_stopping_bay_left", SignCategory.EXTRA),
+    EXTRA_EMERGENCY_STOPPING_BAY_RIGHT("extra_emergency_stopping_bay_right", SignCategory.EXTRA),
     EXTRA_EMERGENCY_TELEPHONE("extra_emergency_telephone", SignCategory.EXTRA),
     EXTRA_INFORMATION("extra_information", SignCategory.EXTRA),
     EXTRA_MOTEL("extra_motel", SignCategory.EXTRA),
     EXTRA_INN("extra_inn", SignCategory.EXTRA),
-    EXTRA_TOILET("extra_toilet", SignCategory.EXTRA);
+    EXTRA_TOILET("extra_toilet", SignCategory.EXTRA),
+    EXTRA_SPEED_CAMERA("extra_speed_camera", SignCategory.EXTRA),
+    EXTRA_EMERGENCY_EXIT_HERE("extra_emergency_exit_here", SignCategory.EXTRA, SignSupportType.HORIZONTAL),
+    EXTRA_EMERGENCY_EXIT_AHEAD("extra_emergency_exit_ahead", SignCategory.EXTRA, SignSupportType.HORIZONTAL),
+    EXTRA_EMERGENCY_EXIT_LEFT("extra_emergency_exit_left", SignCategory.EXTRA, SignSupportType.HORIZONTAL),
+    EXTRA_EMERGENCY_EXIT_RIGHT("extra_emergency_exit_right", SignCategory.EXTRA, SignSupportType.HORIZONTAL),
+    EXTRA_EMERGENCY_ASSEMBLY_POINT("extra_emergency_assembly_point", SignCategory.EXTRA, SignSupportType.HORIZONTAL);
 
     private final String id;
     private final SignCategory category;
