@@ -3,7 +3,6 @@ package com.drunkencod.factory_symbols.block.sign_post;
 import com.drunkencod.factory_symbols.registry.ModBlocks;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class SignPostLampFixtureBlockEntity extends AbstractSignPostFixtureBlockEntity {

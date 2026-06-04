@@ -9,6 +9,8 @@
     "block.factory_symbols.sign_post.tooltip": "For displaying signs using fixtures. Relays redstone signals.",
     "block.factory_symbols.sign_post_button_fixture": "Sign Post Button Fixture",
     "block.factory_symbols.sign_post_button_fixture.tooltip": "Attaches to Sign Posts.",
+    "block.factory_symbols.sign_post_lamp_fixture": "Sign Post Lamp Fixture",
+    "block.factory_symbols.sign_post_lamp_fixture.tooltip": "Attaches to the bottom of Sign Posts. Can respond to redstone signals.",
 
     "item.factory_symbols.retroreflective_sheet": "Retroreflective Sheet",
     "item.factory_symbols.ratchet_wrench": "Ratchet Wrench",
@@ -25,6 +27,18 @@
     "factory_symbols.ratchet_wrench.mode.button_fixture.active_high": "Signal Type",
     "factory_symbols.ratchet_wrench.mode.button_fixture.active_high.value.0": "Inverted (Active Low)",
     "factory_symbols.ratchet_wrench.mode.button_fixture.active_high.value.1": "Normal (Active High)",
+
+    "factory_symbols.ratchet_wrench.mode.lamp_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the lamp fixture. %1$s = current mode name.",
+    "factory_symbols.ratchet_wrench.mode.lamp_fixture.name_template": "[Mode] %1$s",
+    "factory_symbols.ratchet_wrench.mode.lamp_fixture.orientation": "Orientation",
+    "factory_symbols.ratchet_wrench.mode.lamp_fixture.orientation.value.z": "North/South",
+    "factory_symbols.ratchet_wrench.mode.lamp_fixture.orientation.value.x": "East/West",
+    "factory_symbols.ratchet_wrench.mode.lamp_fixture.signal_mode": "Signal Mode",
+    "factory_symbols.ratchet_wrench.mode.lamp_fixture.signal_mode.value.0": "Always On",
+    "factory_symbols.ratchet_wrench.mode.lamp_fixture.signal_mode.value.1": "Powered",
+    "factory_symbols.ratchet_wrench.mode.lamp_fixture.signal_mode.value.2": "Inverted",
+    "factory_symbols.ratchet_wrench.mode.lamp_fixture.signal_mode.value.3": "Always Off",
+
     "factory_symbols.ratchet_wrench.mode.unknown": "(Error: wrong mode index)",
 
     "subtitles.factory_symbols.ratchet_wrench.change_mode": "Ratchet Wrench Mode Changed",

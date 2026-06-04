@@ -6,6 +6,8 @@ import com.drunkencod.factory_symbols.block.display_panel.DisplayPanelItem;
 import com.drunkencod.factory_symbols.block.sign_post.SignPostBlock;
 import com.drunkencod.factory_symbols.block.sign_post.SignPostButtonFixtureBlock;
 import com.drunkencod.factory_symbols.block.sign_post.SignPostButtonFixtureBlockEntity;
+import com.drunkencod.factory_symbols.block.sign_post.SignPostLampFixtureBlock;
+import com.drunkencod.factory_symbols.block.sign_post.SignPostLampFixtureBlockEntity;
 import com.drunkencod.factory_symbols.platform.Services;
 import com.drunkencod.factory_symbols.util.TooltipUtil;
 
@@ -87,5 +89,30 @@ public class ModBlocks {
     private static BlockEntityType<SignPostButtonFixtureBlockEntity> makeButtonFixtureBEType() {
         return BlockEntityType.Builder.of(SignPostButtonFixtureBlockEntity::new,
                 SIGN_POST_BUTTON_FIXTURE.get()).build(null);
+    }
+
+    // #region Sign Post — Lamp Fixture
+    public static final Supplier<SignPostLampFixtureBlock> SIGN_POST_LAMP_FIXTURE = Services.REGISTRY
+            .registerBlock("sign_post_lamp_fixture",
+                    () -> new SignPostLampFixtureBlock(BlockBehaviour.Properties.of()
+                            .strength(0.85f, 2.0f)
+                            .sound(SoundType.COPPER_GRATE)
+                            .pushReaction(PushReaction.NORMAL)
+                            .requiresCorrectToolForDrops()
+                            .noOcclusion()
+                            .lightLevel(state -> state.getValue(SignPostLampFixtureBlock.LIT) ? 15 : 0)));
+
+    public static final Supplier<Item> SIGN_POST_LAMP_FIXTURE_ITEM = Services.REGISTRY.registerItem(
+            "sign_post_lamp_fixture",
+            () -> new BlockItem(SIGN_POST_LAMP_FIXTURE.get(), new Item.Properties()
+                    .component(DataComponents.LORE,
+                            TooltipUtil.getTooltip("block.factory_symbols.sign_post_lamp_fixture.tooltip"))));
+
+    public static final Supplier<BlockEntityType<SignPostLampFixtureBlockEntity>> SIGN_POST_LAMP_FIXTURE_BE_TYPE = Services.REGISTRY
+            .registerBlockEntityType("sign_post_lamp_fixture", ModBlocks::makeLampFixtureBEType);
+
+    private static BlockEntityType<SignPostLampFixtureBlockEntity> makeLampFixtureBEType() {
+        return BlockEntityType.Builder.of(SignPostLampFixtureBlockEntity::new,
+                SIGN_POST_LAMP_FIXTURE.get()).build(null);
     }
 }

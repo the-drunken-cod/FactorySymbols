@@ -279,8 +279,12 @@ public final class SignPostNetworkUtil {
 
             if (currentState.hasProperty(BlockStateProperties.POWERED)
                     && currentState.getValue(BlockStateProperties.POWERED) != powered) {
-                level.setBlock(current, currentState.setValue(BlockStateProperties.POWERED, powered),
-                        Block.UPDATE_CLIENTS);
+                BlockState newState = currentState.setValue(BlockStateProperties.POWERED, powered);
+                if (newState.getBlock() instanceof SignPostLampFixtureBlock) {
+                    newState = newState.setValue(SignPostLampFixtureBlock.LIT,
+                            SignPostLampFixtureBlock.computeLit(newState, powered));
+                }
+                level.setBlock(current, newState, Block.UPDATE_CLIENTS);
                 changed.add(current.immutable());
             }
 
