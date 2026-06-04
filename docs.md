@@ -130,6 +130,10 @@ In "Powered" mode, the lamp will be on when the attached sign post is powered, a
 Crafting recipe:  
   
 ![Lamp Fixture Crafting Recipe](./mod_assets/recipes/sign_post_lamp_fixture.png)  
+  
+- The item in the center is a [Retroreflective Sheet.](#retroreflective-sheet)
+- The item in the bottom center can be [any item with the tag `factory_symbols:powered_lamps`.](#item-tags)  
+  By default, this includes the Redstone Lamp and any Copper Bulb variant.
 
 <br><br>
 
@@ -214,3 +218,5 @@ Comparator signal strengths:
   - `factory_symbols:symbols` - All symbol items.
   - `factory_symbols:symbols/<material>` - Symbol items of a specific material.  
     e.g.: `factory_symbols:symbols/iron` for symbol items made of iron.
+- Other:
+  - `factory_symbols:powered_lamps` - Lamp blocks that respond to a redstone signal. Used in the [Lamp Fixture](#lamp-fixture) crafting recipe.
