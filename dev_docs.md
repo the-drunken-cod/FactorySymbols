@@ -47,6 +47,7 @@
     - [ ] signs (one material per symbol with single-file, non-layered textures)
         - [ ] road signs
         - [ ] GHS hazard signs
+        - [ ] NFPA hazard signs
 6. [ ] **Rename to Signs 'n' Symbols**
 7. [ ] **v1.0.0 Release**
 8. [ ] **Future Features:**
