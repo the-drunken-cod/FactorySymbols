@@ -49,8 +49,8 @@ public enum SignType {
     REGULATORY_STRAIGHT_OR_RIGHT("regulatory_straight_or_right", SignCategory.REGULATORY),
     REGULATORY_STRAIGHT_OR_LEFT("regulatory_straight_or_left", SignCategory.REGULATORY),
     REGULATORY_LEFT_OR_RIGHT("regulatory_left_or_right", SignCategory.REGULATORY),
-    REGULATORY_MERGE_LEFT("regulatory_merge_left", SignCategory.HAZARD, SignSupportType.VERTICAL),
-    REGULATORY_MERGE_RIGHT("regulatory_merge_right", SignCategory.HAZARD, SignSupportType.VERTICAL),
+    REGULATORY_MERGE_LEFT("regulatory_merge_left", SignCategory.REGULATORY, SignSupportType.VERTICAL),
+    REGULATORY_MERGE_RIGHT("regulatory_merge_right", SignCategory.REGULATORY, SignSupportType.VERTICAL),
     REGULATORY_ROUNDABOUT_CCW("regulatory_roundabout_ccw", SignCategory.REGULATORY),
     REGULATORY_ROUNDABOUT_CW("regulatory_roundabout_cw", SignCategory.REGULATORY),
     REGULATORY_PEDESTRIANS_ONLY("regulatory_pedestrians_only", SignCategory.REGULATORY),
@@ -144,7 +144,8 @@ public enum SignType {
     EXTRA_EMERGENCY_EXIT_AHEAD("extra_emergency_exit_ahead", SignCategory.EXTRA, SignSupportType.HORIZONTAL),
     EXTRA_EMERGENCY_EXIT_LEFT("extra_emergency_exit_left", SignCategory.EXTRA, SignSupportType.HORIZONTAL),
     EXTRA_EMERGENCY_EXIT_RIGHT("extra_emergency_exit_right", SignCategory.EXTRA, SignSupportType.HORIZONTAL),
-    EXTRA_EMERGENCY_ASSEMBLY_POINT("extra_emergency_assembly_point", SignCategory.EXTRA, SignSupportType.HORIZONTAL);
+    EXTRA_EMERGENCY_ASSEMBLY_POINT("extra_emergency_assembly_point", SignCategory.EXTRA,
+            SignSupportType.HORIZONTAL);
 
     private final String id;
     private final SignCategory category;
