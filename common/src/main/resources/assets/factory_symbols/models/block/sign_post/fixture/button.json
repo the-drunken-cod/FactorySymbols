@@ -1,6 +1,7 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
 	"textures": {
 		"0": "factory_symbols:block/sign_post/fixture/button_atlas",
 		"particle": "factory_symbols:block/sign_post/fixture/button_particle"
