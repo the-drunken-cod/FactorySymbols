@@ -40,7 +40,10 @@ As with [symbols](#symbols), any sign can be transmuted into any other sign usin
   
 Different Signs will have different "attachment points". In general, there are 5 points: top center edge, bottom center edge, left center edge, right center edge and center (back side).  
 Depending on the attachment points of the sign, it may only be placeable when the Sign Fixture is attached to a certain face of the Sign Post.  
-Inspect the tags of each sign to find out its attachment points.
+Inspect the tags of each sign to find out its attachment points.  
+  
+Most of the signs are designed off the European, and specifically German road signs (according to StVO), including the font used for text on some signs.  
+However, there are also some signs that are more generic, or come from other countries, like the UK or Switzerland.  
 
 <br><br>
 
