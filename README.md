@@ -49,6 +49,7 @@ For multiplayer, ensure the mod is installed on the server and all clients conne
   - [`ratchet.wav` by caseymoura](https://freesound.org/s/445492/) - License: Attribution 3.0
   - [`ratchet socket wrench tool` by AlaskaRobotics](https://freesound.org/s/551497/) - License: Creative Commons 0
   - [`Tools Ratchet.wav` by CapsLok](https://freesound.org/s/181634/) - License: Creative Commons 0
+- Models made with [Blockbench](https://blockbench.net/)
 - Inspired by the [virtual circuit network symbols](https://wiki.factorio.com/Circuit_network#Virtual_signals) from the game [Factorio](https://www.factorio.com/)
 
 <br>
