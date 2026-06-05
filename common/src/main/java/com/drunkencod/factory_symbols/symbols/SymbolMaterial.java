@@ -6,12 +6,12 @@ import net.minecraft.world.item.Item;
 
 public enum SymbolMaterial {
     // #region Entries
-    COAL("coal", 4, true),
-    IRON("iron", "iron_ingot", 4, false),
-    GOLD("gold", "gold_ingot", 4, false),
-    LAPIS("lapis", "lapis_lazuli", 2, true),
-    REDSTONE("redstone", 2, true),
-    EMERALD("emerald", 4, false);
+    COAL("coal", 2, true),
+    IRON("iron", "iron_ingot", 2, false),
+    REDSTONE("redstone", 1, true),
+    EMERALD("emerald", 2, false),
+    LAPIS("lapis", "lapis_lazuli", 1, true),
+    GOLD("gold", "gold_ingot", 2, false);
 
     private final String prefix;
     private final int yield;
