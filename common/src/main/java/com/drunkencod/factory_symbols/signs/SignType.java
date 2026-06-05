@@ -63,6 +63,7 @@ public enum SignType {
     REGULATORY_SPEED_LIMIT_50("regulatory_speed_limit_50", SignCategory.REGULATORY),
     REGULATORY_SPEED_LIMIT_60("regulatory_speed_limit_60", SignCategory.REGULATORY),
     REGULATORY_SPEED_LIMIT_67("regulatory_speed_limit_67", SignCategory.REGULATORY),
+    REGULATORY_SPEED_LIMIT_69("regulatory_speed_limit_69", SignCategory.REGULATORY),
     REGULATORY_SPEED_LIMIT_70("regulatory_speed_limit_70", SignCategory.REGULATORY),
     REGULATORY_SPEED_LIMIT_80("regulatory_speed_limit_80", SignCategory.REGULATORY),
     REGULATORY_SPEED_LIMIT_90("regulatory_speed_limit_90", SignCategory.REGULATORY),

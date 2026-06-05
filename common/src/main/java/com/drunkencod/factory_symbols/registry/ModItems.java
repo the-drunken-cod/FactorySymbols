@@ -60,9 +60,7 @@ public class ModItems {
                 () -> new RatchetWrenchItem(new Item.Properties()));
 
         // register sign items from enums:
-        for (
-
-        SignType sym : SignType.values()) {
+        for (SignType sym : SignType.values()) {
             Supplier<Item> item = Services.REGISTRY.registerItem(
                     "sign_" + sym.getId(),
                     () -> new SignItem(sym, new Item.Properties()));
@@ -83,6 +81,8 @@ public class ModItems {
         output.accept(RATCHET_WRENCH.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_ITEM.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_BUTTON_FIXTURE_ITEM.get().getDefaultInstance());
+        output.accept(ModBlocks.SIGN_POST_LAMP_FIXTURE_ITEM.get().getDefaultInstance());
+        output.accept(ModBlocks.SIGN_POST_REDSTONE_EMITTER_FIXTURE_ITEM.get().getDefaultInstance());
 
         for (int i : DisplayPanelBlock.COLORS_ORDERED) {
             ItemStack itm = ModBlocks.DISPLAY_PANEL_ITEM.get().getDefaultInstance();

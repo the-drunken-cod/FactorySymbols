@@ -8,6 +8,8 @@ import com.drunkencod.factory_symbols.block.sign_post.SignPostButtonFixtureBlock
 import com.drunkencod.factory_symbols.block.sign_post.SignPostButtonFixtureBlockEntity;
 import com.drunkencod.factory_symbols.block.sign_post.SignPostLampFixtureBlock;
 import com.drunkencod.factory_symbols.block.sign_post.SignPostLampFixtureBlockEntity;
+import com.drunkencod.factory_symbols.block.sign_post.SignPostRedstoneEmitterFixtureBlock;
+import com.drunkencod.factory_symbols.block.sign_post.SignPostRedstoneEmitterFixtureBlockEntity;
 import com.drunkencod.factory_symbols.platform.Services;
 import com.drunkencod.factory_symbols.util.TooltipUtil;
 
@@ -26,93 +28,127 @@ import java.util.function.Supplier;
  */
 public class ModBlocks {
 
-    // #region Display Panel
-    public static final Supplier<DisplayPanelBlock> DISPLAY_PANEL = Services.REGISTRY.registerBlock(
-            "display_panel",
-            () -> new DisplayPanelBlock(BlockBehaviour.Properties.of()
-                    .strength(0.85f, 3.0f)
-                    .sound(SoundType.METAL)
-                    .noOcclusion()));
+        // #region Display Panel
+        public static final Supplier<DisplayPanelBlock> DISPLAY_PANEL = Services.REGISTRY.registerBlock(
+                        "display_panel",
+                        () -> new DisplayPanelBlock(BlockBehaviour.Properties.of()
+                                        .strength(0.85f, 3.0f)
+                                        .sound(SoundType.METAL)
+                                        .noOcclusion()));
 
-    public static final Supplier<Item> DISPLAY_PANEL_ITEM = Services.REGISTRY.registerItem(
-            "display_panel",
-            () -> new DisplayPanelItem(DISPLAY_PANEL.get(), new Item.Properties()));
+        public static final Supplier<Item> DISPLAY_PANEL_ITEM = Services.REGISTRY.registerItem(
+                        "display_panel",
+                        () -> new DisplayPanelItem(DISPLAY_PANEL.get(), new Item.Properties()));
 
-    public static final Supplier<BlockEntityType<DisplayPanelBlockEntity>> DISPLAY_PANEL_BE_TYPE = Services.REGISTRY
-            .registerBlockEntityType("display_panel", ModBlocks::makeDisplayPanelBEType);
+        public static final Supplier<BlockEntityType<DisplayPanelBlockEntity>> DISPLAY_PANEL_BE_TYPE = Services.REGISTRY
+                        .registerBlockEntityType("display_panel", ModBlocks::makeDisplayPanelBEType);
 
-    private static BlockEntityType<DisplayPanelBlockEntity> makeDisplayPanelBEType() {
-        return BlockEntityType.Builder.of(DisplayPanelBlockEntity::new, DISPLAY_PANEL.get()).build(null);
-    }
+        private static BlockEntityType<DisplayPanelBlockEntity> makeDisplayPanelBEType() {
+                return BlockEntityType.Builder.of(DisplayPanelBlockEntity::new, DISPLAY_PANEL.get()).build(null);
+        }
 
-    // #region Sign Post
-    public static final Supplier<SignPostBlock> SIGN_POST = Services.REGISTRY.registerBlock(
-            "sign_post",
-            () -> new SignPostBlock(BlockBehaviour.Properties.of()
-                    .strength(0.85f, 2.0f)
-                    .sound(SoundType.COPPER_GRATE)
-                    .pushReaction(PushReaction.NORMAL)
-                    .requiresCorrectToolForDrops()
-                    .noOcclusion()));
+        // #region Sign Post
+        public static final Supplier<SignPostBlock> SIGN_POST = Services.REGISTRY.registerBlock(
+                        "sign_post",
+                        () -> new SignPostBlock(BlockBehaviour.Properties.of()
+                                        .strength(0.85f, 2.0f)
+                                        .sound(SoundType.COPPER_GRATE)
+                                        .pushReaction(PushReaction.NORMAL)
+                                        .requiresCorrectToolForDrops()
+                                        .noOcclusion()));
 
-    public static final Supplier<Item> SIGN_POST_ITEM = Services.REGISTRY.registerItem(
-            "sign_post",
-            () -> new BlockItem(SIGN_POST.get(), new Item.Properties()
-                    .component(DataComponents.LORE,
-                            TooltipUtil.getTooltip(
-                                    "block.factory_symbols.sign_post.tooltip"))));
+        public static final Supplier<Item> SIGN_POST_ITEM = Services.REGISTRY.registerItem(
+                        "sign_post",
+                        () -> new BlockItem(SIGN_POST.get(), new Item.Properties()
+                                        .component(DataComponents.LORE,
+                                                        TooltipUtil.getTooltip(
+                                                                        "block.factory_symbols.sign_post.tooltip"))));
 
-    public static void register() {
-        // Triggers static field initialization
-    }
+        public static void register() {
+                // Triggers static field initialization
+        }
 
-    // #region Sign Post — Button Fixture
-    public static final Supplier<SignPostButtonFixtureBlock> SIGN_POST_BUTTON_FIXTURE = Services.REGISTRY
-            .registerBlock("sign_post_button_fixture",
-                    () -> new SignPostButtonFixtureBlock(BlockBehaviour.Properties.of()
-                            .strength(0.85f, 2.0f)
-                            .sound(SoundType.COPPER_GRATE)
-                            .pushReaction(PushReaction.NORMAL)
-                            .requiresCorrectToolForDrops()
-                            .noOcclusion()));
+        // #region Sign Post - Button Fixture
+        public static final Supplier<SignPostButtonFixtureBlock> SIGN_POST_BUTTON_FIXTURE = Services.REGISTRY
+                        .registerBlock("sign_post_button_fixture",
+                                        () -> new SignPostButtonFixtureBlock(BlockBehaviour.Properties.of()
+                                                        .strength(0.85f, 2.0f)
+                                                        .sound(SoundType.COPPER_GRATE)
+                                                        .pushReaction(PushReaction.NORMAL)
+                                                        .requiresCorrectToolForDrops()
+                                                        .noOcclusion()));
 
-    public static final Supplier<Item> SIGN_POST_BUTTON_FIXTURE_ITEM = Services.REGISTRY.registerItem(
-            "sign_post_button_fixture",
-            () -> new BlockItem(SIGN_POST_BUTTON_FIXTURE.get(), new Item.Properties()
-                    .component(DataComponents.LORE,
-                            TooltipUtil.getTooltip("block.factory_symbols.sign_post_button_fixture.tooltip"))));
+        public static final Supplier<Item> SIGN_POST_BUTTON_FIXTURE_ITEM = Services.REGISTRY.registerItem(
+                        "sign_post_button_fixture",
+                        () -> new BlockItem(SIGN_POST_BUTTON_FIXTURE.get(), new Item.Properties()
+                                        .component(DataComponents.LORE,
+                                                        TooltipUtil.getTooltip(
+                                                                        "block.factory_symbols.sign_post_button_fixture.tooltip"))));
 
-    public static final Supplier<BlockEntityType<SignPostButtonFixtureBlockEntity>> SIGN_POST_BUTTON_FIXTURE_BE_TYPE = Services.REGISTRY
-            .registerBlockEntityType(
-                    "sign_post_button_fixture", ModBlocks::makeButtonFixtureBEType);
+        public static final Supplier<BlockEntityType<SignPostButtonFixtureBlockEntity>> SIGN_POST_BUTTON_FIXTURE_BE_TYPE = Services.REGISTRY
+                        .registerBlockEntityType(
+                                        "sign_post_button_fixture", ModBlocks::makeButtonFixtureBEType);
 
-    private static BlockEntityType<SignPostButtonFixtureBlockEntity> makeButtonFixtureBEType() {
-        return BlockEntityType.Builder.of(SignPostButtonFixtureBlockEntity::new,
-                SIGN_POST_BUTTON_FIXTURE.get()).build(null);
-    }
+        private static BlockEntityType<SignPostButtonFixtureBlockEntity> makeButtonFixtureBEType() {
+                return BlockEntityType.Builder.of(SignPostButtonFixtureBlockEntity::new,
+                                SIGN_POST_BUTTON_FIXTURE.get()).build(null);
+        }
 
-    // #region Sign Post — Lamp Fixture
-    public static final Supplier<SignPostLampFixtureBlock> SIGN_POST_LAMP_FIXTURE = Services.REGISTRY
-            .registerBlock("sign_post_lamp_fixture",
-                    () -> new SignPostLampFixtureBlock(BlockBehaviour.Properties.of()
-                            .strength(0.85f, 2.0f)
-                            .sound(SoundType.COPPER_GRATE)
-                            .pushReaction(PushReaction.NORMAL)
-                            .requiresCorrectToolForDrops()
-                            .noOcclusion()
-                            .lightLevel(state -> state.getValue(SignPostLampFixtureBlock.LIT) ? 15 : 0)));
+        // #region Sign Post - Lamp Fixture
+        public static final Supplier<SignPostLampFixtureBlock> SIGN_POST_LAMP_FIXTURE = Services.REGISTRY
+                        .registerBlock("sign_post_lamp_fixture",
+                                        () -> new SignPostLampFixtureBlock(BlockBehaviour.Properties.of()
+                                                        .strength(0.85f, 2.0f)
+                                                        .sound(SoundType.COPPER_GRATE)
+                                                        .pushReaction(PushReaction.NORMAL)
+                                                        .requiresCorrectToolForDrops()
+                                                        .noOcclusion()
+                                                        .lightLevel(state -> state.getValue(
+                                                                        SignPostLampFixtureBlock.LIT) ? 15 : 0)));
 
-    public static final Supplier<Item> SIGN_POST_LAMP_FIXTURE_ITEM = Services.REGISTRY.registerItem(
-            "sign_post_lamp_fixture",
-            () -> new BlockItem(SIGN_POST_LAMP_FIXTURE.get(), new Item.Properties()
-                    .component(DataComponents.LORE,
-                            TooltipUtil.getTooltip("block.factory_symbols.sign_post_lamp_fixture.tooltip"))));
+        public static final Supplier<Item> SIGN_POST_LAMP_FIXTURE_ITEM = Services.REGISTRY.registerItem(
+                        "sign_post_lamp_fixture",
+                        () -> new BlockItem(SIGN_POST_LAMP_FIXTURE.get(), new Item.Properties()
+                                        .component(DataComponents.LORE,
+                                                        TooltipUtil.getTooltip(
+                                                                        "block.factory_symbols.sign_post_lamp_fixture.tooltip"))));
 
-    public static final Supplier<BlockEntityType<SignPostLampFixtureBlockEntity>> SIGN_POST_LAMP_FIXTURE_BE_TYPE = Services.REGISTRY
-            .registerBlockEntityType("sign_post_lamp_fixture", ModBlocks::makeLampFixtureBEType);
+        public static final Supplier<BlockEntityType<SignPostLampFixtureBlockEntity>> SIGN_POST_LAMP_FIXTURE_BE_TYPE = Services.REGISTRY
+                        .registerBlockEntityType("sign_post_lamp_fixture", ModBlocks::makeLampFixtureBEType);
 
-    private static BlockEntityType<SignPostLampFixtureBlockEntity> makeLampFixtureBEType() {
-        return BlockEntityType.Builder.of(SignPostLampFixtureBlockEntity::new,
-                SIGN_POST_LAMP_FIXTURE.get()).build(null);
-    }
+        private static BlockEntityType<SignPostLampFixtureBlockEntity> makeLampFixtureBEType() {
+                return BlockEntityType.Builder.of(SignPostLampFixtureBlockEntity::new,
+                                SIGN_POST_LAMP_FIXTURE.get()).build(null);
+        }
+
+        // #region Sign Post - Redstone Emitter Fixture
+        public static final Supplier<SignPostRedstoneEmitterFixtureBlock> SIGN_POST_REDSTONE_EMITTER_FIXTURE = Services.REGISTRY
+                        .registerBlock("sign_post_redstone_emitter_fixture",
+                                        () -> new SignPostRedstoneEmitterFixtureBlock(BlockBehaviour.Properties.of()
+                                                        .strength(0.85f, 2.0f)
+                                                        .sound(SoundType.COPPER_GRATE)
+                                                        .pushReaction(PushReaction.NORMAL)
+                                                        .requiresCorrectToolForDrops()
+                                                        .noOcclusion()
+                                                        .lightLevel(state -> state.getValue(
+                                                                        SignPostRedstoneEmitterFixtureBlock.POWERED)
+                                                                                        ? 5
+                                                                                        : 0)));
+
+        public static final Supplier<Item> SIGN_POST_REDSTONE_EMITTER_FIXTURE_ITEM = Services.REGISTRY.registerItem(
+                        "sign_post_redstone_emitter_fixture",
+                        () -> new BlockItem(SIGN_POST_REDSTONE_EMITTER_FIXTURE.get(), new Item.Properties()
+                                        .component(DataComponents.LORE,
+                                                        TooltipUtil.getTooltip(
+                                                                        "block.factory_symbols.sign_post_redstone_emitter_fixture.tooltip"))));
+
+        public static final Supplier<BlockEntityType<SignPostRedstoneEmitterFixtureBlockEntity>> SIGN_POST_REDSTONE_EMITTER_FIXTURE_BE_TYPE = Services.REGISTRY
+                        .<SignPostRedstoneEmitterFixtureBlockEntity>registerBlockEntityType(
+                                        "sign_post_redstone_emitter_fixture",
+                                        ModBlocks::makeRedstoneEmitterFixtureBEType);
+
+        private static BlockEntityType<SignPostRedstoneEmitterFixtureBlockEntity> makeRedstoneEmitterFixtureBEType() {
+                return BlockEntityType.Builder.of(SignPostRedstoneEmitterFixtureBlockEntity::new,
+                                SIGN_POST_REDSTONE_EMITTER_FIXTURE.get()).build(null);
+        }
 }

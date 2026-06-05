@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "pattern": [
+        "NTN",
+        "NRN"
+    ],
+    "key": {
+        "T": {
+            "item": "minecraft:redstone_torch"
+        },
+        "N": {
+            "tag": "c:nuggets/iron"
+        },
+        "R": {
+            "tag": "c:dusts/redstone"
+        }
+    },
+    "result": {
+        "id": "factory_symbols:sign_post_redstone_emitter_fixture"
+    }
+}

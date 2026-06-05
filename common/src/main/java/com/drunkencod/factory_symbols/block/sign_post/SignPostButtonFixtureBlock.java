@@ -60,7 +60,7 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
     // #region Shape
 
     /**
-     * 6×10×6 px button body shapes per horizontal facing, biased 1 px toward FACING
+     * 6x10x6 px button body shapes per horizontal facing, biased 1 px toward FACING
      */
     private static final VoxelShape BUTTON_NORTH = Block.box(5, 3, 4, 11, 13, 10);
     private static final VoxelShape BUTTON_SOUTH = Block.box(5, 3, 6, 11, 13, 12);

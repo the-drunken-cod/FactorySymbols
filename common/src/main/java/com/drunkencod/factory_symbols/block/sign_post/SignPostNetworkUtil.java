@@ -284,6 +284,10 @@ public final class SignPostNetworkUtil {
                     newState = newState.setValue(SignPostLampFixtureBlock.LIT,
                             SignPostLampFixtureBlock.computeLit(newState, powered));
                 }
+                if (newState.getBlock() instanceof SignPostRedstoneEmitterFixtureBlock) {
+                    newState = newState.setValue(SignPostRedstoneEmitterFixtureBlock.LIT,
+                            SignPostRedstoneEmitterFixtureBlock.computeLit(newState, powered));
+                }
                 level.setBlock(current, newState, Block.UPDATE_CLIENTS);
                 changed.add(current.immutable());
             }
