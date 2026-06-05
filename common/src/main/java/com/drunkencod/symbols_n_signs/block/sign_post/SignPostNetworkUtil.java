@@ -206,7 +206,15 @@ public final class SignPostNetworkUtil {
             boolean activeHigh = state.getValue(SignPostButtonFixtureBlock.ACTIVE_HIGH);
             return activeHigh ? pressed : !pressed;
         }
+
+        // prevent feedback loops with emitter fixtures:
+        Direction emitterOutputDir = null;
+        if (state.getBlock() instanceof SignPostRedstoneEmitterFixtureBlock emitter)
+            emitterOutputDir = emitter.getFixtureDirection(state);
+
         for (Direction dir : Direction.values()) {
+            if (dir == emitterOutputDir)
+                continue; // skip own output face to prevent feedback loop
             BlockPos neighborPos = pos.relative(dir);
             if (level.getBlockState(neighborPos).is(TAG_SIGN_POST_BLOCKS))
                 continue;
@@ -312,6 +320,13 @@ public final class SignPostNetworkUtil {
         for (BlockPos pos : changed) {
             BlockState state = level.getBlockState(pos);
             level.updateNeighborsAt(pos, state.getBlock());
+
+            // send block updates to neighboring blocks if this is a redstone emitter
+            if (state.getBlock() instanceof SignPostRedstoneEmitterFixtureBlock emitterBlock) {
+                Direction dir = emitterBlock.getFixtureDirection(state);
+                if (dir != null)
+                    level.updateNeighborsAt(pos.relative(dir), state.getBlock());
+            }
         }
     }
 

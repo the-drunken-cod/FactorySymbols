@@ -2,7 +2,7 @@ package com.drunkencod.symbols_n_signs.block.sign_post;
 
 import java.util.List;
 
-import org.jetbrains.annotations.Nullable;
+import javax.annotation.Nullable;
 
 import com.drunkencod.symbols_n_signs.Constants;
 import com.drunkencod.symbols_n_signs.item.RatchetWrenchItem;
@@ -77,9 +77,9 @@ public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixture
     @Override
     public Direction getFixtureDirection(BlockState state) {
         AttachFace face = state.getValue(FACE);
-        if (face != AttachFace.WALL)
+        if (face == AttachFace.WALL)
             return state.getValue(FACING);
-        return face == AttachFace.CEILING ? Direction.DOWN : Direction.UP;
+        return face == AttachFace.CEILING ? Direction.UP : Direction.DOWN;
     }
 
     public static boolean computeLit(BlockState state, boolean powered) {
@@ -148,6 +148,26 @@ public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixture
         BlockState state = super.updateShape(ownState, direction, neighborState, level, ownPos, neighborPos);
 
         return state.setValue(LIT, computeLit(state));
+    }
+
+    // #region Redstone
+
+    @Override
+    protected boolean isSignalSource(BlockState state) {
+        return true;
+    }
+
+    @Override
+    protected int getDirectSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        if (!state.getValue(LIT))
+            return 0;
+        // direction is queried FROM the neighbor TOWARD this block, so invert
+        return direction == getFixtureDirection(state).getOpposite() ? 15 : 0;
+    }
+
+    @Override
+    protected int getSignal(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+        return getDirectSignal(state, level, pos, direction);
     }
 
     // #region Wrench configuration
