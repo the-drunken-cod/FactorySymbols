@@ -1,10 +1,10 @@
-![Factory Symbols banner showing off all symbol items and the Display Panel block entities](https://raw.githubusercontent.com/the-drunken-cod/FactorySymbols/refs/heads/develop/.github/assets/banner.png)
+![Symbols'n'Signs banner showing off all symbol items and the Display Panel block entities](https://raw.githubusercontent.com/the-drunken-cod/SymbolsNSigns/refs/heads/develop/.github/assets/banner.png)
 
 <br>
 
 ## Introduction:
 
-Factory Symbols is a Minecraft mod for NeoForge and Fabric that adds a collection of symbol items to the game.  
+Symbols'n'Signs is a Minecraft mod for NeoForge and Fabric that adds a collection of symbol items to the game.  
 These symbols are designed to be meaningful and can be used for labeling purposes, like making Create's Redstone Link frequencies more recognizable.  
 They are regular items that are cheaply craftable and transmutable and have uniform and recognizable textures.
 
@@ -24,17 +24,17 @@ They are regular items that are cheaply craftable and transmutable and have unif
 
 ## Modpack Policy:
 
-You are free to use Factory Symbols in any modpacks; public or private :)  
+You are free to use Symbols'n'Signs in any modpacks; public or private :)  
 Just make sure you abide by our licenses (see section below), common sense, and [the Minecraft EULA.](https://minecraft.net/en-us/eula)  
-We would also appreciate a mention in the credits section of your modpack and a quick shout on our [discussion board](https://github.com/the-drunken-cod/FactorySymbols/discussions) about your modpack (so we can check it out and play it ourselves!)  
-Please also consider [reporting any issues or suggestions](https://github.com/the-drunken-cod/FactorySymbols/issues), so we can improve the mod for you and other players and have better compatibility with other mods.
+We would also appreciate a mention in the credits section of your modpack and a quick shout on our [discussion board](https://github.com/the-drunken-cod/SymbolsNSigns/discussions) about your modpack (so we can check it out and play it ourselves!)  
+Please also consider [reporting any issues or suggestions](https://github.com/the-drunken-cod/SymbolsNSigns/issues), so we can improve the mod for you and other players and have better compatibility with other mods.
 
 <br>
 
 ## Licenses:
 
-Code is licensed under the [AGPL-3.0-only.](https://github.com/the-drunken-cod/FactorySymbols/blob/develop/LICENSE.txt)  
-Original resources and assets in `common/src/main/resources/` are licensed under [MIT](https://github.com/the-drunken-cod/FactorySymbols/blob/develop/src/main/resources/LICENSE.txt) unless otherwise stated.
+Code is licensed under the [AGPL-3.0-only.](https://github.com/the-drunken-cod/SymbolsNSigns/blob/develop/LICENSE.txt)  
+Original resources and assets in `common/src/main/resources/` are licensed under [MIT](https://github.com/the-drunken-cod/SymbolsNSigns/blob/develop/src/main/resources/LICENSE.txt) unless otherwise stated.
 
 <br>
 

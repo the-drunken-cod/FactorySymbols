@@ -1,0 +1,20 @@
+{
+    "parent": "symbols_n_signs:item/display_panel_item_base",
+    "overrides": [
+        { "predicate": { "custom_model_data":  1 }, "model": "symbols_n_signs:item/display_panel_white"      },
+        { "predicate": { "custom_model_data":  2 }, "model": "symbols_n_signs:item/display_panel_orange"     },
+        { "predicate": { "custom_model_data":  3 }, "model": "symbols_n_signs:item/display_panel_magenta"    },
+        { "predicate": { "custom_model_data":  4 }, "model": "symbols_n_signs:item/display_panel_light_blue" },
+        { "predicate": { "custom_model_data":  5 }, "model": "symbols_n_signs:item/display_panel_yellow"     },
+        { "predicate": { "custom_model_data":  6 }, "model": "symbols_n_signs:item/display_panel_lime"       },
+        { "predicate": { "custom_model_data":  7 }, "model": "symbols_n_signs:item/display_panel_pink"       },
+        { "predicate": { "custom_model_data":  8 }, "model": "symbols_n_signs:item/display_panel_gray"       },
+        { "predicate": { "custom_model_data":  9 }, "model": "symbols_n_signs:item/display_panel_light_gray" },
+        { "predicate": { "custom_model_data": 10 }, "model": "symbols_n_signs:item/display_panel_cyan"       },
+        { "predicate": { "custom_model_data": 11 }, "model": "symbols_n_signs:item/display_panel_purple"     },
+        { "predicate": { "custom_model_data": 12 }, "model": "symbols_n_signs:item/display_panel_blue"       },
+        { "predicate": { "custom_model_data": 13 }, "model": "symbols_n_signs:item/display_panel_brown"      },
+        { "predicate": { "custom_model_data": 14 }, "model": "symbols_n_signs:item/display_panel_green"      },
+        { "predicate": { "custom_model_data": 15 }, "model": "symbols_n_signs:item/display_panel_red"        }
+    ]
+}

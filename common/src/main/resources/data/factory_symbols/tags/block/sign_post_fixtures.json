@@ -1,8 +1,0 @@
-{
-    "replace": false,
-    "values": [
-        "factory_symbols:sign_post_button_fixture",
-        "factory_symbols:sign_post_lamp_fixture",
-        "factory_symbols:sign_post_redstone_emitter_fixture"
-    ]
-}

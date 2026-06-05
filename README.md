@@ -1,23 +1,23 @@
 <div align="center" style="text-align: center;">
 
-# Factory Symbols
+# Symbols'n'Signs
 Collection of meaningful symbol items for Minecraft Java Edition and ways to display them.
 
-![Factory Symbols banner showing off all symbol items and the Display Panel block entities](./.github/assets/banner.png)
+![Symbols'n'Signs banner showing off all symbol items and the Display Panel block entities](./.github/assets/banner.png)
 
 </div>
 
 <br>
 
 ## Introduction:
-Factory Symbols is a Minecraft mod for NeoForge and Fabric that adds a collection of symbol items to the game.  
+Symbols'n'Signs is a Minecraft mod for NeoForge and Fabric that adds a collection of symbol items to the game.  
 These symbols are designed to be meaningful and can be used for labeling purposes, like making Create's Redstone Link frequencies more recognizable.  
 They are regular items that are cheaply craftable and transmutable and have uniform and recognizable textures.
 
 <br>
 
 ## Installation:
-You can visit the [releases page](https://github.com/the-drunken-cod/FactorySymbols/releases), the [Modrinth page](https://modrinth.com/mod/factory-symbols), or the [CurseForge page](https://www.curseforge.com/minecraft/mc-mods/factory-symbols) to download the latest version of Factory Symbols.  
+You can visit the [releases page](https://github.com/the-drunken-cod/SymbolsNSigns/releases), the [Modrinth page](https://modrinth.com/mod/factory-symbols), or the [CurseForge page](https://www.curseforge.com/minecraft/mc-mods/factory-symbols) to download the latest version of Symbols'n'Signs.  
 Then simply place the downloaded JAR file into your Minecraft `mods` folder and launch the game with either NeoForge or Fabric.  
 For multiplayer, ensure the mod is installed on the server and all clients connecting to it. [Automodpack](https://modrinth.com/mod/automodpack) can make this process easier.
   
@@ -55,10 +55,10 @@ For multiplayer, ensure the mod is installed on the server and all clients conne
 <br>
 
 ## Modpack Policy
-You are free to use Factory Symbols in any modpacks; public or private :)  
+You are free to use Symbols'n'Signs in any modpacks; public or private :)  
 Just make sure you abide by [our licenses](#licenses), common sense, and [the Minecraft EULA.](https://minecraft.net/en-us/eula)  
-We would also appreciate a mention in the credits section of your modpack and a quick shout on our [discussion board](https://github.com/the-drunken-cod/FactorySymbols/discussions) about your modpack (so we can check it out and play it ourselves!)  
-Please also consider [reporting any issues or suggestions](https://github.com/the-drunken-cod/FactorySymbols/issues), so we can improve the mod for you and other players and have better compatibility with other mods.
+We would also appreciate a mention in the credits section of your modpack and a quick shout on our [discussion board](https://github.com/the-drunken-cod/SymbolsNSigns/discussions) about your modpack (so we can check it out and play it ourselves!)  
+Please also consider [reporting any issues or suggestions](https://github.com/the-drunken-cod/SymbolsNSigns/issues), so we can improve the mod for you and other players and have better compatibility with other mods.
 
 <br>
 

@@ -2,7 +2,7 @@ blank_issues_enabled: false
 contact_links:
   - name: "Discussions"
     about: "Open a new thread on the discussion board if you have questions, want to show off something you made, etc."
-    url: "https://github.com/the-drunken-cod/FactorySymbols/discussions"
+    url: "https://github.com/the-drunken-cod/SymbolsNSigns/discussions"
   - name: "Docs"
     about: "If you have very specific questions, the documentation might just have what you are looking for."
-    url: "https://github.com/the-drunken-cod/FactorySymbols/blob/develop/docs.md"
+    url: "https://github.com/the-drunken-cod/SymbolsNSigns/blob/develop/docs.md"

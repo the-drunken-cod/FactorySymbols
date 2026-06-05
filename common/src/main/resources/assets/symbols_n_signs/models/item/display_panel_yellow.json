@@ -1,0 +1,6 @@
+{
+    "parent": "symbols_n_signs:item/display_panel_item_base",
+    "textures": {
+        "atlas": "symbols_n_signs:block/display_panel/atlas_yellow"
+    }
+}

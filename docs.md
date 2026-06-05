@@ -132,7 +132,7 @@ Crafting recipe:
 ![Lamp Fixture Crafting Recipe](./mod_assets/recipes/sign_post_lamp_fixture.png)  
   
 - The item in the center is a [Retroreflective Sheet.](#retroreflective-sheet)
-- The item in the bottom center can be [any item with the tag `factory_symbols:powered_lamps`.](#item-tags)  
+- The item in the bottom center can be [any item with the tag `symbols_n_signs:powered_lamps`.](#item-tags)  
   By default, this includes the Redstone Lamp and any Copper Bulb variant.
 
 <br><br>
@@ -201,22 +201,22 @@ Comparator signal strengths:
 
 ## Block Tags:
 - Displays:
-  - `factory_symbols:displays` - All blocks that can display items.
+  - `symbols_n_signs:displays` - All blocks that can display items.
 - Sign Post:
-  - `factory_symbols:sign_post_blocks` - Contains the [Sign Post](#sign-post) and every [Sign Post Fixture](#sign-post-fixtures) block.
-  - `factory_symbols:sign_post_fixtures` - Contains all [Sign Post Fixture](#sign-post-fixtures) blocks.
-  - `factory_symbols:sign_post_connects_to_bottom` - Blocks that [Sign Posts](#sign-post) will connect to, but only via their bottom face.
-  - `factory_symbols:sign_post_connects_to_top` - Blocks that [Sign Posts](#sign-post) will connect to, but only via their top face.
-  - `factory_symbols:sign_post_connects_to_sides` - Blocks that [Sign Posts](#sign-post) will connect to via their sides.
-  - `factory_symbols:sign_post_connects_to` - Blocks that [Sign Posts](#sign-post) will connect to via all faces, despite not being center-supporting.
-  - `factory_symbols:sign_post_does_not_connect_to` - Blocks whose center face is unstable / Blocks that can't connect to [Sign Posts.](#sign-post)
+  - `symbols_n_signs:sign_post_blocks` - Contains the [Sign Post](#sign-post) and every [Sign Post Fixture](#sign-post-fixtures) block.
+  - `symbols_n_signs:sign_post_fixtures` - Contains all [Sign Post Fixture](#sign-post-fixtures) blocks.
+  - `symbols_n_signs:sign_post_connects_to_bottom` - Blocks that [Sign Posts](#sign-post) will connect to, but only via their bottom face.
+  - `symbols_n_signs:sign_post_connects_to_top` - Blocks that [Sign Posts](#sign-post) will connect to, but only via their top face.
+  - `symbols_n_signs:sign_post_connects_to_sides` - Blocks that [Sign Posts](#sign-post) will connect to via their sides.
+  - `symbols_n_signs:sign_post_connects_to` - Blocks that [Sign Posts](#sign-post) will connect to via all faces, despite not being center-supporting.
+  - `symbols_n_signs:sign_post_does_not_connect_to` - Blocks whose center face is unstable / Blocks that can't connect to [Sign Posts.](#sign-post)
 
 <br>
 
 ## Item Tags:
 - Symbols:
-  - `factory_symbols:symbols` - All symbol items.
-  - `factory_symbols:symbols/<material>` - Symbol items of a specific material.  
-    e.g.: `factory_symbols:symbols/iron` for symbol items made of iron.
+  - `symbols_n_signs:symbols` - All symbol items.
+  - `symbols_n_signs:symbols/<material>` - Symbol items of a specific material.  
+    e.g.: `symbols_n_signs:symbols/iron` for symbol items made of iron.
 - Other:
-  - `factory_symbols:powered_lamps` - Lamp blocks that respond to a redstone signal. Used in the [Lamp Fixture](#lamp-fixture) crafting recipe.
+  - `symbols_n_signs:powered_lamps` - Lamp blocks that respond to a redstone signal. Used in the [Lamp Fixture](#lamp-fixture) crafting recipe.

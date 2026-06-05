@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "pattern": [
+        "NPN",
+        "INI"
+    ],
+    "key": {
+        "N": {
+            "tag": "c:nuggets/iron"
+        },
+        "P": {
+            "tag": "c:glass_panes/colorless"
+        },
+        "I": {
+            "tag": "c:ingots/iron"
+        }
+    },
+    "result": {
+        "id": "symbols_n_signs:retroreflective_sheet",
+        "count": 2
+    }
+}

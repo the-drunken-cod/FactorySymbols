@@ -36,11 +36,11 @@
       "projectName": "neoforge",
       "mainClass": "net.neoforged.devlaunch.Main",
       "args": [
-        "@C:\\Users\\sven1\\code\\cod\\FactorySymbols\\neoforge\\build\\moddev\\clientRunProgramArgs.txt"
+        "@C:\\Users\\sven1\\code\\cod\\Symbols-n-Signs\\neoforge\\build\\moddev\\clientRunProgramArgs.txt"
       ],
       "vmArgs": [
-        "@C:\\Users\\sven1\\code\\cod\\FactorySymbols\\neoforge\\build\\moddev\\clientRunVmArgs.txt",
-        "-Dfml.modFolders\u003dfactory_symbols%%C:\\Users\\sven1\\code\\cod\\FactorySymbols\\neoforge\\bin\\main"
+        "@C:\\Users\\sven1\\code\\cod\\Symbols-n-Signs\\neoforge\\build\\moddev\\clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dsymbols_n_signs%%C:\\Users\\sven1\\code\\cod\\Symbols-n-Signs\\neoforge\\bin\\main"
       ],
       "cwd": "${workspaceFolder}\\neoforge\\run",
       "console": "internalConsole",
@@ -57,11 +57,11 @@
       "projectName": "neoforge",
       "mainClass": "net.neoforged.devlaunch.Main",
       "args": [
-        "@C:\\Users\\sven1\\code\\cod\\FactorySymbols\\neoforge\\build\\moddev\\dataRunProgramArgs.txt"
+        "@C:\\Users\\sven1\\code\\cod\\Symbols-n-Signs\\neoforge\\build\\moddev\\dataRunProgramArgs.txt"
       ],
       "vmArgs": [
-        "@C:\\Users\\sven1\\code\\cod\\FactorySymbols\\neoforge\\build\\moddev\\dataRunVmArgs.txt",
-        "-Dfml.modFolders\u003dfactory_symbols%%C:\\Users\\sven1\\code\\cod\\FactorySymbols\\neoforge\\bin\\main"
+        "@C:\\Users\\sven1\\code\\cod\\Symbols-n-Signs\\neoforge\\build\\moddev\\dataRunVmArgs.txt",
+        "-Dfml.modFolders\u003dsymbols_n_signs%%C:\\Users\\sven1\\code\\cod\\Symbols-n-Signs\\neoforge\\bin\\main"
       ],
       "cwd": "${workspaceFolder}\\neoforge\\run",
       "console": "internalConsole",
@@ -78,11 +78,11 @@
       "projectName": "neoforge",
       "mainClass": "net.neoforged.devlaunch.Main",
       "args": [
-        "@C:\\Users\\sven1\\code\\cod\\FactorySymbols\\neoforge\\build\\moddev\\serverRunProgramArgs.txt"
+        "@C:\\Users\\sven1\\code\\cod\\Symbols-n-Signs\\neoforge\\build\\moddev\\serverRunProgramArgs.txt"
       ],
       "vmArgs": [
-        "@C:\\Users\\sven1\\code\\cod\\FactorySymbols\\neoforge\\build\\moddev\\serverRunVmArgs.txt",
-        "-Dfml.modFolders\u003dfactory_symbols%%C:\\Users\\sven1\\code\\cod\\FactorySymbols\\neoforge\\bin\\main"
+        "@C:\\Users\\sven1\\code\\cod\\Symbols-n-Signs\\neoforge\\build\\moddev\\serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003dsymbols_n_signs%%C:\\Users\\sven1\\code\\cod\\Symbols-n-Signs\\neoforge\\bin\\main"
       ],
       "cwd": "${workspaceFolder}\\neoforge\\run",
       "console": "internalConsole",

@@ -1,5 +1,5 @@
 {
-    "name": "factory_symbols",
+    "name": "symbols_n_signs",
     "scripts": {
         "symbol-recolor": "pnpm --filter symbol_recolor start",
         "clean": "pnpm --filter clean start"

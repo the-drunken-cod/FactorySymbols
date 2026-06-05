@@ -8,9 +8,9 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://github.com/the-drunken-cod/FactorySymbols",
-        "sources": "https://github.com/the-drunken-cod/FactorySymbols",
-        "issues": "https://github.com/the-drunken-cod/FactorySymbols/issues"
+        "homepage": "https://github.com/the-drunken-cod/SymbolsNSigns",
+        "sources": "https://github.com/the-drunken-cod/SymbolsNSigns",
+        "issues": "https://github.com/the-drunken-cod/SymbolsNSigns/issues"
     },
     "license": "${license}",
     "icon": "${mod_id}.png",
@@ -18,13 +18,13 @@
     "accessWidener": "${mod_id}.accesswidener",
     "entrypoints": {
         "main": [
-            "com.drunkencod.factory_symbols.FactorySymbolsMod"
+            "com.drunkencod.symbols_n_signs.SymbolsNSignsMod"
         ],
         "client": [
-            "com.drunkencod.factory_symbols.FactorySymbolsClientMod"
+            "com.drunkencod.symbols_n_signs.SymbolsNSignsClientMod"
         ],
         "fabric-datagen": [
-            "com.drunkencod.factory_symbols.FactorySymbolsDataGen"
+            "com.drunkencod.symbols_n_signs.SymbolsNSignsDataGen"
         ]
     },
     "mixins": [

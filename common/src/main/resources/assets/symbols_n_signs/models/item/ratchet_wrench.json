@@ -1,0 +1,6 @@
+{
+    "parent": "minecraft:item/handheld",
+    "textures": {
+        "layer0": "symbols_n_signs:item/ratchet_wrench"
+    }
+}

@@ -1,6 +1,6 @@
 ---
 name: Incompatible mod or datapack
-about: Report a mod or datapack that is incompatible with Factory Symbols
+about: Report a mod or datapack that is incompatible with Symbols'n'Signs
 title: ''
 labels: bug
 assignees: Sv443
@@ -9,7 +9,7 @@ assignees: Sv443
 
 
 ### Link:
-<!-- Link to the mod or datapack that is incompatible with Factory Symbols. If it matters, also specify the version. -->
+<!-- Link to the mod or datapack that is incompatible with Symbols'n'Signs. If it matters, also specify the version. -->
 
 
 ### Details:

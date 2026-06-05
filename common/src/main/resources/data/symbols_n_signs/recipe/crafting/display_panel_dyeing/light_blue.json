@@ -1,0 +1,14 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        { "item": "symbols_n_signs:display_panel" },
+        { "item": "minecraft:light_blue_dye" }
+    ],
+    "result": {
+        "id": "symbols_n_signs:display_panel",
+        "count": 1,
+        "components": {
+            "minecraft:custom_model_data": 4
+        }
+    }
+}

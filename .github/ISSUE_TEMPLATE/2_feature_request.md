@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest new symbols or other features for Factory Symbols
+about: Suggest new symbols or other features for Symbols'n'Signs
 title: ''
 labels: enhancement
 assignees: Sv443

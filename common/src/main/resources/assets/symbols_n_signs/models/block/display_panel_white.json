@@ -1,0 +1,6 @@
+{
+	"parent": "symbols_n_signs:block/display_panel",
+	"textures": {
+		"atlas": "symbols_n_signs:block/display_panel/atlas_white"
+	}
+}

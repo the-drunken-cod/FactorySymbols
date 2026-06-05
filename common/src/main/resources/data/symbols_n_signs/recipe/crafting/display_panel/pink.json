@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "pattern": [
+        "NIN",
+        "IDI",
+        "NIN"
+    ],
+    "key": {
+        "N": {
+            "tag": "c:nuggets/iron"
+        },
+        "I": {
+            "tag": "c:ingots/iron"
+        },
+        "D": {
+            "item": "minecraft:pink_dye"
+        }
+    },
+    "result": {
+        "id": "symbols_n_signs:display_panel",
+        "count": 1,
+        "components": {
+            "minecraft:custom_model_data": 7
+        }
+    }
+}

@@ -20,7 +20,7 @@
     - [x] Redstone Locking: prevent any interaction while powered
     - [x] Comparator Output: emits a signal strength relative to item stackability
 3. [x] **Migration to namespaced ID per symbol:**
-    - change from `factory_symbols:symbol_<material>` to `factory_symbols:<category>_<symbol>_<material>`
+    - change from `symbols_n_signs:symbol_<material>` to `symbols_n_signs:<category>_<symbol>_<material>`
     - allows for item checks that only check the registry ID, like Create Redstone Link frequencies
     - makes it so there's no need for datafixing when adding or modifying symbols
 4. [ ] **Sign Post & Fixture:**
@@ -75,8 +75,8 @@ Materials for crafting the symbol items, each with a distinct background color a
 Crafted from the symbol templates in a stonecutter, yielding 1 symbol item per craft.  
 The symbol items can be uncrafted back into the symbol template in a crafting grid, yielding 1 template per craft.  
 The symbol items have a uniform texture design with the symbol in the center and the material's color as a square background, allowing for good contrast and recognizability even at small sizes.  
-The model of the symbol item is determined by the NBT component `custom_model_data` (e.g. `0` for the "Letter A" symbol). To figure out the model/texture, refer to the position of each enum value in `common/src/main/java/com/drunkencod/factory_symbols/symbols/SymbolType.java`.  
-The symbol items have registry IDs in the format `factory_symbols:symbol_<material>` and the item tags `#factory_symbols:symbols` and `#factory_symbols:symbols/<material>`.  
+The model of the symbol item is determined by the NBT component `custom_model_data` (e.g. `0` for the "Letter A" symbol). To figure out the model/texture, refer to the position of each enum value in `common/src/main/java/com/drunkencod/symbols_n_signs/symbols/SymbolType.java`.  
+The symbol items have registry IDs in the format `symbols_n_signs:symbol_<material>` and the item tags `#symbols_n_signs:symbols` and `#symbols_n_signs:symbols/<material>`.  
   
 Example categories and symbols (not final):
 | Category | Emoji | Symbol |
@@ -199,7 +199,7 @@ Each fixture block needs a loot table that makes it drop both a sign post and th
 - Item that allows for configuring sign post fixtures, as well as potentially other blocks in the future.
 - Uses the same mechanisms as wrenches from other mods like Create, Mekanism, etc. so that they are interoperable.
 - Interaction is the same as the Debug Stick from Vanilla (left-click to change mode, which gets displayed above the hotbar, right-click to change the selected mode's value).
-    - Modes are internally enumerated, but should not show this integer to the player. Instead, translations like `factory_symbols.ratchet_wrench.mode.button_fixture.orientation` and `factory_symbols.ratchet_wrench.mode.button_fixture.orientation.value.0` should be used to allow for more descriptive values.
+    - Modes are internally enumerated, but should not show this integer to the player. Instead, translations like `symbols_n_signs.ratchet_wrench.mode.button_fixture.orientation` and `symbols_n_signs.ratchet_wrench.mode.button_fixture.orientation.value.0` should be used to allow for more descriptive values.
     - Modes should be easily defineable and extensible in the code by modifying an enum class or something.
 - Two tooltip lines to explain the interactions:
     - "L-Click on Fixture: Switch Mode"

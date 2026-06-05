@@ -4,7 +4,7 @@ import path from "node:path";
 import prompt from "prompts";
 import sharp from "sharp";
 
-// Color remapping tool for factory symbols:
+// Color remapping tool for Symbols'n'Signs:
 // 1. Prompt for base path
 // 2. Recursively collect all .png files ending in _black or _white
 // 3. Find files missing their counterpart (_black without _white, or vice versa)

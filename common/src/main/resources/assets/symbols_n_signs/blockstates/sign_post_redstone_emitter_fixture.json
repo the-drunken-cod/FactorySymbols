@@ -1,0 +1,196 @@
+{
+    "multipart": [
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/center"
+            },
+            "when": {
+                "north": "false",
+                "east": "false",
+                "south": "false",
+                "west": "false",
+                "up": "false",
+                "down": "false"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/branch"
+            },
+            "when": {
+                "north": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/branch",
+                "y": 90
+            },
+            "when": {
+                "east": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/branch",
+                "y": 180
+            },
+            "when": {
+                "south": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/branch",
+                "y": 270
+            },
+            "when": {
+                "west": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/branch",
+                "x": 270
+            },
+            "when": {
+                "up": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/branch",
+                "x": 90
+            },
+            "when": {
+                "down": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/redstone_emitter"
+            },
+            "when": {
+                "facing": "north",
+                "face": "wall",
+                "lit": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/redstone_emitter",
+                "y": 90
+            },
+            "when": {
+                "facing": "east",
+                "face": "wall",
+                "lit": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/redstone_emitter",
+                "y": 180
+            },
+            "when": {
+                "facing": "south",
+                "face": "wall",
+                "lit": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/redstone_emitter",
+                "y": 270
+            },
+            "when": {
+                "facing": "west",
+                "face": "wall",
+                "lit": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/redstone_emitter",
+                "x": 270
+            },
+            "when": {
+                "face": "ceiling",
+                "lit": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/redstone_emitter",
+                "x": 90
+            },
+            "when": {
+                "face": "floor",
+                "lit": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/redstone_emitter_off"
+            },
+            "when": {
+                "facing": "north",
+                "face": "wall",
+                "lit": "false"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/redstone_emitter_off",
+                "y": 90
+            },
+            "when": {
+                "facing": "east",
+                "face": "wall",
+                "lit": "false"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/redstone_emitter_off",
+                "y": 180
+            },
+            "when": {
+                "facing": "south",
+                "face": "wall",
+                "lit": "false"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/redstone_emitter_off",
+                "y": 270
+            },
+            "when": {
+                "facing": "west",
+                "face": "wall",
+                "lit": "false"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/redstone_emitter_off",
+                "x": 270
+            },
+            "when": {
+                "face": "ceiling",
+                "lit": "false"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/redstone_emitter_off",
+                "x": 90
+            },
+            "when": {
+                "face": "floor",
+                "lit": "false"
+            }
+        }
+    ]
+}

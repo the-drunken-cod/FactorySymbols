@@ -1,13 +1,13 @@
 ---
 name: Base Instructions
-description: This file contains the base instructions for the Factory Symbols Minecraft mod project, like coding conventions and guidelines.
+description: This file contains the base instructions for the Symbols'n'Signs Minecraft mod project, like coding conventions and guidelines.
 applyTo: "**"
 ---
 
 # Base Instructions
 
 Language: Java 21  
-Application Type: Minecraft mod named "Factory Symbols" that adds a bunch of symbol items to the game, without any functionality of their own.
+Application Type: Minecraft mod named "Symbols'n'Signs" that adds a bunch of symbol items to the game, without any functionality of their own.
 Minecraft Version: 1.21.1  
 Modding Framework: NeoForge v21.1
 
