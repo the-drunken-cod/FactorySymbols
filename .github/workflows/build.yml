@@ -13,6 +13,14 @@ on:
                 type: boolean
                 required: false
                 default: false
+    # Called manually from the UI
+    workflow_dispatch:
+        inputs:
+            upload_artifact:
+                description: "Upload build artifacts"
+                type: boolean
+                required: false
+                default: false
 
 jobs:
     build:
