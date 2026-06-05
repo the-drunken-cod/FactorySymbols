@@ -153,7 +153,7 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
     @Override
     protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
         super.onPlace(state, level, pos, oldState, movedByPiston);
-        if (!level.isClientSide())
+        if (!level.isClientSide() && !oldState.is(this))
             evaluateAndPropagate(level, pos);
     }
 

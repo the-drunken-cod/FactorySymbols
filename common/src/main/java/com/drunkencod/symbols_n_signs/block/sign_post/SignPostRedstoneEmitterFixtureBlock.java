@@ -134,7 +134,7 @@ public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixture
     @Override
     protected void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
         super.onPlace(state, level, pos, oldState, movedByPiston);
-        if (!level.isClientSide()) {
+        if (!level.isClientSide() && !oldState.is(this)) {
             boolean networkPowered = SignPostNetworkUtil.isNetworkDirectlyPowered(
                     level, pos, Services.CONFIG.signPostRelayMaxDepth());
             SignPostNetworkUtil.propagatePower(level, pos, networkPowered,
