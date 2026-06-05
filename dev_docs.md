@@ -48,7 +48,7 @@
         - [ ] road signs
         - [ ] GHS hazard signs
         - [ ] NFPA hazard signs
-6. [ ] **Rename to Signs 'n' Symbols**
+6. [ ] **Rename to Symbols'n'Signs**
 7. [ ] **v1.0.0 Release**
 8. [ ] **Future Features:**
     - make display panel items rotatable like item frames (maybe via a wrench item or something?)

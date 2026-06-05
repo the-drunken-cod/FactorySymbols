@@ -38,6 +38,9 @@ import java.util.Map;
  */
 public final class SignPostNetworkUtil {
 
+    /** Thickness of sign post segments in pixels */
+    public static final float APOTHEM = 2f / 16f;
+
     private SignPostNetworkUtil() {
     }
 
@@ -66,9 +69,6 @@ public final class SignPostNetworkUtil {
             ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "sign_post_blocks"));
 
     // #region Shapes
-
-    /** Thickness of sign post segments in pixels (matches SignPostBlock.APOTHEM) */
-    public static final float APOTHEM = 2f / 16f;
 
     private static final float MIN = 0.5f - APOTHEM;
     private static final float MAX = 0.5f + APOTHEM;
