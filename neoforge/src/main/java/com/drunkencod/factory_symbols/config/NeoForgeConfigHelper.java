@@ -81,7 +81,10 @@ public class NeoForgeConfigHelper implements IConfigHelper {
 
         ServerConfig(ModConfigSpec.Builder builder) {
             signPostRelayMaxDepth = builder
-                    .comment("Maximum number of sign post hops a block-update relay signal propagates")
+                    .comment("Maximum number of interconnected Sign Posts a redstone signal can travel through.")
+                    .comment(
+                            "This goes for any block with a POWERED state and the block tag \"factory_symbols:sign_post_blocks\".")
+                    .comment("Note for larger servers: setting this to a big value could cause performance issues.")
                     .defineInRange("signPostRelayMaxDepth", 15, 1, 64);
         }
     }
@@ -91,7 +94,11 @@ public class NeoForgeConfigHelper implements IConfigHelper {
 
         ClientConfig(ModConfigSpec.Builder builder) {
             displayPanelShiftRenderedItem = builder
-                    .comment("Whether to slightly shift the rendered item on the display panel to prevent z-fighting")
+                    .comment("Whether to slightly shift the rendered item on the display panel to prevent z-fighting.")
+                    .comment(
+                            "Items are already scaled to mostly prevent z-fighting issues, but for some models you might need to enable this option to fix it.")
+                    .comment(
+                            "Note that this will also cause entirely new minor rendering problems, like when two panels are back-to-back and contain blocks.")
                     .define("displayPanelShiftRenderedItem", false);
         }
     }
