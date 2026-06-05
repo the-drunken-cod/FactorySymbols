@@ -38,6 +38,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class DisplayPanelBlock extends Block implements EntityBlock {
 
+    public static final String ID = "display_panel";
+
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<DyeColor> COLOR = EnumProperty.create("color", DyeColor.class);
     public static final BooleanProperty LOCKED = BooleanProperty.create("locked");

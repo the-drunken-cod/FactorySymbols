@@ -39,6 +39,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
 
+    public static final String ID = "sign_post_button_fixture";
+
     public static final MapCodec<SignPostButtonFixtureBlock> CODEC = RecordCodecBuilder
             .mapCodec(instance -> instance.group(propertiesCodec())
                     .apply((Applicative<Mu<SignPostButtonFixtureBlock>, ?>) instance,

@@ -35,6 +35,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
 
+    public static final String ID = "sign_post_lamp_fixture";
+
     public static final MapCodec<SignPostLampFixtureBlock> CODEC = RecordCodecBuilder
             .mapCodec(instance -> instance.group(propertiesCodec())
                     .apply((Applicative<Mu<SignPostLampFixtureBlock>, ?>) instance,
@@ -47,8 +49,7 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
     public static final BooleanProperty LIT = BooleanProperty.create("lit");
 
     /** Orientation: Z = north/south (default), X = east/west */
-    public static final net.minecraft.world.level.block.state.properties.EnumProperty<Axis> AXIS =
-            BlockStateProperties.HORIZONTAL_AXIS;
+    public static final net.minecraft.world.level.block.state.properties.EnumProperty<Axis> AXIS = BlockStateProperties.HORIZONTAL_AXIS;
 
     // NS orientation: position 3,2,0 size 10,4,16
     private static final VoxelShape LAMP_SHAPE_Z = Block.box(3, 2, 0, 13, 6, 16);
@@ -107,10 +108,10 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
 
     public static boolean computeLit(BlockState state, boolean powered) {
         return switch (state.getValue(SIGNAL_MODE)) {
-            case 0 -> true;    // ALWAYS_ON
+            case 0 -> true; // ALWAYS_ON
             case 1 -> powered; // POWERED
             case 2 -> !powered; // INVERTED
-            case 3 -> false;   // ALWAYS_OFF
+            case 3 -> false; // ALWAYS_OFF
             default -> false;
         };
     }
@@ -227,4 +228,3 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
         return CODEC;
     }
 }
-

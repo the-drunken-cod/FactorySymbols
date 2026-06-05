@@ -26,6 +26,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class SignPostBlock extends PipeBlock implements SimpleWaterloggedBlock {
 
+    public static final String ID = "";
+
     /** Thickness of the sign post's segments in pixels */
     public static final float APOTHEM = SignPostNetworkUtil.APOTHEM;
 
