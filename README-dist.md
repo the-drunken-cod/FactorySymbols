@@ -14,13 +14,15 @@ They are regular items that are cheaply craftable and transmutable and have unif
 
 ## Attribution:
 
-- Created with [jaredlll08/MultiLoader-Template](https://github.com/jaredlll08/MultiLoader-Template)
+- Created using [a modified version](https://github.com/the-drunken-cod/MultiLoader-Template) of [jaredlll08/MultiLoader-Template](https://github.com/jaredlll08/MultiLoader-Template)
 - Sound effects:
-  - [`ratchet.wav` by caseymoura](https://freesound.org/s/445492/) - License: Attribution 3.0
+  - [`ratchet.wav` by caseymoura](https://freesound.org/s/445492/) - License: Creative Commons Attribution 3.0
   - [`ratchet socket wrench tool` by AlaskaRobotics](https://freesound.org/s/551497/) - License: Creative Commons 0
   - [`Tools Ratchet.wav` by CapsLok](https://freesound.org/s/181634/) - License: Creative Commons 0
 - Models made with [Blockbench](https://blockbench.net/)
-- Inspired by the [virtual circuit network symbols](https://wiki.factorio.com/Circuit_network#Virtual_signals) from the game [Factorio](https://www.factorio.com/)
+- Recipe screenshots taken with [EMI](https://modrinth.com/mod/emi)
+- Symbol items inspired by the [virtual circuit network symbols](https://wiki.factorio.com/Circuit_network#Virtual_signals) from the game [Factorio](https://www.factorio.com/)
+- Signs inspired by the European, and specifically German StVO road signs, including a pixelated version of the DIN 1451 font.
 
 <br>
 
