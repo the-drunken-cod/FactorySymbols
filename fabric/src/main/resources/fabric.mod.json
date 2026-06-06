@@ -8,9 +8,9 @@
         "${mod_author}"
     ],
     "contact": {
-        "homepage": "https://github.com/the-drunken-cod/SymbolsNSigns",
-        "sources": "https://github.com/the-drunken-cod/SymbolsNSigns",
-        "issues": "https://github.com/the-drunken-cod/SymbolsNSigns/issues"
+        "homepage": "https://github.com/the-drunken-cod/Symbols-n-Signs",
+        "sources": "https://github.com/the-drunken-cod/Symbols-n-Signs",
+        "issues": "https://github.com/the-drunken-cod/Symbols-n-Signs/issues"
     },
     "license": "${license}",
     "icon": "${mod_id}.png",
