@@ -12,12 +12,14 @@ Collection of meaningful symbol items for Minecraft Java Edition and ways to dis
 ## Introduction:
 Symbols'n'Signs is a Minecraft mod for NeoForge and Fabric that adds a collection of symbol items to the game.  
 These symbols are designed to be meaningful and can be used for labeling purposes, like making Create's Redstone Link frequencies more recognizable.  
-They are regular items that are cheaply craftable and transmutable and have uniform and recognizable textures.
+They are regular items that are cheaply craftable and transmutable and have uniform and recognizable textures.  
+  
+**[View the latest documentation here (Note: contains changed and unreleased content).](https://github.com/the-drunken-cod/Symbols-n-Signs/blob/develop/docs.md)**
 
 <br>
 
 ## Installation:
-You can visit the [releases page](https://github.com/the-drunken-cod/SymbolsNSigns/releases), the [Modrinth page](https://modrinth.com/mod/factory-symbols), or the [CurseForge page](https://www.curseforge.com/minecraft/mc-mods/factory-symbols) to download the latest version of Symbols'n'Signs.  
+You can visit the [releases page](https://github.com/the-drunken-cod/Symbols-n-Signs/releases), the [Modrinth page](https://modrinth.com/mod/factory-symbols), or the [CurseForge page](https://www.curseforge.com/minecraft/mc-mods/factory-symbols) to download the latest version of Symbols'n'Signs.  
 Then simply place the downloaded JAR file into your Minecraft `mods` folder and launch the game with either NeoForge or Fabric.  
 For multiplayer, ensure the mod is installed on the server and all clients connecting to it. [Automodpack](https://modrinth.com/mod/automodpack) can make this process easier.
   
@@ -32,8 +34,8 @@ For multiplayer, ensure the mod is installed on the server and all clients conne
 
 ## Development Notes:
 - This mod is still in early development, so expect major changes and breaking updates until the v1.0.0 release.
-- Developer docs can be found in the [`dev_docs.md` file.](./dev_docs.md)
-- DataGen JSONs (in `neoforge/src/generated` and `fabric/src/generated`) will be excluded from the repo until the v1.0.0 release. If you still want access to those files, you can either unzip the released JAR file, or set up the Java dev env and run the `./gradlew :neoforge:runData` or `./gradlew :fabric:runData` command.
+- Developer docs can be found in the [`dev_docs.md` file.](./dev_docs.md) They will contain more technical information.
+- DataGen JSONs (in `neoforge/src/generated` and `fabric/src/generated`) will be excluded from the repository until the v1.0.0 release. If you still want access to those files, you can either unzip the released JAR file, or set up the Java dev env and run the `./gradlew :neoforge:runData` or `./gradlew :fabric:runData` command.
 
 <br>
 
@@ -57,8 +59,8 @@ For multiplayer, ensure the mod is installed on the server and all clients conne
 ## Modpack Policy
 You are free to use Symbols'n'Signs in any modpacks; public or private :)  
 Just make sure you abide by [our licenses](#licenses), common sense, and [the Minecraft EULA.](https://minecraft.net/en-us/eula)  
-We would also appreciate a mention in the credits section of your modpack and a quick shout on our [discussion board](https://github.com/the-drunken-cod/SymbolsNSigns/discussions) about your modpack (so we can check it out and play it ourselves!)  
-Please also consider [reporting any issues or suggestions](https://github.com/the-drunken-cod/SymbolsNSigns/issues), so we can improve the mod for you and other players and have better compatibility with other mods.
+We would also appreciate a mention in the credits section of your modpack and a quick shout on our [discussion board](https://github.com/the-drunken-cod/Symbols-n-Signs/discussions) about your modpack (so we can check it out and play it ourselves!)  
+Please also consider [reporting any issues or suggestions](https://github.com/the-drunken-cod/Symbols-n-Signs/issues), so we can improve the mod for you and other players and have better compatibility with other mods.
 
 <br>
 
