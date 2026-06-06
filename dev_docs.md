@@ -1,4 +1,4 @@
-## Roadmap:
+## Roadmap (partially outdated info):
 1. [x] **Symbol Items:**
     - items with a symbol texture and a material-based background color that can be crafted and uncrafted in a stonecutter
     - [x] Crafting & Uncrafting / Transmuting
@@ -75,8 +75,7 @@ Materials for crafting the symbol items, each with a distinct background color a
 Crafted from the symbol templates in a stonecutter, yielding 1 symbol item per craft.  
 The symbol items can be uncrafted back into the symbol template in a crafting grid, yielding 1 template per craft.  
 The symbol items have a uniform texture design with the symbol in the center and the material's color as a square background, allowing for good contrast and recognizability even at small sizes.  
-The model of the symbol item is determined by the NBT component `custom_model_data` (e.g. `0` for the "Letter A" symbol). To figure out the model/texture, refer to the position of each enum value in `common/src/main/java/com/drunkencod/symbols_n_signs/symbols/SymbolType.java`.  
-The symbol items have registry IDs in the format `symbols_n_signs:symbol_<material>` and the item tags `#symbols_n_signs:symbols` and `#symbols_n_signs:symbols/<material>`.  
+The symbol items have registry IDs in the format `symbols_n_signs:<material>_<name>_symbol` and the item tags `#symbols_n_signs:symbols` and `#symbols_n_signs:symbols/<material>`.  
   
 Example categories and symbols (not final):
 | Category | Emoji | Symbol |
@@ -94,7 +93,7 @@ Example categories and symbols (not final):
 <br>
 
 ## Road Signs:
-These behave differently from the symbol items, because they only come in a single material/color variant and have very unique shapes and textures inspired by European and German road signs.  
+These behave differently from the symbol items, because they only come in a single material/color variant and have very unique shapes and textures inspired by European and German StVO road signs.  
 The crafting recipe also slightly differs, requiring retroreflective iron sheets.  
   
 Example signs (not final):  
@@ -232,12 +231,38 @@ Each fixture block needs a loot table that makes it drop both a sign post and th
 <br>
 
 ### Sign Fixture:
-- If clicked on a *horizontal* face of a sign post, the fixture can render a sign flat against the post, or sticking out from the post rotated by 90°, if the sign's shape is horizontally supporting.
-- If clicked on a *vertical* face of a sign post, the fixture can render a sign sticking out from the post rotated by 90°, if the sign's shape is vertically supporting.
-- The rotation, scale, and whether the sign is double-sided or not should be configurable with the wrench item, and needs to be read from NBT when rendering.
-- The blockentity should allow signs to be placed on all valid faces and prevent other posts from connecting when a face is occupied by a fixture, meaning up to 6 signs can be attached to a single post, also meaning the blockentity will need to keep track of them individually in NBT. Each contained sign needs to be *fully* stored, including its own NBT, since signs might have custom text, colors, etc. in the future.
+- If a sign item (`#symbols_n_signs:signs`) is clicked on a *horizontal* face of a sign post, the fixture can render a sign flat against the post, or sticking out from the post rotated by 90°, if the sign's shape is horizontally supporting (configured with wrench).
+- If a sign item (`#symbols_n_signs:signs`) is clicked on a *vertical* face of a sign post, the fixture can render a sign sticking out from the post rotated by 90°, if the sign's shape is vertically supporting (configured with wrench).
+- The rotation, scale, and whether the sign is double-sided or not should all be configurable via the Ratchet Wrench. For this to work, this info needs to be stored in and read from NBT when rendering.
+- The blockentity should allow signs to be placed on all valid faces and prevent other posts from connecting when a face is occupied by a fixture, meaning up to 6 signs can be attached to a single post, also meaning the blockentity will need to keep track of them individually in NBT, per each face. Each contained sign needs to be *fully* stored, including its own NBT, since signs might have custom text, colors, etc. in the future.
 - Redstone signals should propagate through this fixture blockentity as if it was a regular post.
 - Cannot be placed anywhere else besides sign posts.
+- Example NBT:
+  ```jsonc
+  {
+    "symbols_n_signs:signs": {
+      "up": {
+        "item": {
+          "id": "symbols_n_signs:regulatory_yield_sign",
+          "Count": 1,
+          "components": {
+            // ...
+          }
+        },
+        "orientation": 2,
+        "scale": 1,
+        "double_sided": true
+      },
+      "down": {
+        "item": null,
+        "orientation": 2,
+        "scale": 1,
+        "double_sided": false
+      },
+      // ...
+    }
+  }
+  ```
 
 <br>
 
