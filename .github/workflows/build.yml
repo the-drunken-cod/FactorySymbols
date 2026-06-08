@@ -91,7 +91,7 @@ jobs:
                   restore-keys: ${{ runner.os }}-pnpm-store-
 
             - name: Install Node.js dependencies
-              run: pnpm install
+              run: pnpm --filter extract_prop install
 
             - name: Get Version Info
               if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || github.event_name == 'workflow_dispatch'
