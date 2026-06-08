@@ -23,6 +23,7 @@ The datagenned JSONs can be found under `src/generated/` for reference, but don'
 
 # Conventions
 
+- When modifying or adding code, prefix single-line changes with `//<AI/>` and encapsulate multi-line changes with `//<AI>` and `//</AI>` to make them easily identifiable for human review. **All GenAI code must be clearly marked to ensure transparency and comply with project guidelines.**
 - Always try to implement a modloader-agnostic solution in `common/`. If not possible, implement a service interface and a modloader-specific implementation in `fabric/` and `neoforge/`. Deduplicate as much code as possible in the common implementation and only override the necessary parts in the modloader-specific implementations.
 - Be on the generous side when it comes to asking questions and clarifying requirements.
 - Don't give up on a problem and suggest adding a `// TODO: fix` comment. Realize dead ends and think about solutions or alternatives. Interject with questions or notices if needed, like when there's an objectively better path.

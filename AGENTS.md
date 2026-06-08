@@ -9,7 +9,7 @@
 | Run Fabric client | `./gradlew :fabric:runClient` |
 | Run NeoForge DataGen | `./gradlew :neoforge:runData` |
 | Run Fabric DataGen | `./gradlew :fabric:runData` |
-| Delete generated sources | `pnpm clean` (has tendency to not have enough permission) |
+| Delete generated sources | `pnpm clean` (has tendency to fail due to not having permission) |
 
 Node tools (`tools/`) use **pnpm**, run via the root `package.json` scripts. Do not run `npm` or `yarn` in those directories.
 
@@ -27,6 +27,7 @@ Node tools (`tools/`) use **pnpm**, run via the root `package.json` scripts. Do 
 
 ## Architecture conventions (non-obvious)
 
+- **When modifying or adding code:** Prefix single-line changes with `//<AI/>` and encapsulate multi-line changes with `//<AI>` and `//</AI>` to make them easily identifiable for human review. **All GenAI code must be clearly marked to ensure transparency and comply with project guidelines.**
 - **Always prefer `common/`** for new logic. Use a service interface + platform implementations in `fabric/` and `neoforge/` only when the common module genuinely cannot access the API needed.
 - **Custom model integer lookup:** `custom_model_data` integer is used for some blocks or items, like the Display Panel. The integer directly maps to the ordinal of the enum value of the model.
 - **Sound effects must be triggered on both client and server** to play for all players — this is not enforced by any lint rule.
