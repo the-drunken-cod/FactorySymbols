@@ -3,6 +3,8 @@
     "vscjava.vscode-java-pack",
     "vscjava.vscode-gradle",
     "redhat.java",
-    "naco-siren.gradle-language"
+    "naco-siren.gradle-language",
+    "GZoltar.vscode-gzoltar",
+    "Misodee.vscode-nbt",
   ]
 }

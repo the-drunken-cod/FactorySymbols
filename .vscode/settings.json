@@ -2,6 +2,7 @@
     "java.compile.nullAnalysis.mode": "disabled",
     "java.configuration.updateBuildConfiguration": "automatic",
     "java.import.gradle.wrapper.enabled": true,
+    "redhat.telemetry.enabled": false,
     "search.exclude": {
         "**/.gradle": true,
         "**/generated": true,
