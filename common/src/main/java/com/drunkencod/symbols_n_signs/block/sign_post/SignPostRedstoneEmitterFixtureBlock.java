@@ -2,7 +2,7 @@ package com.drunkencod.symbols_n_signs.block.sign_post;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 import com.drunkencod.symbols_n_signs.Constants;
 import com.drunkencod.symbols_n_signs.item.RatchetWrenchItem;
