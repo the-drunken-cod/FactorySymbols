@@ -21,8 +21,8 @@ on:
             upload_artifact:
                 description: "Upload build artifacts"
                 type: boolean
-                required: false
-                default: false
+                required: true
+                default: true
     # Called manually from the UI
     workflow_dispatch:
         inputs:
@@ -39,8 +39,8 @@ on:
             upload_artifact:
                 description: "Upload build artifacts"
                 type: boolean
-                required: false
-                default: false
+                required: true
+                default: true
 
 jobs:
     build:
