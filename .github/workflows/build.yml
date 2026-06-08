@@ -54,6 +54,10 @@ jobs:
             RETENTION_DAYS_PUSH: 2
             RETENTION_DAYS_OTHER: 5
 
+        strategy:
+            matrix:
+                node-version: [22.x]
+
         steps:
             - name: Checkout repository
               uses: actions/checkout@v6
