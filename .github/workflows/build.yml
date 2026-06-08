@@ -124,12 +124,14 @@ jobs:
               if: ${{ inputs.build_fabric == true }}
               run: ./gradlew :fabric:build
 
-            - name: Delete extra files
+            - name: Move Files
               run: |
                   rm fabric/build/libs/*-javadoc.jar
                   rm fabric/build/libs/*-sources.jar
                   rm neoforge/build/libs/*-javadoc.jar
                   rm neoforge/build/libs/*-sources.jar
+                  mv fabric/build/libs/*.jar .
+                  mv neoforge/build/libs/*.jar .
 
             - name: Upload build artifacts
               if: ${{ inputs.upload_artifact == true }}
@@ -137,7 +139,6 @@ jobs:
               with:
                   name: ${{ steps.get_info.outputs.MOD_ID }}-${{ steps.get_info.outputs.MC_VERSION }}-${{ steps.get_info.outputs.MOD_VERSION }}-${{ github.sha }}
                   path: |
-                      fabric/build/libs/*.jar
-                      neoforge/build/libs/*.jar
+                      *.jar
                   if-no-files-found: error
                   retention-days: ${{ github.event_name == 'push' && env.RETENTION_DAYS_PUSH || env.RETENTION_DAYS_OTHER }}
