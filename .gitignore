@@ -1,4 +1,4 @@
-# datagen
+# datagenned resources
 neoforge/src/generated/
 fabric/src/generated/
 
@@ -29,7 +29,7 @@ run
 runs
 source/
 
-# datagen
+# datagen cache
 **/generated/**/.cache/
 
 # local-only version overrides
@@ -37,3 +37,6 @@ versions/*.local.properties
 
 # environment secrets
 .env
+
+# node.js
+node_modules/
