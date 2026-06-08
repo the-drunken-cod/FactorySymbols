@@ -2,6 +2,7 @@
     "name": "symbols_n_signs",
     "scripts": {
         "symbol-recolor": "pnpm --filter symbol_recolor start",
-        "clean": "pnpm --filter clean start"
+        "clean": "pnpm --filter clean start",
+        "extract-prop": "pnpm --filter extract_prop start"
     }
 }
