@@ -59,7 +59,7 @@ jobs:
                 node-version: [22.x]
 
         steps:
-            - name: Checkout repository
+            - name: "[Git] Checkout repository"
               uses: actions/checkout@v6
 
             - name: "[Java] Setup Java 21"
