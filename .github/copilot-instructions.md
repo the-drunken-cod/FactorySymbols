@@ -23,7 +23,7 @@ The datagenned JSONs can be found under `src/generated/` for reference, but don'
 
 # Conventions
 
-- When modifying or adding code, prefix single-line changes with `//<AI/>` and encapsulate multi-line changes with `//<AI>` and `//</AI>` to make them easily identifiable for human review. **All GenAI code must be clearly marked to ensure transparency and comply with project guidelines.**
+- **When modifying or adding code:** Prefix single-line changes with `//<AI/>` and encapsulate multi-line changes with `//<AI>` and `//</AI>` to make them easily identifiable for human review. **All GenAI code must be clearly marked to ensure transparency and comply with project guidelines.** When submitting a PR as an agent, add a comment to the PR description stating something like `As per the project guidelines, I
 - Always try to implement a modloader-agnostic solution in `common/`. If not possible, implement a service interface and a modloader-specific implementation in `fabric/` and `neoforge/`. Deduplicate as much code as possible in the common implementation and only override the necessary parts in the modloader-specific implementations.
 - Be on the generous side when it comes to asking questions and clarifying requirements.
 - Don't give up on a problem and suggest adding a `// TODO: fix` comment. Realize dead ends and think about solutions or alternatives. Interject with questions or notices if needed, like when there's an objectively better path.
@@ -31,6 +31,6 @@ The datagenned JSONs can be found under `src/generated/` for reference, but don'
 - Try to use datapack JSONs before writing any Java code.
 - Use 4 spaces for indentation.
 - Add `//#region` indicators for logical code sections (without `#endregion`). Keep the initial region comment concise and descriptive.
-- Respect the existing code style and don't use javax annotations.
 - In the output, instead of including unmodified members, only show the new or modified code and make use of comments like `/* existing code */`.
 - When playing sound effects, call the method on _both_ the client and the server to ensure it plays for all players.
+- Use JetBrains annotations over javax ones, but use them only when absolutely necessary.

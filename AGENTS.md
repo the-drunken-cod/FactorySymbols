@@ -27,7 +27,7 @@ Node tools (`tools/`) use **pnpm**, run via the root `package.json` scripts. Do 
 
 ## Architecture conventions (non-obvious)
 
-- **When modifying or adding code:** Prefix single-line changes with `//<AI/>` and encapsulate multi-line changes with `//<AI>` and `//</AI>` to make them easily identifiable for human review. **All GenAI code must be clearly marked to ensure transparency and comply with project guidelines.**
+- **When modifying or adding code:** Prefix single-line changes with `//<AI/>` and encapsulate multi-line changes with `//<AI>` and `//</AI>` to make them easily identifiable for human review. **All GenAI code must be clearly marked to ensure transparency and comply with project guidelines.** When submitting a PR as an agent, add a comment to the PR description stating something like `As per the project guidelines, this PR contains GenAI-generated code that was fully reviewed and tested by a human collaborator.`
 - **Always prefer `common/`** for new logic. Use a service interface + platform implementations in `fabric/` and `neoforge/` only when the common module genuinely cannot access the API needed.
 - **Custom model integer lookup:** `custom_model_data` integer is used for some blocks or items, like the Display Panel. The integer directly maps to the ordinal of the enum value of the model.
 - **Sound effects must be triggered on both client and server** to play for all players — this is not enforced by any lint rule.
@@ -35,6 +35,7 @@ Node tools (`tools/`) use **pnpm**, run via the root `package.json` scripts. Do 
 - Use `// #region ${Short Descriptive Title}` markers (no `#endregion`) to section Java code.
 - 4-space indentation throughout; no javax annotations unless creating a nullable value is unavoidable.
 - Add imports instead of fully qualifying classes, even if they are only used once.
+- Use JetBrains annotations over javax ones, but use them only when absolutely necessary.
 
 ## Branch/version convention
 
