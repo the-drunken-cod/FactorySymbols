@@ -29,9 +29,9 @@ public enum SignType {
         HAZARD_FALLING_ROCKS_RIGHT("hazard_falling_rocks_right", SignCategory.HAZARD, SignSupportType.BOTTOM),
         HAZARD_GRAVEL_ROAD("hazard_gravel_road", SignCategory.HAZARD, SignSupportType.BOTTOM),
         HAZARD_ANIMALS_CROSSING("hazard_animals_crossing", SignCategory.HAZARD, SignSupportType.BOTTOM),
-        HAZARD_RAILWAY_CROSSING("hazard_railway_crossing", SignCategory.HAZARD, SignSupportType.BOTTOM),
+        HAZARD_RAILWAY_CROSSING("hazard_railway_crossing", SignCategory.HAZARD, SignSupportType.BACK),
         HAZARD_RAILWAY_CROSSING_ELECTRIFIED("hazard_railway_crossing_electrified", SignCategory.HAZARD,
-                        SignSupportType.BOTTOM),
+                        SignSupportType.BACK),
 
         // #region Regulatory
         REGULATORY_STOP("regulatory_stop", SignCategory.REGULATORY),
@@ -54,6 +54,13 @@ public enum SignType {
         REGULATORY_ROUNDABOUT_CCW("regulatory_roundabout_ccw", SignCategory.REGULATORY),
         REGULATORY_ROUNDABOUT_CW("regulatory_roundabout_cw", SignCategory.REGULATORY),
         REGULATORY_PEDESTRIANS_ONLY("regulatory_pedestrians_only", SignCategory.REGULATORY),
+        REGULATORY_SIDEWALK("regulatory_sidewalk", SignCategory.REGULATORY),
+        REGULATORY_SIDEWALK_AND_BIKE_PATH_SHARED("regulatory_sidewalk_and_bicycle_path_shared",
+                        SignCategory.REGULATORY),
+        REGULATORY_SIDEWALK_AND_BIKE_PATH_SEPARATE_LEFT("regulatory_sidewalk_and_bicycle_path_separate_left",
+                        SignCategory.REGULATORY),
+        REGULATORY_SIDEWALK_AND_BIKE_PATH_SEPARATE_RIGHT("regulatory_sidewalk_and_bicycle_path_separate_right",
+                        SignCategory.REGULATORY),
         REGULATORY_END_OF_RESTRICTIONS("regulatory_end_of_restrictions", SignCategory.REGULATORY),
         REGULATORY_SPEED_LIMIT_5("regulatory_speed_limit_5", SignCategory.REGULATORY),
         REGULATORY_SPEED_LIMIT_10("regulatory_speed_limit_10", SignCategory.REGULATORY),
@@ -98,9 +105,9 @@ public enum SignType {
         REGULATORY_HIGHWAY_END("regulatory_highway_end", SignCategory.REGULATORY),
         REGULATORY_TUNNEL("regulatory_tunnel", SignCategory.REGULATORY),
         REGULATORY_GREEN_ARROW_LEFT("regulatory_green_arrow_left", SignCategory.REGULATORY,
-                        SignSupportType.BACK_ONLY),
+                        SignSupportType.BACK),
         REGULATORY_GREEN_ARROW_RIGHT("regulatory_green_arrow_right", SignCategory.REGULATORY,
-                        SignSupportType.BACK_ONLY),
+                        SignSupportType.BACK),
         REGULATORY_TRAFFIC_CALMED_ZONE("regulatory_traffic_calmed_zone", SignCategory.REGULATORY,
                         SignSupportType.HORIZONTAL),
         REGULATORY_TRAFFIC_CALMED_ZONE_END("regulatory_traffic_calmed_zone_end", SignCategory.REGULATORY,
@@ -147,8 +154,7 @@ public enum SignType {
         EXTRA_EMERGENCY_EXIT_AHEAD("extra_emergency_exit_ahead", SignCategory.EXTRA, SignSupportType.HORIZONTAL),
         EXTRA_EMERGENCY_EXIT_LEFT("extra_emergency_exit_left", SignCategory.EXTRA, SignSupportType.HORIZONTAL),
         EXTRA_EMERGENCY_EXIT_RIGHT("extra_emergency_exit_right", SignCategory.EXTRA, SignSupportType.HORIZONTAL),
-        EXTRA_EMERGENCY_ASSEMBLY_POINT("extra_emergency_assembly_point", SignCategory.EXTRA,
-                        SignSupportType.HORIZONTAL);
+        EXTRA_EMERGENCY_ASSEMBLY_POINT("extra_emergency_assembly_point", SignCategory.EXTRA);
 
         private final String id;
         private final SignCategory category;
