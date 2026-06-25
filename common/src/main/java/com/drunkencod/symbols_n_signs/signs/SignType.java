@@ -128,7 +128,9 @@ public enum SignType {
 
         // #region Extra
         EXTRA_NATO_BRIDGE_LOAD("extra_nato_bridge_load", SignCategory.EXTRA),
-        EXTRA_NATURE_RESERVE("extra_nature_reserve", SignCategory.EXTRA, SignSupportType.BOTTOM),
+        EXTRA_NATURE_RESERVE_EAGLE("extra_nature_reserve_eagle", SignCategory.EXTRA, SignSupportType.BOTTOM),
+        EXTRA_NATURE_RESERVE_FISH("extra_nature_reserve_fish", SignCategory.EXTRA, SignSupportType.BOTTOM),
+        EXTRA_NATURE_RESERVE_OWL("extra_nature_reserve_owl", SignCategory.EXTRA, SignSupportType.BOTTOM),
         EXTRA_TRANSIT_STOP("extra_transit_stop", SignCategory.EXTRA),
         EXTRA_TRANSIT_STOP_H("extra_transit_stop_h", SignCategory.EXTRA),
         EXTRA_GAS_STATION("extra_gas_station", SignCategory.EXTRA),
