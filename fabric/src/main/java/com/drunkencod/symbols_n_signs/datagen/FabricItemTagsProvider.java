@@ -44,6 +44,7 @@ public class FabricItemTagsProvider implements DataProvider {
             String signId = Constants.MOD_ID + ":sign_" + sign.getId();
             tagValues.computeIfAbsent("signs", k -> new ArrayList<>()).add(signId);
             tagValues.computeIfAbsent("signs/" + sign.getCategory().getId(), k -> new ArrayList<>()).add(signId);
+            tagValues.computeIfAbsent("support/" + sign.getSupportType().getId(), k -> new ArrayList<>()).add(signId);
         }
 
         List<CompletableFuture<?>> futures = new ArrayList<>();

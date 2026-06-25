@@ -264,7 +264,10 @@ Note: Any dye can be used in these recipes.
 ## Item Tags:
 - Symbols:
   - `symbols_n_signs:symbols` - All symbol items.
-  - `symbols_n_signs:symbols/<material>` - Symbol items of a specific material.  
-    e.g.: `symbols_n_signs:symbols/iron` for symbol items made of iron.
+  - `symbols_n_signs:symbols/<material>` - Symbol items of a specific material. Can be `coal`, `iron`, `redstone`, `emerald`, `lapis`, or `gold`.
+- Signs:
+  - `symbols_n_signs:signs` - All sign items.
+  - `symbols_n_signs:signs/<category>` - All sign items of the given category. Can be `hazard`, `regulatory`, `prohibition`, or `extra`.
+  - `symbols_n_signs:support/<support_type>` - Where the sign's valid attachment points are. Can be `bottom`, `vertical`, `horizontal`, `any`, or `back`.
 - Other:
   - `symbols_n_signs:powered_lamps` - Lamp blocks that respond to a redstone signal. Used in the [Lamp Fixture](#lamp-fixture) crafting recipe.
