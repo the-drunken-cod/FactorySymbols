@@ -10,7 +10,7 @@ public enum SignSupportType {
     /** Sign texture can be supported at the top, bottom, left, right and back. */
     ANY("any"),
     /** Sign texture can only be supported at the back. */
-    BACK_ONLY("back_only");
+    BACK("back");
 
     private final String id;
 
