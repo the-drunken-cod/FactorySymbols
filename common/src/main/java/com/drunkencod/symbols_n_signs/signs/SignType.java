@@ -53,7 +53,6 @@ public enum SignType {
         REGULATORY_MERGE_RIGHT("regulatory_merge_right", SignCategory.REGULATORY, SignSupportType.VERTICAL),
         REGULATORY_ROUNDABOUT_CCW("regulatory_roundabout_ccw", SignCategory.REGULATORY),
         REGULATORY_ROUNDABOUT_CW("regulatory_roundabout_cw", SignCategory.REGULATORY),
-        REGULATORY_PEDESTRIANS_ONLY("regulatory_pedestrians_only", SignCategory.REGULATORY),
         REGULATORY_SIDEWALK("regulatory_sidewalk", SignCategory.REGULATORY),
         REGULATORY_SIDEWALK_AND_BIKE_PATH_SHARED("regulatory_sidewalk_and_bicycle_path_shared",
                         SignCategory.REGULATORY),

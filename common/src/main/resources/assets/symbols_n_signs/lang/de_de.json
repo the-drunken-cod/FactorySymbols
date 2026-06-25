@@ -58,6 +58,12 @@
     "tag.item.symbols_n_signs.signs.prohibition": "Verbotszeichen",
     "tag.item.symbols_n_signs.signs.extra": "Sonstige Zeichen",
 
+    "tag.item.symbols_n_signs.support.bottom": "Von Unten gestützte Schilder",
+    "tag.item.symbols_n_signs.support.vertical": "Vertikal gestützte Schilder",
+    "tag.item.symbols_n_signs.support.horizontal": "Horizontal gestützte Schilder",
+    "tag.item.symbols_n_signs.support.any": "Horizontal und Vertikal gestützte Schilder",
+    "tag.item.symbols_n_signs.support.back": "Von Hinten gestützte Schilder",
+
     "tag.item.symbols_n_signs.symbols.coal": "Kohle-Symbole",
     "tag.item.symbols_n_signs.symbols.emerald": "Smaragd-Symbole",
     "tag.item.symbols_n_signs.symbols.gold": "Gold-Symbole",

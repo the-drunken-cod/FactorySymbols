@@ -73,6 +73,12 @@
     "tag.item.symbols_n_signs.signs.prohibition": "Prohibition Signs",
     "tag.item.symbols_n_signs.signs.extra": "Extra Signs",
 
+    "tag.item.symbols_n_signs.support.bottom": "Bottom-supported Signs",
+    "tag.item.symbols_n_signs.support.vertical": "Vertically supported Signs",
+    "tag.item.symbols_n_signs.support.horizontal": "Horizontally supported Signs",
+    "tag.item.symbols_n_signs.support.any": "Horizontally and Vertically supported Signs",
+    "tag.item.symbols_n_signs.support.back": "Back-supported Signs",
+
     "tag.item.symbols_n_signs.symbols.coal": "Coal Symbols",
     "tag.item.symbols_n_signs.symbols.emerald": "Emerald Symbols",
     "tag.item.symbols_n_signs.symbols.gold": "Gold Symbols",
