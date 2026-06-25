@@ -59,7 +59,7 @@ For multiplayer, ensure the mod is installed on the server and all clients conne
 
 <br>
 
-## Modpack Policy
+## Modpack Policy:
 You are free to use Symbols'n'Signs in any modpacks; public or private :)  
 Just make sure you abide by [our licenses](#licenses), common sense, and [the Minecraft EULA.](https://minecraft.net/en-us/eula)  
 We would also appreciate a mention in the credits section of your modpack and a quick shout on our [discussion board](https://github.com/the-drunken-cod/Symbols-n-Signs/discussions) about your modpack (so we can check it out and play it ourselves!)  
@@ -67,9 +67,15 @@ Please also consider [reporting any issues or suggestions](https://github.com/th
 
 <br>
 
-## Licenses
+## Licenses:
 Code is licensed under the [AGPL-3.0-only.](./LICENSE.txt)  
 Original resources and assets in `common/src/main/resources/` are licensed under [MIT](src/main/resources/LICENSE.txt) unless otherwise stated.
+
+<br>
+
+## AI Usage:
+We use GenAI to make tedious work easier and bridge shortcomings. [Read our full policy here.](https://github.com/the-drunken-cod#genai-usage)  
+That being said, every generated line is reviewed, and all assets remain fully human-made.
 
 <br>
 

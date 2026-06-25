@@ -48,6 +48,12 @@ Original resources and assets in `common/src/main/resources/` are licensed under
 
 <br>
 
+## AI Usage:
+We use GenAI to make tedious work easier and bridge shortcomings. [Read our full policy here.](https://github.com/the-drunken-cod#genai-usage)  
+That being said, every generated line is reviewed, and all assets remain fully human-made.
+
+<br>
+
 ## Disclaimers:
 
 NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
