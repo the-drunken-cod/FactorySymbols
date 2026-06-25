@@ -1,7 +1,7 @@
 {
-    "itemGroup.symbols_n_signs.blocks": "[S'n'S] Blocks",
-    "itemGroup.symbols_n_signs.signs": "[S'n'S] Signs",
+    "itemGroup.symbols_n_signs.materials_and_blocks": "[S'n'S] Materials & Blocks",
     "itemGroup.symbols_n_signs.symbols": "[S'n'S] Symbols",
+    "itemGroup.symbols_n_signs.signs": "[S'n'S] Signs",
 
     "block.symbols_n_signs.display_panel": "Display Panel",
     "block.symbols_n_signs.display_panel.tooltip": "Item Frame in block form. Can be dyed.",

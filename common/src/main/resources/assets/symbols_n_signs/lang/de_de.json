@@ -1,7 +1,7 @@
 {
-    "itemGroup.symbols_n_signs.blocks": "[S'n'S] Blöcke",
-    "itemGroup.symbols_n_signs.signs": "[S'n'S] Schilder",
+    "itemGroup.symbols_n_signs.materials_and_blocks": "[S'n'S] Materialien & Blöcke",
     "itemGroup.symbols_n_signs.symbols": "[S'n'S] Symbole",
+    "itemGroup.symbols_n_signs.signs": "[S'n'S] Schilder",
 
     "block.symbols_n_signs.display_panel": "Anzeigetafel",
     "block.symbols_n_signs.display_panel.tooltip": "Rahmen in Block-Form. Kann gefärbt werden.",

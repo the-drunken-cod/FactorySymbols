@@ -68,18 +68,22 @@ public class ModItems {
         }
     }
 
+    /** Returns the default ItemStack for the given symbol material and type. */
     public static ItemStack getSymbolStack(SymbolMaterial mat, SymbolType sym) {
         return SYMBOLS.get(mat).get(sym).get().getDefaultInstance();
     }
 
+    /** Returns the default ItemStack for the given sign type. */
     public static ItemStack getSignStack(SignType sym) {
         return SIGN.get(sym).get().getDefaultInstance();
     }
 
     // #region Creative tabs
-    public static void populateBlocksTab(CreativeModeTab.Output output) {
+    public static void populateMaterialsAndBlocksTab(CreativeModeTab.Output output) {
         output.accept(RATCHET_WRENCH.get().getDefaultInstance());
+        output.accept(RETROREFLECTIVE_SHEET.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_ITEM.get().getDefaultInstance());
+        // output.accept(ModBlocks.SIGN_POST_SIGN_FIXTURE_ITEM.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_BUTTON_FIXTURE_ITEM.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_LAMP_FIXTURE_ITEM.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_REDSTONE_EMITTER_FIXTURE_ITEM.get().getDefaultInstance());
@@ -100,9 +104,6 @@ public class ModItems {
     }
 
     public static void populateSignsTab(CreativeModeTab.Output output) {
-        output.accept(RATCHET_WRENCH.get().getDefaultInstance());
-        output.accept(RETROREFLECTIVE_SHEET.get().getDefaultInstance());
-
         for (SignType sym : SignType.values())
             output.accept(getSignStack(sym));
     }
