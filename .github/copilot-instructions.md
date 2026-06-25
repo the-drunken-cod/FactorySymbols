@@ -30,7 +30,7 @@ The datagenned JSONs can be found under `src/generated/` for reference, but don'
 - Don't add comments for the sake of comments. Code should be self-explanatory and comments reserved for explanations or important notes.
 - Try to use datapack JSONs before writing any Java code.
 - Use 4 spaces for indentation.
-- Add `//#region` indicators for logical code sections (without `#endregion`). Keep the initial region comment concise and descriptive.
+- Use `// #region ${Short Descriptive Title}` markers (no `#endregion`) to section Java code. Try to stay below or equal to 39 characters, or an ellipse will be shown in the center of the title.
 - In the output, instead of including unmodified members, only show the new or modified code and make use of comments like `/* existing code */`.
 - When playing sound effects, call the method on _both_ the client and the server to ensure it plays for all players.
 - Use JetBrains annotations over javax ones, but use them only when absolutely necessary.

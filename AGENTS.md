@@ -32,7 +32,7 @@ Node tools (`tools/`) use **pnpm**, run via the root `package.json` scripts. Do 
 - **Custom model integer lookup:** `custom_model_data` integer is used for some blocks or items, like the Display Panel. The integer directly maps to the ordinal of the enum value of the model.
 - **Sound effects must be triggered on both client and server** to play for all players — this is not enforced by any lint rule.
 - **DataGen-first:** prefer datapack JSONs (tags, recipes, loot tables) and blockstates (when rendering models) over Java code wherever possible.
-- Use `// #region ${Short Descriptive Title}` markers (no `#endregion`) to section Java code.
+- Use `// #region ${Short Descriptive Title}` markers (no `#endregion`) to section Java code. Try to stay below or equal to 39 characters, or an ellipse will be shown in the center of the title.
 - 4-space indentation throughout; no javax annotations unless creating a nullable value is unavoidable.
 - Add imports instead of fully qualifying classes, even if they are only used once.
 - Use JetBrains annotations over javax ones, but use them only when absolutely necessary.
