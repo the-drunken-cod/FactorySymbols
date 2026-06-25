@@ -192,6 +192,8 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
                 case MODE_ORIENTATION -> {
                     Axis next = state.getValue(AXIS) == Axis.Z ? Axis.X : Axis.Z;
                     level.setBlock(pos, state.setValue(AXIS, next), Block.UPDATE_CLIENTS);
+                    // Fixture direction (DOWN) is unaffected by AXIS, so connection states stay
+                    // valid
                     player.displayClientMessage(
                             Component.translatable(getWrenchModeKey(state, MODE_ORIENTATION))
                                     .append(": ")

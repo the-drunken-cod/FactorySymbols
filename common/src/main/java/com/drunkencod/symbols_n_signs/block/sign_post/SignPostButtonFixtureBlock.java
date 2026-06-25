@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.drunkencod.symbols_n_signs.Constants;
 import com.drunkencod.symbols_n_signs.item.RatchetWrenchItem;
-import com.drunkencod.symbols_n_signs.platform.Services;
 import com.mojang.datafixers.kinds.Applicative;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -157,21 +156,6 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
             evaluateAndPropagate(level, pos);
     }
 
-    private void evaluateAndPropagate(Level level, BlockPos pos) {
-        BlockState current = level.getBlockState(pos);
-        if (!current.is(this))
-            return;
-        boolean shouldBePowered = SignPostNetworkUtil.hasDirectPower(level, pos, current);
-        boolean currentlyPowered = current.getValue(POWERED);
-        if (currentlyPowered == shouldBePowered)
-            return;
-        if (!shouldBePowered && SignPostNetworkUtil.isNetworkDirectlyPowered(level, pos,
-                Services.CONFIG.signPostRelayMaxDepth()))
-            return;
-        SignPostNetworkUtil.propagatePower(level, pos, shouldBePowered,
-                Services.CONFIG.signPostRelayMaxDepth());
-    }
-
     @Override
     protected boolean isSignalSource(BlockState state) {
         return true;
@@ -261,7 +245,8 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
                 case MODE_ORIENTATION -> {
                     int idx = HORIZONTAL_DIRS.indexOf(state.getValue(FACING));
                     Direction next = HORIZONTAL_DIRS.get((idx + 1) % HORIZONTAL_DIRS.size());
-                    level.setBlock(pos, state.setValue(FACING, next), Block.UPDATE_CLIENTS);
+                    BlockState newState = setConnectionStates(state.setValue(FACING, next), level, pos);
+                    level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
                     player.displayClientMessage(
                             Component.translatable(getWrenchModeKey(state, MODE_ORIENTATION))
                                     .append(": ")

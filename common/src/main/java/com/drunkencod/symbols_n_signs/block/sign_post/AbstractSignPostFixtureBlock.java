@@ -120,7 +120,7 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
         return ownState.setValue(DIRECTION_PROPS.get(direction), shouldConnect);
     }
 
-    private BlockState setConnectionStates(BlockState state, LevelAccessor level, BlockPos pos) {
+    public BlockState setConnectionStates(BlockState state, LevelAccessor level, BlockPos pos) {
         Direction blocked = getFixtureDirection(state);
         for (Map.Entry<Direction, BooleanProperty> entry : DIRECTION_PROPS.entrySet()) {
             Direction dir = entry.getKey();
@@ -140,6 +140,28 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
         if (stack.getItem() instanceof RatchetWrenchItem)
             return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
         return super.useItemOn(stack, state, level, pos, player, hand, hit);
+    }
+
+    // #region Network Propagation
+
+    /**
+     * Evaluates the state, propagates power and updates the shape of the sign post
+     * block at the given position, as well as all other adjacent sign post blocks
+     * in its network.
+     */
+    public void evaluateAndPropagate(Level level, BlockPos pos) {
+        BlockState current = level.getBlockState(pos);
+        if (!current.is(this))
+            return;
+        boolean shouldBePowered = SignPostNetworkUtil.hasDirectPower(level, pos, current);
+        boolean currentlyPowered = current.getValue(POWERED);
+        if (currentlyPowered == shouldBePowered)
+            return;
+        if (!shouldBePowered && SignPostNetworkUtil.isNetworkDirectlyPowered(level, pos,
+                Services.CONFIG.signPostRelayMaxDepth()))
+            return;
+        SignPostNetworkUtil.propagatePower(level, pos, shouldBePowered,
+                Services.CONFIG.signPostRelayMaxDepth());
     }
 
     // #region Redstone

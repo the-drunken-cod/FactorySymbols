@@ -272,7 +272,9 @@ public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixture
                         return InteractionResult.FAIL;
                     }
 
-                    level.setBlock(pos, state.setValue(FACE, nextFace).setValue(FACING, nextDir), Block.UPDATE_CLIENTS);
+                    BlockState newState = setConnectionStates(
+                            state.setValue(FACE, nextFace).setValue(FACING, nextDir), level, pos);
+                    level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
 
                     player.displayClientMessage(
                             Component.translatable(getWrenchModeKey(state, MODE_ORIENTATION))
