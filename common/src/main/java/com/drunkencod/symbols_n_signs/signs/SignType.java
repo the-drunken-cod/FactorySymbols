@@ -100,6 +100,12 @@ public enum SignType {
         REGULATORY_DEAD_END("regulatory_dead_end", SignCategory.REGULATORY),
         REGULATORY_CURVE_MARKER_LEFT("regulatory_curve_marker_left", SignCategory.REGULATORY),
         REGULATORY_CURVE_MARKER_RIGHT("regulatory_curve_marker_right", SignCategory.REGULATORY),
+        REGULATORY_ONE_STRIPE_MARKER_LEFT("regulatory_one_stripe_marker_left", SignCategory.REGULATORY),
+        REGULATORY_TWO_STRIPE_MARKER_LEFT("regulatory_two_stripe_marker_left", SignCategory.REGULATORY),
+        REGULATORY_THREE_STRIPE_MARKER_LEFT("regulatory_three_stripe_marker_left", SignCategory.REGULATORY),
+        REGULATORY_ONE_STRIPE_MARKER_RIGHT("regulatory_one_stripe_marker_right", SignCategory.REGULATORY),
+        REGULATORY_TWO_STRIPE_MARKER_RIGHT("regulatory_two_stripe_marker_right", SignCategory.REGULATORY),
+        REGULATORY_THREE_STRIPE_MARKER_RIGHT("regulatory_three_stripe_marker_right", SignCategory.REGULATORY),
         REGULATORY_PEDESTRIAN_CROSSING("regulatory_pedestrian_crossing", SignCategory.REGULATORY),
         REGULATORY_HIGHWAY("regulatory_highway", SignCategory.REGULATORY),
         REGULATORY_HIGHWAY_END("regulatory_highway_end", SignCategory.REGULATORY),
@@ -132,6 +138,7 @@ public enum SignType {
         PROHIBITION_NO_CARS("prohibition_no_cars", SignCategory.PROHIBITION),
         PROHIBITION_NO_BICYCLES("prohibition_no_bicycles", SignCategory.PROHIBITION),
         PROHIBITION_NO_PEDESTRIANS("prohibition_no_pedestrians", SignCategory.PROHIBITION),
+        PROHIBITION_NO_UNAUTHORIZED_PERSONS("prohibition_no_unauthorized_persons", SignCategory.PROHIBITION),
 
         // #region Extra
         EXTRA_NATO_BRIDGE_LOAD("extra_nato_bridge_load", SignCategory.EXTRA),
