@@ -7,13 +7,13 @@
     ],
     "key": {
         "N": {
-            "tag": "c:nuggets/iron"
+            "tag": "symbols_n_signs:sign_post_material/nuggets"
         },
         "P": {
             "tag": "c:glass_panes/colorless"
         },
         "I": {
-            "tag": "c:ingots/iron"
+            "tag": "symbols_n_signs:sign_post_material/ingots"
         }
     },
     "result": {

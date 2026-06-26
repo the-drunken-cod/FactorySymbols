@@ -8,13 +8,13 @@
     ],
     "key": {
         "N": {
-            "tag": "c:nuggets/iron"
+            "tag": "symbols_n_signs:sign_post_material/nuggets"
         },
         "T": {
             "item": "minecraft:iron_trapdoor"
         },
         "I": {
-            "tag": "c:ingots/iron"
+            "tag": "symbols_n_signs:sign_post_material/ingots"
         }
     },
     "result": {

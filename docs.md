@@ -249,7 +249,7 @@ Note: Any dye can be used in these recipes.
 
 ## Block Tags:
 - Displays:
-  - `symbols_n_signs:displays` - All blocks that can display items.
+  - `symbols_n_signs:displays` - All blocks that can display items. Also exists as an item tag with the same key.
 - Sign Post:
   - `symbols_n_signs:sign_post_blocks` - Contains the [Sign Post](#sign-post) and every [Sign Post Fixture](#sign-post-fixtures) block.
   - `symbols_n_signs:sign_post_fixtures` - Contains all [Sign Post Fixture](#sign-post-fixtures) blocks.
@@ -269,5 +269,9 @@ Note: Any dye can be used in these recipes.
   - `symbols_n_signs:signs` - All sign items.
   - `symbols_n_signs:signs/<category>` - All sign items of the given category. Can be `hazard`, `regulatory`, `prohibition`, or `extra`.
   - `symbols_n_signs:support/<support_type>` - Where the sign's valid attachment points are. Can be `bottom`, `vertical`, `horizontal`, `any`, or `back`.
+- Materials:
+  - `c:plates/retroreflective` - Contains the [Retroreflective Sheet.](#retroreflective-sheet)
+  - `symbols_n_signs:sign_post_material/ingots` - Contains all material ingots that can be used to craft [Sign Posts](#sign-post) and [Sign Post Fixtures.](#sign-post-fixtures) Contains Iron and Zinc (from other mods) by default.
+  - `symbols_n_signs:sign_post_material/nuggets` - Contains all material nuggets that can be used to craft [Sign Posts](#sign-post) and [Sign Post Fixtures.](#sign-post-fixtures) Contains Iron and Zinc (from other mods) by default.
 - Other:
   - `symbols_n_signs:powered_lamps` - Lamp blocks that respond to a redstone signal. Used in the [Lamp Fixture](#lamp-fixture) crafting recipe.

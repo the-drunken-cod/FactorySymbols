@@ -1,0 +1,7 @@
+{
+    "replace": false,
+    "values": [
+        "#c:ingots/iron",
+        { "id": "#c:ingots/zinc", "required": false }
+    ]
+}
