@@ -74,7 +74,7 @@ public final class SignFixtureGeometry {
         m.setColumn(0, new Vector4f(right, 0f));
         m.setColumn(1, new Vector4f(trueUp, 0f));
         m.setColumn(2, new Vector4f(normal, 0f));
-        m.rotate(Axis.ZP.rotationDegrees(rotation * 45f));
+        m.rotate(Axis.ZP.rotationDegrees(rotation * -45f));
         return m;
     }
 
