@@ -70,7 +70,7 @@ public class SymbolsNSignsMod {
         // #region Wrench survival left-click
 
         private static final Map<UUID, Long> lastWrenchClickTick = new HashMap<>();
-        private static final int WRENCH_CLICK_COOLDOWN = 5;
+        private static final int WRENCH_CLICK_COOLDOWN = 1;
 
         private static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
                 if (event.getAction() != PlayerInteractEvent.LeftClickBlock.Action.START)

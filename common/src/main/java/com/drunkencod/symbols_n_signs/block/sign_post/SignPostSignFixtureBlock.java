@@ -19,6 +19,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -100,6 +101,15 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
      * Bounding box of a face's two panes (front + back), derived from the same
      * Stance/Rotation/Scale transform the renderer uses, so the collision shape
      * always matches what's drawn. See {@link SignFixtureGeometry}.
+     * <p>
+     * Clamped to the block's own unit cube: collision and raycasting are both
+     * keyed by block position (only the shape of the block actually being
+     * visited is ever consulted), so any part of a shape that spills into a
+     * neighboring cell is invisible to both from that neighbor's side —
+     * causing exactly the rubberbanding/forced-crawl/partial-clipping
+     * symptoms a large Scale or perpendicular Stance can produce. Clamping
+     * means the overflowing visual portion simply isn't solid or targetable,
+     * which is the safer tradeoff.
      */
     private static VoxelShape buildPaneBump(Direction face, SignFixtureFaceData data) {
         Matrix4f pivot = SignFixtureGeometry.buildPivotTransform(face, data);
@@ -119,6 +129,12 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
                 maxZ = Math.max(maxZ, p.z());
             }
         }
+        minX = Mth.clamp(minX, 0f, 1f);
+        minY = Mth.clamp(minY, 0f, 1f);
+        minZ = Mth.clamp(minZ, 0f, 1f);
+        maxX = Mth.clamp(maxX, 0f, 1f);
+        maxY = Mth.clamp(maxY, 0f, 1f);
+        maxZ = Mth.clamp(maxZ, 0f, 1f);
         return Shapes.create(new AABB(minX, minY, minZ, maxX, maxY, maxZ));
     }
 
@@ -189,6 +205,8 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
     }
 
     // #region Interaction - removing a single face's sign with an empty hand
+
+    // TODO: use raycast to check targeted face
 
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
@@ -342,11 +360,14 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
                 case MODE_STANCE -> {
                     List<SignStance> available = SignStance.getAvailableStances(getSupportType(data), face);
                     int idx = available.indexOf(data.getStance());
-                    SignStance next = available.get((idx + 1) % available.size());
-                    be.setFaceData(face, data.withStance(next));
+                    SignStance nextStance = available.get((idx + 1) % available.size());
+                    be.setFaceData(face, data.withStance(nextStance));
                     player.displayClientMessage(
                             Component.translatable(getWrenchModeKey(state, face, MODE_STANCE))
-                                    .append(": " + next),
+                                    .append(": ")
+                                    .append(Component.translatable(
+                                            getWrenchModeKey(state, clickedFace, MODE_STANCE) + ".value."
+                                                    + nextStance.getName())),
                             true);
                 }
                 case MODE_ROTATION -> {
@@ -382,7 +403,10 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
                     be.setFaceData(face, data.withDoubleSided(nextDblSided));
                     player.displayClientMessage(
                             Component.translatable(getWrenchModeKey(state, face, MODE_DOUBLE_SIDED))
-                                    .append(": " + nextDblSided),
+                                    .append(": ")
+                                    .append(Component.translatable(
+                                            getWrenchModeKey(state, clickedFace, MODE_DOUBLE_SIDED) + ".value."
+                                                    + nextDblSided)),
                             true);
                 }
                 case MODE_BRIGHT -> {
@@ -390,7 +414,10 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
                     be.setFaceData(face, data.withBright(nextBright));
                     player.displayClientMessage(
                             Component.translatable(getWrenchModeKey(state, face, MODE_BRIGHT))
-                                    .append(": " + nextBright),
+                                    .append(": ")
+                                    .append(Component.translatable(
+                                            getWrenchModeKey(state, clickedFace, MODE_BRIGHT) + ".value."
+                                                    + nextBright)),
                             true);
                 }
             }

@@ -22,7 +22,7 @@ public final class SignFixtureGeometry {
      * Distance the stance/rotation/scale pivot sits outward from the post's face
      * plane.
      */
-    public static final float ATTACH_OFFSET = 2.5f / 16f;
+    public static final float ATTACH_OFFSET = -(5.25f / 16f);
     /**
      * Half the gap between the front and back pane, along the pane's local normal.
      */
@@ -54,6 +54,9 @@ public final class SignFixtureGeometry {
         Vector3f right = new Vector3f(up).cross(normal).normalize();
         Vector3f trueUp = new Vector3f(normal).cross(right).normalize();
 
+        if (face == Direction.UP || face == Direction.DOWN)
+            offset -= 1.85f / 16f;
+
         float along = ATTACH_OFFSET + offset;
         if (stance != SignStance.FLAT)
             // One of the pane's two in-plane axes always ends up parallel to the
@@ -62,7 +65,9 @@ public final class SignFixtureGeometry {
             // attachment point instead of burying half the pane in the post.
             along += data.getScale() * BASE_PANE_SIZE / 2f;
 
-        Vector3f pivot = new Vector3f(0.5f, 0.5f, 0.5f).add(new Vector3f(faceNormal).mul(along));
+        // +0.5f first reaches the face's outer surface from the block center;
+        // `along` is then the (small) clearance past that surface.
+        Vector3f pivot = new Vector3f(0.5f, 0.5f, 0.5f).add(new Vector3f(faceNormal).mul(0.5f + along));
 
         Matrix4f m = new Matrix4f();
         m.translate(pivot);

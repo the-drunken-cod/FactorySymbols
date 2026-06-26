@@ -18,11 +18,17 @@ import java.util.List;
  * {@code docs/todo/sign_post_sign_fixture.md}.
  */
 public enum SignStance {
-    FLAT,
-    PERP_A,
-    PERP_B,
-    PERP_C,
-    PERP_D;
+    FLAT("flat"),
+    PERP_A("perpendicular_a"),
+    PERP_B("perpendicular_b"),
+    PERP_C("perpendicular_c"),
+    PERP_D("perpendicular_d");
+
+    private String name;
+
+    private SignStance(String name) {
+        this.name = name;
+    }
 
     /**
      * Returns the Stance values valid for a sign with the given support type, on
@@ -56,5 +62,9 @@ public enum SignStance {
             }
         }
         return stances;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
