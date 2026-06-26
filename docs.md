@@ -10,7 +10,7 @@
   - [Display Panel](#display-panel) - Item Frame in block form, with 16 color variants and redstone locking.
   - [Sign Post](#sign-post) - Pipe-like block for making custom road signs.
     - [Sign Post Fixtures](#sign-post-fixtures) - Attachments for Sign Posts.
-      - [TODO: Sign Fixture](#sign-fixture) - Allows placing a sign on any side of a Sign Post.
+      - [Sign Fixture](#sign-fixture) - Allows placing signs on any face of a Sign Post.
       - [Button Fixture](#button-fixture) - Horizontally attached button for Sign Posts.
       - [Lamp Fixture](#lamp-fixture) - Lamp that can hang on the bottom of Sign Posts.
       - [Redstone Emitter Fixture](#redstone-emitter-fixture) - Emits a strong signal when the attached Sign Post is powered.
@@ -33,9 +33,9 @@ You can use the [Display Panel](#display-panel) or the [Sign Fixture](#sign-fixt
   
 Some categories of symbols have special shapes, like a triangular base for the "Warning" category. This is purely cosmetic.  
   
-![Showcase of Symbols on Display Panels and Sign Fixtures](./mod_assets/other/symbol_showcase.png)  
+![TODO: Showcase of Symbols on Display Panels and Sign Fixtures](./mod_assets/other/symbol_showcase.png)  
   
-![List of Symbols](./mod_assets/other/symbol_list.png)  
+![TODO: List of Symbols](./mod_assets/other/symbol_list.png)  
 
 <br><br>
 
@@ -52,9 +52,9 @@ Inspect the tags of each sign to find out its attachment points.
 Most of the signs are designed off the European, and specifically German road signs (according to StVO), including the font used for text on some signs.  
 However, there are also some signs that are more generic, or come from other countries, like the UK or Switzerland.  
   
-![Showcase of Sign Posts and Signs](./mod_assets/other/sign_showcase.png)  
+![TODO: Showcase of Sign Posts and Signs](./mod_assets/other/sign_showcase.png)  
   
-![List of Signs](./mod_assets/other/sign_list.png)  
+![TODO: List of Signs](./mod_assets/other/sign_list.png)  
 
 <br><br>
 
@@ -114,6 +114,10 @@ When sneak-right-clicked with a [Ratchet Wrench](#ratchet-wrench), the sign post
 #### Crafting recipe:
 
 ![Sign Post Crafting Recipe](./mod_assets/recipes/sign_post.png)  
+  
+Note:
+- The ingots and nuggets shown in the recipe have to be [any item with the tags `symbols_n_signs:sign_post_material/ingots` or `symbols_n_signs:sign_post_material/nuggets`.](#item-tags)   
+  By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
 
@@ -128,14 +132,23 @@ When sneak-right-clicking a fixture with the wrench, it will break and be picked
 <br><br>
 
 ### Sign Fixture:
-When placed on any face of a sign post, the sign fixture will allow you to place a [Sign](#signs) or [Symbol](#symbols) on it.  
-The sign will be rendered either flat against horizontal faces, 90° perpendicular to horizontal faces, or hanging or standing on vertical faces, depending on the sign's available attachment points, and the fixture's orientation and rotation, which can be configured with the [Ratchet Wrench](#ratchet-wrench).  
+When placed on a sign post, the sign fixture will allow you to place any [Sign item](#signs) on it.  
+The sign will be rendered either flat against horizontal faces, 90° or -90° perpendicular to horizontal faces, or hanging or standing on vertical faces, depending on the sign's available attachment points, and the fixture's orientation and rotation, which can be configured with the [Ratchet Wrench](#ratchet-wrench).  
   
-TODO:
+#### Interactions:
+  
+- **Right-click a [Sign item](#signs)** on a face of the fixture to store the item in the targeted face and display it on that face.
+- **Sneak-right-click with an empty hand** to remove the sign from the targeted face.
+- **Right-clicking with the [Ratchet Wrench](#ratchet-wrench)** configures the currently targeted face's settings.
+- **Left-clicking with the [Ratchet Wrench](#ratchet-wrench)** configures the currently selected mode, which is shared across all faces.
   
 #### Crafting recipe:
 
 ![Sign Fixture Crafting Recipe](./mod_assets/recipes/sign_post_sign_fixture.png)  
+  
+Note:
+- The ingots and nuggets shown in the recipe have to be [any item with the tags `symbols_n_signs:sign_post_material/ingots` or `symbols_n_signs:sign_post_material/nuggets`.](#item-tags)  
+  By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
 
@@ -156,6 +169,8 @@ Note:
 - The item in the center is a [Retroreflective Sheet.](#retroreflective-sheet)
 - The item in the bottom center can be [any item with the tag `symbols_n_signs:powered_lamps`.](#item-tags)  
   By default, this includes the Redstone Lamp and any Copper Bulb variant.
+- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_material/nuggets`.](#item-tags)  
+  By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
 
@@ -170,6 +185,10 @@ This means buttons can even be used for creating NAND and OR gates on a Sign Pos
 #### Crafting recipe:
 
 ![Button Fixture Crafting Recipe](./mod_assets/recipes/sign_post_button_fixture.png)  
+  
+Notes:
+- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_material/nuggets`.](#item-tags)   
+  By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
 
@@ -185,6 +204,10 @@ When combining this with the inversion modes of the [Button Fixture](#button-fix
 #### Crafting recipe:
 
 ![Redstone Emitter Fixture Crafting Recipe](./mod_assets/recipes/sign_post_redstone_emitter_fixture.png)  
+  
+Notes:
+- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_material/nuggets`.](#item-tags)   
+  By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
 
