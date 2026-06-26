@@ -78,6 +78,8 @@
 
     "subtitles.symbols_n_signs.ratchet_wrench.change_mode": "Ratchet Wrench Mode Changed",
     "subtitles.symbols_n_signs.ratchet_wrench.use": "Ratchet Wrench Used",
+    "subtitles.symbols_n_signs.sign_post_sign_fixture.add_item": "Sign Placed",
+    "subtitles.symbols_n_signs.sign_post_sign_fixture.remove_item": "Sign Taken",
 
     "tag.item.c.plates.retroreflective": "Retroreflective Plates",
 
