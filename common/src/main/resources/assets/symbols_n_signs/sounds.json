@@ -1,4 +1,22 @@
 {
+    "block.sign_post_sign_fixture.add_item": {
+        "sounds": [
+            "entity/itemframe/add_item1",
+            "entity/itemframe/add_item2",
+            "entity/itemframe/add_item3",
+            "entity/itemframe/add_item4"
+        ],
+        "subtitle": "subtitles.symbols_n_signs.sign_post_sign_fixture.add_item"
+    },
+    "block.sign_post_sign_fixture.remove_item": {
+        "sounds": [
+            "entity/itemframe/remove_item1",
+            "entity/itemframe/remove_item2",
+            "entity/itemframe/remove_item3",
+            "entity/itemframe/remove_item4"
+        ],
+        "subtitle": "subtitles.symbols_n_signs.sign_post_sign_fixture.remove_item"
+    },
     "item.ratchet_wrench.change_mode": {
         "sounds": [
             "minecraft:random/click"

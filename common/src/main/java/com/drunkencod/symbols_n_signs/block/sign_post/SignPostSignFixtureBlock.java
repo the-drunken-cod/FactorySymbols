@@ -5,6 +5,7 @@ import java.util.List;
 import com.drunkencod.symbols_n_signs.Constants;
 import com.drunkencod.symbols_n_signs.item.RatchetWrenchItem;
 import com.drunkencod.symbols_n_signs.item.SignItem;
+import com.drunkencod.symbols_n_signs.registry.ModSoundEvents;
 import com.drunkencod.symbols_n_signs.signs.SignStance;
 import com.drunkencod.symbols_n_signs.signs.SignSupportType;
 import com.mojang.datafixers.kinds.Applicative;
@@ -17,7 +18,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
@@ -188,19 +188,19 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
         if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be) || be.isOccupied(face))
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
-        if (!level.isClientSide()) {
-            ItemStack toStore = stack.copyWithCount(1);
-            be.setFaceData(face, SignFixtureFaceData.initial(toStore));
+        ItemStack toStore = stack.copyWithCount(1);
+        be.setFaceData(face, SignFixtureFaceData.initial(toStore));
 
-            BlockState newState = setConnectionStates(state, level, pos);
-            level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+        BlockState newState = setConnectionStates(state, level, pos);
+        level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
 
-            if (!player.isCreative())
-                stack.shrink(1);
-            level.playSound(player, pos, SoundEvents.ITEM_FRAME_ADD_ITEM, SoundSource.BLOCKS, 0.75f, 1.3f);
-            level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-            Constants.LOG.info("Placed sign {} on face {} of Sign Fixture at {}", toStore.getItem(), face, pos);
-        }
+        if (!player.isCreative())
+            stack.shrink(1);
+
+        playAddItemSound(level, pos, player);
+        level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+
+        Constants.LOG.info("Placed sign {} on face {} of Sign Fixture at {}", toStore.getItem(), face, pos);
         return ItemInteractionResult.sidedSuccess(level.isClientSide());
     }
 
@@ -218,19 +218,31 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
         if (face == null || !be.isOccupied(face))
             return InteractionResult.PASS;
 
-        if (!level.isClientSide()) {
-            ItemStack removed = be.removeFace(face);
+        ItemStack removed = be.removeFace(face);
 
-            BlockState newState = setConnectionStates(state, level, pos);
-            level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+        BlockState newState = setConnectionStates(state, level, pos);
+        level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
 
-            if (!removed.isEmpty() && !player.getInventory().add(removed))
-                player.drop(removed, false);
-            level.playSound(player, pos, SoundEvents.ITEM_FRAME_REMOVE_ITEM, SoundSource.BLOCKS, 0.75f, 1.3f);
-            level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
-            Constants.LOG.info("Removed sign from face {} of Sign Fixture at {}", face, pos);
-        }
+        if (!player.isCreative() && !removed.isEmpty() && !player.getInventory().add(removed))
+            player.drop(removed, false);
+
+        playRemoveItemSound(level, pos, player);
+        level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
+
+        Constants.LOG.info("Removed sign from face {} of Sign Fixture at {}", face, pos);
         return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    // #region Sound
+
+    private static void playAddItemSound(Level level, BlockPos pos, Player player) {
+        level.playSound(null, pos, ModSoundEvents.SIGN_POST_SIGN_FIXTURE_ADD_ITEM.get(), SoundSource.PLAYERS, 1.0f,
+                0.7f);
+    }
+
+    private static void playRemoveItemSound(Level level, BlockPos pos, Player player) {
+        level.playSound(player, pos, ModSoundEvents.SIGN_POST_SIGN_FIXTURE_REMOVE_ITEM.get(), SoundSource.PLAYERS, 1.0f,
+                0.7f);
     }
 
     // #region Drop contained signs on block removal

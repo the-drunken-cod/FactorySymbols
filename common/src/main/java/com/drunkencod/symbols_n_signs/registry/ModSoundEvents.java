@@ -10,10 +10,17 @@ import net.minecraft.sounds.SoundEvent;
 
 public class ModSoundEvents {
 
+    // #region Sign Fixture
+    public static final Supplier<SoundEvent> SIGN_POST_SIGN_FIXTURE_ADD_ITEM = registerSoundEvent(
+            "block.sign_post_sign_fixture.add_item");
+    public static final Supplier<SoundEvent> SIGN_POST_SIGN_FIXTURE_REMOVE_ITEM = registerSoundEvent(
+            "block.sign_post_sign_fixture.remove_item");
+
     // #region Ratchet Wrench
     public static final Supplier<SoundEvent> RATCHET_WRENCH_CHANGE_MODE = registerSoundEvent(
             "item.ratchet_wrench.change_mode");
-    public static final Supplier<SoundEvent> RATCHET_WRENCH_USE = registerSoundEvent("item.ratchet_wrench.use");
+    public static final Supplier<SoundEvent> RATCHET_WRENCH_USE = registerSoundEvent(
+            "item.ratchet_wrench.use");
 
     // #region register
 
