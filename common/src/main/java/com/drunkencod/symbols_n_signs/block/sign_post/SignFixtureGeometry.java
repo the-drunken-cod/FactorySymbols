@@ -40,11 +40,15 @@ public final class SignFixtureGeometry {
      * spin. Rotation and Scale are applied on top of this in
      * {@link #buildPaneTransform}, so they share the same pivot as Stance.
      */
-    public static Matrix4f buildPivotTransform(Direction face, SignStance stance, int rotation) {
+    public static Matrix4f buildPivotTransform(Direction face, SignFixtureFaceData data) {
+        SignStance stance = data.getStance();
+        int rotation = data.getRotation();
+        float offset = data.getOffset();
+
         Matrix4f m = new Matrix4f();
         m.translate(0.5f, 0.5f, 0.5f);
         m.rotate(faceOrientation(face));
-        m.translate(0f, 0f, ATTACH_OFFSET);
+        m.translate(0f, 0f, ATTACH_OFFSET + offset);
         m.rotate(stanceRotation(face, stance));
         m.rotate(Axis.ZP.rotationDegrees(rotation * 45f));
         return m;

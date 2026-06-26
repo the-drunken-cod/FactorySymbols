@@ -63,7 +63,7 @@ public class SignPostSignFixtureBlockEntityRenderer implements BlockEntityRender
         VertexConsumer atlasConsumer = buffers.getBuffer(RenderType.entityCutout(InventoryMenu.BLOCK_ATLAS));
         int light = data.isBright() ? LightTexture.FULL_BRIGHT : packedLight;
 
-        Matrix4f pivot = SignFixtureGeometry.buildPivotTransform(face, data.getStance(), data.getRotation());
+        Matrix4f pivot = SignFixtureGeometry.buildPivotTransform(face, data);
 
         poseStack.pushPose();
         poseStack.last().pose().mul(pivot);

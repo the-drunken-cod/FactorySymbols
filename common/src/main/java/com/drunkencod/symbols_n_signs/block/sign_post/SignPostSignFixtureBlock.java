@@ -100,7 +100,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
      * always matches what's drawn. See {@link SignFixtureGeometry}.
      */
     private static VoxelShape buildPaneBump(Direction face, SignFixtureFaceData data) {
-        Matrix4f pivot = SignFixtureGeometry.buildPivotTransform(face, data.getStance(), data.getRotation());
+        Matrix4f pivot = SignFixtureGeometry.buildPivotTransform(face, data);
         Matrix4f frontPane = SignFixtureGeometry.buildPaneTransform(pivot, data.getScale(), 1);
         Matrix4f backPane = SignFixtureGeometry.buildPaneTransform(pivot, data.getScale(), -1);
 
