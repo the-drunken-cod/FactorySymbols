@@ -175,7 +175,7 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
             if (wrench.isEmpty())
                 return InteractionResult.PASS;
             ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
-            int next = (RatchetWrenchItem.getSelectedMode(wrench, blockId) + (player.isCrouching() ? -1 : 1))
+            int next = (RatchetWrenchItem.getSelectedMode(wrench, blockId) + (player.isShiftKeyDown() ? -1 : 1))
                     % MODE_COUNT;
             if (next <= -1)
                 next = MODE_COUNT - 1;
