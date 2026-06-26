@@ -21,7 +21,7 @@ Node tools (`tools/`) use **pnpm**, run via the root `package.json` scripts. Do 
 
 **NeoForge lang file is fully generated** — it lives in `neoforge/src/generated/resources` and is produced by `NeoForgeLanguageProvider` during DataGen. The build excludes the duplicate from `commonResources` via `DuplicatesStrategy.EXCLUDE`. If lang keys are missing for NeoForge, run DataGen rather than adding a static file.
 
-**`source/` is a local reference copy** of decompiled Minecraft assets, data and source — it is not part of the build, is in .gitignore, is never distributed under any circumstance, and must be set up manually by the local developer. If `source/` is absent, don't panic; it's an optional reference for development close to the source.
+**`source/` is a local reference copy** of decompiled game assets, data and source — it is not part of the build, is in .gitignore, is never distributed under any circumstance, and must be set up manually by the local developer. If `source/` is absent, don't panic; it's an optional reference for development close to the source.
 
 **Run directories** (`neoforge/run/`, `fabric/run/`) are dev-environment artifacts for testing, not shipping artifacts.
 

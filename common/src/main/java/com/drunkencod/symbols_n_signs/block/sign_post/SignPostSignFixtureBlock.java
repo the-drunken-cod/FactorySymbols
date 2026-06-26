@@ -33,10 +33,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
@@ -118,6 +120,40 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             }
         }
         return Shapes.create(new AABB(minX, minY, minZ, maxX, maxY, maxZ));
+    }
+
+    /**
+     * Which occupied face the wrench actually hit, determined from the exact
+     * impact point rather than the block's outer-cube face: a sign's pane often
+     * doesn't lie flush with that outer face (a perpendicular Stance, or the
+     * backside of a double-sided sign), so the literal {@code clickedFace} the
+     * game reports frequently doesn't match the fixture face being aimed at.
+     * Falls back to the occupied face whose pane is nearest the hit point if
+     * none of them strictly contain it (e.g. a hit landing exactly on a
+     * boundary plane).
+     */
+    private static @Nullable Direction resolveTargetFace(BlockPos pos, SignPostSignFixtureBlockEntity be,
+            @Nullable Vec3 hitLocation) {
+        if (hitLocation == null)
+            return null;
+        Vec3 local = hitLocation.subtract(pos.getX(), pos.getY(), pos.getZ());
+
+        Direction nearest = null;
+        double nearestDistSq = Double.MAX_VALUE;
+        for (Direction face : be.getOccupiedFaces()) {
+            SignFixtureFaceData data = be.getFaceData(face);
+            if (data == null)
+                continue;
+            AABB box = buildPaneBump(face, data).bounds();
+            if (box.contains(local.x, local.y, local.z))
+                return face;
+            double distSq = box.distanceToSqr(local);
+            if (distSq < nearestDistSq) {
+                nearestDistSq = distSq;
+                nearest = face;
+            }
+        }
+        return nearest;
     }
 
     // #region Interaction - placing a sign onto an unoccupied face
@@ -265,29 +301,33 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
 
     @Override
     public InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
-            Player player) {
-        if (clickedFace == null
-                || !(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be)
-                || !be.isOccupied(clickedFace))
+            @Nullable Vec3 hitLocation, Player player) {
+        if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be))
+            return InteractionResult.PASS;
+        Direction face = resolveTargetFace(pos, be, hitLocation);
+        if (face == null)
             return InteractionResult.PASS;
         if (!level.isClientSide()) {
             ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
             if (wrench.isEmpty())
                 return InteractionResult.PASS;
             ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
-            int next = (RatchetWrenchItem.getSelectedMode(wrench, blockId, clickedFace) + 1) % MODE_COUNT;
-            RatchetWrenchItem.setSelectedMode(wrench, blockId, clickedFace, next);
-            player.displayClientMessage(Component.literal(getWrenchModeString(state, clickedFace, next)), true);
+            int next = (RatchetWrenchItem.getSelectedMode(wrench, blockId, face) + 1) % MODE_COUNT;
+            RatchetWrenchItem.setSelectedMode(wrench, blockId, face, next);
+            player.displayClientMessage(Component.literal(getWrenchModeString(state, face, next)), true);
         }
         return InteractionResult.SUCCESS;
     }
 
     @Override
     public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
-            Player player) {
-        if (clickedFace == null || !(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be))
+            Vec3 hitLocation, Player player) {
+        if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be))
             return InteractionResult.PASS;
-        SignFixtureFaceData data = be.getFaceData(clickedFace);
+        Direction face = resolveTargetFace(pos, be, hitLocation);
+        if (face == null)
+            return InteractionResult.PASS;
+        SignFixtureFaceData data = be.getFaceData(face);
         if (data == null)
             return InteractionResult.PASS;
 
@@ -296,60 +336,60 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             if (wrench.isEmpty())
                 return InteractionResult.PASS;
             ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
-            int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId, clickedFace);
-            Constants.LOG.debug("Sign Fixture wrench right-click at {} face {} mode {}", pos, clickedFace, mode);
+            int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId, face);
+            Constants.LOG.debug("Sign Fixture wrench right-click at {} face {} mode {}", pos, face, mode);
             switch (mode) {
                 case MODE_STANCE -> {
-                    List<SignStance> available = SignStance.getAvailableStances(getSupportType(data), clickedFace);
+                    List<SignStance> available = SignStance.getAvailableStances(getSupportType(data), face);
                     int idx = available.indexOf(data.getStance());
                     SignStance next = available.get((idx + 1) % available.size());
-                    be.setFaceData(clickedFace, data.withStance(next));
+                    be.setFaceData(face, data.withStance(next));
                     player.displayClientMessage(
-                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_STANCE))
+                            Component.translatable(getWrenchModeKey(state, face, MODE_STANCE))
                                     .append(": " + next),
                             true);
                 }
                 case MODE_ROTATION -> {
                     int nextRot = (data.getRotation() + 1) % SignFixtureFaceData.ROTATION_COUNT;
-                    be.setFaceData(clickedFace, data.withRotation(nextRot));
+                    be.setFaceData(face, data.withRotation(nextRot));
                     player.displayClientMessage(
-                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_ROTATION))
+                            Component.translatable(getWrenchModeKey(state, face, MODE_ROTATION))
                                     .append(": " + nextRot),
                             true);
                 }
                 case MODE_SCALE -> {
-                    float nextSc = data.getScale() + SignFixtureFaceData.SCALE_STEP;
+                    float nextSc = Math.round((data.getScale() + SignFixtureFaceData.SCALE_STEP) * 100f) / 100f;
                     if (nextSc > SignFixtureFaceData.MAX_SCALE + 1e-3f)
                         nextSc = SignFixtureFaceData.MIN_SCALE;
-                    be.setFaceData(clickedFace, data.withScale(nextSc));
+                    be.setFaceData(face, data.withScale(nextSc));
                     player.displayClientMessage(
-                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_SCALE))
+                            Component.translatable(getWrenchModeKey(state, face, MODE_SCALE))
                                     .append(": " + nextSc),
                             true);
                 }
                 case MODE_OFFSET -> {
-                    float nextOff = data.getOffset() + SignFixtureFaceData.OFFSET_STEP;
+                    float nextOff = Math.round((data.getOffset() + SignFixtureFaceData.OFFSET_STEP) * 100f) / 100f;
                     if (nextOff > SignFixtureFaceData.MAX_OFFSET + 1e-3f)
                         nextOff = SignFixtureFaceData.MIN_OFFSET;
-                    be.setFaceData(clickedFace, data.withOffset(nextOff));
+                    be.setFaceData(face, data.withOffset(nextOff));
                     player.displayClientMessage(
-                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_OFFSET))
+                            Component.translatable(getWrenchModeKey(state, face, MODE_OFFSET))
                                     .append(": " + nextOff),
                             true);
                 }
                 case MODE_DOUBLE_SIDED -> {
                     boolean nextDblSided = !data.isDoubleSided();
-                    be.setFaceData(clickedFace, data.withDoubleSided(nextDblSided));
+                    be.setFaceData(face, data.withDoubleSided(nextDblSided));
                     player.displayClientMessage(
-                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_DOUBLE_SIDED))
+                            Component.translatable(getWrenchModeKey(state, face, MODE_DOUBLE_SIDED))
                                     .append(": " + nextDblSided),
                             true);
                 }
                 case MODE_BRIGHT -> {
                     boolean nextBright = !data.isBright();
-                    be.setFaceData(clickedFace, data.withBright(nextBright));
+                    be.setFaceData(face, data.withBright(nextBright));
                     player.displayClientMessage(
-                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_BRIGHT))
+                            Component.translatable(getWrenchModeKey(state, face, MODE_BRIGHT))
                                     .append(": " + nextBright),
                             true);
                 }

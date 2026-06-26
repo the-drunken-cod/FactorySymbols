@@ -13,7 +13,7 @@ Modding Framework: NeoForge v21.1
 
 # Reference
 
-The full Minecraft source code and assets are available under `source/` (if set up properly):
+The decompiled game code and assets are available under `source/` (if set up properly):
 
 - `source/assets/` contains all assets in the format of a standard resource pack.
 - `source/data/` contains the default datapack, like vanilla tags and more.

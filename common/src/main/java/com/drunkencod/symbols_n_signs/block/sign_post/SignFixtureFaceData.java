@@ -21,8 +21,8 @@ public final class SignFixtureFaceData {
     public static final int ROTATION_COUNT = 8;
 
     public static final float MIN_OFFSET = 0f;
-    public static final float MAX_OFFSET = 1f / 16f;
-    public static final float OFFSET_STEP = 0.25f / 16f;
+    public static final float MAX_OFFSET = 0.05f;
+    public static final float OFFSET_STEP = 0.01f;
 
     private static final String NBT_ITEM = "item";
     private static final String NBT_STANCE = "stance";

@@ -20,10 +20,16 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.sounds.SoundSource;
+
+import org.jetbrains.annotations.Nullable;
 
 public class RatchetWrenchItem extends Item {
     public static final String ID = "ratchet_wrench";
@@ -44,9 +50,28 @@ public class RatchetWrenchItem extends Item {
             Player player) {
         if (!(state.getBlock() instanceof IWrenchConfigurable configurable))
             return;
-        InteractionResult result = configurable.onWrenchLeftClick(level, pos, state, clickedFace, player);
+        Vec3 hitLocation = raytraceExactHit(level, player, pos);
+        InteractionResult result = configurable.onWrenchLeftClick(level, pos, state, clickedFace, hitLocation, player);
         if (result.consumesAction())
             playChangeModeSound(level, pos, player);
+    }
+
+    /**
+     * Left-click block events only carry the block's outer face, not the exact
+     * impact point. Re-running the player's own raycast recovers it, so
+     * multi-face fixtures (Sign Fixture) can tell which of their occupied
+     * sub-shapes was actually hit instead of just which outer-cube face.
+     */
+    private static @Nullable Vec3 raytraceExactHit(Level level, Player player, BlockPos expectedPos) {
+        double reach = player.blockInteractionRange();
+        Vec3 eye = player.getEyePosition();
+        Vec3 look = player.getViewVector(1.0f);
+        Vec3 to = eye.add(look.x * reach, look.y * reach, look.z * reach);
+        BlockHitResult hit = level
+                .clip(new ClipContext(eye, to, ClipContext.Block.OUTLINE, ClipContext.Fluid.NONE, player));
+        if (hit.getType() != HitResult.Type.BLOCK || !hit.getBlockPos().equals(expectedPos))
+            return null;
+        return hit.getLocation();
     }
 
     @Override
@@ -67,7 +92,7 @@ public class RatchetWrenchItem extends Item {
             try {
                 BlockState state = level.getBlockState(pos);
                 InteractionResult result = configurable.onWrenchRightClick(level, pos, state, ctx.getClickedFace(),
-                        ctx.getPlayer());
+                        ctx.getClickLocation(), ctx.getPlayer());
                 if (result.consumesAction())
                     playUseSound(level, pos, ctx.getPlayer());
             } catch (Exception e) {

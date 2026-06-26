@@ -29,6 +29,7 @@ import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -168,7 +169,7 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
 
     @Override
     public InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
-            Player player) {
+            Vec3 hitLocation, Player player) {
         if (!level.isClientSide()) {
             ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
             if (wrench.isEmpty())
@@ -183,7 +184,7 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
 
     @Override
     public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
-            Player player) {
+            Vec3 hitLocation, Player player) {
         if (!level.isClientSide()) {
             ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
             if (wrench.isEmpty())

@@ -1,9 +1,11 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+    "render_type": "cutout",
 	"textures": {
 		"0": "symbols_n_signs:block/sign_post/sign_post_atlas",
-		"particle": "symbols_n_signs:block/sign_post/sign_post_particle"
+		"particle": "symbols_n_signs:block/sign_post/sign_post_atlas"
 	},
 	"elements": [
 		{

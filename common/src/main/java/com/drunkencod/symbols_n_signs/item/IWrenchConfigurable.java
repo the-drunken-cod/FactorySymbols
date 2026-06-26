@@ -7,6 +7,9 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.phys.Vec3;
+
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Implemented by blocks that can be configured with the Ratchet Wrench.
@@ -19,10 +22,14 @@ import net.minecraft.world.level.block.state.BlockState;
  * {@code symbols_n_signs.ratchet_wrench.mode.<fixture_id>.<mode_name>.value.<n>}
  * for individual values.
  *
- * Every method receives the {@link Direction} of the block face that was
- * actually clicked. Single-face fixtures (Button/Lamp/Redstone Emitter) ignore
- * it; multi-face fixtures (Sign Fixture) use it to determine which of their
- * independent per-face configurations is being edited (see ADR 0002).
+ * Every method receives the {@link Direction} of the block's outer face that
+ * was hit. Single-face fixtures (Button/Lamp/Redstone Emitter) use it
+ * directly. Multi-face fixtures (Sign Fixture) can't rely on it alone — a
+ * sign's rendered pane often doesn't lie flush with the post's outer face
+ * (e.g. a perpendicular Stance, or the backside of a double-sided sign), so
+ * {@link #onWrenchLeftClick} / {@link #onWrenchRightClick} additionally
+ * receive the exact world-space {@code hitLocation}, which they use to test
+ * against each occupied face's actual collision sub-shape instead.
  */
 public interface IWrenchConfigurable {
 
@@ -53,17 +60,21 @@ public interface IWrenchConfigurable {
      * Called when the player left-clicks a block with the Ratchet Wrench.
      * Should cycle the selected mode (stored in the wrench item's NBT).
      *
+     * @param hitLocation exact world-space point that was hit, or {@code null}
+     *                     if it couldn't be recovered (left-click events don't
+     *                     carry it natively; the caller re-raycasts to find it)
      * @return {@link InteractionResult#SUCCESS} if the mode was changed
      */
     InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
-            Player player);
+            @Nullable Vec3 hitLocation, Player player);
 
     /**
      * Called when the player right-clicks a block with the Ratchet Wrench.
      * Should cycle the value of the currently selected mode.
      *
+     * @param hitLocation exact world-space point that was hit
      * @return {@link InteractionResult#SUCCESS} if the value was changed
      */
     InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
-            Player player);
+            Vec3 hitLocation, Player player);
 }

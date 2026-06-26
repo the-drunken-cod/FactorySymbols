@@ -6,7 +6,6 @@ import com.mojang.math.Axis;
 import net.minecraft.core.Direction;
 
 import org.joml.Matrix4f;
-import org.joml.Quaternionf;
 import org.joml.Vector3f;
 import org.joml.Vector4f;
 
@@ -31,25 +30,45 @@ public final class SignFixtureGeometry {
     /** Unscaled (scale = 1.0) world-space edge length of a pane. */
     public static final float BASE_PANE_SIZE = 1f;
 
+    private static final Vector3f WORLD_UP = new Vector3f(0f, 1f, 0f);
+    private static final Vector3f WORLD_NORTH = new Vector3f(0f, 0f, -1f);
+
     private SignFixtureGeometry() {
     }
 
     /**
      * Local-to-block transform for the pivot shared by Stance, Rotation and
-     * Scale: block center -> face attachment point -> stance tilt -> in-plane
-     * spin. Rotation and Scale are applied on top of this in
-     * {@link #buildPaneTransform}, so they share the same pivot as Stance.
+     * Scale. The pane's orientation is built directly from explicit
+     * normal/up/right vectors (rather than chained single-axis Euler
+     * rotations), so perpendicular Stances are unambiguous regardless of
+     * which post face they're mounted on.
      */
     public static Matrix4f buildPivotTransform(Direction face, SignFixtureFaceData data) {
         SignStance stance = data.getStance();
         int rotation = data.getRotation();
         float offset = data.getOffset();
 
+        Vector3f faceNormal = toVector(face);
+        Vector3f normal = resolveNormal(face, stance);
+        Vector3f up = resolveUp(face, stance);
+        Vector3f right = new Vector3f(up).cross(normal).normalize();
+        Vector3f trueUp = new Vector3f(normal).cross(right).normalize();
+
+        float along = ATTACH_OFFSET + offset;
+        if (stance != SignStance.FLAT)
+            // One of the pane's two in-plane axes always ends up parallel to the
+            // original face normal once swung perpendicular, so pushing the pivot
+            // out by half the (scaled) pane size moves its near edge to the
+            // attachment point instead of burying half the pane in the post.
+            along += data.getScale() * BASE_PANE_SIZE / 2f;
+
+        Vector3f pivot = new Vector3f(0.5f, 0.5f, 0.5f).add(new Vector3f(faceNormal).mul(along));
+
         Matrix4f m = new Matrix4f();
-        m.translate(0.5f, 0.5f, 0.5f);
-        m.rotate(faceOrientation(face));
-        m.translate(0f, 0f, ATTACH_OFFSET + offset);
-        m.rotate(stanceRotation(face, stance));
+        m.translate(pivot);
+        m.setColumn(0, new Vector4f(right, 0f));
+        m.setColumn(1, new Vector4f(trueUp, 0f));
+        m.setColumn(2, new Vector4f(normal, 0f));
         m.rotate(Axis.ZP.rotationDegrees(rotation * 45f));
         return m;
     }
@@ -86,34 +105,48 @@ public final class SignFixtureGeometry {
         return new Vector3f(v.x(), v.y(), v.z());
     }
 
-    /** Rotation that points local +Z along the given face's outward normal. */
-    private static Quaternionf faceOrientation(Direction face) {
-        return switch (face) {
-            case SOUTH -> Axis.YP.rotationDegrees(0f);
-            case NORTH -> Axis.YP.rotationDegrees(180f);
-            case EAST -> Axis.YP.rotationDegrees(90f);
-            case WEST -> Axis.YP.rotationDegrees(270f);
-            case UP -> Axis.XP.rotationDegrees(-90f);
-            case DOWN -> Axis.XP.rotationDegrees(90f);
+    private static Vector3f toVector(Direction dir) {
+        return new Vector3f(dir.getStepX(), dir.getStepY(), dir.getStepZ());
+    }
+
+    /**
+     * World-space direction the pane's face points for the given mounting face
+     * and Stance.
+     * <p>
+     * Horizontal faces (N/E/S/W): perpendicular Stances swing the pane to
+     * point along the wall, to one of the two "wing" directions either side of
+     * the mounting face.
+     * <p>
+     * Vertical faces (UP/DOWN): perpendicular Stances swing the pane to point
+     * toward one of the 4 horizontal cardinal directions.
+     */
+    private static Vector3f resolveNormal(Direction face, SignStance stance) {
+        if (stance == SignStance.FLAT)
+            return toVector(face);
+        boolean vertical = !face.getAxis().isHorizontal();
+        if (!vertical) {
+            Vector3f flatRight = new Vector3f(WORLD_UP).cross(toVector(face)).normalize();
+            return stance == SignStance.PERP_A ? flatRight : flatRight.negate();
+        }
+        return switch (stance) {
+            case PERP_A -> new Vector3f(WORLD_NORTH);
+            case PERP_B -> new Vector3f(WORLD_NORTH).negate();
+            case PERP_C -> new Vector3f(1f, 0f, 0f);
+            case PERP_D -> new Vector3f(-1f, 0f, 0f);
+            default -> toVector(face);
         };
     }
 
     /**
-     * Tilt applied at the attachment point to swing the pane from flat
-     * (against the post) to perpendicular (sticking out), expressed in the
-     * face-local frame established by {@link #faceOrientation}.
-     * <p>
-     * First-pass orientation pending visual confirmation in-game; the exact
-     * compass mapping of PERP_A..D may need adjusting once rendered.
+     * World-space reference for the pane's in-plane "up" axis. Always world-up
+     * except when lying flat against a vertical (UP/DOWN) face, where
+     * world-up would be parallel to the normal and therefore useless as a
+     * basis vector.
      */
-    private static Quaternionf stanceRotation(Direction face, SignStance stance) {
+    private static Vector3f resolveUp(Direction face, SignStance stance) {
         boolean vertical = !face.getAxis().isHorizontal();
-        return switch (stance) {
-            case FLAT -> Axis.YP.rotationDegrees(0f);
-            case PERP_A -> vertical ? Axis.XP.rotationDegrees(90f) : Axis.YP.rotationDegrees(90f);
-            case PERP_B -> vertical ? Axis.XP.rotationDegrees(-90f) : Axis.YP.rotationDegrees(-90f);
-            case PERP_C -> Axis.ZP.rotationDegrees(90f);
-            case PERP_D -> Axis.ZP.rotationDegrees(-90f);
-        };
+        if (stance == SignStance.FLAT && vertical)
+            return new Vector3f(WORLD_NORTH);
+        return new Vector3f(WORLD_UP);
     }
 }

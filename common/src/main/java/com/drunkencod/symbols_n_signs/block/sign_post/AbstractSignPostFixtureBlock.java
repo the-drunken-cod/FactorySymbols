@@ -34,6 +34,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -305,13 +306,13 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
 
     @Override
     public InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
-            Player player) {
+            @Nullable Vec3 hitLocation, Player player) {
         return InteractionResult.PASS;
     }
 
     @Override
     public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
-            Player player) {
+            Vec3 hitLocation, Player player) {
         return InteractionResult.PASS;
     }
 
