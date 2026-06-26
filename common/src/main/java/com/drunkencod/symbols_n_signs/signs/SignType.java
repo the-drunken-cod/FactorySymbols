@@ -39,6 +39,7 @@ public enum SignType {
 
         // #region Regulatory
         REGULATORY_STOP("regulatory_stop", SignCategory.REGULATORY),
+        REGULATORY_SOTP("regulatory_sotp", SignCategory.REGULATORY),
         REGULATORY_GIVE_WAY("regulatory_give_way", SignCategory.REGULATORY, SignSupportType.BOTTOM),
         REGULATORY_PRIORITY("regulatory_priority", SignCategory.REGULATORY, SignSupportType.BOTTOM),
         REGULATORY_PRIORITY_ROAD("regulatory_priority_road", SignCategory.REGULATORY),
@@ -213,7 +214,10 @@ public enum SignType {
                 return supportType;
         }
 
-        /** Item texture location, e.g. {@code symbols_n_signs:item/sign/hazard/steep_downgrade}. */
+        /**
+         * Item texture location, e.g.
+         * {@code symbols_n_signs:item/sign/hazard/steep_downgrade}.
+         */
         public ResourceLocation getTextureLocation() {
                 String catId = category.getId();
                 String stripped = id.startsWith(catId + "_") ? id.substring(catId.length() + 1) : id;

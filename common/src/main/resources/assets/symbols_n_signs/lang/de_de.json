@@ -157,6 +157,7 @@
     "symbol.symbols_n_signs.instruction_forbidden": "Verboten",
     "symbol.symbols_n_signs.instruction_info": "Info",
     "symbol.symbols_n_signs.instruction_stop": "Stop",
+    "symbol.symbols_n_signs.instruction_sotp": "Sotp",
     "symbol.symbols_n_signs.instruction_turn_around": "Wenden",
     "symbol.symbols_n_signs.instruction_turn_left": "Links abbiegen",
     "symbol.symbols_n_signs.instruction_turn_right": "Rechts abbiegen",
