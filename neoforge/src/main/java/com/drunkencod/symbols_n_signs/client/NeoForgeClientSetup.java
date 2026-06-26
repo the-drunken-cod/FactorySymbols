@@ -2,7 +2,7 @@ package com.drunkencod.symbols_n_signs.client;
 
 import com.drunkencod.symbols_n_signs.Constants;
 import com.drunkencod.symbols_n_signs.client.renderer.DisplayPanelBlockEntityRenderer;
-// import com.drunkencod.symbols_n_signs.client.renderer.SignPostButtonFixtureBlockEntityRenderer;
+import com.drunkencod.symbols_n_signs.client.renderer.SignPostSignFixtureBlockEntityRenderer;
 import com.drunkencod.symbols_n_signs.registry.ModBlocks;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -15,7 +15,7 @@ public class NeoForgeClientSetup {
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlocks.DISPLAY_PANEL_BE_TYPE.get(), DisplayPanelBlockEntityRenderer::new);
-        // event.registerBlockEntityRenderer(ModBlocks.SIGN_POST_BUTTON_FIXTURE_BE_TYPE.get(),
-        // SignPostButtonFixtureBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(ModBlocks.SIGN_POST_SIGN_FIXTURE_BE_TYPE.get(),
+                SignPostSignFixtureBlockEntityRenderer::new);
     }
 }

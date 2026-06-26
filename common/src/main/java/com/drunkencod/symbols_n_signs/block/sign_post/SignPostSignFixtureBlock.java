@@ -55,12 +55,6 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
 
     // #region Shape (placeholder pending real per-SignType geometry)
 
-    /**
-     * TEMPORARY: generic 10x10x2px slab flush against each face, standing in for
-     * the real per-sign-type shape until actual sign models/textures exist. See
-     * docs/todo/sign_post_sign_fixture.md ("VoxelShape needs to adjust based on
-     * NBT").
-     */
     private static final VoxelShape BUMP_NORTH = Block.box(4, 4, 4, 12, 12, 5);
     private static final VoxelShape BUMP_SOUTH = Block.box(4, 4, 11, 12, 12, 12);
     private static final VoxelShape BUMP_WEST = Block.box(4, 4, 4, 5, 12, 12);

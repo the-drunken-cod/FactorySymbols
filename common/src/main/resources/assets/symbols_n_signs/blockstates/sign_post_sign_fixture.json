@@ -65,6 +65,59 @@
             "when": {
                 "down": "true"
             }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/sign_branch"
+            },
+            "when": {
+                "north": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/sign_branch",
+                "y": 90
+            },
+            "when": {
+                "east": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/sign_branch",
+                "y": 180
+            },
+            "when": {
+                "south": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/sign_branch",
+                "y": 270
+            },
+            "when": {
+                "west": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/sign_branch",
+                "x": 270
+            },
+            "when": {
+                "up": "true"
+            }
+        },
+        {
+            "apply": {
+                "model": "symbols_n_signs:block/sign_post/fixture/sign_branch",
+                "x": 90
+            },
+            "when": {
+                "down": "true"
+            }
         }
     ]
 }

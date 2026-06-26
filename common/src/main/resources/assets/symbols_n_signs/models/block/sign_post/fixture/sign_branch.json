@@ -1,0 +1,99 @@
+{
+	"format_version": "1.9.0",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"0": "symbols_n_signs:block/sign_post/sign_post_atlas",
+		"particle": "symbols_n_signs:block/sign_post/sign_post_atlas"
+	},
+	"elements": [
+		{
+			"name": "cube_1",
+			"from": [6.5, 10.5, 3],
+			"to": [9.5, 10.5, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 10.5, 3]},
+			"faces": {
+				"up": {"uv": [1, 10, 4, 12], "texture": "#0"},
+				"down": {"uv": [1, 10, 4, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "cube_2",
+			"from": [9.5, 5.5, 3],
+			"to": [9.5, 10.5, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 10.5, 3]},
+			"faces": {
+				"east": {"uv": [12, 0, 14, 5], "texture": "#0"},
+				"west": {"uv": [12, 0, 14, 5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "cube_3",
+			"from": [5.5, 9.5, 3],
+			"to": [10.5, 9.5, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9.5, 9.5, 3]},
+			"faces": {
+				"up": {"uv": [0, 8, 5, 10], "texture": "#0"},
+				"down": {"uv": [0, 8, 5, 10], "texture": "#0"}
+			}
+		},
+		{
+			"name": "cube_4",
+			"from": [10.5, 6.5, 3],
+			"to": [10.5, 9.5, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8.5, 9.5, 3]},
+			"faces": {
+				"east": {"uv": [14, 1, 16, 4], "texture": "#0"},
+				"west": {"uv": [14, 1, 16, 4], "texture": "#0"}
+			}
+		},
+		{
+			"name": "cube_5",
+			"from": [5.5, 6.5, 3],
+			"to": [10.5, 6.5, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [9.5, 6.5, 3]},
+			"faces": {
+				"up": {"uv": [0, 8, 5, 10], "texture": "#0"},
+				"down": {"uv": [0, 8, 5, 10], "texture": "#0"}
+			}
+		},
+		{
+			"name": "cube_6",
+			"from": [6.5, 5.5, 3],
+			"to": [9.5, 5.5, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 5.5, 3]},
+			"faces": {
+				"up": {"uv": [1, 10, 4, 12], "texture": "#0"},
+				"down": {"uv": [1, 10, 4, 12], "texture": "#0"}
+			}
+		},
+		{
+			"name": "cube_7",
+			"from": [6.5, 5.5, 3],
+			"to": [6.5, 10.5, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [4.5, 6.5, 3]},
+			"faces": {
+				"east": {"uv": [12, 0, 14, 5], "texture": "#0"},
+				"west": {"uv": [12, 0, 14, 5], "texture": "#0"}
+			}
+		},
+		{
+			"name": "cube_8",
+			"from": [5.5, 6.5, 3],
+			"to": [5.5, 9.5, 5],
+			"rotation": {"angle": 0, "axis": "y", "origin": [3.5, 6.5, 3]},
+			"faces": {
+				"east": {"uv": [14, 1, 16, 4], "texture": "#0"},
+				"west": {"uv": [14, 1, 16, 4], "texture": "#0"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "branch_n",
+			"origin": [8, 8, 8],
+			"scope": 0,
+			"color": 0,
+			"children": [0, 1, 2, 3, 4, 5, 6, 7]
+		}
+	]
+}
