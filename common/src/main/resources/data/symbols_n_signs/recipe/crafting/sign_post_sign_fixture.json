@@ -2,16 +2,14 @@
     "type": "minecraft:crafting_shaped",
     "category": "building",
     "pattern": [
-        "NIN",
-        "   ",
-        "NIN"
+        "INI"
     ],
     "key": {
-        "N": {
-            "tag": "symbols_n_signs:sign_post_material/nuggets"
-        },
         "I": {
             "tag": "symbols_n_signs:sign_post_material/ingots"
+        },
+        "N": {
+            "tag": "symbols_n_signs:sign_post_material/nuggets"
         }
     },
     "result": {
