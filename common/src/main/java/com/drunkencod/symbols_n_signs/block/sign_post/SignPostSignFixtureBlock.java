@@ -394,7 +394,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
                             true);
                 }
                 case MODE_SCALE -> {
-                    float nextSc = Math.round((data.getScale() + SignFixtureFaceData.SCALE_STEP) * 100f) / 100f;
+                    float nextSc = Math.round((data.getScale() + SignFixtureFaceData.SCALE_STEP) * 1000f) / 1000f;
                     if (nextSc > SignFixtureFaceData.MAX_SCALE + 1e-3f)
                         nextSc = SignFixtureFaceData.MIN_SCALE;
                     be.setFaceData(face, data.withScale(nextSc));
@@ -404,7 +404,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
                             true);
                 }
                 case MODE_OFFSET -> {
-                    float nextOff = Math.round((data.getOffset() + SignFixtureFaceData.OFFSET_STEP) * 100f) / 100f;
+                    float nextOff = Math.round((data.getOffset() + SignFixtureFaceData.OFFSET_STEP) * 1000f) / 1000f;
                     if (nextOff > SignFixtureFaceData.MAX_OFFSET + 1e-3f)
                         nextOff = SignFixtureFaceData.MIN_OFFSET;
                     be.setFaceData(face, data.withOffset(nextOff));
