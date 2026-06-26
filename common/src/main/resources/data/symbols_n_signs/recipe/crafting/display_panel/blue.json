@@ -8,10 +8,10 @@
     ],
     "key": {
         "N": {
-            "tag": "symbols_n_signs:sign_post_material/nuggets"
+            "tag": "c:nuggets/iron"
         },
         "I": {
-            "tag": "symbols_n_signs:sign_post_material/ingots"
+            "tag": "c:ingots/iron"
         },
         "D": {
             "item": "minecraft:blue_dye"
