@@ -10,6 +10,8 @@ import com.drunkencod.symbols_n_signs.block.sign_post.SignPostLampFixtureBlock;
 import com.drunkencod.symbols_n_signs.block.sign_post.SignPostLampFixtureBlockEntity;
 import com.drunkencod.symbols_n_signs.block.sign_post.SignPostRedstoneEmitterFixtureBlock;
 import com.drunkencod.symbols_n_signs.block.sign_post.SignPostRedstoneEmitterFixtureBlockEntity;
+import com.drunkencod.symbols_n_signs.block.sign_post.SignPostSignFixtureBlock;
+import com.drunkencod.symbols_n_signs.block.sign_post.SignPostSignFixtureBlockEntity;
 import com.drunkencod.symbols_n_signs.platform.Services;
 import com.drunkencod.symbols_n_signs.util.TooltipUtil;
 
@@ -67,6 +69,31 @@ public class ModBlocks {
                                         .component(DataComponents.LORE,
                                                         TooltipUtil.getTooltip(
                                                                         "block.symbols_n_signs.sign_post.tooltip"))));
+
+        // #region Sign Post - Sign Fixture
+        public static final Supplier<SignPostSignFixtureBlock> SIGN_POST_SIGN_FIXTURE = Services.REGISTRY
+                        .registerBlock(SignPostSignFixtureBlock.ID,
+                                        () -> new SignPostSignFixtureBlock(BlockBehaviour.Properties.of()
+                                                        .strength(0.85f, 2.0f)
+                                                        .sound(SoundType.COPPER_GRATE)
+                                                        .pushReaction(PushReaction.NORMAL)
+                                                        .requiresCorrectToolForDrops()
+                                                        .noOcclusion()));
+
+        public static final Supplier<Item> SIGN_POST_SIGN_FIXTURE_ITEM = Services.REGISTRY.registerItem(
+                        SignPostSignFixtureBlock.ID,
+                        () -> new BlockItem(SIGN_POST_SIGN_FIXTURE.get(), new Item.Properties()
+                                        .component(DataComponents.LORE,
+                                                        TooltipUtil.getTooltip(
+                                                                        "block.symbols_n_signs.sign_post_sign_fixture.tooltip"))));
+
+        public static final Supplier<BlockEntityType<SignPostSignFixtureBlockEntity>> SIGN_POST_SIGN_FIXTURE_BE_TYPE = Services.REGISTRY
+                        .registerBlockEntityType(SignPostSignFixtureBlock.ID, ModBlocks::makeSignFixtureBEType);
+
+        private static BlockEntityType<SignPostSignFixtureBlockEntity> makeSignFixtureBEType() {
+                return BlockEntityType.Builder.of(SignPostSignFixtureBlockEntity::new,
+                                SIGN_POST_SIGN_FIXTURE.get()).build(null);
+        }
 
         // #region Sign Post - Button Fixture
         public static final Supplier<SignPostButtonFixtureBlock> SIGN_POST_BUTTON_FIXTURE = Services.REGISTRY

@@ -81,8 +81,31 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
      * which the fixture element protrudes outward). No post branch is shown on this
      * side.
      * Convention: FACE=WALL → FACING; FACE=FLOOR → DOWN; FACE=CEILING → UP.
+     * <p>
+     * Only meaningful for single-face fixtures. Multi-face fixtures (Sign Fixture)
+     * should override {@link #isFaceOccupied} instead and may throw from this
+     * method, since nothing in the shared connection/shape logic calls it directly
+     * anymore.
      */
     public abstract Direction getFixtureDirection(BlockState state);
+
+    /**
+     * Returns whether the given direction is occupied by this fixture (i.e. no
+     * other sign post or block should connect to that face). Single-face fixtures
+     * get a correct default for free from {@link #getFixtureDirection}; multi-face
+     * fixtures (Sign Fixture) override this to consult their BlockEntity's
+     * per-direction occupancy map instead (see ADR 0001).
+     * <p>
+     * Deliberately takes {@code level}/{@code pos} (every call site already has
+     * them) rather than mirroring occupancy into extra blockstate properties —
+     * each additional boolean property multiplies this block's total state count,
+     * and that count is precomputed (shape/sturdiness caches, model baking) for
+     * every block at load time. A handful of extra booleans is fine for
+     * single-face fixtures; it is not fine for a per-face bitset.
+     */
+    public boolean isFaceOccupied(BlockGetter level, BlockPos pos, BlockState state, Direction direction) {
+        return direction == getFixtureDirection(state);
+    }
 
     // #region Placement & survival
 
@@ -112,8 +135,8 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
         if (ownState.getValue(WATERLOGGED))
             level.scheduleTick(ownPos, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 
-        // Never connect toward the fixture element face
-        if (direction == getFixtureDirection(ownState))
+        // Never connect toward an occupied fixture face
+        if (isFaceOccupied(level, ownPos, ownState, direction))
             return ownState.setValue(DIRECTION_PROPS.get(direction), false);
 
         boolean shouldConnect = SignPostNetworkUtil.shouldConnectTo(level, neighborState, neighborPos, direction);
@@ -121,10 +144,9 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
     }
 
     public BlockState setConnectionStates(BlockState state, LevelAccessor level, BlockPos pos) {
-        Direction blocked = getFixtureDirection(state);
         for (Map.Entry<Direction, BooleanProperty> entry : DIRECTION_PROPS.entrySet()) {
             Direction dir = entry.getKey();
-            boolean connect = dir != blocked
+            boolean connect = !isFaceOccupied(level, pos, state, dir)
                     && SignPostNetworkUtil.shouldConnectTo(level,
                             level.getBlockState(pos.relative(dir)), pos.relative(dir), dir);
             state = state.setValue(entry.getValue(), connect);
@@ -262,32 +284,34 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
     // #region IWrenchConfigurable defaults
 
     @Override
-    public int getWrenchModeCount(BlockState state) {
+    public int getWrenchModeCount(BlockState state, Direction clickedFace) {
         return 0;
     }
 
     @Override
-    public String getWrenchModeString(BlockState state, int modeIndex) {
+    public String getWrenchModeString(BlockState state, Direction clickedFace, int modeIndex) {
         throw new UnsupportedOperationException("This fixture has no wrench modes");
     }
 
     @Override
-    public String getWrenchModeKey(BlockState state, int modeIndex) {
+    public String getWrenchModeKey(BlockState state, Direction clickedFace, int modeIndex) {
         throw new UnsupportedOperationException("This fixture has no wrench modes");
     }
 
     @Override
-    public Component getCurrentModeComponent(BlockState state, Player player) {
+    public Component getCurrentModeComponent(BlockState state, Direction clickedFace, Player player) {
         return Component.empty();
     }
 
     @Override
-    public InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Player player) {
+    public InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Player player) {
         return InteractionResult.PASS;
     }
 
     @Override
-    public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Player player) {
+    public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Player player) {
         return InteractionResult.PASS;
     }
 

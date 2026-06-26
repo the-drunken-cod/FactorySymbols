@@ -13,6 +13,8 @@
     "block.symbols_n_signs.sign_post_lamp_fixture.tooltip": "Attaches to the bottom of Sign Posts. Can respond to redstone signals.",
     "block.symbols_n_signs.sign_post_redstone_emitter_fixture": "Sign Post Redstone Emitter Fixture",
     "block.symbols_n_signs.sign_post_redstone_emitter_fixture.tooltip": "Attaches to Sign Posts to emit power into an adjacent block.",
+    "block.symbols_n_signs.sign_post_sign_fixture": "Sign Post Sign Fixture",
+    "block.symbols_n_signs.sign_post_sign_fixture.tooltip": "Attaches to Sign Posts. Holds an independent sign on each of its 6 faces.",
 
     "item.symbols_n_signs.retroreflective_sheet": "Retroreflective Sheet",
     "item.symbols_n_signs.ratchet_wrench": "Ratchet Wrench",
@@ -54,6 +56,14 @@
     "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.inverted.value.0": "High when Powered (Normal)",
     "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.inverted.value.1": "Low when Powered (Inverted)",
 
+    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the sign fixture. %1$s = current mode name.",
+    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.name_template": "[Mode] %1$s",
+    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.stance": "Stance",
+    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.rotation": "Rotation",
+    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.scale": "Scale",
+    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.double_sided": "Double-sided",
+    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.bright": "Bright",
+
     "symbols_n_signs.ratchet_wrench.mode.unknown": "(Error: wrong mode index)",
 
     "subtitles.symbols_n_signs.ratchet_wrench.change_mode": "Ratchet Wrench Mode Changed",
@@ -61,8 +71,10 @@
 
     "tag.item.c.plates.retroreflective": "Retroreflective Plates",
 
-    "tag.item.symbols_n_signs.powered_lamps": "Powered Lamps",
     "tag.item.symbols_n_signs.displays": "Displays",
+    "tag.item.symbols_n_signs.powered_lamps": "Powered Lamps",
+    "tag.item.symbols_n_signs.sign_post_material.ingots": "Sign Post Ingot Materials",
+    "tag.item.symbols_n_signs.sign_post_material.nuggets": "Sign Post Nugget Materials",
 
     "tag.item.symbols_n_signs.sign_post_blocks": "Sign Post Blocks",
     "tag.item.symbols_n_signs.sign_post_fixtures": "Sign Post Fixtures",

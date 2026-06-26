@@ -134,12 +134,12 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
     private static final int MODE_COUNT = 2;
 
     @Override
-    public int getWrenchModeCount(BlockState state) {
+    public int getWrenchModeCount(BlockState state, Direction clickedFace) {
         return MODE_COUNT;
     }
 
     @Override
-    public String getWrenchModeKey(BlockState state, int modeIndex) {
+    public String getWrenchModeKey(BlockState state, Direction clickedFace, int modeIndex) {
         return switch (modeIndex) {
             case MODE_ORIENTATION -> getModeKey("lamp_fixture", "orientation");
             case MODE_SIGNAL -> getModeKey("lamp_fixture", "signal_mode");
@@ -148,7 +148,7 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
     }
 
     @Override
-    public String getWrenchModeString(BlockState state, int modeIndex) {
+    public String getWrenchModeString(BlockState state, Direction clickedFace, int modeIndex) {
         return switch (modeIndex) {
             case MODE_ORIENTATION -> getModeName("lamp_fixture", "orientation");
             case MODE_SIGNAL -> getModeName("lamp_fixture", "signal_mode");
@@ -157,17 +157,18 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
     }
 
     @Override
-    public Component getCurrentModeComponent(BlockState state, Player player) {
+    public Component getCurrentModeComponent(BlockState state, Direction clickedFace, Player player) {
         ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
         if (wrench.isEmpty())
             return Component.empty();
         ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
         int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId);
-        return Component.literal(getWrenchModeString(state, mode));
+        return Component.literal(getWrenchModeString(state, clickedFace, mode));
     }
 
     @Override
-    public InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Player player) {
+    public InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Player player) {
         if (!level.isClientSide()) {
             ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
             if (wrench.isEmpty())
@@ -175,13 +176,14 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
             ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
             int next = (RatchetWrenchItem.getSelectedMode(wrench, blockId) + 1) % MODE_COUNT;
             RatchetWrenchItem.setSelectedMode(wrench, blockId, next);
-            player.displayClientMessage(Component.literal(getWrenchModeString(state, next)), true);
+            player.displayClientMessage(Component.literal(getWrenchModeString(state, clickedFace, next)), true);
         }
         return InteractionResult.SUCCESS;
     }
 
     @Override
-    public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Player player) {
+    public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Player player) {
         if (!level.isClientSide()) {
             ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
             if (wrench.isEmpty())
@@ -195,10 +197,11 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
                     // Fixture direction (DOWN) is unaffected by AXIS, so connection states stay
                     // valid
                     player.displayClientMessage(
-                            Component.translatable(getWrenchModeKey(state, MODE_ORIENTATION))
+                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_ORIENTATION))
                                     .append(": ")
                                     .append(Component.translatable(
-                                            getWrenchModeKey(state, MODE_ORIENTATION) + ".value." + next.getName())),
+                                            getWrenchModeKey(state, clickedFace, MODE_ORIENTATION) + ".value."
+                                                    + next.getName())),
                             true);
                 }
                 case MODE_SIGNAL -> {
@@ -207,10 +210,10 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
                     boolean newLit = computeLit(newState, state.getValue(POWERED));
                     level.setBlock(pos, newState.setValue(LIT, newLit), Block.UPDATE_CLIENTS);
                     player.displayClientMessage(
-                            Component.translatable(getWrenchModeKey(state, MODE_SIGNAL))
+                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_SIGNAL))
                                     .append(": ")
                                     .append(Component.translatable(
-                                            getWrenchModeKey(state, MODE_SIGNAL) + ".value." + next)),
+                                            getWrenchModeKey(state, clickedFace, MODE_SIGNAL) + ".value." + next)),
                             true);
                 }
             }

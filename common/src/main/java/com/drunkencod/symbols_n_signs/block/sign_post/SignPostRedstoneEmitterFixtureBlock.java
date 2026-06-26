@@ -177,12 +177,12 @@ public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixture
     private static final int MODE_COUNT = 2;
 
     @Override
-    public int getWrenchModeCount(BlockState state) {
+    public int getWrenchModeCount(BlockState state, Direction clickedFace) {
         return MODE_COUNT;
     }
 
     @Override
-    public String getWrenchModeKey(BlockState state, int modeIndex) {
+    public String getWrenchModeKey(BlockState state, Direction clickedFace, int modeIndex) {
         return switch (modeIndex) {
             case MODE_ORIENTATION -> getModeKey("redstone_emitter_fixture", "orientation");
             case MODE_INVERTED -> getModeKey("redstone_emitter_fixture", "inverted");
@@ -191,7 +191,7 @@ public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixture
     }
 
     @Override
-    public String getWrenchModeString(BlockState state, int modeIndex) {
+    public String getWrenchModeString(BlockState state, Direction clickedFace, int modeIndex) {
         return switch (modeIndex) {
             case MODE_ORIENTATION -> getModeName("redstone_emitter_fixture", "orientation");
             case MODE_INVERTED -> getModeName("redstone_emitter_fixture", "inverted");
@@ -200,17 +200,18 @@ public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixture
     }
 
     @Override
-    public Component getCurrentModeComponent(BlockState state, Player player) {
+    public Component getCurrentModeComponent(BlockState state, Direction clickedFace, Player player) {
         ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
         if (wrench.isEmpty())
             return Component.empty();
         ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
         int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId);
-        return Component.literal(getWrenchModeString(state, mode));
+        return Component.literal(getWrenchModeString(state, clickedFace, mode));
     }
 
     @Override
-    public InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Player player) {
+    public InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Player player) {
         if (!level.isClientSide()) {
             ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
             if (wrench.isEmpty())
@@ -218,7 +219,7 @@ public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixture
             ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
             int next = (RatchetWrenchItem.getSelectedMode(wrench, blockId) + 1) % MODE_COUNT;
             RatchetWrenchItem.setSelectedMode(wrench, blockId, next);
-            player.displayClientMessage(Component.literal(getWrenchModeString(state, next)), true);
+            player.displayClientMessage(Component.literal(getWrenchModeString(state, clickedFace, next)), true);
         }
         return InteractionResult.SUCCESS;
     }
@@ -232,7 +233,8 @@ public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixture
             new Tuple<AttachFace, Direction>(AttachFace.CEILING, Direction.SOUTH));
 
     @Override
-    public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Player player) {
+    public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Player player) {
         if (!level.isClientSide()) {
             ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
             if (wrench.isEmpty())
@@ -277,13 +279,13 @@ public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixture
                     level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
 
                     player.displayClientMessage(
-                            Component.translatable(getWrenchModeKey(state, MODE_ORIENTATION))
+                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_ORIENTATION))
                                     .append(": ")
                                     .append(Component.translatable(
                                             nextFace == AttachFace.WALL
-                                                    ? getWrenchModeKey(state, MODE_ORIENTATION)
+                                                    ? getWrenchModeKey(state, clickedFace, MODE_ORIENTATION)
                                                             + ".value." + nextDir.toString().toLowerCase()
-                                                    : getWrenchModeKey(state, MODE_ORIENTATION)
+                                                    : getWrenchModeKey(state, clickedFace, MODE_ORIENTATION)
                                                             + ".value." + nextFace.toString().toLowerCase())),
                             true);
                 }
@@ -294,10 +296,10 @@ public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixture
                     level.setBlock(pos, invState.setValue(LIT, computeLit(invState)), Block.UPDATE_ALL);
 
                     player.displayClientMessage(
-                            Component.translatable(getWrenchModeKey(state, MODE_INVERTED))
+                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_INVERTED))
                                     .append(": ")
                                     .append(Component.translatable(
-                                            getWrenchModeKey(state, MODE_INVERTED) + ".value." +
+                                            getWrenchModeKey(state, clickedFace, MODE_INVERTED) + ".value." +
                                                     (isInverted ? "0" : "1"))),
                             true);
                 }

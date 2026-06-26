@@ -15,6 +15,10 @@ public class SignItem extends Item {
         this.signType = signType;
     }
 
+    public SignType getSignType() {
+        return signType;
+    }
+
     @Override
     public Component getName(ItemStack stack) {
         return Component.translatable(

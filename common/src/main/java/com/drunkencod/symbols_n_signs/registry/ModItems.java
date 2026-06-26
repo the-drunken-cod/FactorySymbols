@@ -23,7 +23,7 @@ import java.util.function.Supplier;
 
 public class ModItems {
 
-    // #region Symbol items — one item per material × symbol
+    // #region Symbol items - one item per material × symbol
     public static final Map<SymbolMaterial, Map<SymbolType, Supplier<Item>>> SYMBOLS = new EnumMap<>(
             SymbolMaterial.class);
 
@@ -83,7 +83,7 @@ public class ModItems {
         output.accept(RATCHET_WRENCH.get().getDefaultInstance());
         output.accept(RETROREFLECTIVE_SHEET.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_ITEM.get().getDefaultInstance());
-        // output.accept(ModBlocks.SIGN_POST_SIGN_FIXTURE_ITEM.get().getDefaultInstance());
+        output.accept(ModBlocks.SIGN_POST_SIGN_FIXTURE_ITEM.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_BUTTON_FIXTURE_ITEM.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_LAMP_FIXTURE_ITEM.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_REDSTONE_EMITTER_FIXTURE_ITEM.get().getDefaultInstance());

@@ -187,12 +187,12 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
             Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST);
 
     @Override
-    public int getWrenchModeCount(BlockState state) {
+    public int getWrenchModeCount(BlockState state, Direction clickedFace) {
         return MODE_COUNT;
     }
 
     @Override
-    public String getWrenchModeKey(BlockState state, int modeIndex) {
+    public String getWrenchModeKey(BlockState state, Direction clickedFace, int modeIndex) {
         return switch (modeIndex) {
             case MODE_ORIENTATION -> getModeKey("button_fixture", "orientation");
             case MODE_ACTIVE_HIGH -> getModeKey("button_fixture", "active_high");
@@ -201,7 +201,7 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
     }
 
     @Override
-    public String getWrenchModeString(BlockState state, int modeIndex) {
+    public String getWrenchModeString(BlockState state, Direction clickedFace, int modeIndex) {
         return switch (modeIndex) {
             case MODE_ORIENTATION -> getModeName("button_fixture", "orientation");
             case MODE_ACTIVE_HIGH -> getModeName("button_fixture", "active_high");
@@ -210,17 +210,18 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
     }
 
     @Override
-    public Component getCurrentModeComponent(BlockState state, Player player) {
+    public Component getCurrentModeComponent(BlockState state, Direction clickedFace, Player player) {
         ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
         if (wrench.isEmpty())
             return Component.empty();
         ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
         int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId);
-        return Component.literal(getWrenchModeString(state, mode));
+        return Component.literal(getWrenchModeString(state, clickedFace, mode));
     }
 
     @Override
-    public InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Player player) {
+    public InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Player player) {
         if (!level.isClientSide()) {
             ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
             if (wrench.isEmpty())
@@ -228,13 +229,14 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
             ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
             int next = (RatchetWrenchItem.getSelectedMode(wrench, blockId) + 1) % MODE_COUNT;
             RatchetWrenchItem.setSelectedMode(wrench, blockId, next);
-            player.displayClientMessage(Component.literal(getWrenchModeString(state, next)), true);
+            player.displayClientMessage(Component.literal(getWrenchModeString(state, clickedFace, next)), true);
         }
         return InteractionResult.SUCCESS;
     }
 
     @Override
-    public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Player player) {
+    public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Player player) {
         if (!level.isClientSide()) {
             ItemStack wrench = RatchetWrenchItem.getWrenchInHand(player);
             if (wrench.isEmpty())
@@ -248,10 +250,10 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
                     BlockState newState = setConnectionStates(state.setValue(FACING, next), level, pos);
                     level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
                     player.displayClientMessage(
-                            Component.translatable(getWrenchModeKey(state, MODE_ORIENTATION))
+                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_ORIENTATION))
                                     .append(": ")
                                     .append(Component.translatable(
-                                            getWrenchModeKey(state, MODE_ORIENTATION) + ".value." + next.getName())),
+                                            getWrenchModeKey(state, clickedFace, MODE_ORIENTATION) + ".value." + next.getName())),
                             true);
                 }
                 case MODE_ACTIVE_HIGH -> {
@@ -259,10 +261,10 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
                     level.setBlock(pos, state.setValue(ACTIVE_HIGH, next), Block.UPDATE_CLIENTS);
                     evaluateAndPropagate(level, pos);
                     player.displayClientMessage(
-                            Component.translatable(getWrenchModeKey(state, MODE_ACTIVE_HIGH))
+                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_ACTIVE_HIGH))
                                     .append(": ")
                                     .append(Component.translatable(
-                                            getWrenchModeKey(state, MODE_ACTIVE_HIGH) + ".value." + (next ? 1 : 0))),
+                                            getWrenchModeKey(state, clickedFace, MODE_ACTIVE_HIGH) + ".value." + (next ? 1 : 0))),
                             true);
                 }
             }

@@ -3,6 +3,7 @@
     "values": [
         "symbols_n_signs:sign_post_button_fixture",
         "symbols_n_signs:sign_post_lamp_fixture",
-        "symbols_n_signs:sign_post_redstone_emitter_fixture"
+        "symbols_n_signs:sign_post_redstone_emitter_fixture",
+        "symbols_n_signs:sign_post_sign_fixture"
     ]
 }

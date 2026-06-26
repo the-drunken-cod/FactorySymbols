@@ -7,6 +7,7 @@ import java.util.List;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -39,10 +40,11 @@ public class RatchetWrenchItem extends Item {
 
     // #region Click dispatch
 
-    public static void handleWrenchLeftClick(Level level, BlockPos pos, BlockState state, Player player) {
+    public static void handleWrenchLeftClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Player player) {
         if (!(state.getBlock() instanceof IWrenchConfigurable configurable))
             return;
-        InteractionResult result = configurable.onWrenchLeftClick(level, pos, state, player);
+        InteractionResult result = configurable.onWrenchLeftClick(level, pos, state, clickedFace, player);
         if (result.consumesAction())
             playChangeModeSound(level, pos, player);
     }
@@ -64,7 +66,8 @@ public class RatchetWrenchItem extends Item {
         if (ctx.getPlayer() != null) {
             try {
                 BlockState state = level.getBlockState(pos);
-                InteractionResult result = configurable.onWrenchRightClick(level, pos, state, ctx.getPlayer());
+                InteractionResult result = configurable.onWrenchRightClick(level, pos, state, ctx.getClickedFace(),
+                        ctx.getPlayer());
                 if (result.consumesAction())
                     playUseSound(level, pos, ctx.getPlayer());
             } catch (Exception e) {
@@ -87,14 +90,38 @@ public class RatchetWrenchItem extends Item {
     // #region Mode storage (per-block in CUSTOM_DATA)
 
     public static int getSelectedMode(ItemStack wrench, ResourceLocation blockId) {
-        CompoundTag tag = wrench.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
-        String key = blockId.toString();
-        return tag.contains(key) ? tag.getInt(key) : 0;
+        return getSelectedModeByKey(wrench, blockId.toString());
     }
 
     public static void setSelectedMode(ItemStack wrench, ResourceLocation blockId, int mode) {
+        setSelectedModeByKey(wrench, blockId.toString(), mode);
+    }
+
+    /**
+     * Per-face variant for multi-face fixtures (e.g. Sign Fixture), where each
+     * occupied face tracks its own selected mode independently. Single-face
+     * fixtures should keep using the blockId-only overloads above instead.
+     */
+    public static int getSelectedMode(ItemStack wrench, ResourceLocation blockId, Direction face) {
+        return getSelectedModeByKey(wrench, perFaceKey(blockId, face));
+    }
+
+    public static void setSelectedMode(ItemStack wrench, ResourceLocation blockId, Direction face, int mode) {
+        setSelectedModeByKey(wrench, perFaceKey(blockId, face), mode);
+    }
+
+    private static String perFaceKey(ResourceLocation blockId, Direction face) {
+        return blockId.toString() + ":" + face.getSerializedName();
+    }
+
+    private static int getSelectedModeByKey(ItemStack wrench, String key) {
         CompoundTag tag = wrench.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
-        tag.putInt(blockId.toString(), mode);
+        return tag.contains(key) ? tag.getInt(key) : 0;
+    }
+
+    private static void setSelectedModeByKey(ItemStack wrench, String key, int mode) {
+        CompoundTag tag = wrench.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
+        tag.putInt(key, mode);
         wrench.set(DataComponents.CUSTOM_DATA, CustomData.of(tag));
     }
 

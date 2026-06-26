@@ -1,6 +1,7 @@
 package com.drunkencod.symbols_n_signs.item;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -17,31 +18,36 @@ import net.minecraft.world.level.block.state.BlockState;
  * mode label, and
  * {@code symbols_n_signs.ratchet_wrench.mode.<fixture_id>.<mode_name>.value.<n>}
  * for individual values.
+ *
+ * Every method receives the {@link Direction} of the block face that was
+ * actually clicked. Single-face fixtures (Button/Lamp/Redstone Emitter) ignore
+ * it; multi-face fixtures (Sign Fixture) use it to determine which of their
+ * independent per-face configurations is being edited (see ADR 0002).
  */
 public interface IWrenchConfigurable {
 
     /** Returns how many modes this block exposes to the wrench. */
-    int getWrenchModeCount(BlockState state);
+    int getWrenchModeCount(BlockState state, Direction clickedFace);
 
     /**
      * Returns the translation key prefix for the mode at the given index,
      * e.g.
      * {@code "symbols_n_signs.ratchet_wrench.mode.button_fixture.orientation"}.
      */
-    String getWrenchModeKey(BlockState state, int modeIndex);
+    String getWrenchModeKey(BlockState state, Direction clickedFace, int modeIndex);
 
     /**
      * Returns the translation for the mode at the given index, e.g.
      * {@code "symbols_n_signs.ratchet_wrench.mode.button_fixture.orientation"}.
      */
-    String getWrenchModeString(BlockState state, int modeIndex);
+    String getWrenchModeString(BlockState state, Direction clickedFace, int modeIndex);
 
     /**
      * Returns a display component describing the current value of the selected
      * mode.
      * Used for the hotbar overlay message when switching modes.
      */
-    Component getCurrentModeComponent(BlockState state, Player player);
+    Component getCurrentModeComponent(BlockState state, Direction clickedFace, Player player);
 
     /**
      * Called when the player left-clicks a block with the Ratchet Wrench.
@@ -49,7 +55,8 @@ public interface IWrenchConfigurable {
      *
      * @return {@link InteractionResult#SUCCESS} if the mode was changed
      */
-    InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Player player);
+    InteractionResult onWrenchLeftClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Player player);
 
     /**
      * Called when the player right-clicks a block with the Ratchet Wrench.
@@ -57,5 +64,6 @@ public interface IWrenchConfigurable {
      *
      * @return {@link InteractionResult#SUCCESS} if the value was changed
      */
-    InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Player player);
+    InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Player player);
 }

@@ -137,7 +137,7 @@ public class SignPostBlock extends PipeBlock implements SimpleWaterloggedBlock {
             BlockState liveState = level.getBlockState(pos);
             boolean shouldBePowered = SignPostNetworkUtil.hasDirectPower(level, pos, liveState);
             // When powering down, verify no other node in the network still has a direct
-            // signal — secondary updates from comparators/dust reading our powered state
+            // signal - secondary updates from comparators/dust reading our powered state
             // would otherwise incorrectly collapse the network.
             if (liveState.is(this) && liveState.getValue(POWERED) != shouldBePowered)
                 if (shouldBePowered || !SignPostNetworkUtil.isNetworkDirectlyPowered(level, pos,

@@ -113,10 +113,10 @@ public final class SignPostNetworkUtil {
      */
     public static boolean shouldConnectTo(LevelAccessor level, BlockState neighborState, BlockPos neighborPos,
             Direction direction) {
-        // Fixtures block connections on their protruding face; no neighbor should
-        // connect into that face from the opposite side.
+        // Fixtures block connections on their occupied face(s); no neighbor should
+        // connect into an occupied face from the opposite side.
         if (neighborState.getBlock() instanceof AbstractSignPostFixtureBlock fixture
-                && direction == fixture.getFixtureDirection(neighborState).getOpposite())
+                && fixture.isFaceOccupied(level, neighborPos, neighborState, direction.getOpposite()))
             return false;
         return neighborState.is(TAG_SIGN_POST_BLOCKS)
                 || isCenterSupporting(level, neighborState, neighborPos, direction.getOpposite())
