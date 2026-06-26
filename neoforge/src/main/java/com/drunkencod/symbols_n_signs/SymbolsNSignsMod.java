@@ -41,7 +41,6 @@ public class SymbolsNSignsMod {
                 NeoForge.EVENT_BUS.addListener(SymbolsNSignsMod::onLeftClickBlock);
                 NeoForge.EVENT_BUS.addListener(SymbolsNSignsMod::onRightClickBlock);
 
-                Constants.LOG.info("Hello from Symbols'n'Signs (NeoForge)!");
                 SymbolsNSigns.init();
         }
 
@@ -99,7 +98,8 @@ public class SymbolsNSignsMod {
                         return;
                 lastWrenchClickTick.put(playerId, currentTick);
 
-                RatchetWrenchItem.handleWrenchLeftClick(event.getLevel(), event.getPos(), state, event.getEntity());
+                RatchetWrenchItem.handleWrenchLeftClick(event.getLevel(), event.getPos(), state, event.getFace(),
+                                event.getEntity());
         }
 
         private void onGatherData(GatherDataEvent event) {

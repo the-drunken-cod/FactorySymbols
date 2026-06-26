@@ -14,7 +14,7 @@ import java.util.Map;
 
 public class NeoForgeLanguageProvider extends LanguageProvider {
 
-    // #region Source lang file — resolved at datagen time relative to the output
+    // #region Source lang file - resolved at datagen time relative to the output
     // folder
     private final Path sourceLangFile;
 

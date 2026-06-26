@@ -49,11 +49,10 @@ public class SymbolsNSignsMod implements ModInitializer {
             BlockState state = world.getBlockState(pos);
             if (!(state.getBlock() instanceof IWrenchConfigurable))
                 return InteractionResult.PASS;
-            RatchetWrenchItem.handleWrenchLeftClick(world, pos, state, player);
+            RatchetWrenchItem.handleWrenchLeftClick(world, pos, state, direction, player);
             return InteractionResult.SUCCESS;
         });
 
-        Constants.LOG.info("Hello from Symbols'n'Signs (Fabric)!");
         SymbolsNSigns.init();
     }
 }

@@ -43,7 +43,7 @@ public class NeoForgeConfigHelper implements IConfigHelper {
         CLIENT_SPEC = specPair.getRight();
     }
 
-    // #region Registration — call from SymbolsNSignsMod constructor
+    // #region Registration - call from SymbolsNSignsMod constructor
 
     public void register(ModContainer modContainer) {
         modContainer.registerConfig(ModConfig.Type.COMMON, COMMON_SPEC);

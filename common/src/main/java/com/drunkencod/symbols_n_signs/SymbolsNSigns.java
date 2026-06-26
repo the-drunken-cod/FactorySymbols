@@ -12,7 +12,8 @@ public class SymbolsNSigns {
         ModSoundEvents.register();
         Services.CREATIVE_TAB.register();
 
-        Constants.LOG.info("Hello from Symbols'n'Signs on {}! we are currently in a {} environment!",
+        Constants.LOG.info(
+                "Symbols'n'Signs successfully registered on platform {}! we are currently in a {} environment.",
                 Services.PLATFORM.getPlatformName(), Services.PLATFORM.getEnvironmentName());
     }
 }

@@ -106,7 +106,7 @@ public class DisplayPanelBlock extends Block implements EntityBlock {
         };
     }
 
-    // #region Voxel shapes — 1-pixel slab on each face
+    // #region Voxel shapes - 1-pixel slab on each face
     private static final VoxelShape SHAPE_NORTH = Block.box(0, 0, 15, 16, 16, 16);
     private static final VoxelShape SHAPE_SOUTH = Block.box(0, 0, 0, 16, 16, 1);
     private static final VoxelShape SHAPE_WEST = Block.box(15, 0, 0, 16, 16, 16);

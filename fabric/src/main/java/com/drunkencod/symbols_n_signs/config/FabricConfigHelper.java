@@ -9,7 +9,7 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 
 public class FabricConfigHelper implements IConfigHelper {
 
-    // #region Registration — call from SymbolsNSignsMod during mod initialisation
+    // #region Registration - call from SymbolsNSignsMod during mod initialisation
 
     public void register() {
         AutoConfig.register(CommonConfigData.class, GsonConfigSerializer::new);
