@@ -61,6 +61,7 @@
     "symbols_n_signs.ratchet_wrench.mode.sign_fixture.stance": "Stance",
     "symbols_n_signs.ratchet_wrench.mode.sign_fixture.rotation": "Rotation",
     "symbols_n_signs.ratchet_wrench.mode.sign_fixture.scale": "Scale",
+    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.offset": "Offset",
     "symbols_n_signs.ratchet_wrench.mode.sign_fixture.double_sided": "Double-sided",
     "symbols_n_signs.ratchet_wrench.mode.sign_fixture.bright": "Bright",
 

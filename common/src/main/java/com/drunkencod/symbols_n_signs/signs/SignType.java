@@ -1,5 +1,9 @@
 package com.drunkencod.symbols_n_signs.signs;
 
+import com.drunkencod.symbols_n_signs.Constants;
+
+import net.minecraft.resources.ResourceLocation;
+
 public enum SignType {
         // #region Hazard
         HAZARD_STEEP_DOWNGRADE("hazard_steep_downgrade", SignCategory.HAZARD, SignSupportType.BOTTOM),
@@ -207,5 +211,12 @@ public enum SignType {
 
         public SignSupportType getSupportType() {
                 return supportType;
+        }
+
+        /** Item texture location, e.g. {@code symbols_n_signs:item/sign/hazard/steep_downgrade}. */
+        public ResourceLocation getTextureLocation() {
+                String catId = category.getId();
+                String stripped = id.startsWith(catId + "_") ? id.substring(catId.length() + 1) : id;
+                return ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "item/sign/" + catId + "/" + stripped);
         }
 }

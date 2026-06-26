@@ -31,10 +31,14 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import org.joml.Matrix4f;
+import org.joml.Vector3f;
 
 /**
  * Fixture that can hold an independent sign or symbol item on each of the
@@ -52,26 +56,6 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             .mapCodec(instance -> instance.group(propertiesCodec())
                     .apply((Applicative<Mu<SignPostSignFixtureBlock>, ?>) instance,
                             SignPostSignFixtureBlock::new));
-
-    // #region Shape (placeholder pending real per-SignType geometry)
-
-    private static final VoxelShape BUMP_NORTH = Block.box(4, 4, 4, 12, 12, 5);
-    private static final VoxelShape BUMP_SOUTH = Block.box(4, 4, 11, 12, 12, 12);
-    private static final VoxelShape BUMP_WEST = Block.box(4, 4, 4, 5, 12, 12);
-    private static final VoxelShape BUMP_EAST = Block.box(11, 4, 4, 12, 12, 12);
-    private static final VoxelShape BUMP_DOWN = Block.box(4, 4, 4, 12, 5, 12);
-    private static final VoxelShape BUMP_UP = Block.box(4, 11, 4, 12, 12, 12);
-
-    private static VoxelShape getPlaceholderBump(Direction direction) {
-        return switch (direction) {
-            case NORTH -> BUMP_NORTH;
-            case SOUTH -> BUMP_SOUTH;
-            case WEST -> BUMP_WEST;
-            case EAST -> BUMP_EAST;
-            case DOWN -> BUMP_DOWN;
-            case UP -> BUMP_UP;
-        };
-    }
 
     public SignPostSignFixtureBlock(Properties properties) {
         super(properties);
@@ -102,9 +86,38 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
     protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext ctx) {
         VoxelShape shape = SignPostNetworkUtil.buildShape(state, DIRECTION_PROPS);
         if (level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be)
-            for (Direction dir : be.getOccupiedFaces())
-                shape = Shapes.or(shape, getPlaceholderBump(dir));
+            for (Direction dir : be.getOccupiedFaces()) {
+                SignFixtureFaceData data = be.getFaceData(dir);
+                if (data != null)
+                    shape = Shapes.or(shape, buildPaneBump(dir, data));
+            }
         return shape;
+    }
+
+    /**
+     * Bounding box of a face's two panes (front + back), derived from the same
+     * Stance/Rotation/Scale transform the renderer uses, so the collision shape
+     * always matches what's drawn. See {@link SignFixtureGeometry}.
+     */
+    private static VoxelShape buildPaneBump(Direction face, SignFixtureFaceData data) {
+        Matrix4f pivot = SignFixtureGeometry.buildPivotTransform(face, data.getStance(), data.getRotation());
+        Matrix4f frontPane = SignFixtureGeometry.buildPaneTransform(pivot, data.getScale(), 1);
+        Matrix4f backPane = SignFixtureGeometry.buildPaneTransform(pivot, data.getScale(), -1);
+
+        float minX = Float.MAX_VALUE, minY = Float.MAX_VALUE, minZ = Float.MAX_VALUE;
+        float maxX = -Float.MAX_VALUE, maxY = -Float.MAX_VALUE, maxZ = -Float.MAX_VALUE;
+        for (Matrix4f pane : new Matrix4f[] { frontPane, backPane }) {
+            for (Vector3f corner : SignFixtureGeometry.unitQuadCorners()) {
+                Vector3f p = SignFixtureGeometry.transform(pane, corner);
+                minX = Math.min(minX, p.x());
+                minY = Math.min(minY, p.y());
+                minZ = Math.min(minZ, p.z());
+                maxX = Math.max(maxX, p.x());
+                maxY = Math.max(maxY, p.y());
+                maxZ = Math.max(maxZ, p.z());
+            }
+        }
+        return Shapes.create(new AABB(minX, minY, minZ, maxX, maxY, maxZ));
     }
 
     // #region Interaction - placing a sign onto an unoccupied face
@@ -187,9 +200,10 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
     private static final int MODE_STANCE = 0;
     private static final int MODE_ROTATION = 1;
     private static final int MODE_SCALE = 2;
-    private static final int MODE_DOUBLE_SIDED = 3;
-    private static final int MODE_BRIGHT = 4;
-    private static final int MODE_COUNT = 5;
+    private static final int MODE_OFFSET = 3;
+    private static final int MODE_DOUBLE_SIDED = 4;
+    private static final int MODE_BRIGHT = 5;
+    private static final int MODE_COUNT = 6;
 
     private static SignSupportType getSupportType(SignFixtureFaceData data) {
         if (data.getItem().getItem() instanceof SignItem signItem)
@@ -217,6 +231,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             case MODE_STANCE -> getModeKey("sign_fixture", "stance");
             case MODE_ROTATION -> getModeKey("sign_fixture", "rotation");
             case MODE_SCALE -> getModeKey("sign_fixture", "scale");
+            case MODE_OFFSET -> getModeKey("sign_fixture", "offset");
             case MODE_DOUBLE_SIDED -> getModeKey("sign_fixture", "double_sided");
             case MODE_BRIGHT -> getModeKey("sign_fixture", "bright");
             default -> Constants.MOD_ID + ".ratchet_wrench.mode.unknown";
@@ -229,6 +244,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             case MODE_STANCE -> getModeName("sign_fixture", "stance");
             case MODE_ROTATION -> getModeName("sign_fixture", "rotation");
             case MODE_SCALE -> getModeName("sign_fixture", "scale");
+            case MODE_OFFSET -> getModeName("sign_fixture", "offset");
             case MODE_DOUBLE_SIDED -> getModeName("sign_fixture", "double_sided");
             case MODE_BRIGHT -> getModeName("sign_fixture", "bright");
             default -> Constants.MOD_ID + ".ratchet_wrench.mode.unknown";
@@ -294,37 +310,47 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
                             true);
                 }
                 case MODE_ROTATION -> {
-                    int next = (data.getRotation() + 1) % SignFixtureFaceData.ROTATION_COUNT;
-                    be.setFaceData(clickedFace, data.withRotation(next));
+                    int nextRot = (data.getRotation() + 1) % SignFixtureFaceData.ROTATION_COUNT;
+                    be.setFaceData(clickedFace, data.withRotation(nextRot));
                     player.displayClientMessage(
                             Component.translatable(getWrenchModeKey(state, clickedFace, MODE_ROTATION))
-                                    .append(": " + next),
+                                    .append(": " + nextRot),
                             true);
                 }
                 case MODE_SCALE -> {
-                    float next = data.getScale() + SignFixtureFaceData.SCALE_STEP;
-                    if (next > SignFixtureFaceData.MAX_SCALE + 1e-3f)
-                        next = SignFixtureFaceData.MIN_SCALE;
-                    be.setFaceData(clickedFace, data.withScale(next));
+                    float nextSc = data.getScale() + SignFixtureFaceData.SCALE_STEP;
+                    if (nextSc > SignFixtureFaceData.MAX_SCALE + 1e-3f)
+                        nextSc = SignFixtureFaceData.MIN_SCALE;
+                    be.setFaceData(clickedFace, data.withScale(nextSc));
                     player.displayClientMessage(
                             Component.translatable(getWrenchModeKey(state, clickedFace, MODE_SCALE))
-                                    .append(": " + next),
+                                    .append(": " + nextSc),
+                            true);
+                }
+                case MODE_OFFSET -> {
+                    float nextOff = data.getOffset() + SignFixtureFaceData.OFFSET_STEP;
+                    if (nextOff > SignFixtureFaceData.MAX_OFFSET + 1e-3f)
+                        nextOff = SignFixtureFaceData.MIN_OFFSET;
+                    be.setFaceData(clickedFace, data.withOffset(nextOff));
+                    player.displayClientMessage(
+                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_OFFSET))
+                                    .append(": " + nextOff),
                             true);
                 }
                 case MODE_DOUBLE_SIDED -> {
-                    boolean next = !data.isDoubleSided();
-                    be.setFaceData(clickedFace, data.withDoubleSided(next));
+                    boolean nextDblSided = !data.isDoubleSided();
+                    be.setFaceData(clickedFace, data.withDoubleSided(nextDblSided));
                     player.displayClientMessage(
                             Component.translatable(getWrenchModeKey(state, clickedFace, MODE_DOUBLE_SIDED))
-                                    .append(": " + next),
+                                    .append(": " + nextDblSided),
                             true);
                 }
                 case MODE_BRIGHT -> {
-                    boolean next = !data.isBright();
-                    be.setFaceData(clickedFace, data.withBright(next));
+                    boolean nextBright = !data.isBright();
+                    be.setFaceData(clickedFace, data.withBright(nextBright));
                     player.displayClientMessage(
                             Component.translatable(getWrenchModeKey(state, clickedFace, MODE_BRIGHT))
-                                    .append(": " + next),
+                                    .append(": " + nextBright),
                             true);
                 }
             }
