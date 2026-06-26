@@ -206,16 +206,16 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
 
     // #region Interaction - removing a single face's sign with an empty hand
 
-    // TODO: use raycast to check targeted face
-
     @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
             BlockHitResult hit) {
         if (!player.isShiftKeyDown())
             return InteractionResult.PASS;
 
-        Direction face = hit.getDirection();
-        if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be) || !be.isOccupied(face))
+        if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be))
+            return InteractionResult.PASS;
+        Direction face = resolveTargetFace(pos, be, hit.getLocation());
+        if (face == null || !be.isOccupied(face))
             return InteractionResult.PASS;
 
         if (!level.isClientSide()) {
