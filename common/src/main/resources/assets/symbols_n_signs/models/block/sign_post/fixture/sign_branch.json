@@ -3,7 +3,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "symbols_n_signs:block/sign_post/sign_post_atlas",
-		"particle": "symbols_n_signs:block/sign_post/sign_post_atlas"
+		"particle": "symbols_n_signs:block/sign_post/sign_post_particle"
 	},
 	"elements": [
 		{
