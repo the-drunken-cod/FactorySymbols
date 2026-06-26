@@ -122,23 +122,6 @@ public class RatchetWrenchItem extends Item {
         setSelectedModeByKey(wrench, blockId.toString(), mode);
     }
 
-    /**
-     * Per-face variant for multi-face fixtures (e.g. Sign Fixture), where each
-     * occupied face tracks its own selected mode independently. Single-face
-     * fixtures should keep using the blockId-only overloads above instead.
-     */
-    public static int getSelectedMode(ItemStack wrench, ResourceLocation blockId, Direction face) {
-        return getSelectedModeByKey(wrench, perFaceKey(blockId, face));
-    }
-
-    public static void setSelectedMode(ItemStack wrench, ResourceLocation blockId, Direction face, int mode) {
-        setSelectedModeByKey(wrench, perFaceKey(blockId, face), mode);
-    }
-
-    private static String perFaceKey(ResourceLocation blockId, Direction face) {
-        return blockId.toString() + ":" + face.getSerializedName();
-    }
-
     private static int getSelectedModeByKey(ItemStack wrench, String key) {
         CompoundTag tag = wrench.getOrDefault(DataComponents.CUSTOM_DATA, CustomData.EMPTY).copyTag();
         return tag.contains(key) ? tag.getInt(key) : 0;

@@ -21,8 +21,8 @@
     "item.symbols_n_signs.ratchet_wrench.tooltip.1": "L-Klick auf Vorrichtung: Schlüsselmodus wechseln",
     "item.symbols_n_signs.ratchet_wrench.tooltip.2": "R-Klick auf Vorrichtung: Einstellung ändern",
 
-    "symbols_n_signs.ratchet_wrench.mode.button_fixture.name_template.__comment__": "Zur Laufzeit verwendete Vorlage für den Modusnamen der Knopfvorrichtung. %1$s = aktueller Modusname.",
-    "symbols_n_signs.ratchet_wrench.mode.button_fixture.name_template": "[Modus] %1$s",
+    "symbols_n_signs.ratchet_wrench.mode.button_fixture.name_template.__comment__": "Zur Laufzeit verwendete Vorlage für den Modusnamen der Knopfvorrichtung. %1$s = aktuelle Modus-Nr., %2$s = Anzahl der Modi, %3$s = aktueller Modusname.",
+    "symbols_n_signs.ratchet_wrench.mode.button_fixture.name_template": "[Modus %1$s/%2$s] %3$s",
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.orientation": "Ausrichtung",
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.orientation.value.north": "Norden",
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.orientation.value.south": "Süden",
@@ -32,8 +32,8 @@
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.active_high.value.0": "Niedrig wenn Aktiv (Invertiert)",
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.active_high.value.1": "Hoch wenn Aktiv (Normal)",
 
-    "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.name_template.__comment__": "Zur Laufzeit verwendete Vorlage für den Modusnamen der Lampenvorrichtung. %1$s = aktueller Modusname.",
-    "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.name_template": "[Modus] %1$s",
+    "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.name_template.__comment__": "Zur Laufzeit verwendete Vorlage für den Modusnamen der Lampenvorrichtung. %1$s = aktuelle Modus-Nr., %2$s = Anzahl der Modi, %3$s = aktueller Modusname.",
+    "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.name_template": "[Modus %1$s/%2$s] %3$s",
     "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.orientation": "Ausrichtung",
     "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.orientation.value.z": "Nord/Süd",
     "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.orientation.value.x": "Ost/West",
@@ -43,8 +43,8 @@
     "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.signal_mode.value.2": "Aus, wenn Aktiviert (Invertiert)",
     "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.signal_mode.value.3": "Immer Aus",
 
-    "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.name_template.__comment__": "Zur Laufzeit verwendete Vorlage für den Modusnamen der Redstonevorrichtung. %1$s = aktueller Modusname.",
-    "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.name_template": "[Modus] %1$s",
+    "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.name_template.__comment__": "Zur Laufzeit verwendete Vorlage für den Modusnamen der Redstonevorrichtung. %1$s = aktuelle Modus-Nr., %2$s = Anzahl der Modi, %3$s = aktueller Modusname.",
+    "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.name_template": "[Modus %1$s/%2$s] %3$s",
     "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.orientation": "Ausrichtung",
     "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.orientation.value.north": "Nord",
     "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.orientation.value.south": "Süd",
@@ -56,8 +56,8 @@
     "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.inverted.value.0": "Hoch wenn Aktiv (Normal)",
     "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.inverted.value.1": "Niedrig wenn Aktiv (Invertiert)",
 
-    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.name_template.__comment__": "Zur Laufzeit verwendete Vorlage für den Modusnamen der Schildvorrichtung. %1$s = aktueller Modusname.",
-    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.name_template": "[Modus] %1$s",
+    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.name_template.__comment__": "Zur Laufzeit verwendete Vorlage für den Modusnamen der Schildvorrichtung. %1$s = aktuelle Modus-Nr., %2$s = Anzahl der Modi, %3$s = aktueller Modusname.",
+    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.name_template": "[Modus %1$s/%2$s] %3$s",
     "symbols_n_signs.ratchet_wrench.mode.sign_fixture.stance": "Stellung",
     "symbols_n_signs.ratchet_wrench.mode.sign_fixture.stance.value.flat": "Flach",
     "symbols_n_signs.ratchet_wrench.mode.sign_fixture.stance.value.perpendicular_a": "Orthogonal A",

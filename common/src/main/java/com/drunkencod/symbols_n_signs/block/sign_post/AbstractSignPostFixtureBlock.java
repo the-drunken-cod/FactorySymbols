@@ -276,10 +276,10 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
         return Constants.MOD_ID + ".ratchet_wrench.mode." + baseKey + "." + valueKey;
     }
 
-    protected static String getModeName(String baseKey, String valueKey) {
+    protected static String getModeName(String baseKey, String valueKey, int modeIndex, int modeCount) {
         String modeName = Component.translatable(getModeKey(baseKey, valueKey)).getString();
         String template = Component.translatable(getModeKey(baseKey, "name_template")).getString();
-        return String.format(template, modeName);
+        return String.format(template, modeIndex + 1, modeCount, modeName);
     }
 
     // #region IWrenchConfigurable defaults

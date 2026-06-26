@@ -307,12 +307,12 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
     @Override
     public String getWrenchModeString(BlockState state, Direction clickedFace, int modeIndex) {
         return switch (modeIndex) {
-            case MODE_STANCE -> getModeName("sign_fixture", "stance");
-            case MODE_ROTATION -> getModeName("sign_fixture", "rotation");
-            case MODE_SCALE -> getModeName("sign_fixture", "scale");
-            case MODE_OFFSET -> getModeName("sign_fixture", "offset");
-            case MODE_DOUBLE_SIDED -> getModeName("sign_fixture", "double_sided");
-            case MODE_BRIGHT -> getModeName("sign_fixture", "bright");
+            case MODE_STANCE -> getModeName("sign_fixture", "stance", modeIndex, MODE_COUNT);
+            case MODE_ROTATION -> getModeName("sign_fixture", "rotation", modeIndex, MODE_COUNT);
+            case MODE_SCALE -> getModeName("sign_fixture", "scale", modeIndex, MODE_COUNT);
+            case MODE_OFFSET -> getModeName("sign_fixture", "offset", modeIndex, MODE_COUNT);
+            case MODE_DOUBLE_SIDED -> getModeName("sign_fixture", "double_sided", modeIndex, MODE_COUNT);
+            case MODE_BRIGHT -> getModeName("sign_fixture", "bright", modeIndex, MODE_COUNT);
             default -> Constants.MOD_ID + ".ratchet_wrench.mode.unknown";
         };
     }
@@ -325,7 +325,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
         if (wrench.isEmpty())
             return Component.empty();
         ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
-        int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId, clickedFace) % MODE_COUNT;
+        int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId) % MODE_COUNT;
         return Component.literal(getWrenchModeString(state, clickedFace, mode));
     }
 
@@ -342,8 +342,11 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             if (wrench.isEmpty())
                 return InteractionResult.PASS;
             ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
-            int next = (RatchetWrenchItem.getSelectedMode(wrench, blockId, face) + 1) % MODE_COUNT;
-            RatchetWrenchItem.setSelectedMode(wrench, blockId, face, next);
+            int next = (RatchetWrenchItem.getSelectedMode(wrench, blockId) + (player.isCrouching() ? -1 : 1))
+                    % MODE_COUNT;
+            if (next <= -1)
+                next = MODE_COUNT - 1;
+            RatchetWrenchItem.setSelectedMode(wrench, blockId, next);
             player.displayClientMessage(Component.literal(getWrenchModeString(state, face, next)), true);
         }
         return InteractionResult.SUCCESS;
@@ -366,7 +369,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             if (wrench.isEmpty())
                 return InteractionResult.PASS;
             ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
-            int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId, face);
+            int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId);
             Constants.LOG.debug("Sign Fixture wrench right-click at {} face {} mode {}", pos, face, mode);
             switch (mode) {
                 case MODE_STANCE -> {

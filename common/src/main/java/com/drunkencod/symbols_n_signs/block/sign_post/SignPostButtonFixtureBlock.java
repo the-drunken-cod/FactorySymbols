@@ -204,8 +204,8 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
     @Override
     public String getWrenchModeString(BlockState state, Direction clickedFace, int modeIndex) {
         return switch (modeIndex) {
-            case MODE_ORIENTATION -> getModeName("button_fixture", "orientation");
-            case MODE_ACTIVE_HIGH -> getModeName("button_fixture", "active_high");
+            case MODE_ORIENTATION -> getModeName("button_fixture", "orientation", modeIndex, MODE_COUNT);
+            case MODE_ACTIVE_HIGH -> getModeName("button_fixture", "active_high", modeIndex, MODE_COUNT);
             default -> Constants.MOD_ID + ".ratchet_wrench.mode.unknown";
         };
     }
@@ -216,7 +216,7 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
         if (wrench.isEmpty())
             return Component.empty();
         ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
-        int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId, getFixtureDirection(state));
+        int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId);
         return Component.literal(getWrenchModeString(state, clickedFace, mode));
     }
 
@@ -228,9 +228,11 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
             if (wrench.isEmpty())
                 return InteractionResult.PASS;
             ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
-            Direction fixtureFace = getFixtureDirection(state);
-            int next = (RatchetWrenchItem.getSelectedMode(wrench, blockId, fixtureFace) + 1) % MODE_COUNT;
-            RatchetWrenchItem.setSelectedMode(wrench, blockId, fixtureFace, next);
+            int next = (RatchetWrenchItem.getSelectedMode(wrench, blockId) + (player.isCrouching() ? -1 : 1))
+                    % MODE_COUNT;
+            if (next <= -1)
+                next = MODE_COUNT - 1;
+            RatchetWrenchItem.setSelectedMode(wrench, blockId, next);
             player.displayClientMessage(Component.literal(getWrenchModeString(state, clickedFace, next)), true);
         }
         return InteractionResult.SUCCESS;
@@ -244,7 +246,7 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
             if (wrench.isEmpty())
                 return InteractionResult.PASS;
             ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(this);
-            int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId, getFixtureDirection(state));
+            int mode = RatchetWrenchItem.getSelectedMode(wrench, blockId);
             switch (mode) {
                 case MODE_ORIENTATION -> {
                     int idx = HORIZONTAL_DIRS.indexOf(state.getValue(FACING));
@@ -255,7 +257,8 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
                             Component.translatable(getWrenchModeKey(state, clickedFace, MODE_ORIENTATION))
                                     .append(": ")
                                     .append(Component.translatable(
-                                            getWrenchModeKey(state, clickedFace, MODE_ORIENTATION) + ".value." + next.getName())),
+                                            getWrenchModeKey(state, clickedFace, MODE_ORIENTATION) + ".value."
+                                                    + next.getName())),
                             true);
                 }
                 case MODE_ACTIVE_HIGH -> {
@@ -266,7 +269,8 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
                             Component.translatable(getWrenchModeKey(state, clickedFace, MODE_ACTIVE_HIGH))
                                     .append(": ")
                                     .append(Component.translatable(
-                                            getWrenchModeKey(state, clickedFace, MODE_ACTIVE_HIGH) + ".value." + (next ? 1 : 0))),
+                                            getWrenchModeKey(state, clickedFace, MODE_ACTIVE_HIGH) + ".value."
+                                                    + (next ? 1 : 0))),
                             true);
                 }
             }

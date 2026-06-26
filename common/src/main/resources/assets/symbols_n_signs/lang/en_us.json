@@ -21,8 +21,8 @@
     "item.symbols_n_signs.ratchet_wrench.tooltip.1": "L-Click Fixture: Switch Wrench Mode",
     "item.symbols_n_signs.ratchet_wrench.tooltip.2": "R-Click Fixture: Change Setting",
 
-    "symbols_n_signs.ratchet_wrench.mode.button_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the button fixture. %1$s = current mode name.",
-    "symbols_n_signs.ratchet_wrench.mode.button_fixture.name_template": "[Mode] %1$s",
+    "symbols_n_signs.ratchet_wrench.mode.button_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the button fixture. %1$s = current mode number, %2$s = max mode number, %3$s = current mode name.",
+    "symbols_n_signs.ratchet_wrench.mode.button_fixture.name_template": "[Mode %1$s/%2$s] %3$s",
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.orientation": "Orientation",
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.orientation.value.north": "North",
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.orientation.value.south": "South",
@@ -32,8 +32,8 @@
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.active_high.value.0": "Low when Powered (Inverted)",
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.active_high.value.1": "High when Powered (Normal)",
 
-    "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the lamp fixture. %1$s = current mode name.",
-    "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.name_template": "[Mode] %1$s",
+    "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the lamp fixture. %1$s = current mode number, %2$s = max mode number, %3$s = current mode name.",
+    "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.name_template": "[Mode %1$s/%2$s] %3$s",
     "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.orientation": "Orientation",
     "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.orientation.value.z": "North/South",
     "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.orientation.value.x": "East/West",
@@ -43,8 +43,8 @@
     "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.signal_mode.value.2": "Unlit when Powered (Inverted)",
     "symbols_n_signs.ratchet_wrench.mode.lamp_fixture.signal_mode.value.3": "Always Off",
 
-    "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the redstone emitter fixture. %1$s = current mode name.",
-    "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.name_template": "[Mode] %1$s",
+    "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the redstone emitter fixture. %1$s = current mode number, %2$s = max mode number, %3$s = current mode name.",
+    "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.name_template": "[Mode %1$s/%2$s] %3$s",
     "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.orientation": "Orientation",
     "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.orientation.value.north": "North",
     "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.orientation.value.south": "South",
@@ -56,8 +56,8 @@
     "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.inverted.value.0": "High when Powered (Normal)",
     "symbols_n_signs.ratchet_wrench.mode.redstone_emitter_fixture.inverted.value.1": "Low when Powered (Inverted)",
 
-    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the sign fixture. %1$s = current mode name.",
-    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.name_template": "[Mode] %1$s",
+    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the sign fixture. %1$s = current mode number, %2$s = max mode number, %3$s = current mode name.",
+    "symbols_n_signs.ratchet_wrench.mode.sign_fixture.name_template": "[Mode %1$s/%2$s] %3$s",
     "symbols_n_signs.ratchet_wrench.mode.sign_fixture.stance": "Stance",
     "symbols_n_signs.ratchet_wrench.mode.sign_fixture.stance.value.flat": "Flat",
     "symbols_n_signs.ratchet_wrench.mode.sign_fixture.stance.value.perpendicular_a": "Perpendicular A",
