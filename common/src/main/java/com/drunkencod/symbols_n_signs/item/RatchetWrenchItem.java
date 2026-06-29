@@ -31,9 +31,6 @@ import net.minecraft.sounds.SoundSource;
 
 import org.jetbrains.annotations.Nullable;
 
-// TODO: when holding left-click in survival mode, the mode switching isn't debounced. Weirdly in creative it's correctly debounced by about 5 ticks.
-// the previous fix to add an artificial cooldown is bad, since spam-clicking should still be allowed.
-
 public class RatchetWrenchItem extends Item {
     public static final String ID = "ratchet_wrench";
 

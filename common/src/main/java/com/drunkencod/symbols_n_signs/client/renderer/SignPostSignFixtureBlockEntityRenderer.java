@@ -24,6 +24,8 @@ import net.minecraft.world.item.ItemStack;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
+// TODO: when placing signs on the top/bottom face, they should render at a larger distance from the center of the block.
+
 /**
  * Renders each occupied face of a Sign Fixture as two panes (front + back),
  * sharing its Stance/Rotation/Scale/DoubleSided transform math with the

@@ -69,8 +69,11 @@ public class SymbolsNSignsMod {
 
         // #region Wrench survival left-click
 
-        private static final Map<UUID, Long> lastWrenchClickTick = new HashMap<>();
-        private static final int WRENCH_CLICK_COOLDOWN = 1;
+        // Tracks every event tick (even skipped ones) to distinguish hold from new click.
+        private static final Map<UUID, Long> lastWrenchEventTick = new HashMap<>();
+        // Tracks when a mode switch last fired, for hold-repeat throttling.
+        private static final Map<UUID, Long> lastWrenchActionTick = new HashMap<>();
+        private static final int WRENCH_HOLD_REPEAT = 5;
 
         private static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
                 if (event.getAction() != PlayerInteractEvent.LeftClickBlock.Action.START)
@@ -81,23 +84,26 @@ public class SymbolsNSignsMod {
                 if (!(state.getBlock() instanceof IWrenchConfigurable))
                         return;
 
-                // Always cancel to prevent block breaking on both sides, even during cooldown.
+                // Always cancel to prevent block breaking on both sides, even while held.
                 event.setCanceled(true);
 
                 // In singleplayer, NeoForge fires this event on both the client-side
                 // MultiPlayerGameMode and the server-side ServerPlayerGameMode via the shared
-                // NeoForge.EVENT_BUS (same JVM). Running mode-switch logic client-side would
-                // consume the shared cooldown slot before the server event fires at the same
-                // tick, causing the server's cooldown check to always fail.
+                // NeoForge.EVENT_BUS (same JVM). Only run mode-switch logic server-side.
                 if (event.getLevel().isClientSide())
                         return;
 
                 UUID playerId = event.getEntity().getUUID();
                 long currentTick = event.getLevel().getGameTime();
-                if (currentTick - lastWrenchClickTick.getOrDefault(playerId, 0L) < WRENCH_CLICK_COOLDOWN)
-                        return;
-                lastWrenchClickTick.put(playerId, currentTick);
+                long lastEventTick = lastWrenchEventTick.getOrDefault(playerId, -2L);
+                lastWrenchEventTick.put(playerId, currentTick);
 
+                boolean isHolding = currentTick - lastEventTick <= 1;
+                long lastActionTick = lastWrenchActionTick.getOrDefault(playerId, (long) -WRENCH_HOLD_REPEAT);
+                if (isHolding && currentTick - lastActionTick < WRENCH_HOLD_REPEAT)
+                        return;
+
+                lastWrenchActionTick.put(playerId, currentTick);
                 RatchetWrenchItem.handleWrenchLeftClick(event.getLevel(), event.getPos(), state, event.getFace(),
                                 event.getEntity());
         }

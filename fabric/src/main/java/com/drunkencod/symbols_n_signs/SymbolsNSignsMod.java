@@ -7,6 +7,9 @@ import com.drunkencod.symbols_n_signs.config.FabricConfigHelper;
 import com.drunkencod.symbols_n_signs.item.IWrenchConfigurable;
 import com.drunkencod.symbols_n_signs.item.RatchetWrenchItem;
 import com.drunkencod.symbols_n_signs.platform.Services;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
@@ -14,6 +17,12 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class SymbolsNSignsMod implements ModInitializer {
+
+    // Tracks every event tick (even skipped ones) to distinguish hold from new click.
+    private static final Map<UUID, Long> lastWrenchEventTick = new HashMap<>();
+    // Tracks when a mode switch last fired, for hold-repeat throttling.
+    private static final Map<UUID, Long> lastWrenchActionTick = new HashMap<>();
+    private static final int WRENCH_HOLD_REPEAT = 5;
 
     @Override
     public void onInitialize() {
@@ -49,6 +58,18 @@ public class SymbolsNSignsMod implements ModInitializer {
             BlockState state = world.getBlockState(pos);
             if (!(state.getBlock() instanceof IWrenchConfigurable))
                 return InteractionResult.PASS;
+
+            UUID playerId = player.getUUID();
+            long currentTick = world.getGameTime();
+            long lastEventTick = lastWrenchEventTick.getOrDefault(playerId, -2L);
+            lastWrenchEventTick.put(playerId, currentTick);
+
+            boolean isHolding = currentTick - lastEventTick <= 1;
+            long lastActionTick = lastWrenchActionTick.getOrDefault(playerId, (long) -WRENCH_HOLD_REPEAT);
+            if (isHolding && currentTick - lastActionTick < WRENCH_HOLD_REPEAT)
+                return InteractionResult.SUCCESS;
+
+            lastWrenchActionTick.put(playerId, currentTick);
             RatchetWrenchItem.handleWrenchLeftClick(world, pos, state, direction, player);
             return InteractionResult.SUCCESS;
         });
