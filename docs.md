@@ -275,7 +275,7 @@ Note: Any dye can be used in these recipes.
   - `symbols_n_signs:displays` - All blocks that can display items. Also exists as an item tag with the same key.
 - Sign Post:
   - `symbols_n_signs:sign_post_blocks` - Contains the [Sign Post](#sign-post) and every [Sign Post Fixture](#sign-post-fixtures) block.
-  - `symbols_n_signs:sign_post_fixtures` - Contains all [Sign Post Fixture](#sign-post-fixtures) blocks.
+  - `symbols_n_signs:sign_post_fixtures` - Contains all [Sign Post Fixture](#sign-post-fixtures) blocks except the [Sign Post.](#sign-post)
   - `symbols_n_signs:sign_post_connects_to_bottom` - Blocks that [Sign Posts](#sign-post) will connect to, but only via their bottom face.
   - `symbols_n_signs:sign_post_connects_to_top` - Blocks that [Sign Posts](#sign-post) will connect to, but only via their top face.
   - `symbols_n_signs:sign_post_connects_to_sides` - Blocks that [Sign Posts](#sign-post) will connect to via their sides.
@@ -291,7 +291,7 @@ Note: Any dye can be used in these recipes.
 - Signs:
   - `symbols_n_signs:signs` - All sign items.
   - `symbols_n_signs:signs/<category>` - All sign items of the given category. Can be `hazard`, `regulatory`, `prohibition`, or `extra`.
-  - `symbols_n_signs:support/<support_type>` - Where the sign's valid attachment points are. Can be `bottom`, `vertical`, `horizontal`, `any`, or `back`.
+  - `symbols_n_signs:support/<support_type>` - Where the sign's valid attachment edges/points are (when looking at the texture). Can be `bottom`, `vertical`, `horizontal` or `any`, and `back` (included in all other types).
 - Materials:
   - `c:plates/retroreflective` - Contains the [Retroreflective Sheet.](#retroreflective-sheet)
   - `symbols_n_signs:sign_post_material/ingots` - Contains all material ingots that can be used to craft [Sign Posts](#sign-post) and [Sign Post Fixtures.](#sign-post-fixtures) Contains Iron and Zinc (from other mods) by default.
