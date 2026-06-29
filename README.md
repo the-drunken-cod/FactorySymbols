@@ -10,9 +10,13 @@ Collection of meaningful symbol items for Minecraft Java Edition and ways to dis
 <br>
 
 ## Introduction:
-Symbols'n'Signs is a Minecraft mod for NeoForge and Fabric that adds a collection of symbol items to the game.  
-These symbols are designed to be meaningful and can be used for labeling purposes, like making Create's Redstone Link frequencies more recognizable.  
+Symbols'n'Signs is a Minecraft mod for NeoForge and Fabric that adds a collection of symbol items and road signs to the game.  
+  
+The symbols are designed to be meaningful and can be used for labeling purposes, like making Create's Redstone Link frequencies more recognizable.  
 They are regular items that are cheaply craftable and transmutable and have uniform and recognizable textures.  
+  
+The signs are designed after European (and specifically German) road signs.  
+There are many different ways to display these signs, including signal-carrying sign posts.  
   
 **[View the latest documentation here (Note: contains changed and unreleased content).](https://github.com/the-drunken-cod/Symbols-n-Signs/blob/develop/docs.md)**
 
