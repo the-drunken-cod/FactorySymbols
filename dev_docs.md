@@ -54,9 +54,14 @@
     - [ ] Item that can copy and paste fixture configurations for faster configuration.
     - [ ] If held in the offhand while placing fixtures, auto-applies the settings while placing.
 9. [ ] **Future Features:**
-    - copying item: item that allows fixture configurations to be copied and pasted.
-    - make display panel items rotatable like item frames (maybe via a wrench item or something?).
-    - make display panels placeable on the ceiling and floor.
+    - wide variety of road markings that all interconnect.
+        - white/yellow/gray colors.
+        - zebra stripes (placed like minecart tracks).
+        - single/double solid/double dashed/double solid & dashed (L & R).
+        - solid/dashed/dashed (short).
+    - make display panel items rotatable like item frames (maybe via the wrench or something?).
+    - make display panel placeable on the ceiling and floor.
+    - make lamp fixture place a light above the first solid block in the column below where it's placed.
     - more symbol materials (e.g. netherite, quartz, prismarine, etc.).
     - user-defined symbols: allows modpack creators to add their own symbols.
 
