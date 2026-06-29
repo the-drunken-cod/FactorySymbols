@@ -24,8 +24,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.AttachFace;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -334,31 +337,45 @@ public final class SignPostNetworkUtil {
 
     /**
      * Handles sneak-right-click harvest for sign post blocks. Any item in
-     * {@code #c:tools/wrench} while the player is sneaking will break the block,
-     * play the break sound + particles and item-pickup sound, and deliver the
-     * block's loot-table drops directly into the player's inventory. Overflow items
-     * (when the inventory is full) are dropped from the player's eye position.
-     * In creative mode the block is still broken but no items are given.
+     * {@code #c:tools/wrench} while the player is sneaking will harvest the
+     * block and play an item-pickup sound. Fixture blocks (
+     * {@link AbstractSignPostFixtureBlock}) delegate to
+     * {@link AbstractSignPostFixtureBlock#onWrenchHarvest} so they can give back
+     * their own item(s) and revert to a plain Sign Post instead of being fully
+     * destroyed; plain Sign Posts are broken outright via their loot table. In
+     * creative mode no items are given.
      */
     public static ItemInteractionResult harvestWithWrench(ItemStack stack, BlockState state, Level level,
-            BlockPos pos, Player player) {
+            BlockPos pos, @Nullable Vec3 hitLocation, Player player) {
         if (!player.isShiftKeyDown() || !stack.is(TOOLS_WRENCH))
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
         if (!level.isClientSide()) {
-            BlockEntity be = level.getBlockEntity(pos);
-            if (!player.isCreative()) {
-                List<ItemStack> drops = Block.getDrops(state, (ServerLevel) level, pos, be, player, stack);
-                for (ItemStack drop : drops) {
-                    player.addItem(drop);
-                    if (!drop.isEmpty())
-                        player.drop(drop, false);
+            if (state.getBlock() instanceof AbstractSignPostFixtureBlock fixture) {
+                fixture.onWrenchHarvest(level, pos, state, hitLocation, stack, player);
+            } else {
+                if (!player.isCreative()) {
+                    BlockEntity be = level.getBlockEntity(pos);
+                    List<ItemStack> drops = Block.getDrops(state, (ServerLevel) level, pos, be, player, stack);
+                    for (ItemStack drop : drops)
+                        giveOrDrop(player, drop);
                 }
+                level.destroyBlock(pos, false);
             }
-            level.destroyBlock(pos, false);
             level.playSound(null, pos, SoundEvents.ITEM_PICKUP, SoundSource.PLAYERS, 0.2f,
                     0.5f + level.random.nextFloat() * 0.4f);
         }
         return ItemInteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    /**
+     * Adds {@code stack} to the player's inventory, dropping any overflow at
+     * their feet instead of letting it vanish. Centralizes the "give or drop"
+     * pattern used wherever a fixture hands an item back to the player, since
+     * each fixture/BE stores its item(s) under its own NBT shape.
+     */
+    public static void giveOrDrop(Player player, ItemStack stack) {
+        if (!stack.isEmpty() && !player.getInventory().add(stack))
+            player.drop(stack, false);
     }
 }

@@ -35,7 +35,7 @@ public class SymbolsNSignsMod implements ModInitializer {
                 return InteractionResult.PASS;
             player.swing(hand);
             if (!world.isClientSide())
-                SignPostNetworkUtil.harvestWithWrench(stack, state, world, pos, player);
+                SignPostNetworkUtil.harvestWithWrench(stack, state, world, pos, hit.getLocation(), player);
             return InteractionResult.SUCCESS;
         });
 

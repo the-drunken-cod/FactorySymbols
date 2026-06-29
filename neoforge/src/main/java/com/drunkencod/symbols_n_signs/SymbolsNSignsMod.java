@@ -64,7 +64,7 @@ public class SymbolsNSignsMod {
                         return;
 
                 SignPostNetworkUtil.harvestWithWrench(stack, state, event.getLevel(), event.getPos(),
-                                event.getEntity());
+                                event.getHitVec().getLocation(), event.getEntity());
         }
 
         // #region Wrench survival left-click

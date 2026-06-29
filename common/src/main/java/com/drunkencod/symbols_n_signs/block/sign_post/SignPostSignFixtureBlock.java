@@ -1,6 +1,7 @@
 package com.drunkencod.symbols_n_signs.block.sign_post;
 
 import java.util.List;
+import java.util.Set;
 
 import com.drunkencod.symbols_n_signs.Constants;
 import com.drunkencod.symbols_n_signs.item.RatchetWrenchItem;
@@ -44,7 +45,7 @@ import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 /**
- * Fixture that can hold an independent sign or symbol item on each of the
+ * Fixture that can hold an independent sign item on each of the
  * post's 6 faces simultaneously. Unlike the single-face fixtures (Button,
  * Lamp, Redstone Emitter), this block occupies an arbitrary subset of faces
  * at once - see ADR 0001. {@code FACE}/{@code FACING} (inherited from
@@ -146,10 +147,12 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
      * game reports frequently doesn't match the fixture face being aimed at.
      * Falls back to the occupied face whose pane is nearest the hit point if
      * none of them strictly contain it (e.g. a hit landing exactly on a
-     * boundary plane).
+     * boundary plane) - unless {@code allowNearestFallback} is {@code false},
+     * in which case a hit that isn't strictly inside any pane (i.e. it landed
+     * on the post itself) resolves to {@code null} instead.
      */
     private static @Nullable Direction resolveTargetFace(BlockPos pos, SignPostSignFixtureBlockEntity be,
-            @Nullable Vec3 hitLocation) {
+            @Nullable Vec3 hitLocation, boolean allowNearestFallback) {
         if (hitLocation == null)
             return null;
         Vec3 local = hitLocation.subtract(pos.getX(), pos.getY(), pos.getZ());
@@ -169,7 +172,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
                 nearest = face;
             }
         }
-        return nearest;
+        return allowNearestFallback ? nearest : null;
     }
 
     // #region Interaction - placing a sign onto an unoccupied face
@@ -214,23 +217,34 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
 
         if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be))
             return InteractionResult.PASS;
-        Direction face = resolveTargetFace(pos, be, hit.getLocation());
+        Direction face = resolveTargetFace(pos, be, hit.getLocation(), true);
         if (face == null || !be.isOccupied(face))
             return InteractionResult.PASS;
 
+        removeSingleSign(level, pos, state, be, face, player);
+        return InteractionResult.sidedSuccess(level.isClientSide());
+    }
+
+    /**
+     * Removes one face's sign, gives it back to the player and updates the
+     * block's connections/shape. Targeting a specific sign only ever removes
+     * that sign - even if it's the last one left - and never reverts the
+     * fixture itself; reverting to a plain Sign Post only happens when the
+     * post (not a sign) is targeted, via {@link #onWrenchHarvest}.
+     */
+    private void removeSingleSign(Level level, BlockPos pos, BlockState state, SignPostSignFixtureBlockEntity be,
+            Direction face, Player player) {
         ItemStack removed = be.removeFace(face);
+        if (!player.isCreative())
+            SignPostNetworkUtil.giveOrDrop(player, removed);
 
         BlockState newState = setConnectionStates(state, level, pos);
         level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
-
-        if (!player.isCreative() && !removed.isEmpty() && !player.getInventory().add(removed))
-            player.drop(removed, false);
 
         playRemoveItemSound(level, pos, player);
         level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
 
         Constants.LOG.info("Removed sign from face {} of Sign Fixture at {}", face, pos);
-        return InteractionResult.sidedSuccess(level.isClientSide());
     }
 
     // #region Sound
@@ -334,7 +348,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             @Nullable Vec3 hitLocation, Player player) {
         if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be))
             return InteractionResult.PASS;
-        Direction face = resolveTargetFace(pos, be, hitLocation);
+        Direction face = resolveTargetFace(pos, be, hitLocation, true);
         if (face == null)
             return InteractionResult.PASS;
         if (!level.isClientSide()) {
@@ -357,7 +371,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             Vec3 hitLocation, Player player) {
         if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be))
             return InteractionResult.PASS;
-        Direction face = resolveTargetFace(pos, be, hitLocation);
+        Direction face = resolveTargetFace(pos, be, hitLocation, true);
         if (face == null)
             return InteractionResult.PASS;
         SignFixtureFaceData data = be.getFaceData(face);
@@ -438,6 +452,48 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             }
         }
         return InteractionResult.SUCCESS;
+    }
+
+    // #region Wrench sneak right-click harvest
+
+    /**
+     * Unlike single-item fixtures, a Sign Fixture can hold up to 6 independent
+     * sign items, each with its own NBT (custom name, dye, glow, etc.) that no
+     * shared loot table entry could reproduce. So instead of the default
+     * "drop the whole block's loot" behavior, this resolves which occupied
+     * face's pane was actually hit (no nearest-face fallback - landing outside
+     * every pane means the post itself was targeted):
+     * <ul>
+     * <li>a specific sign's pane was hit -&gt; remove just that sign</li>
+     * <li>the post was hit (or there's no BE) -&gt; drop every sign and revert
+     * to a plain Sign Post</li>
+     * </ul>
+     */
+    @Override
+    public void onWrenchHarvest(Level level, BlockPos pos, BlockState state, @Nullable Vec3 hitLocation,
+            ItemStack wrenchStack, Player player) {
+        if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be)) {
+            super.onWrenchHarvest(level, pos, state, hitLocation, wrenchStack, player);
+            return;
+        }
+
+        Direction face = resolveTargetFace(pos, be, hitLocation, false);
+        if (face != null && be.isOccupied(face)) {
+            removeSingleSign(level, pos, state, be, face, player);
+            return;
+        }
+
+        // Drain every face before reverting: onRemove() also drops contained signs
+        // when this block is replaced by a different block (see onRemove below), so
+        // any face still present here would otherwise be handed to the player twice.
+        for (Direction occupied : Set.copyOf(be.getOccupiedFaces())) {
+            ItemStack removed = be.removeFace(occupied);
+            if (!player.isCreative())
+                SignPostNetworkUtil.giveOrDrop(player, removed);
+        }
+        if (!player.isCreative())
+            SignPostNetworkUtil.giveOrDrop(player, new ItemStack(this));
+        revertToPost(level, pos, state, player);
     }
 
     // #region BlockEntity

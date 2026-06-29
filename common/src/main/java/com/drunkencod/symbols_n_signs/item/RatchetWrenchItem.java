@@ -31,9 +31,8 @@ import net.minecraft.sounds.SoundSource;
 
 import org.jetbrains.annotations.Nullable;
 
-// TODO: if shift-clicking a BE that contains items, drop the items first before destroying the entire BE
-// To do this, implement a default method for every AbstractSignFixtureBlock that just drops the contained fixture items first.
-// For the sign fixture, it needs to be overridden to use a raycast to remove the targeted sign, or if the post is targeted, the whole BE including all signs.
+// TODO: when holding left-click in survival mode, the mode switching isn't debounced. Weirdly in creative it's correctly debounced by about 5 ticks.
+// the previous fix to add an artificial cooldown is bad, since spam-clicking should still be allowed.
 
 public class RatchetWrenchItem extends Item {
     public static final String ID = "ratchet_wrench";

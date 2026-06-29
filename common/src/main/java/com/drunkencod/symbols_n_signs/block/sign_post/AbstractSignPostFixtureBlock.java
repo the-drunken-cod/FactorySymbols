@@ -30,6 +30,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
@@ -314,6 +315,43 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
     public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
             Vec3 hitLocation, Player player) {
         return InteractionResult.PASS;
+    }
+
+    // #region Wrench sneak right-click harvest
+
+    /**
+     * Called by {@link SignPostNetworkUtil#harvestWithWrench} when the player
+     * sneak-right-clicks this fixture with the wrench. Default behavior gives
+     * back exactly one of this fixture's own item and reverts the block to a
+     * plain Sign Post.
+     * <p>
+     * Deliberately does not consult this block's loot table: that table also
+     * drops a Sign Post item (see e.g.
+     * {@code sign_post_button_fixture.json}), since destroying the fixture the
+     * normal way (mining, explosion, ...) destroys the post underneath it too.
+     * Here the post survives in place, so going through the loot table would
+     * hand out a second, duplicate Sign Post item.
+     * <p>
+     * Multi-item fixtures (Sign Fixture) can hold several independently placed
+     * items with arbitrary, fixture-specific NBT, so they override this to
+     * manage their own items instead - see
+     * {@link SignPostSignFixtureBlock#onWrenchHarvest}.
+     */
+    public void onWrenchHarvest(Level level, BlockPos pos, BlockState state, @Nullable Vec3 hitLocation,
+            ItemStack wrenchStack, Player player) {
+        if (!player.isCreative())
+            SignPostNetworkUtil.giveOrDrop(player, new ItemStack(this));
+        revertToPost(level, pos, state, player);
+    }
+
+    /** Replaces this fixture with a plain Sign Post, preserving its connections. */
+    protected final void revertToPost(Level level, BlockPos pos, BlockState state, Player player) {
+        BlockState postState = SignPostBlock.getStateWithConnections(level, pos,
+                ModBlocks.SIGN_POST.get().defaultBlockState())
+                .setValue(SignPostBlock.WATERLOGGED, state.getValue(WATERLOGGED))
+                .setValue(SignPostBlock.POWERED, state.getValue(POWERED));
+        level.setBlock(pos, postState, Block.UPDATE_ALL);
+        level.gameEvent(player, GameEvent.BLOCK_CHANGE, pos);
     }
 
     // #region EntityBlock
