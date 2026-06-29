@@ -72,14 +72,19 @@ public class SignPostSignFixtureBlockEntityRenderer implements BlockEntityRender
         renderPane(atlasConsumer, poseStack, sprite.getU0(), sprite.getU1(), sprite.getV0(), sprite.getV1(),
                 data.getScale(), 1, light, packedOverlay, 1f, 1f, 1f);
 
-        if (data.isDoubleSided()) {
+        int dblSidedMode = data.getDoubleSidedMode();
+        if (dblSidedMode != SignFixtureFaceData.DOUBLE_SIDED_OFF) {
             // Back pane: same texture, untinted, same reading orientation as the
             // front (not mirrored). The vertex winding below is reversed from the
             // front pane's (needed for correct face culling), which by itself
-            // already produces a left-right mirror; swapping u0/u1 here cancels
-            // that back out so double-sided reads the same from either side.
-            renderPane(atlasConsumer, poseStack, sprite.getU1(), sprite.getU0(), sprite.getV0(), sprite.getV1(),
-                    data.getScale(), -1, light, packedOverlay, 1f, 1f, 1f);
+            // already produces a left-right mirror; swapping u0/u1 cancels
+            // that back out so double-sided reads the same from either side:
+            if (dblSidedMode == SignFixtureFaceData.DOUBLE_SIDED_ON)
+                renderPane(atlasConsumer, poseStack, sprite.getU1(), sprite.getU0(), sprite.getV0(), sprite.getV1(),
+                        data.getScale(), -1, light, packedOverlay, 1f, 1f, 1f);
+            else
+                renderPane(atlasConsumer, poseStack, sprite.getU0(), sprite.getU1(), sprite.getV0(), sprite.getV1(),
+                        data.getScale(), -1, light, packedOverlay, 1f, 1f, 1f);
         } else {
             // Back pane: white silhouette mask tinted to a flat solid color.
             ResourceLocation maskTexture = SignMaskTextureCache.getOrCreate(signType.getTextureLocation());

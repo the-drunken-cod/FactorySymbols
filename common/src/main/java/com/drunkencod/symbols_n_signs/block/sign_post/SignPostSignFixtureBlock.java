@@ -414,7 +414,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
                             true);
                 }
                 case MODE_DOUBLE_SIDED -> {
-                    boolean nextDblSided = !data.isDoubleSided();
+                    int nextDblSided = (data.getDoubleSidedMode() + 1) % SignFixtureFaceData.DOUBLE_SIDED_MODE_COUNT;
                     be.setFaceData(face, data.withDoubleSided(nextDblSided));
                     player.displayClientMessage(
                             Component.translatable(getWrenchModeKey(state, face, MODE_DOUBLE_SIDED))
