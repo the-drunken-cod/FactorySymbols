@@ -25,4 +25,10 @@ public interface IConfigHelper {
 
     /** Whether to shift the rendered item slightly to prevent z-fighting */
     boolean displayPanelShiftRenderedItem();
+
+    /**
+     * Maximum distance (in blocks) from the camera at which Sign Fixture block
+     * entities (signs attached to Sign Posts) are still rendered.
+     */
+    int signFixtureRenderDistance();
 }

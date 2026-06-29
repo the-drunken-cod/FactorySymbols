@@ -29,6 +29,11 @@ public class FabricConfigHelper implements IConfigHelper {
         return AutoConfig.getConfigHolder(ClientConfigData.class).getConfig().displayPanelShiftRenderedItem;
     }
 
+    @Override
+    public int signFixtureRenderDistance() {
+        return AutoConfig.getConfigHolder(ClientConfigData.class).getConfig().signFixtureRenderDistance;
+    }
+
     // #region Config data classes
 
     @Config(name = Constants.MOD_ID + "_common")
@@ -47,6 +52,10 @@ public class FabricConfigHelper implements IConfigHelper {
     public static class ClientConfigData implements ConfigData {
         @ConfigEntry.Gui.Tooltip
         public boolean displayPanelShiftRenderedItem = true;
+
+        @ConfigEntry.Gui.Tooltip
+        @ConfigEntry.BoundedDiscrete(min = 16, max = 512)
+        public int signFixtureRenderDistance = 128;
     }
 
 }

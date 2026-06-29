@@ -63,6 +63,11 @@ public class NeoForgeConfigHelper implements IConfigHelper {
         return CLIENT.displayPanelShiftRenderedItem.get();
     }
 
+    @Override
+    public int signFixtureRenderDistance() {
+        return CLIENT.signFixtureRenderDistance.get();
+    }
+
     // #region Inner config classes
 
     public static class CommonConfig {
@@ -91,6 +96,7 @@ public class NeoForgeConfigHelper implements IConfigHelper {
 
     public static class ClientConfig {
         public final ModConfigSpec.BooleanValue displayPanelShiftRenderedItem;
+        public final ModConfigSpec.IntValue signFixtureRenderDistance;
 
         ClientConfig(ModConfigSpec.Builder builder) {
             displayPanelShiftRenderedItem = builder
@@ -100,6 +106,13 @@ public class NeoForgeConfigHelper implements IConfigHelper {
                     .comment(
                             "Note that this will also cause entirely new minor rendering problems, like when two panels are back-to-back and contain blocks.")
                     .define("displayPanelShiftRenderedItem", false);
+
+            signFixtureRenderDistance = builder
+                    .comment("Maximum distance (in blocks) at which signs attached to Sign Posts are rendered.")
+                    .comment("Vanilla block entities default to 64; raise this if road signs disappear too early.")
+                    .comment("Higher values cost more rendering performance the more Sign Fixtures are nearby.")
+                    .comment("Note: The way Sign Fixtures are configured does not influence the rendering performance.")
+                    .defineInRange("signFixtureRenderDistance", 128, 16, 512);
         }
     }
 }

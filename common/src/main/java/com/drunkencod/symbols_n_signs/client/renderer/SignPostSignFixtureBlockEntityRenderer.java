@@ -4,6 +4,7 @@ import com.drunkencod.symbols_n_signs.block.sign_post.SignFixtureFaceData;
 import com.drunkencod.symbols_n_signs.block.sign_post.SignFixtureGeometry;
 import com.drunkencod.symbols_n_signs.block.sign_post.SignPostSignFixtureBlockEntity;
 import com.drunkencod.symbols_n_signs.item.SignItem;
+import com.drunkencod.symbols_n_signs.platform.Services;
 import com.drunkencod.symbols_n_signs.signs.SignType;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -31,6 +32,11 @@ import org.joml.Vector3f;
 public class SignPostSignFixtureBlockEntityRenderer implements BlockEntityRenderer<SignPostSignFixtureBlockEntity> {
 
     public SignPostSignFixtureBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
+    }
+
+    @Override
+    public int getViewDistance() {
+        return Services.CONFIG.signFixtureRenderDistance();
     }
 
     @Override
