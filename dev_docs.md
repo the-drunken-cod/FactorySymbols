@@ -49,11 +49,19 @@
         - [ ] road signs
         - [ ] GHS hazard signs
         - [ ] NFPA hazard signs
-7. [ ] **v1.0.0 Release**
-8. [ ] **Copy Wrench:**
+7. [ ] **Final Polish 🇵🇱:**
+    - Lamp Fixture:
+        - [ ] More lamp models: bigger lamp, connected lamp, caged lamp and modern (LED) lamp.
+        - [ ] Make lamp place and remove a `minecraft:light` block above the first non-air block in the column below it.
+    - Ratchet Wrench:
+        - [ ] Sneak-right-click to remove fixtures from sign posts and signs from sign fixtures, instead of breaking the entire block.
+    - Redstone Emitter Fixture:
+        - [ ] Make emitters power sign posts to act as a signal relay. (But make sure to investigate infinite loop potential and performance, maybe add a server config toggle?)
+8. [ ] **v1.0.0 Release**
+9. [ ] **Copy Wrench:**
     - [ ] Item that can copy and paste fixture configurations for faster configuration.
     - [ ] If held in the offhand while placing fixtures, auto-applies the settings while placing.
-9. [ ] **Future Features:**
+10. [ ] **Future Features:**
     - wide variety of road markings that all interconnect.
         - white/yellow/gray colors.
         - zebra stripes (placed like minecart tracks).
