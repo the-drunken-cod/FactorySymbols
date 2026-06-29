@@ -53,10 +53,10 @@ public final class SignMaskTextureCache {
                         int backX = Math.min(x, back.getWidth() - 1);
                         int backY = Math.min(y, back.getHeight() - 1);
                         int backColor = back.getPixelRGBA(backX, backY);
-                        int r = FastColor.ABGR32.red(backColor);
-                        int g = FastColor.ABGR32.green(backColor);
-                        int b = FastColor.ABGR32.blue(backColor);
-                        mask.setPixelRGBA(x, y, FastColor.ABGR32.color(alpha, r, g, b));
+                        // Keep back.png's packed RGB bits as-is and only splice in the
+                        // source's alpha; recomposing channels via ABGR32.color(a, r, g, b)
+                        // does not mirror the alpha/red/green/blue accessors and swaps R/B.
+                        mask.setPixelRGBA(x, y, (backColor & 0x00FFFFFF) | (alpha << 24));
                     }
                 }
             }

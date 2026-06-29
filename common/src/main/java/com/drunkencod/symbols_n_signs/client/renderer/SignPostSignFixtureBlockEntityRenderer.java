@@ -25,8 +25,8 @@ import org.joml.Vector3f;
 
 /**
  * Renders each occupied face of a Sign Fixture as two panes (front + back),
- * sharing its Stance/Rotation/Scale transform math with the collision shape
- * via {@link SignFixtureGeometry}.
+ * sharing its Stance/Rotation/Scale/DoubleSided transform math with the
+ * collision shape via {@link SignFixtureGeometry}.
  */
 public class SignPostSignFixtureBlockEntityRenderer implements BlockEntityRenderer<SignPostSignFixtureBlockEntity> {
 
@@ -70,18 +70,17 @@ public class SignPostSignFixtureBlockEntityRenderer implements BlockEntityRender
         int dblSidedMode = data.getDoubleSidedMode();
         if (dblSidedMode != SignFixtureFaceData.DOUBLE_SIDED_OFF) {
             // Back pane: same texture, untinted, same reading orientation as the
-            // front (not mirrored). The vertex winding below is reversed from the
-            // front pane's (needed for correct face culling), which by itself
-            // already produces a left-right mirror; swapping u0/u1 cancels
-            // that back out so double-sided reads the same from either side:
-            if (dblSidedMode == SignFixtureFaceData.DOUBLE_SIDED_ON)
-                renderPane(atlasConsumer, poseStack, sprite.getU1(), sprite.getU0(), sprite.getV0(), sprite.getV1(),
-                        data.getScale(), -1, light, packedOverlay, 1f, 1f, 1f);
-            else
-                renderPane(atlasConsumer, poseStack, sprite.getU0(), sprite.getU1(), sprite.getV0(), sprite.getV1(),
-                        data.getScale(), -1, light, packedOverlay, 1f, 1f, 1f);
+            // front by default (not mirrored). The vertex winding below is reversed from
+            // the front pane's (needed for correct face culling), swapping u0/u1 cancels
+            // that back out, so flipping them essentially also mirrors the texture:
+
+            float u0 = dblSidedMode == SignFixtureFaceData.DOUBLE_SIDED_ON ? sprite.getU0() : sprite.getU1();
+            float u1 = dblSidedMode == SignFixtureFaceData.DOUBLE_SIDED_ON ? sprite.getU1() : sprite.getU0();
+
+            renderPane(atlasConsumer, poseStack, u0, u1, sprite.getV0(), sprite.getV1(),
+                    data.getScale(), -1, light, packedOverlay, 1f, 1f, 1f);
         } else {
-            // Back pane: generic "back of sign" artwork, masked to the sign's silhouette:
+            // Back pane: generic "back of sign" texture, masked to the sign's silhouette:
             ResourceLocation maskTexture = SignMaskTextureCache.getOrCreate(signType.getTextureLocation());
             VertexConsumer maskConsumer = buffers.getBuffer(RenderType.entityCutout(maskTexture));
             renderPane(maskConsumer, poseStack, 0f, 1f, 0f, 1f,

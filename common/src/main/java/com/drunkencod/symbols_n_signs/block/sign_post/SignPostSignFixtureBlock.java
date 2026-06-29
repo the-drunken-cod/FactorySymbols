@@ -298,7 +298,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             case MODE_ROTATION -> getModeKey("sign_fixture", "rotation");
             case MODE_SCALE -> getModeKey("sign_fixture", "scale");
             case MODE_OFFSET -> getModeKey("sign_fixture", "offset");
-            case MODE_DOUBLE_SIDED -> getModeKey("sign_fixture", "double_sided");
+            case MODE_DOUBLE_SIDED -> getModeKey("sign_fixture", "double_sided_mode");
             case MODE_BRIGHT -> getModeKey("sign_fixture", "bright");
             default -> Constants.MOD_ID + ".ratchet_wrench.mode.unknown";
         };
@@ -311,7 +311,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             case MODE_ROTATION -> getModeName("sign_fixture", "rotation", modeIndex, MODE_COUNT);
             case MODE_SCALE -> getModeName("sign_fixture", "scale", modeIndex, MODE_COUNT);
             case MODE_OFFSET -> getModeName("sign_fixture", "offset", modeIndex, MODE_COUNT);
-            case MODE_DOUBLE_SIDED -> getModeName("sign_fixture", "double_sided", modeIndex, MODE_COUNT);
+            case MODE_DOUBLE_SIDED -> getModeName("sign_fixture", "double_sided_mode", modeIndex, MODE_COUNT);
             case MODE_BRIGHT -> getModeName("sign_fixture", "bright", modeIndex, MODE_COUNT);
             default -> Constants.MOD_ID + ".ratchet_wrench.mode.unknown";
         };
