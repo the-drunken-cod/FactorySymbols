@@ -37,6 +37,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+// TODO: a redstone emitter facing into a sign post should induce its signal.
+// this allows it to be used as a signal relay.
+
 public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixtureBlock {
 
     public static final String ID = "sign_post_redstone_emitter_fixture";

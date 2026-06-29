@@ -34,6 +34,13 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+// TODO: Add more lamp models, like a bigger lamp, connected lamp, caged lamp and modern (LED) lamp
+
+// TODO: make lamp place and remove a minecraft:light block above the first non-air block in the column below it.
+// limit is set by server config (8 by default). light block position is stored in NBT to make turning off the lamp easier.
+// for turning it on, always scan the column and select coordinates anew.
+// don't scan every tick in case the column is obscured, as an intentional performance compromise.
+
 public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
 
     public static final String ID = "sign_post_lamp_fixture";

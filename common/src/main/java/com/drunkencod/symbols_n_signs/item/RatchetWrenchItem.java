@@ -31,6 +31,10 @@ import net.minecraft.sounds.SoundSource;
 
 import org.jetbrains.annotations.Nullable;
 
+// TODO: if shift-clicking a BE that contains items, drop the items first before destroying the entire BE
+// To do this, implement a default method for every AbstractSignFixtureBlock that just drops the contained fixture items first.
+// For the sign fixture, it needs to be overridden to use a raycast to remove the targeted sign, or if the post is targeted, the whole BE including all signs.
+
 public class RatchetWrenchItem extends Item {
     public static final String ID = "ratchet_wrench";
 
