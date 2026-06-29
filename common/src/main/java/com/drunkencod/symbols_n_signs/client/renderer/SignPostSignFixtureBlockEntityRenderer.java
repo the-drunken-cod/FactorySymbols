@@ -30,11 +30,6 @@ import org.joml.Vector3f;
  */
 public class SignPostSignFixtureBlockEntityRenderer implements BlockEntityRenderer<SignPostSignFixtureBlockEntity> {
 
-    /** Constant tint applied to a single-sided face's backside pane (#34343A). */
-    private static final float TINT_R = 0x34 / 255f;
-    private static final float TINT_G = 0x34 / 255f;
-    private static final float TINT_B = 0x3A / 255f;
-
     public SignPostSignFixtureBlockEntityRenderer(BlockEntityRendererProvider.Context context) {
     }
 
@@ -68,7 +63,7 @@ public class SignPostSignFixtureBlockEntityRenderer implements BlockEntityRender
         poseStack.pushPose();
         poseStack.last().pose().mul(pivot);
 
-        // Forward pane: always the plain sign texture.
+        // Forward pane: always the plain sign texture:
         renderPane(atlasConsumer, poseStack, sprite.getU0(), sprite.getU1(), sprite.getV0(), sprite.getV1(),
                 data.getScale(), 1, light, packedOverlay, 1f, 1f, 1f);
 
@@ -86,11 +81,11 @@ public class SignPostSignFixtureBlockEntityRenderer implements BlockEntityRender
                 renderPane(atlasConsumer, poseStack, sprite.getU0(), sprite.getU1(), sprite.getV0(), sprite.getV1(),
                         data.getScale(), -1, light, packedOverlay, 1f, 1f, 1f);
         } else {
-            // Back pane: white silhouette mask tinted to a flat solid color.
+            // Back pane: generic "back of sign" artwork, masked to the sign's silhouette:
             ResourceLocation maskTexture = SignMaskTextureCache.getOrCreate(signType.getTextureLocation());
             VertexConsumer maskConsumer = buffers.getBuffer(RenderType.entityCutout(maskTexture));
             renderPane(maskConsumer, poseStack, 0f, 1f, 0f, 1f,
-                    data.getScale(), -1, light, packedOverlay, TINT_R, TINT_G, TINT_B);
+                    data.getScale(), -1, light, packedOverlay, 1f, 1f, 1f);
         }
 
         poseStack.popPose();
