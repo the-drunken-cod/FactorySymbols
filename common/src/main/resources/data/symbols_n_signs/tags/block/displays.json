@@ -1,6 +1,7 @@
 {
     "replace": false,
     "values": [
-        "symbols_n_signs:display_panel"
+        "symbols_n_signs:display_panel",
+        "symbols_n_signs:sign_post_sign_fixture"
     ]
 }

@@ -9,6 +9,13 @@
         "minecraft:waxed_copper_bulb",
         "minecraft:waxed_exposed_copper_bulb",
         "minecraft:waxed_weathered_copper_bulb",
-        "minecraft:waxed_oxidized_copper_bulb"
+        "minecraft:waxed_oxidized_copper_bulb",
+        { "id": "create_new_age:street_light", "required": false },
+        { "id": "create:electron_tube", "required": false },
+        { "id": "create:rose_quartz_lamp", "required": false },
+        { "id": "createaddition:small_light_connector", "required": false },
+        { "id": "powergrid:growth_lamp", "required": false },
+        { "id": "powergrid:light_bulb", "required": false },
+        { "id": "powergrid:lv_light_bulb", "required": false }
     ]
 }
