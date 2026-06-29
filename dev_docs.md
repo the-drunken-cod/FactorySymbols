@@ -23,34 +23,37 @@
     - change from `symbols_n_signs:symbol_<material>` to `symbols_n_signs:<category>_<symbol>_<material>`
     - allows for item checks that only check the registry ID, like Create Redstone Link frequencies
     - makes it so there's no need for datafixing when adding or modifying symbols
-4. [ ] **Sign Post & Fixture:**
+4. [x] **Sign Post & Fixture:**
     - [x] **Sign Post:** thin pole shaped block for realistic looking signs
         - allows for IRL road-sign-like structures
         - can connect to any center-supporting top or bottom blockface
         - can horizontally branch off by connecting to adjacent sign post blocks
         - behaves similar to a chorus plant stalk for self-connection purposes
-    - [ ] **Sign Fixture:** blockentity that can attach to any blockface that is center-supporting
+    - [x] **Sign Fixture:** blockentity that can attach to any blockface that is center-supporting
         - can hold a symbol item and display it on a flat surface facing toward the camera when placing, like a road sign
         - can contain any item and display it in the same way
         - very small fixture model that grips onto the top or bottom center of the displayed item
         - 16 color variants saved in blockstate & item NBT
         - if attached to a vertical sign post, transforms the block into a special blockentity that allows the sign to render much closer to the post
-    - [ ] **Lamp Fixture:** block that attaches to any blockface and emits light
+    - [x] **Lamp Fixture:** block that attaches to any blockface and emits light
         - can be dyed in 16 colors
         - special model when placed on center-supporting faces, like sign posts
     - [x] **Button Fixture:** placed on vertical sign posts
         - transforms the targeted post into a special blockentity
         - when clicked, makes the block below the post emit a redstone signal, allowing redstone dust below to be powered
-    - [ ] **Redstone Fixture:** Strongly powers the block it faces when the sign post is powered, eliminating the need for using a comparator to read the post's signal, for better aesthetics and more compact redstone designs.
-5. [ ] **More Symbols:**
+    - [x] **Redstone Fixture:** Strongly powers the block it faces when the sign post is powered, eliminating the need for using a comparator to read the post's signal, for better aesthetics and more compact redstone designs.
+5. [x] **Rename to Symbols'n'Signs**
+6. [ ] **More Symbols:**
     - [ ] more emoji and unicode symbols
     - [ ] signs (one material per symbol with single-file, non-layered textures)
         - [ ] road signs
         - [ ] GHS hazard signs
         - [ ] NFPA hazard signs
-6. [ ] **Rename to Symbols'n'Signs**
 7. [ ] **v1.0.0 Release**
-8. [ ] **Future Features:**
+8. [ ] **Copy Wrench:**
+    - [ ] Item that can copy and paste fixture configurations for faster configuration.
+    - [ ] If held in the offhand while placing fixtures, auto-applies the settings while placing.
+9. [ ] **Future Features:**
     - copying item: item that allows fixture configurations to be copied and pasted.
     - make display panel items rotatable like item frames (maybe via a wrench item or something?).
     - make display panels placeable on the ceiling and floor.
