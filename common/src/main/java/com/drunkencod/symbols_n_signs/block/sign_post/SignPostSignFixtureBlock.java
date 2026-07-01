@@ -151,6 +151,15 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
      * in which case a hit that isn't strictly inside any pane (i.e. it landed
      * on the post itself) resolves to {@code null} instead.
      */
+    /**
+     * AABB.contains uses an exclusive upper bound on each axis, so a raycast hit
+     * that lands exactly on the pane's outer surface — which happens for panes
+     * whose normal points in a positive world direction (+X/+Y/+Z) — evaluates
+     * as outside the box even though the player clearly aimed at the sign.
+     * Inflate by a small epsilon to treat surface contacts as hits.
+     */
+    private static final double FACE_HIT_EPSILON = 1e-4;
+
     private static @Nullable Direction resolveTargetFace(BlockPos pos, SignPostSignFixtureBlockEntity be,
             @Nullable Vec3 hitLocation, boolean allowNearestFallback) {
         if (hitLocation == null)
@@ -164,7 +173,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             if (data == null)
                 continue;
             AABB box = buildPaneBump(face, data).bounds();
-            if (box.contains(local.x, local.y, local.z))
+            if (box.inflate(FACE_HIT_EPSILON).contains(local.x, local.y, local.z))
                 return face;
             double distSq = box.distanceToSqr(local);
             if (distSq < nearestDistSq) {
@@ -217,7 +226,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
 
         if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be))
             return InteractionResult.PASS;
-        Direction face = resolveTargetFace(pos, be, hit.getLocation(), true);
+        Direction face = resolveTargetFace(pos, be, hit.getLocation(), false);
         if (face == null || !be.isOccupied(face))
             return InteractionResult.PASS;
 
