@@ -24,9 +24,6 @@ public class DisplayPanelItem extends BlockItem {
         int id = cmd != null ? cmd.value() : 0;
         DyeColor color = DisplayPanelBlock.modelIdToColor(id);
         int textCol = color == DyeColor.BLACK ? 0xFF555555 : color.getTextColor();
-        return Component.translatable("color.minecraft." + color.getName())
-                .withColor(textCol)
-                .append(" ")
-                .append(super.getName(stack));
+        return Component.translatable("block.symbols_n_signs.display_panel." + color.getName()).withColor(textCol);
     }
 }

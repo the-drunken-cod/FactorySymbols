@@ -3,12 +3,27 @@
     "itemGroup.symbols_n_signs.symbols": "[S'n'S] Symbols",
     "itemGroup.symbols_n_signs.signs": "[S'n'S] Signs",
 
-    "block.symbols_n_signs.display_panel": "Display Panel",
+    "block.symbols_n_signs.display_panel.black": "Black Display Panel",
+    "block.symbols_n_signs.display_panel.blue": "Blue Display Panel",
+    "block.symbols_n_signs.display_panel.brown": "Brown Display Panel",
+    "block.symbols_n_signs.display_panel.cyan": "Cyan Display Panel",
+    "block.symbols_n_signs.display_panel.gray": "Gray Display Panel",
+    "block.symbols_n_signs.display_panel.green": "Green Display Panel",
+    "block.symbols_n_signs.display_panel.light_blue": "Light blue Display Panel",
+    "block.symbols_n_signs.display_panel.light_gray": "Light gray Display Panel",
+    "block.symbols_n_signs.display_panel.lime": "Lime Display Panel",
+    "block.symbols_n_signs.display_panel.magenta": "Magenta Display Panel",
+    "block.symbols_n_signs.display_panel.orange": "Orange Display Panel",
+    "block.symbols_n_signs.display_panel.pink": "Pink Display Panel",
+    "block.symbols_n_signs.display_panel.purple": "Purple Display Panel",
+    "block.symbols_n_signs.display_panel.red": "Red Display Panel",
+    "block.symbols_n_signs.display_panel.white": "White Display Panel",
+    "block.symbols_n_signs.display_panel.yellow": "Yellow Display Panel",
     "block.symbols_n_signs.display_panel.tooltip": "Item Frame in block form. Can be dyed.",
     "block.symbols_n_signs.sign_post": "Sign Post",
     "block.symbols_n_signs.sign_post.tooltip": "For displaying signs using fixtures. Relays redstone signals.",
     "block.symbols_n_signs.sign_post_button_fixture": "Button Fixture",
-    "block.symbols_n_signs.sign_post_button_fixture.tooltip": "Attaches to Sign Posts and sends out redstone signals.",
+    "block.symbols_n_signs.sign_post_button_fixture.tooltip": "Attaches to Sign Posts and sends out redstone signals into the Sign Post Network.",
     "block.symbols_n_signs.sign_post_lamp_fixture": "Lamp Fixture",
     "block.symbols_n_signs.sign_post_lamp_fixture.tooltip": "Attaches to the bottom of Sign Posts. Can respond to redstone signals.",
     "block.symbols_n_signs.sign_post_redstone_emitter_fixture": "Redstone Emitter Fixture",
@@ -112,10 +127,8 @@
     "tag.item.symbols_n_signs.symbols.redstone": "Redstone Symbols",
     "tag.item.symbols_n_signs.symbols": "Symbols",
 
-    "symbols_n_signs.symbol_item_name_template.__comment__": "Template used at runtime to compose item display names. %1$s = material name, %2$s = symbol name.",
+    "symbols_n_signs.symbol_item_name_template.__comment__": "Template used at runtime to compose symbol item display names. %1$s = material name, %2$s = symbol name.",
     "symbols_n_signs.symbol_item_name_template": "%1$s %2$s Symbol",
-    "symbols_n_signs.sign_item_name_template.__comment__": "Template used at runtime to compose item display names. %1$s = sign name.",
-    "symbols_n_signs.sign_item_name_template": "%1$s Sign",
 
     "material.symbols_n_signs.coal": "Coal",
     "material.symbols_n_signs.emerald": "Emerald",
@@ -227,7 +240,7 @@
     "symbol.symbols_n_signs.misc_trend_up": "Trend Up",
     "symbol.symbols_n_signs.misc_venus": "Venus",
 
-    "symbol.symbols_n_signs.a_mogus": "A Mogus",
+    "symbol.symbols_n_signs.a_mogus": "Amogus",
 
     "symbol.symbols_n_signs.number_0": "Number 0",
     "symbol.symbols_n_signs.number_1": "Number 1",
@@ -253,6 +266,9 @@
     "symbol.symbols_n_signs.warning_generic": "Warning",
     "symbol.symbols_n_signs.warning_laser": "Laser Hazard",
     "symbol.symbols_n_signs.warning_construction": "Construction",
+
+    "symbols_n_signs.sign_item_name_template.__comment__": "Template used at runtime to compose sign item display names. %1$s = sign name.",
+    "symbols_n_signs.sign_item_name_template": "%1$s Sign",
 
     "sign.symbols_n_signs.hazard_steep_downgrade": "Steep Downgrade",
     "sign.symbols_n_signs.hazard_steep_upgrade": "Steep Upgrade",
@@ -387,6 +403,7 @@
     "sign.symbols_n_signs.prohibition_no_cars": "No Cars",
     "sign.symbols_n_signs.prohibition_no_bicycles": "No Bicycles",
     "sign.symbols_n_signs.prohibition_no_pedestrians": "No Pedestrians",
+    "sign.symbols_n_signs.prohibition_no_unauthorized_persons": "No Unauthorized Persons",
 
     "sign.symbols_n_signs.extra_transit_stop": "Transit Stop",
     "sign.symbols_n_signs.extra_transit_stop_h": "Transit Stop (H)",
