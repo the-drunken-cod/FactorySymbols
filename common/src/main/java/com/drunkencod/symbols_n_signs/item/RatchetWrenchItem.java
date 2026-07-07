@@ -2,10 +2,10 @@ package com.drunkencod.symbols_n_signs.item;
 
 import com.drunkencod.symbols_n_signs.Constants;
 import com.drunkencod.symbols_n_signs.registry.ModSoundEvents;
+import com.drunkencod.symbols_n_signs.util.TooltipUtil;
 
 import java.util.List;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
@@ -18,7 +18,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
-import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
@@ -31,17 +30,19 @@ import net.minecraft.sounds.SoundSource;
 
 import org.jetbrains.annotations.Nullable;
 
-public class RatchetWrenchItem extends Item {
+public class RatchetWrenchItem extends Item implements IExpandableTooltip {
     public static final String ID = "ratchet_wrench";
 
     public RatchetWrenchItem(Properties properties) {
-        super(properties.component(DataComponents.LORE, new ItemLore(List.of(
-                (Component.empty()
-                        .append(Component.translatable("item.symbols_n_signs.ratchet_wrench.tooltip.1"))
-                        .withStyle(ChatFormatting.GRAY)),
-                (Component.empty()
-                        .append(Component.translatable("item.symbols_n_signs.ratchet_wrench.tooltip.2"))
-                        .withStyle(ChatFormatting.GRAY))))));
+        super(properties);
+    }
+
+    @Override
+    public List<Component> getExpandedTooltip(ItemStack stack) {
+        return List.of(
+                TooltipUtil.tooltipLine("item.symbols_n_signs.ratchet_wrench.tooltip.1"),
+                TooltipUtil.tooltipLine("item.symbols_n_signs.ratchet_wrench.tooltip.2"),
+                TooltipUtil.tooltipLine("item.symbols_n_signs.ratchet_wrench.tooltip.3"));
     }
 
     // #region Click dispatch

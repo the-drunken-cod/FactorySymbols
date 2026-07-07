@@ -1,10 +1,12 @@
 package com.drunkencod.symbols_n_signs;
 
+import com.drunkencod.symbols_n_signs.client.ExpandableTooltipHandler;
 import com.drunkencod.symbols_n_signs.client.MultiLineOverlay;
 import com.drunkencod.symbols_n_signs.client.renderer.DisplayPanelBlockEntityRenderer;
 import com.drunkencod.symbols_n_signs.client.renderer.SignPostSignFixtureBlockEntityRenderer;
 import com.drunkencod.symbols_n_signs.registry.ModBlocks;
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 
@@ -16,5 +18,6 @@ public class FabricClientSetup implements ClientModInitializer {
         BlockEntityRenderers.register(ModBlocks.SIGN_POST_SIGN_FIXTURE_BE_TYPE.get(),
                 SignPostSignFixtureBlockEntityRenderer::new);
         HudRenderCallback.EVENT.register(MultiLineOverlay::render);
+        ItemTooltipCallback.EVENT.register((stack, context, type, lines) -> ExpandableTooltipHandler.append(stack, lines));
     }
 }

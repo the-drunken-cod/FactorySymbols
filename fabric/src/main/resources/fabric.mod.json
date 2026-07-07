@@ -21,7 +21,7 @@
             "com.drunkencod.symbols_n_signs.SymbolsNSignsMod"
         ],
         "client": [
-            "com.drunkencod.symbols_n_signs.SymbolsNSignsClientMod"
+            "com.drunkencod.symbols_n_signs.FabricClientSetup"
         ],
         "fabric-datagen": [
             "com.drunkencod.symbols_n_signs.SymbolsNSignsDataGen"

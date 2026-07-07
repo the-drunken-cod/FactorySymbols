@@ -1,5 +1,8 @@
 package com.drunkencod.symbols_n_signs.block.display_panel;
 
+import java.util.List;
+
+import com.drunkencod.symbols_n_signs.item.IExpandableTooltip;
 import com.drunkencod.symbols_n_signs.util.TooltipUtil;
 
 import net.minecraft.core.component.DataComponents;
@@ -11,11 +14,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomModelData;
 import net.minecraft.world.level.block.Block;
 
-public class DisplayPanelItem extends BlockItem {
+public class DisplayPanelItem extends BlockItem implements IExpandableTooltip {
 
     public DisplayPanelItem(Block block, Item.Properties properties) {
-        super(block, properties.component(DataComponents.LORE,
-                TooltipUtil.getTooltip("block.symbols_n_signs.display_panel.tooltip")));
+        super(block, properties);
+    }
+
+    @Override
+    public List<Component> getExpandedTooltip(ItemStack stack) {
+        return List.of(TooltipUtil.tooltipLine("block.symbols_n_signs.display_panel.tooltip"));
     }
 
     @Override

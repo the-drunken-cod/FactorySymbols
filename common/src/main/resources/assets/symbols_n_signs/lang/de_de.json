@@ -1,7 +1,9 @@
 {
-    "itemGroup.symbols_n_signs.materials_and_blocks": "[S'n'S] Materialien & Blöcke",
-    "itemGroup.symbols_n_signs.symbols": "[S'n'S] Symbole",
-    "itemGroup.symbols_n_signs.signs": "[S'n'S] Schilder",
+    "itemGroup.symbols_n_signs.materials_and_blocks": "[S & S] Materialien & Blöcke",
+    "itemGroup.symbols_n_signs.symbols": "[S & S] Symbole",
+    "itemGroup.symbols_n_signs.signs": "[S & S] Schilder",
+
+    "tooltip.symbols_n_signs.hold_shift": "Halte [Umschalt] für Informationen",
 
     "block.symbols_n_signs.display_panel.black": "Schwarze Anzeigetafel",
     "block.symbols_n_signs.display_panel.blue": "Blaue Anzeigetafel",
@@ -33,8 +35,9 @@
 
     "item.symbols_n_signs.retroreflective_sheet": "Retroreflektives Blech",
     "item.symbols_n_signs.ratchet_wrench": "Ratschenschlüssel",
-    "item.symbols_n_signs.ratchet_wrench.tooltip.1": "L-Klick auf Vorrichtung: Schlüsselmodus wechseln",
-    "item.symbols_n_signs.ratchet_wrench.tooltip.2": "R-Klick auf Vorrichtung: Einstellung ändern",
+    "item.symbols_n_signs.ratchet_wrench.tooltip.1": "[L-Klick] auf Vorrichtungen, um den Schlüsselmodus zu wechseln.",
+    "item.symbols_n_signs.ratchet_wrench.tooltip.2": "[R-Klick] auf Vorrichtungen, um die gewählte Einstellung zu bearbeiten.",
+    "item.symbols_n_signs.ratchet_wrench.tooltip.3": "[Shift-R-Klick], um den angezielten Block aufzuheben.",
 
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.name_template.__comment__": "Zur Laufzeit verwendete Vorlage für den Modusnamen der Knopfvorrichtung. %1$s = aktuelle Modus-Nr., %2$s = Anzahl der Modi, %3$s = aktueller Modusname.",
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.name_template": "[Modus %1$s/%2$s] %3$s",

@@ -12,11 +12,9 @@ import com.drunkencod.symbols_n_signs.block.sign_post.SignPostRedstoneEmitterFix
 import com.drunkencod.symbols_n_signs.block.sign_post.SignPostRedstoneEmitterFixtureBlockEntity;
 import com.drunkencod.symbols_n_signs.block.sign_post.SignPostSignFixtureBlock;
 import com.drunkencod.symbols_n_signs.block.sign_post.SignPostSignFixtureBlockEntity;
+import com.drunkencod.symbols_n_signs.item.ExpandableTooltipBlockItem;
 import com.drunkencod.symbols_n_signs.platform.Services;
-import com.drunkencod.symbols_n_signs.util.TooltipUtil;
 
-import net.minecraft.core.component.DataComponents;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -65,10 +63,8 @@ public class ModBlocks {
 
         public static final Supplier<Item> SIGN_POST_ITEM = Services.REGISTRY.registerItem(
                         SignPostBlock.ID,
-                        () -> new BlockItem(SIGN_POST.get(), new Item.Properties()
-                                        .component(DataComponents.LORE,
-                                                        TooltipUtil.getTooltip(
-                                                                        "block.symbols_n_signs.sign_post.tooltip"))));
+                        () -> new ExpandableTooltipBlockItem(SIGN_POST.get(), new Item.Properties(),
+                                        "block.symbols_n_signs.sign_post.tooltip"));
 
         // #region Sign Post - Sign Fixture
         public static final Supplier<SignPostSignFixtureBlock> SIGN_POST_SIGN_FIXTURE = Services.REGISTRY
@@ -82,10 +78,8 @@ public class ModBlocks {
 
         public static final Supplier<Item> SIGN_POST_SIGN_FIXTURE_ITEM = Services.REGISTRY.registerItem(
                         SignPostSignFixtureBlock.ID,
-                        () -> new BlockItem(SIGN_POST_SIGN_FIXTURE.get(), new Item.Properties()
-                                        .component(DataComponents.LORE,
-                                                        TooltipUtil.getTooltip(
-                                                                        "block.symbols_n_signs.sign_post_sign_fixture.tooltip"))));
+                        () -> new ExpandableTooltipBlockItem(SIGN_POST_SIGN_FIXTURE.get(), new Item.Properties(),
+                                        "block.symbols_n_signs.sign_post_sign_fixture.tooltip"));
 
         public static final Supplier<BlockEntityType<SignPostSignFixtureBlockEntity>> SIGN_POST_SIGN_FIXTURE_BE_TYPE = Services.REGISTRY
                         .registerBlockEntityType(SignPostSignFixtureBlock.ID, ModBlocks::makeSignFixtureBEType);
@@ -107,10 +101,8 @@ public class ModBlocks {
 
         public static final Supplier<Item> SIGN_POST_BUTTON_FIXTURE_ITEM = Services.REGISTRY.registerItem(
                         SignPostButtonFixtureBlock.ID,
-                        () -> new BlockItem(SIGN_POST_BUTTON_FIXTURE.get(), new Item.Properties()
-                                        .component(DataComponents.LORE,
-                                                        TooltipUtil.getTooltip(
-                                                                        "block.symbols_n_signs.sign_post_button_fixture.tooltip"))));
+                        () -> new ExpandableTooltipBlockItem(SIGN_POST_BUTTON_FIXTURE.get(), new Item.Properties(),
+                                        "block.symbols_n_signs.sign_post_button_fixture.tooltip"));
 
         public static final Supplier<BlockEntityType<SignPostButtonFixtureBlockEntity>> SIGN_POST_BUTTON_FIXTURE_BE_TYPE = Services.REGISTRY
                         .registerBlockEntityType(
@@ -135,10 +127,8 @@ public class ModBlocks {
 
         public static final Supplier<Item> SIGN_POST_LAMP_FIXTURE_ITEM = Services.REGISTRY.registerItem(
                         SignPostLampFixtureBlock.ID,
-                        () -> new BlockItem(SIGN_POST_LAMP_FIXTURE.get(), new Item.Properties()
-                                        .component(DataComponents.LORE,
-                                                        TooltipUtil.getTooltip(
-                                                                        "block.symbols_n_signs.sign_post_lamp_fixture.tooltip"))));
+                        () -> new ExpandableTooltipBlockItem(SIGN_POST_LAMP_FIXTURE.get(), new Item.Properties(),
+                                        "block.symbols_n_signs.sign_post_lamp_fixture.tooltip"));
 
         public static final Supplier<BlockEntityType<SignPostLampFixtureBlockEntity>> SIGN_POST_LAMP_FIXTURE_BE_TYPE = Services.REGISTRY
                         .registerBlockEntityType(SignPostLampFixtureBlock.ID, ModBlocks::makeLampFixtureBEType);
@@ -164,10 +154,9 @@ public class ModBlocks {
 
         public static final Supplier<Item> SIGN_POST_REDSTONE_EMITTER_FIXTURE_ITEM = Services.REGISTRY.registerItem(
                         SignPostRedstoneEmitterFixtureBlock.ID,
-                        () -> new BlockItem(SIGN_POST_REDSTONE_EMITTER_FIXTURE.get(), new Item.Properties()
-                                        .component(DataComponents.LORE,
-                                                        TooltipUtil.getTooltip(
-                                                                        "block.symbols_n_signs.sign_post_redstone_emitter_fixture.tooltip"))));
+                        () -> new ExpandableTooltipBlockItem(SIGN_POST_REDSTONE_EMITTER_FIXTURE.get(),
+                                        new Item.Properties(),
+                                        "block.symbols_n_signs.sign_post_redstone_emitter_fixture.tooltip"));
 
         public static final Supplier<BlockEntityType<SignPostRedstoneEmitterFixtureBlockEntity>> SIGN_POST_REDSTONE_EMITTER_FIXTURE_BE_TYPE = Services.REGISTRY
                         .<SignPostRedstoneEmitterFixtureBlockEntity>registerBlockEntityType(

@@ -4,37 +4,33 @@ import java.util.List;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.component.ItemLore;
 
 public class TooltipUtil {
     /**
-     * Returns a tooltip {@link ItemLore} component for the given translation key.
+     * Returns a single translated, styled tooltip line.
      */
-    public static ItemLore getTooltip(String key, ChatFormatting... styles) {
-        return new ItemLore(
-                List.of((Component.empty().append(Component.translatable(key)).withStyle(styles))));
+    public static Component tooltipLine(String key, ChatFormatting... styles) {
+        return Component.empty().append(Component.translatable(key)).withStyle(styles);
     }
 
     /**
-     * Returns a tooltip {@link ItemLore} component for the given translation key.
+     * Returns a single translated tooltip line, styled gray.
      */
-    public static ItemLore getTooltip(String key) {
-        return getTooltip(key, ChatFormatting.GRAY);
+    public static Component tooltipLine(String key) {
+        return tooltipLine(key, ChatFormatting.GRAY);
     }
 
     /**
-     * If given the registry name of an item, returns its tooltip {@link ItemLore}
-     * component.
+     * If given the registry name of an item, returns its expanded tooltip lines.
      */
-    public static ItemLore getItemTooltip(String itemRegistryName) {
-        return getTooltip("item.symbols_n_signs." + itemRegistryName + ".tooltip");
+    public static List<Component> getItemTooltip(String itemRegistryName) {
+        return List.of(tooltipLine("item.symbols_n_signs." + itemRegistryName + ".tooltip"));
     }
 
     /**
-     * If given the registry name of a block, returns its tooltip {@link ItemLore}
-     * component.
+     * If given the registry name of a block, returns its expanded tooltip lines.
      */
-    public static ItemLore getBlockTooltip(String itemRegistryName) {
-        return getTooltip("block.symbols_n_signs." + itemRegistryName + ".tooltip");
+    public static List<Component> getBlockTooltip(String itemRegistryName) {
+        return List.of(tooltipLine("block.symbols_n_signs." + itemRegistryName + ".tooltip"));
     }
 }
