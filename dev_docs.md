@@ -46,7 +46,7 @@
 6. [ ] **More Symbols:**
     - [ ] more emoji and unicode symbols
     - [ ] signs (one material per symbol with single-file, non-layered textures)
-        - [ ] road signs
+        - [x] road signs
         - [ ] GHS hazard signs
         - [ ] NFPA hazard signs
 7. [ ] **Final Polish 🇵🇱:**
@@ -324,3 +324,49 @@ Each of the 6 faces can hold independent sign items, and can be individually con
 - Block at FACING receives a strong signal, allowing dust and other redstone components to be powered across a 1 (transmissive) block gap from the sign post.
 - Redstone signals should propagate through this fixture blockentity as if it was a regular post.
 - Cannot be placed anywhere else besides sign posts.
+
+<br><br><br><br>
+
+## Misc:
+
+### Powershell Functions:
+In order to use these, run `echo $PROFILE` in Powershell, then create and/or open that file and paste the following code snippets in it. Also refer to [the Powershell docs.](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.6)  
+  
+- `neo` command to run datagen with the default mods in `neoforge/run/mods/` disabled, then reenable them and run the client:  
+    
+    ```ps1
+    function neo {
+        $ModsFolder = 'neoforge/run/mods'
+        $ModsFolderRenamed = 'neoforge/run/mods_disabled_by_neocmd__'
+        $FolderRenamed = 0
+    
+        if (Test-Path -Path $ModsFolder) {
+            Move-Item -Path $ModsFolder -Destination $ModsFolderRenamed
+            $FolderRenamed = 1
+        }
+    
+        ./gradlew :neoforge:runData $args
+    
+        $RunDataExitCode = $LASTEXITCODE
+    
+        if ($FolderRenamed -eq 1) {
+            if (Test-Path -Path $ModsFolder) {
+                Remove-Item -Path $ModsFolder -Recurse -Force
+            }
+            Move-Item -Path $ModsFolderRenamed -Destination $ModsFolder -Force
+        }
+    
+        if ($RunDataExitCode -eq 0) {
+            ./gradlew :neoforge:runClient $args
+        }
+    }
+    ```
+- `neoc` and `neod` as shortcut aliases for `:neoforge:runData` and `:neoforge:runClient`, with support for drilling arguments:
+    ```ps1
+    function neoc {
+        ./gradlew :neoforge:runClient $args
+    }
+    function neod {
+        ./gradlew :neoforge:runData $args
+    }
+    ```
