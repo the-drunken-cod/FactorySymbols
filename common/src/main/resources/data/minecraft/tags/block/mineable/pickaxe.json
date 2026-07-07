@@ -1,4 +1,5 @@
 {
+    "replace": false,
     "values": [
         "#symbols_n_signs:displays",
         "#symbols_n_signs:sign_post_blocks"
