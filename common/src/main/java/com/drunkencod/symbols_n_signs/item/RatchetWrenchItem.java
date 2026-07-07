@@ -40,9 +40,9 @@ public class RatchetWrenchItem extends Item implements IExpandableTooltip {
     @Override
     public List<Component> getExpandedTooltip(ItemStack stack) {
         return List.of(
-                TooltipUtil.tooltipLine("item.symbols_n_signs.ratchet_wrench.tooltip.1"),
-                TooltipUtil.tooltipLine("item.symbols_n_signs.ratchet_wrench.tooltip.2"),
-                TooltipUtil.tooltipLine("item.symbols_n_signs.ratchet_wrench.tooltip.3"));
+                TooltipUtil.tooltipLine("item." + Constants.MOD_ID + ".ratchet_wrench.tooltip.1"),
+                TooltipUtil.tooltipLine("item." + Constants.MOD_ID + ".ratchet_wrench.tooltip.2"),
+                TooltipUtil.tooltipLine("item." + Constants.MOD_ID + ".ratchet_wrench.tooltip.3"));
     }
 
     // #region Click dispatch

@@ -2,6 +2,7 @@ package com.drunkencod.symbols_n_signs.client;
 
 import java.util.List;
 
+import com.drunkencod.symbols_n_signs.Constants;
 import com.drunkencod.symbols_n_signs.item.IExpandableTooltip;
 
 import net.minecraft.ChatFormatting;
@@ -28,12 +29,17 @@ public final class ExpandableTooltipHandler {
         if (!(stack.getItem() instanceof IExpandableTooltip expandable))
             return;
 
-        int index = Math.min(INSERT_INDEX, tooltip.size());
-        if (Screen.hasShiftDown()) {
-            tooltip.addAll(index, expandable.getExpandedTooltip(stack));
-        } else {
-            tooltip.add(index, Component.translatable("tooltip.symbols_n_signs.hold_shift")
-                    .withStyle(ChatFormatting.GRAY));
+        List<Component> tooltipComponents = expandable.getExpandedTooltip(stack);
+
+        if (tooltipComponents.size() > 0) {
+            int index = Math.min(INSERT_INDEX, tooltip.size());
+
+            if (Screen.hasShiftDown())
+                tooltip.addAll(index, tooltipComponents);
+            else {
+                tooltip.add(index, Component.translatable("tooltip." + Constants.MOD_ID + ".hold_shift")
+                        .withStyle(ChatFormatting.GRAY));
+            }
         }
     }
 }
