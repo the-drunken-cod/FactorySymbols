@@ -29,12 +29,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
@@ -503,6 +505,38 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
         if (!player.isCreative())
             SignPostNetworkUtil.giveOrDrop(player, new ItemStack(this));
         revertToPost(level, pos, state, player);
+    }
+
+    // #region Pick block
+
+    @Override
+    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+        return super.getCloneItemStack(level, pos, state);
+    }
+
+    /**
+     * Matches NeoForge's {@code IBlockExtension#getCloneItemStack(BlockState,
+     * HitResult, LevelReader, BlockPos, Player)} by signature alone (no
+     * interface reference needed), so NeoForge's patched {@code Block} picks it
+     * up as a genuine override and passes through the real pick-block target -
+     * letting pick block clone the exact sign face aimed at, the same face
+     * {@link #resolveTargetFace} already resolves for the wrench. Fabric has no
+     * equivalent hook (vanilla's pick block never forwards a hit result), so
+     * there this is simply an unused method and Fabric falls back to the
+     * 3-arg override above.
+     */
+    public ItemStack getCloneItemStack(BlockState state, HitResult target, LevelReader level, BlockPos pos,
+            Player player) {
+        if (target instanceof BlockHitResult blockHit
+                && level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be) {
+            Direction face = resolveTargetFace(pos, be, blockHit.getLocation(), false);
+            if (face != null && be.isOccupied(face)) {
+                SignFixtureFaceData data = be.getFaceData(face);
+                if (data != null)
+                    return data.getItem().copy();
+            }
+        }
+        return getCloneItemStack(level, pos, state);
     }
 
     // #region BlockEntity
