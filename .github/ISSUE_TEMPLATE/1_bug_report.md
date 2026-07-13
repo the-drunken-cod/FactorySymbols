@@ -12,7 +12,7 @@ assignees: Sv443
 <!-- After submitting, click on the checkboxes to mark them as done. -->
 
 - [ ] I checked [on this page](https://github.com/the-drunken-cod/Symbols-n-Signs/issues?q=is%3Aissue+sort%3Aupdated-desc) if someone already reported the same bug.
-- [ ] I am using the latest version of SymbolsNSigns (matching [the latest release](https://github.com/the-drunken-cod/Symbols-n-Signs/releases/latest)).
+- [ ] I am using the latest version of Symbols'n'Signs (matching [the latest release](https://github.com/the-drunken-cod/Symbols-n-Signs/releases/latest)).
 - [ ] I am using a recent version of the NeoForge/Fabric mod loader.
 - [ ] I attached the file `logs/debug.log` or `logs/latest.log` to this issue.
 

@@ -1,6 +1,6 @@
 ---
-name: Feature request
-about: Suggest new symbols or other features for Symbols'n'Signs
+name: Feature Request
+about: Suggest new features for Symbols'n'Signs
 title: ''
 labels: enhancement
 assignees: Sv443
