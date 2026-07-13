@@ -289,7 +289,7 @@
     "sign.symbols_n_signs.hazard_double_curve_left_ahead": "Left-Right Curves Ahead",
     "sign.symbols_n_signs.hazard_double_curve_right_ahead": "Right-Left Curves Ahead",
     "sign.symbols_n_signs.hazard_pedestrians": "Pedestrians",
-    "sign.symbols_n_signs.hazard_pedestrians.tooltip": "Pedestrians are often crossing the street ahead.",
+    "sign.symbols_n_signs.hazard_pedestrians.tooltip": "Pedestrians are often crossing the street.",
     "sign.symbols_n_signs.hazard_railway_crossing_ahead": "Railway Crossing Ahead",
     "sign.symbols_n_signs.hazard_opening_bridge_ahead": "Opening Bridge Ahead",
     "sign.symbols_n_signs.hazard_oncoming_traffic": "Oncoming Traffic",
@@ -305,7 +305,8 @@
     "sign.symbols_n_signs.hazard_falling_rocks_right": "Falling Rocks from the Right",
     "sign.symbols_n_signs.hazard_gravel_road": "Gravel Road",
     "sign.symbols_n_signs.hazard_gravel_road.tooltip": "The road ahead is made of loose gravel, drive slowly and carefully.",
-    "sign.symbols_n_signs.hazard_animals_crossing": "Animals Crossing",
+    "sign.symbols_n_signs.hazard_animals_crossing_left": "Animals Crossing from the Left",
+    "sign.symbols_n_signs.hazard_animals_crossing_right": "Animals Crossing from the Right",
     "sign.symbols_n_signs.hazard_railway_crossing": "Railway Crossing (St. Andrew's Cross)",
     "sign.symbols_n_signs.hazard_railway_crossing_electrified": "Electrified Railway Crossing (St. Andrew's Cross)",
     

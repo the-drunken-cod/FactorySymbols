@@ -297,7 +297,8 @@
     "sign.symbols_n_signs.hazard_falling_rocks_left": "Steinschlag von Links",
     "sign.symbols_n_signs.hazard_falling_rocks_right": "Steinschlag von Rechts",
     "sign.symbols_n_signs.hazard_gravel_road": "Kies-/Schotterstraße",
-    "sign.symbols_n_signs.hazard_animals_crossing": "Wildwechsel",
+    "sign.symbols_n_signs.hazard_animals_crossing_left": "Wildwechsel von Links",
+    "sign.symbols_n_signs.hazard_animals_crossing_right": "Wildwechsel von Rechts",
     "sign.symbols_n_signs.hazard_railway_crossing": "Andreaskreuz",
     "sign.symbols_n_signs.hazard_railway_crossing_electrified": "Andreaskreuz - Überleitung",
     
