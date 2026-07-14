@@ -15,8 +15,8 @@ import net.minecraft.world.item.ItemStack;
 public final class SignFixtureFaceData {
 
     public static final float MIN_SCALE = 0.5f;
-    public static final float MAX_SCALE = 2.5f;
-    public static final float SCALE_STEP = 0.25f;
+    public static final float MAX_SCALE = 2.0f;
+    public static final float SCALE_STEP = 0.1f;
 
     public static final float MIN_OFFSET = -0.075f;
     public static final float MAX_OFFSET = 0.075f;

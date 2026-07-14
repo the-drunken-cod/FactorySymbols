@@ -24,7 +24,7 @@ public class DisplayPanelBlockEntity extends BlockEntity implements WorldlyConta
 
     public static final int ROTATION_COUNT = 8;
     public static final float MIN_SCALE = 0.5f;
-    public static final float MAX_SCALE = 1.0f;
+    public static final float MAX_SCALE = 1.5f;
     public static final float SCALE_STEP = 0.1f;
 
     private static final int[] SLOTS = new int[] { 0 };
