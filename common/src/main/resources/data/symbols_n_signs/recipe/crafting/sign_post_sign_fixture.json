@@ -6,10 +6,10 @@
     ],
     "key": {
         "I": {
-            "tag": "symbols_n_signs:sign_post_material/ingots"
+            "tag": "symbols_n_signs:sign_post_materials/ingots"
         },
         "N": {
-            "tag": "symbols_n_signs:sign_post_material/nuggets"
+            "tag": "symbols_n_signs:sign_post_materials/nuggets"
         }
     },
     "result": {

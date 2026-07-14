@@ -116,7 +116,7 @@ When sneak-right-clicked with a [Ratchet Wrench](#ratchet-wrench), the sign post
 ![Sign Post Crafting Recipe](./mod_assets/recipes/sign_post.png)  
   
 Note:
-- The ingots and nuggets shown in the recipe have to be [any item with the tags `symbols_n_signs:sign_post_material/ingots` or `symbols_n_signs:sign_post_material/nuggets`.](#item-tags)   
+- The ingots and nuggets shown in the recipe have to be [any item with the tags `symbols_n_signs:sign_post_materials/ingots` or `symbols_n_signs:sign_post_materials/nuggets`.](#item-tags)   
   By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
@@ -147,7 +147,7 @@ The sign will be rendered either flat against horizontal faces, 90° or -90° pe
 ![Sign Fixture Crafting Recipe](./mod_assets/recipes/sign_post_sign_fixture.png)  
   
 Note:
-- The ingots and nuggets shown in the recipe have to be [any item with the tags `symbols_n_signs:sign_post_material/ingots` or `symbols_n_signs:sign_post_material/nuggets`.](#item-tags)  
+- The ingots and nuggets shown in the recipe have to be [any item with the tags `symbols_n_signs:sign_post_materials/ingots` or `symbols_n_signs:sign_post_materials/nuggets`.](#item-tags)  
   By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
@@ -169,7 +169,7 @@ Note:
 - The item in the center is a [Retroreflective Sheet.](#retroreflective-sheet)
 - The item in the bottom center can be [any item with the tag `symbols_n_signs:powered_lamps`.](#item-tags)  
   By default, this includes the Redstone Lamp and any Copper Bulb variant.
-- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_material/nuggets`.](#item-tags)  
+- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_materials/nuggets`.](#item-tags)  
   By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
@@ -187,7 +187,7 @@ This means buttons can even be used for creating NAND and OR gates on a Sign Pos
 ![Button Fixture Crafting Recipe](./mod_assets/recipes/sign_post_button_fixture.png)  
   
 Notes:
-- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_material/nuggets`.](#item-tags)   
+- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_materials/nuggets`.](#item-tags)   
   By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
@@ -206,7 +206,7 @@ When combining this with the inversion modes of the [Button Fixture](#button-fix
 ![Redstone Emitter Fixture Crafting Recipe](./mod_assets/recipes/sign_post_redstone_emitter_fixture.png)  
   
 Notes:
-- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_material/nuggets`.](#item-tags)   
+- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_materials/nuggets`.](#item-tags)   
   By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
@@ -294,7 +294,7 @@ Note: Any dye can be used in these recipes.
   - `symbols_n_signs:support/<support_type>` - Where the sign's valid attachment edges/points are (when looking at the texture). Can be `bottom`, `vertical`, `horizontal` or `any`, and `back` (included in all other types).
 - Materials:
   - `c:plates/retroreflective` - Contains the [Retroreflective Sheet.](#retroreflective-sheet)
-  - `symbols_n_signs:sign_post_material/ingots` - Contains all material ingots that can be used to craft [Sign Posts](#sign-post) and [Sign Post Fixtures.](#sign-post-fixtures) Contains Iron and Zinc (from other mods) by default.
-  - `symbols_n_signs:sign_post_material/nuggets` - Contains all material nuggets that can be used to craft [Sign Posts](#sign-post) and [Sign Post Fixtures.](#sign-post-fixtures) Contains Iron and Zinc (from other mods) by default.
+  - `symbols_n_signs:sign_post_materials/ingots` - Contains all material ingots that can be used to craft [Sign Posts](#sign-post) and [Sign Post Fixtures.](#sign-post-fixtures) Contains Iron and Zinc (from other mods) by default.
+  - `symbols_n_signs:sign_post_materials/nuggets` - Contains all material nuggets that can be used to craft [Sign Posts](#sign-post) and [Sign Post Fixtures.](#sign-post-fixtures) Contains Iron and Zinc (from other mods) by default.
 - Other:
   - `symbols_n_signs:powered_lamps` - Lamp blocks that respond to a redstone signal. Used in the [Lamp Fixture](#lamp-fixture) crafting recipe.

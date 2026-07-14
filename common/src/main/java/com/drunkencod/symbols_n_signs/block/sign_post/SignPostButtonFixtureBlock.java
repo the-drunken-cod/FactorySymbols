@@ -24,6 +24,7 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -115,7 +116,7 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
     }
 
     @Override
-    public boolean canSurvive(BlockState state, net.minecraft.world.level.LevelReader level, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         // Only allow wall placement (no top/bottom buttons on sign posts)
         // Only allow wall placement (no top/bottom buttons on sign posts)
         if (state.getValue(FACE) != AttachFace.WALL)

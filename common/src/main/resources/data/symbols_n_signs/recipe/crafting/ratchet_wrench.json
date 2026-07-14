@@ -4,17 +4,17 @@
     "pattern": [
         " I ",
         "NII",
-        "TN "
+        "MN "
     ],
     "key": {
         "N": {
-            "tag": "c:nuggets/iron"
+            "tag": "symbols_n_signs:sign_post_materials/nuggets"
         },
-        "T": {
-            "item": "minecraft:iron_trapdoor"
+        "M": {
+            "tag": "symbols_n_signs:mechanical_materials"
         },
         "I": {
-            "tag": "c:ingots/iron"
+            "tag": "symbols_n_signs:sign_post_materials/ingots"
         }
     },
     "result": {
