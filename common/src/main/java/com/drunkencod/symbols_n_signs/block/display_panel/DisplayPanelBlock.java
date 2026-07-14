@@ -157,31 +157,12 @@ public class DisplayPanelBlock extends Block implements EntityBlock, IWrenchConf
     // #region Placement
 
     @Override
-    public void onPlace(BlockState state, Level level, BlockPos pos, BlockState oldState, boolean movedByPiston) {
-        if (!state.is(oldState.getBlock()))
-            updateLocked(state, level, pos);
-    }
-
-    @Override
-    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block neighborBlock, BlockPos neighborPos,
-            boolean movedByPiston) {
-        updateLocked(state, level, pos);
-    }
-
-    private void updateLocked(BlockState state, Level level, BlockPos pos) {
-        boolean powered = level.hasNeighborSignal(pos);
-        if (state.getValue(LOCKED) != powered)
-            level.setBlock(pos, state.setValue(LOCKED, powered), Block.UPDATE_CLIENTS);
-    }
-
-    @Override
     @Nullable
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         BlockState state = defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
         CustomModelData cmd = context.getItemInHand().get(DataComponents.CUSTOM_MODEL_DATA);
         int id = cmd != null ? cmd.value() : 0;
-        boolean powered = context.getLevel().hasNeighborSignal(context.getClickedPos());
-        return state.setValue(COLOR, modelIdToColor(id)).setValue(LOCKED, powered);
+        return state.setValue(COLOR, modelIdToColor(id));
     }
 
     // #region Interaction
@@ -311,7 +292,8 @@ public class DisplayPanelBlock extends Block implements EntityBlock, IWrenchConf
     private static final int MODE_ROTATION = 0;
     private static final int MODE_SCALE = 1;
     private static final int MODE_BRIGHT = 2;
-    private static final int MODE_COUNT = 3;
+    private static final int MODE_LOCKED = 3;
+    private static final int MODE_COUNT = 4;
 
     private static String getModeKey(String valueKey) {
         return Constants.MOD_ID + ".ratchet_wrench.mode.display_panel." + valueKey;
@@ -334,6 +316,7 @@ public class DisplayPanelBlock extends Block implements EntityBlock, IWrenchConf
             case MODE_ROTATION -> getModeKey("rotation");
             case MODE_SCALE -> getModeKey("scale");
             case MODE_BRIGHT -> getModeKey("bright");
+            case MODE_LOCKED -> getModeKey("locked");
             default -> Constants.MOD_ID + ".ratchet_wrench.mode.unknown";
         };
     }
@@ -344,6 +327,7 @@ public class DisplayPanelBlock extends Block implements EntityBlock, IWrenchConf
             case MODE_ROTATION -> getModeName("rotation", modeIndex);
             case MODE_SCALE -> getModeName("scale", modeIndex);
             case MODE_BRIGHT -> getModeName("bright", modeIndex);
+            case MODE_LOCKED -> getModeName("locked", modeIndex);
             default -> Constants.MOD_ID + ".ratchet_wrench.mode.unknown";
         };
     }
@@ -416,6 +400,16 @@ public class DisplayPanelBlock extends Block implements EntityBlock, IWrenchConf
                                             getWrenchModeKey(state, clickedFace, MODE_BRIGHT) + ".value." + next)),
                             true);
                 }
+                case MODE_LOCKED -> {
+                    boolean next = !state.getValue(LOCKED);
+                    level.setBlock(pos, state.setValue(LOCKED, next), Block.UPDATE_CLIENTS);
+                    player.displayClientMessage(
+                            Component.translatable(getWrenchModeKey(state, clickedFace, MODE_LOCKED))
+                                    .append(": ")
+                                    .append(Component.translatable(
+                                            getWrenchModeKey(state, clickedFace, MODE_LOCKED) + ".value." + next)),
+                            true);
+                }
             }
         }
         return InteractionResult.SUCCESS;
@@ -426,6 +420,7 @@ public class DisplayPanelBlock extends Block implements EntityBlock, IWrenchConf
     private static final String NBT_ROTATION = "rotation";
     private static final String NBT_SCALE = "scale";
     private static final String NBT_BRIGHT = "bright";
+    private static final String NBT_LOCKED = "locked";
     private static final String NBT_ITEM = "item";
 
     @Override
@@ -442,6 +437,7 @@ public class DisplayPanelBlock extends Block implements EntityBlock, IWrenchConf
         tag.putInt(NBT_ROTATION, be.getRotation());
         tag.putFloat(NBT_SCALE, be.getScale());
         tag.putBoolean(NBT_BRIGHT, be.isBright());
+        tag.putBoolean(NBT_LOCKED, state.getValue(LOCKED));
         if (!be.getStoredItem().isEmpty())
             tag.put(NBT_ITEM, be.getStoredItem().saveOptional(level.registryAccess()));
         return tag;
@@ -456,6 +452,8 @@ public class DisplayPanelBlock extends Block implements EntityBlock, IWrenchConf
         be.setRotation(data.getInt(NBT_ROTATION));
         be.setScale(data.contains(NBT_SCALE) ? data.getFloat(NBT_SCALE) : 1.0f);
         be.setBright(data.getBoolean(NBT_BRIGHT));
+        if (data.contains(NBT_LOCKED))
+            level.setBlock(pos, state.setValue(LOCKED, data.getBoolean(NBT_LOCKED)), Block.UPDATE_CLIENTS);
 
         if (be.getStoredItem().isEmpty() && data.contains(NBT_ITEM)) {
             ItemStack template = ItemStack.parseOptional(level.registryAccess(), data.getCompound(NBT_ITEM));

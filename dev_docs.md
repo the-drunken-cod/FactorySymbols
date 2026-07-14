@@ -67,6 +67,10 @@
         - zebra stripes (placed like minecart tracks).
         - single/double solid/double dashed/double solid & dashed (L & R).
         - solid/dashed/dashed (short).
+    - traffic light fixture
+        - remote controlled by wireless controller block?
+        - dumb system (player needs to figure out phases) or smart system (GUI with phase editor)?
+        - computercraft integration?
     - make display panel items rotatable like item frames (maybe via the wrench or something?).
     - make display panel placeable on the ceiling and floor.
     - make lamp fixture place a light above the first solid block in the column below where it's placed.

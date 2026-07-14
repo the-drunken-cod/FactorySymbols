@@ -113,6 +113,9 @@
     "symbols_n_signs.ratchet_wrench.mode.display_panel.bright": "Full-Bright",
     "symbols_n_signs.ratchet_wrench.mode.display_panel.bright.value.true": "Yes",
     "symbols_n_signs.ratchet_wrench.mode.display_panel.bright.value.false": "No",
+    "symbols_n_signs.ratchet_wrench.mode.display_panel.locked": "Locked",
+    "symbols_n_signs.ratchet_wrench.mode.display_panel.locked.value.true": "Yes",
+    "symbols_n_signs.ratchet_wrench.mode.display_panel.locked.value.false": "No",
 
     "symbols_n_signs.ratchet_wrench.mode.unknown": "(Error: wrong mode index)",
 

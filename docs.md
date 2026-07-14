@@ -247,9 +247,9 @@ Use it for displaying blocks or items like [symbols](#symbols), as a 2px wide "v
 
 - **Right-clicking an empty panel** with an item in hand will place the item on the panel.
 - **Shift-right-clicking a filled panel** with an empty hand will pick up the item from the panel.
-- **Powering the panel with redstone** will lock it, preventing items from being inserted or extracted until the power is removed.
+- **Using a [Ratchet Wrench](#ratchet-wrench)** you can change the contained item's rotation, scale, whether it always renders at full brightness, and whether the panel is locked (preventing items from being inserted or removed until unlocked).
 - **Using a comparator**, the panel emits a redstone signal strength relative to the max stack size of the contained item (see table below).
-- **Using hoppers**, items can be inserted into and extracted from the panel.
+- **Using hoppers** and other kinds of automation, items can be inserted into and extracted from the panel.
   
 #### Crafting recipes:
 
@@ -268,12 +268,12 @@ Note: Any dye can be used in these recipes.
 | Pro | Doesn't need a supporting block. |
 | Pro | Hoppers can insert and extract items. |
 | Pro | Can be dyed in 16 colors. |
-| Pro | Items are rendered at around twice the scale. |
+| Pro | Items can be rendered at more than twice the scale, and scale can be configured per panel. |
 | Pro | Emits a comparator signal that is proportional to the item's max stack size (see table below). |
 | Neutral | Is a block entity instead of an entity. This means it also can't be moved by pistons. |
 | Neutral | Has a 2x16x16 px hitbox, allowing entities to collide with it. |
 | Neutral | The full panel size is 16x16 instead of 12x12, obscuring the entire block it's placed on. |
-| Con | Contained items can't be rotated. |
+| Neutral | Contained items can be rotated too. |
 | Con | Can't place multiple panels on different faces in the same block space. |
 | Con | Can't place panels on top or bottom block faces. |
 | Con | Panels always render dynamic items like compasses, clocks or maps in their default state. |
