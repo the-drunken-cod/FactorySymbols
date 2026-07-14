@@ -1,6 +1,7 @@
 package com.drunkencod.symbols_n_signs.registry;
 
 import com.drunkencod.symbols_n_signs.block.display_panel.DisplayPanelBlock;
+import com.drunkencod.symbols_n_signs.item.ConfigurationClipboardItem;
 import com.drunkencod.symbols_n_signs.item.RatchetWrenchItem;
 import com.drunkencod.symbols_n_signs.item.RetroreflectiveSheetItem;
 import com.drunkencod.symbols_n_signs.item.SignItem;
@@ -36,6 +37,9 @@ public class ModItems {
     // #region Ratchet Wrench
     public static Supplier<Item> RATCHET_WRENCH;
 
+    // #region Configuration Clipboard
+    public static Supplier<Item> CONFIGURATION_CLIPBOARD;
+
     public static void register() {
         // register symbol items from enums:
         for (SymbolMaterial mat : SymbolMaterial.values()) {
@@ -59,6 +63,10 @@ public class ModItems {
                 RatchetWrenchItem.ID,
                 () -> new RatchetWrenchItem(new Item.Properties()));
 
+        CONFIGURATION_CLIPBOARD = Services.REGISTRY.registerItem(
+                ConfigurationClipboardItem.ID,
+                () -> new ConfigurationClipboardItem(new Item.Properties()));
+
         // register sign items from enums:
         for (SignType sym : SignType.values()) {
             Supplier<Item> item = Services.REGISTRY.registerItem(
@@ -81,6 +89,7 @@ public class ModItems {
     // #region Creative tabs
     public static void populateMaterialsAndBlocksTab(CreativeModeTab.Output output) {
         output.accept(RATCHET_WRENCH.get().getDefaultInstance());
+        output.accept(CONFIGURATION_CLIPBOARD.get().getDefaultInstance());
         output.accept(RETROREFLECTIVE_SHEET.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_ITEM.get().getDefaultInstance());
         output.accept(ModBlocks.SIGN_POST_SIGN_FIXTURE_ITEM.get().getDefaultInstance());

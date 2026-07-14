@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "category": "building",
+    "ingredients": [
+        {
+            "item": "symbols_n_signs:configuration_clipboard"
+        }
+    ],
+    "result": {
+        "id": "symbols_n_signs:configuration_clipboard"
+    }
+}

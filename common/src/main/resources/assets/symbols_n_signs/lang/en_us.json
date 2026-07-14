@@ -35,10 +35,16 @@
 
     "item.symbols_n_signs.retroreflective_sheet": "Retroreflective Sheet",
     "item.symbols_n_signs.retroreflective_sheet.tooltip": "Reflects light with minimal scattering. Used for making signs and lamps.",
+
     "item.symbols_n_signs.ratchet_wrench": "Ratchet Wrench",
     "item.symbols_n_signs.ratchet_wrench.tooltip.1": "[L-Click] any Fixture to switch the wrench mode.",
     "item.symbols_n_signs.ratchet_wrench.tooltip.2": "[R-Click] any Fixture to edit the selected setting.",
-    "item.symbols_n_signs.ratchet_wrench.tooltip.3": "[Shift-R-Click] to pick up the targeted block.",
+    "item.symbols_n_signs.ratchet_wrench.tooltip.3": "[Sneak-R-Click] to pick up the targeted block.",
+
+    "item.symbols_n_signs.configuration_clipboard": "Configuration Clipboard",
+    "item.symbols_n_signs.configuration_clipboard.tooltip.1": "[Sneak-R-Click] any Fixture to copy its settings.",
+    "item.symbols_n_signs.configuration_clipboard.tooltip.2": "[R-Click] any Fixture to paste settings.",
+    "item.symbols_n_signs.configuration_clipboard.tooltip.3": "Settings are stored separately for each Fixture. Craft in a crafting grid to clear all stored settings.",
 
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.name_template.__comment__": "Template used at runtime to compose the mode name for the button fixture. %1$s = current mode number, %2$s = max mode number, %3$s = current mode name.",
     "symbols_n_signs.ratchet_wrench.mode.button_fixture.name_template": "[Mode %1$s/%2$s] %3$s",
@@ -105,6 +111,7 @@
 
     "tag.item.symbols_n_signs.displays": "Displays",
     "tag.item.symbols_n_signs.powered_lamps": "Powered Lamps",
+    "tag.item.symbols_n_signs.mechanical_materials": "Mechanical Materials",
     "tag.item.symbols_n_signs.sign_post_material.ingots": "Sign Post Material Ingots",
     "tag.item.symbols_n_signs.sign_post_material.nuggets": "Sign Post Material Nuggets",
 

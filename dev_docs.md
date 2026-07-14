@@ -58,7 +58,7 @@
     - Redstone Emitter Fixture:
         - [ ] Make emitters power sign posts to act as a signal relay. (But make sure to investigate infinite loop potential and performance, maybe add a server config toggle?)
 8. [ ] **v1.0.0 Release**
-9. [ ] **Copy Wrench:**
+9. [ ] **Configuration Clipboard:**
     - [ ] Item that can copy and paste fixture configurations for faster configuration.
     - [ ] If held in the offhand while placing fixtures, auto-applies the settings while placing.
 10. [ ] **Future Features:**

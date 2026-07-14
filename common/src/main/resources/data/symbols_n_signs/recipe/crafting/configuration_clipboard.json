@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "building",
+    "pattern": [
+        "WPW",
+        "NPN",
+        "WPW"
+    ],
+    "key": {
+        "W": {
+            "tag": "c:wooden_slabs"
+        },
+        "P": {
+            "tag": "c:paper"
+        },
+        "N": {
+            "tag": "symbols_n_signs:sign_post_materials/nuggets"
+        }
+    },
+    "result": {
+        "id": "symbols_n_signs:configuration_clipboard"
+    }
+}

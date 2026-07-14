@@ -1,0 +1,8 @@
+{
+    "replace": false,
+    "values": [
+        "minecraft:iron_trapdoor",
+        { "id": "create:gearbox", "required": false },
+        { "id": "create:vertical_gearbox", "required": false }
+    ]
+}
