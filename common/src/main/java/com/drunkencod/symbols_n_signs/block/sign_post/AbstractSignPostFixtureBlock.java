@@ -1,6 +1,7 @@
 package com.drunkencod.symbols_n_signs.block.sign_post;
 
 import com.drunkencod.symbols_n_signs.Constants;
+import com.drunkencod.symbols_n_signs.item.ConfigurationClipboardUtil;
 import com.drunkencod.symbols_n_signs.item.IWrenchConfigurable;
 import com.drunkencod.symbols_n_signs.item.RatchetWrenchItem;
 import com.drunkencod.symbols_n_signs.platform.Services;
@@ -8,10 +9,12 @@ import com.drunkencod.symbols_n_signs.registry.ModBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -315,6 +318,32 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
     public InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
             Vec3 hitLocation, Player player) {
         return InteractionResult.PASS;
+    }
+
+    @Override
+    public int getConfigFormatVersion() {
+        return 1;
+    }
+
+    @Override
+    public CompoundTag copyConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            @Nullable Vec3 hitLocation, Player player) {
+        return new CompoundTag();
+    }
+
+    @Override
+    public boolean pasteConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            @Nullable Vec3 hitLocation, CompoundTag data, Player player) {
+        return false;
+    }
+
+    // #region Placement - offhand Configuration Clipboard override
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer,
+            ItemStack stack) {
+        super.setPlacedBy(level, pos, state, placer, stack);
+        ConfigurationClipboardUtil.applyOffhandConfigOnPlace(level, pos, state, placer);
     }
 
     // #region Wrench sneak right-click harvest

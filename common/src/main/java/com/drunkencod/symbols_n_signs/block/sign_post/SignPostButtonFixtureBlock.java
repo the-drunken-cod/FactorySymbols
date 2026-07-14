@@ -12,6 +12,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -277,6 +278,42 @@ public class SignPostButtonFixtureBlock extends AbstractSignPostFixtureBlock {
             }
         }
         return InteractionResult.SUCCESS;
+    }
+
+    // #region Configuration Clipboard
+
+    private static final String NBT_ACTIVE_HIGH = "active_high";
+    private static final String NBT_FACING = "facing";
+
+    @Override
+    public int getConfigFormatVersion() {
+        return 1;
+    }
+
+    @Override
+    public CompoundTag copyConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Vec3 hitLocation, Player player) {
+        CompoundTag tag = new CompoundTag();
+        tag.putBoolean(NBT_ACTIVE_HIGH, state.getValue(ACTIVE_HIGH));
+        tag.putString(NBT_FACING, state.getValue(FACING).getSerializedName());
+        return tag;
+    }
+
+    @Override
+    public boolean pasteConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Vec3 hitLocation, CompoundTag data, Player player) {
+        boolean activeHigh = data.getBoolean(NBT_ACTIVE_HIGH);
+        Direction facing = Direction.byName(data.getString(NBT_FACING));
+        if (facing == null || facing.getAxis() == Direction.Axis.Y)
+            facing = state.getValue(FACING);
+
+        BlockState newState = setConnectionStates(
+                state.setValue(ACTIVE_HIGH, activeHigh).setValue(FACING, facing), level, pos);
+        if (newState.equals(state))
+            return false;
+        level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+        evaluateAndPropagate(level, pos);
+        return true;
     }
 
     // #region BlockEntity

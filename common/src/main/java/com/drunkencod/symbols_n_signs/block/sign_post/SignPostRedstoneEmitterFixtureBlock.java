@@ -15,6 +15,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Tuple;
@@ -313,6 +314,54 @@ public class SignPostRedstoneEmitterFixtureBlock extends AbstractSignPostFixture
             }
         }
         return InteractionResult.SUCCESS;
+    }
+
+    // #region Configuration Clipboard
+
+    private static final String NBT_INVERTED = "inverted";
+    private static final String NBT_FACE = "face";
+    private static final String NBT_FACING = "facing";
+
+    @Override
+    public int getConfigFormatVersion() {
+        return 1;
+    }
+
+    @Override
+    public CompoundTag copyConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Vec3 hitLocation, Player player) {
+        CompoundTag tag = new CompoundTag();
+        tag.putBoolean(NBT_INVERTED, state.getValue(INVERTED));
+        tag.putString(NBT_FACE, state.getValue(FACE).getSerializedName());
+        tag.putString(NBT_FACING, state.getValue(FACING).getSerializedName());
+        return tag;
+    }
+
+    @Override
+    public boolean pasteConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Vec3 hitLocation, CompoundTag data, Player player) {
+        boolean inverted = data.getBoolean(NBT_INVERTED);
+        AttachFace face = parseAttachFace(data.getString(NBT_FACE));
+        Direction facing = Direction.byName(data.getString(NBT_FACING));
+        if (face == null)
+            face = state.getValue(FACE);
+        if (facing == null)
+            facing = state.getValue(FACING);
+
+        BlockState newState = setConnectionStates(
+                state.setValue(FACE, face).setValue(FACING, facing).setValue(INVERTED, inverted), level, pos);
+        newState = newState.setValue(LIT, computeLit(newState));
+        if (newState.equals(state))
+            return false;
+        level.setBlock(pos, newState, Block.UPDATE_ALL);
+        return true;
+    }
+
+    private static @Nullable AttachFace parseAttachFace(String name) {
+        for (AttachFace face : AttachFace.values())
+            if (face.getSerializedName().equals(name))
+                return face;
+        return null;
     }
 
     // #region BlockEntity

@@ -5,6 +5,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -21,6 +22,8 @@ public class NeoForgeRegistryHelper implements IRegistryHelper {
             .create(Registries.BLOCK_ENTITY_TYPE, Constants.MOD_ID);
     private final DeferredRegister<SoundEvent> soundEvents = DeferredRegister
             .create(Registries.SOUND_EVENT, Constants.MOD_ID);
+    private final DeferredRegister<RecipeSerializer<?>> recipeSerializers = DeferredRegister
+            .create(Registries.RECIPE_SERIALIZER, Constants.MOD_ID);
 
     @Override
     public <T extends Item> Supplier<T> registerItem(String id, Supplier<T> factory) {
@@ -44,6 +47,12 @@ public class NeoForgeRegistryHelper implements IRegistryHelper {
         return soundEvents.register(id, factory);
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T extends RecipeSerializer<?>> Supplier<T> registerRecipeSerializer(String id, Supplier<T> factory) {
+        return (Supplier<T>) (Supplier<?>) recipeSerializers.register(id, factory);
+    }
+
     /**
      * Must be called in the NeoForge mod constructor with the mod event bus so that
      * DeferredRegisters can fire their registration events.
@@ -53,5 +62,6 @@ public class NeoForgeRegistryHelper implements IRegistryHelper {
         blocks.register(eventBus);
         blockEntityTypes.register(eventBus);
         soundEvents.register(eventBus);
+        recipeSerializers.register(eventBus);
     }
 }

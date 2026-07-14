@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.drunkencod.symbols_n_signs.Constants;
+import com.drunkencod.symbols_n_signs.item.ConfigurationClipboardUtil;
 import com.drunkencod.symbols_n_signs.item.RatchetWrenchItem;
 import com.drunkencod.symbols_n_signs.item.SignItem;
 import com.drunkencod.symbols_n_signs.registry.ModSoundEvents;
@@ -17,6 +18,7 @@ import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
@@ -463,6 +465,91 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             }
         }
         return InteractionResult.SUCCESS;
+    }
+
+    // #region Configuration Clipboard
+
+    private static final String NBT_STANCE = "stance";
+    private static final String NBT_ROTATION = "rotation";
+    private static final String NBT_SCALE = "scale";
+    private static final String NBT_OFFSET = "offset";
+    private static final String NBT_DOUBLE_SIDED_MODE = "double_sided_mode";
+    private static final String NBT_BRIGHT = "bright";
+    private static final String NBT_ITEM = "item";
+
+    @Override
+    public int getConfigFormatVersion() {
+        return 1;
+    }
+
+    /**
+     * Copies whichever occupied face {@code hitLocation} resolves to. Per ADR
+     * 0003, the source face is not remembered - the copied Configuration can
+     * later be pasted onto any face, of any Sign Fixture.
+     */
+    @Override
+    public CompoundTag copyConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            @Nullable Vec3 hitLocation, Player player) {
+        if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be))
+            return new CompoundTag();
+        Direction face = resolveTargetFace(pos, be, hitLocation, true);
+        SignFixtureFaceData data = face != null ? be.getFaceData(face) : null;
+        if (data == null)
+            return new CompoundTag();
+
+        CompoundTag tag = new CompoundTag();
+        tag.putInt(NBT_STANCE, data.getStance().ordinal());
+        tag.putInt(NBT_ROTATION, data.getRotation());
+        tag.putFloat(NBT_SCALE, data.getScale());
+        tag.putFloat(NBT_OFFSET, data.getOffset());
+        tag.putInt(NBT_DOUBLE_SIDED_MODE, data.getDoubleSidedMode());
+        tag.putBoolean(NBT_BRIGHT, data.isBright());
+        if (!data.getItem().isEmpty())
+            tag.put(NBT_ITEM, data.getItem().saveOptional(level.registryAccess()));
+        return tag;
+    }
+
+    /**
+     * Pastes onto whichever occupied-or-not face {@code hitLocation} resolves
+     * to, applying the Stance unvalidated against Sign Support Type (per user
+     * decision - that gating is being deprecated). If the target face already
+     * holds an item, it's left untouched; otherwise the copied item is moved in
+     * from the pasting player's inventory if an exact match exists there (ADR
+     * 0004) - never duplicated, swapped, or discarded.
+     */
+    @Override
+    public boolean pasteConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            @Nullable Vec3 hitLocation, CompoundTag data, Player player) {
+        if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be))
+            return false;
+        Direction face = resolveTargetFace(pos, be, hitLocation, true);
+        if (face == null)
+            return false;
+
+        SignFixtureFaceData existing = be.getFaceData(face);
+        ItemStack resultItem = existing != null ? existing.getItem() : ItemStack.EMPTY;
+        if (resultItem.isEmpty() && data.contains(NBT_ITEM)) {
+            ItemStack template = ItemStack.parseOptional(level.registryAccess(), data.getCompound(NBT_ITEM));
+            resultItem = ConfigurationClipboardUtil.takeMatchingItem(player, template);
+        }
+
+        SignStance[] stances = SignStance.values();
+        int stanceOrdinal = data.getInt(NBT_STANCE);
+        SignStance stance = stanceOrdinal >= 0 && stanceOrdinal < stances.length ? stances[stanceOrdinal]
+                : SignStance.FLAT;
+        int rotation = data.getInt(NBT_ROTATION);
+        float scale = data.contains(NBT_SCALE) ? data.getFloat(NBT_SCALE) : 1.0f;
+        float offset = data.contains(NBT_OFFSET) ? data.getFloat(NBT_OFFSET) : 0f;
+        int doubleSidedMode = data.getInt(NBT_DOUBLE_SIDED_MODE);
+        boolean bright = data.getBoolean(NBT_BRIGHT);
+
+        be.setFaceData(face, new SignFixtureFaceData(resultItem, stance, rotation, scale, offset, doubleSidedMode,
+                bright));
+
+        BlockState newState = setConnectionStates(state, level, pos);
+        if (newState != state)
+            level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+        return true;
     }
 
     // #region Wrench sneak right-click harvest

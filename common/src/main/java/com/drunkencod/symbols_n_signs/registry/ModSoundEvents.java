@@ -22,6 +22,16 @@ public class ModSoundEvents {
     public static final Supplier<SoundEvent> RATCHET_WRENCH_USE = registerSoundEvent(
             "item.ratchet_wrench.use");
 
+    // #region Configuration Clipboard
+    public static final Supplier<SoundEvent> CONFIGURATION_CLIPBOARD_COPY = registerSoundEvent(
+            "item.configuration_clipboard.copy");
+    public static final Supplier<SoundEvent> CONFIGURATION_CLIPBOARD_PASTE = registerSoundEvent(
+            "item.configuration_clipboard.paste");
+    public static final Supplier<SoundEvent> CONFIGURATION_CLIPBOARD_CLEAR = registerSoundEvent(
+            "item.configuration_clipboard.clear");
+    public static final Supplier<SoundEvent> CONFIGURATION_CLIPBOARD_ERROR = registerSoundEvent(
+            "item.configuration_clipboard.error");
+
     // #region register
 
     private static Supplier<SoundEvent> registerSoundEvent(String soundID) {

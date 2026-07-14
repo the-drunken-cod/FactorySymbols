@@ -2,6 +2,7 @@ package com.drunkencod.symbols_n_signs.item;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -77,4 +78,49 @@ public interface IWrenchConfigurable {
      */
     InteractionResult onWrenchRightClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
             Vec3 hitLocation, Player player);
+
+    /**
+     * Format version of this block's Configuration (see {@link #copyConfiguration}).
+     * Each implementor defines its own version; bumping it invalidates only that
+     * block type's previously-stored Configuration Clipboard entries, not any
+     * other block's. Migration between versions is not implemented - a clipboard
+     * entry saved under a different version is treated the same as no entry at
+     * all.
+     */
+    int getConfigFormatVersion();
+
+    /**
+     * Snapshots this block's Configuration - the wrench-configurable subset of
+     * its state, excluding transient/derived state (e.g. a Button's Pressed
+     * flag) - into a fresh {@link CompoundTag} for the Configuration Clipboard.
+     * <p>
+     * May include an item this block holds (e.g. a Sign Fixture face, a Display
+     * Panel's stored item). Implementors must never let paste duplicate that
+     * item - see {@link ConfigurationClipboardUtil#takeMatchingItem} for how
+     * paste re-resolves it from the pasting player's own inventory instead.
+     *
+     * @param hitLocation exact world-space point that was clicked, or
+     *                     {@code null} if there wasn't a click (e.g. copying via
+     *                     the offhand-on-place path never applies to copy, but
+     *                     multi-face blocks like the Sign Fixture need this to
+     *                     resolve which of their occupied sub-shapes to copy)
+     */
+    CompoundTag copyConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            @Nullable Vec3 hitLocation, Player player);
+
+    /**
+     * Applies a previously-copied Configuration to this block at the given
+     * position (and, for multi-face blocks, whichever face {@code hitLocation}
+     * resolves to).
+     *
+     * @param hitLocation exact world-space point that was clicked, or
+     *                     {@code null} when applied via the offhand-on-place
+     *                     path (no click occurred). Multi-face blocks (Sign
+     *                     Fixture) have no meaningful target face in that case
+     *                     and should simply no-op.
+     * @return {@code true} if the paste changed anything, used by the caller to
+     *         decide whether to show a success message
+     */
+    boolean pasteConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            @Nullable Vec3 hitLocation, CompoundTag data, Player player);
 }

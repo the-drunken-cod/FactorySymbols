@@ -18,10 +18,21 @@ import org.jetbrains.annotations.Nullable;
 public class DisplayPanelBlockEntity extends BlockEntity implements WorldlyContainer {
 
     public static final String NBT_KEY_ITEM = "item";
+    public static final String NBT_KEY_ROTATION = "rotation";
+    public static final String NBT_KEY_SCALE = "scale";
+    public static final String NBT_KEY_BRIGHT = "bright";
+
+    public static final int ROTATION_COUNT = 8;
+    public static final float MIN_SCALE = 0.5f;
+    public static final float MAX_SCALE = 1.0f;
+    public static final float SCALE_STEP = 0.1f;
 
     private static final int[] SLOTS = new int[] { 0 };
 
     private ItemStack storedItem = ItemStack.EMPTY;
+    private int rotation = 0;
+    private float scale = 1.0f;
+    private boolean bright = false;
 
     public DisplayPanelBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlocks.DISPLAY_PANEL_BE_TYPE.get(), pos, state);
@@ -37,6 +48,33 @@ public class DisplayPanelBlockEntity extends BlockEntity implements WorldlyConta
         storedItem = stack.isEmpty() ? ItemStack.EMPTY : stack;
     }
 
+    public int getRotation() {
+        return rotation;
+    }
+
+    public void setRotation(int rotation) {
+        this.rotation = rotation;
+        syncToClient();
+    }
+
+    public float getScale() {
+        return scale;
+    }
+
+    public void setScale(float scale) {
+        this.scale = scale;
+        syncToClient();
+    }
+
+    public boolean isBright() {
+        return bright;
+    }
+
+    public void setBright(boolean bright) {
+        this.bright = bright;
+        syncToClient();
+    }
+
     private boolean isLocked() {
         return level != null && level.getBlockState(worldPosition).getValue(DisplayPanelBlock.LOCKED);
     }
@@ -47,6 +85,9 @@ public class DisplayPanelBlockEntity extends BlockEntity implements WorldlyConta
     protected void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.put(NBT_KEY_ITEM, storedItem.saveOptional(registries));
+        tag.putInt(NBT_KEY_ROTATION, rotation);
+        tag.putFloat(NBT_KEY_SCALE, scale);
+        tag.putBoolean(NBT_KEY_BRIGHT, bright);
     }
 
     @Override
@@ -56,6 +97,9 @@ public class DisplayPanelBlockEntity extends BlockEntity implements WorldlyConta
             storedItem = ItemStack.parseOptional(registries, tag.getCompound(NBT_KEY_ITEM));
         else
             storedItem = ItemStack.EMPTY;
+        rotation = tag.getInt(NBT_KEY_ROTATION);
+        scale = tag.contains(NBT_KEY_SCALE) ? tag.getFloat(NBT_KEY_SCALE) : 1.0f;
+        bright = tag.getBoolean(NBT_KEY_BRIGHT);
     }
 
     // #region Sync to client

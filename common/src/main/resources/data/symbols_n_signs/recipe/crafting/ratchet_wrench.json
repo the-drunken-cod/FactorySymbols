@@ -8,13 +8,13 @@
     ],
     "key": {
         "N": {
-            "tag": "symbols_n_signs:sign_post_materials/nuggets"
+            "tag": "symbols_n_signs:sign_post_materials/nugget"
         },
         "M": {
             "tag": "symbols_n_signs:mechanical_materials"
         },
         "I": {
-            "tag": "symbols_n_signs:sign_post_materials/ingots"
+            "tag": "symbols_n_signs:sign_post_materials/ingot"
         }
     },
     "result": {

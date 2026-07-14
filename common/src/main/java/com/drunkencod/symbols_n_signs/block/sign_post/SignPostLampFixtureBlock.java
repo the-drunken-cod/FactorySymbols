@@ -11,8 +11,10 @@ import com.mojang.serialization.codecs.RecordCodecBuilder.Mu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -230,6 +232,39 @@ public class SignPostLampFixtureBlock extends AbstractSignPostFixtureBlock {
             }
         }
         return InteractionResult.SUCCESS;
+    }
+
+    // #region Configuration Clipboard
+
+    private static final String NBT_SIGNAL_MODE = "signal_mode";
+    private static final String NBT_AXIS = "axis";
+
+    @Override
+    public int getConfigFormatVersion() {
+        return 1;
+    }
+
+    @Override
+    public CompoundTag copyConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Vec3 hitLocation, Player player) {
+        CompoundTag tag = new CompoundTag();
+        tag.putInt(NBT_SIGNAL_MODE, state.getValue(SIGNAL_MODE));
+        tag.putString(NBT_AXIS, state.getValue(AXIS).getSerializedName());
+        return tag;
+    }
+
+    @Override
+    public boolean pasteConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
+            Vec3 hitLocation, CompoundTag data, Player player) {
+        int signalMode = Mth.clamp(data.getInt(NBT_SIGNAL_MODE), 0, 3);
+        Axis axis = "x".equals(data.getString(NBT_AXIS)) ? Axis.X : Axis.Z;
+
+        BlockState newState = state.setValue(SIGNAL_MODE, signalMode).setValue(AXIS, axis);
+        newState = newState.setValue(LIT, computeLit(newState, state.getValue(POWERED)));
+        if (newState.equals(state))
+            return false;
+        level.setBlock(pos, newState, Block.UPDATE_CLIENTS);
+        return true;
     }
 
     // #region BlockEntity

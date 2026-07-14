@@ -8,13 +8,13 @@
     ],
     "key": {
         "W": {
-            "tag": "c:wooden_slabs"
+            "tag": "minecraft:wooden_slabs"
         },
         "P": {
-            "tag": "c:paper"
+            "item": "minecraft:paper"
         },
         "N": {
-            "tag": "symbols_n_signs:sign_post_materials/nuggets"
+            "tag": "symbols_n_signs:sign_post_materials/nugget"
         }
     },
     "result": {

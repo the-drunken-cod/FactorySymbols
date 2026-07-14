@@ -11,7 +11,7 @@
             "item": "minecraft:redstone_torch"
         },
         "N": {
-            "tag": "symbols_n_signs:sign_post_materials/nuggets"
+            "tag": "symbols_n_signs:sign_post_materials/nugget"
         },
         "R": {
             "tag": "c:dusts/redstone"

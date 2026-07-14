@@ -5,7 +5,8 @@
   - [Symbols](#symbols) - Generic symbols, emoticons, arrows and more, in 6 material variants.
   - [Signs](#signs) - More specific items for labeling and decoration, made from retroreflective sheets.
   - [Retroreflective Sheet](#retroreflective-sheet) - Material used for crafting signs.
-  - [Ratchet Wrench](#ratchet-wrench) - Tool for configuring and picking up Sign Posts and Fixtures.
+  - [Ratchet Wrench](#ratchet-wrench) - Tool for configuring and picking up blocks like Display Panels, Sign Posts, Fixtures and more.
+  - [Configuration Clipboard](#configuration-clipboard) - Tool for copying and pasting block configurations.
 - [Blocks](#blocks)
   - [Display Panel](#display-panel) - Item Frame in block form, with 16 color variants and redstone locking.
   - [Sign Post](#sign-post) - Pipe-like block for making custom road signs.
@@ -69,25 +70,51 @@ For example, you can use these sheets to make [Signs](#signs) in a Stonecutter, 
 <br><br>
 
 ## Ratchet Wrench:
-This wrench item is used for configuring or picking up [Sign Posts](#sign-posts) and [Sign Post Fixtures.](#sign-post-fixtures)  
+This wrench item is used for configuring or picking up [Display Panels](#display-panel), [Sign Posts](#sign-posts) and [Sign Post Fixtures.](#sign-post-fixtures)  
   
 It also behaves like any other wrench, allowing you to pick up a lot of other mods' blocks instantly.
   
 #### Interactions:
 
-- **Left-clicking a Fixture:** Chooses the configuration mode.  
+- **Left-clicking a Block:** Chooses the configuration mode.  
   Most fixtures will have an "Orientation" mode for rotating the fixture, and one or more additional modes for changing specific settings.  
   Each wrench item stores the selected configuration mode for each fixture separately, allowing you to easily switch between multiple preconfigured wrenches.  
   (The current mode's index is stored in the item's `custom_data` component, as an object keyed by the fixture's ID.)
-- **Right-clicking a Fixture:** Changes the setting of the currently selected configuration mode.  
+- **Right-clicking a Block:** Changes the setting of the currently selected configuration mode.  
   For example, in "Orientation" mode, this will rotate the fixture to the next valid direction.
-- **Sneak-right-clicking a Sign or Fixture:** Breaks the block and picks it up.  
+- **Sneak-right-clicking a Block:** Breaks the block and picks it up.  
   This also works with wrenches from other mods, like Create or Mekanism, as long as they have the `c:tools/wrench` tag.  
-  Note that for configuration you will have to use the Ratchet Wrench specifically.
+  Note that for changing the configuration you will have to use the Ratchet Wrench specifically.
   
 #### Crafting recipe:
 
 ![Ratchet Wrench Crafting Recipe](./mod_assets/recipes/ratchet_wrench.png)  
+  
+Note:
+- The item in the bottom left of the recipe can be [any item with the tag `symbols_n_signs:mechanical_materials`.](#item-tags)   
+  For Vanilla, this only includes Iron Trapdoors. Other mod items like Create Gearboxes may also be used as a substitute.
+
+<br><br>
+
+## Configuration Clipboard:
+
+This tool can be used to copy the targeted [Configurable Block's](#configurables) settings that were previously configured using a [Ratchet Wrench.](#ratchet-wrench)  
+It can make placing blocks like [Sign Post Fixtures](#sign-post-fixtures) and [Display Panels](#display-panel) much less cumbersome.  
+  
+#### Interactions:
+
+- **When sneak-right-clicking a [Configurable](#configurables):** Copies the configured settings to the clipboard.  
+  For face-dependent blocks like the [Sign Fixture](#sign-fixture), the targeted segment's settings will be copied.  
+  Each block type's settings are stored separately (in `minecraft:custom_data.block_namespace:block_id`), allowing you to store many configurations on one clipboard.  
+  Use multiple clipboards to have different configuration "loadouts".
+- **When right-clicking a [Configurable](#configurables):** Pastes the configured settings to the block.  
+  If an item is included in the copied configuration and an exact match is present in the inventory, it will be taken and added to the block.  
+  For face-dependent blocks like the [Sign Fixture](#sign-fixture), the targeted segment's settings will be pasted.
+- **When held in the off-hand while placing a [Configurable](#configurables):** Places the block using the configuration stored in the clipboard.  
+  If no configuration is found, the block is placed as if the clipboard isn't present.
+- **Placing it in a crafting grid:** Erases the contained configuration data.  
+  Any other attempt to paste will be met with an error message until new settings are copied.
+
 
 <br><br>
 
@@ -116,7 +143,7 @@ When sneak-right-clicked with a [Ratchet Wrench](#ratchet-wrench), the sign post
 ![Sign Post Crafting Recipe](./mod_assets/recipes/sign_post.png)  
   
 Note:
-- The ingots and nuggets shown in the recipe have to be [any item with the tags `symbols_n_signs:sign_post_materials/ingots` or `symbols_n_signs:sign_post_materials/nuggets`.](#item-tags)   
+- The ingots and nuggets shown in the recipe have to be [any item with the tags `symbols_n_signs:sign_post_materials/ingot` or `symbols_n_signs:sign_post_materials/nugget`.](#item-tags)   
   By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
@@ -147,7 +174,7 @@ The sign will be rendered either flat against horizontal faces, 90° or -90° pe
 ![Sign Fixture Crafting Recipe](./mod_assets/recipes/sign_post_sign_fixture.png)  
   
 Note:
-- The ingots and nuggets shown in the recipe have to be [any item with the tags `symbols_n_signs:sign_post_materials/ingots` or `symbols_n_signs:sign_post_materials/nuggets`.](#item-tags)  
+- The ingots and nuggets shown in the recipe have to be [any item with the tags `symbols_n_signs:sign_post_materials/ingot` or `symbols_n_signs:sign_post_materials/nugget`.](#item-tags)  
   By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
@@ -169,7 +196,7 @@ Note:
 - The item in the center is a [Retroreflective Sheet.](#retroreflective-sheet)
 - The item in the bottom center can be [any item with the tag `symbols_n_signs:powered_lamps`.](#item-tags)  
   By default, this includes the Redstone Lamp and any Copper Bulb variant.
-- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_materials/nuggets`.](#item-tags)  
+- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_materials/nugget`.](#item-tags)  
   By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
@@ -187,7 +214,7 @@ This means buttons can even be used for creating NAND and OR gates on a Sign Pos
 ![Button Fixture Crafting Recipe](./mod_assets/recipes/sign_post_button_fixture.png)  
   
 Notes:
-- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_materials/nuggets`.](#item-tags)   
+- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_materials/nugget`.](#item-tags)   
   By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
@@ -206,7 +233,7 @@ When combining this with the inversion modes of the [Button Fixture](#button-fix
 ![Redstone Emitter Fixture Crafting Recipe](./mod_assets/recipes/sign_post_redstone_emitter_fixture.png)  
   
 Notes:
-- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_materials/nuggets`.](#item-tags)   
+- The nuggets shown in the recipe have to be [any item with the tag `symbols_n_signs:sign_post_materials/nugget`.](#item-tags)   
   By default, those include Iron (Vanilla) and Zinc (another mod).
 
 <br><br>
@@ -264,6 +291,14 @@ Note: Any dye can be used in these recipes.
 | 17-32 | 3 |
 | 33-64 | 1 |
 
+<br><br>
+
+## Configurables:
+These blocks can be configured using a [Ratchet Wrench](#ratchet-wrench) or [Configuration Clipboard.](#configuration-clipboard)  
+They always have to have an associated block entity, and they are required to have the block tag `symbols_n_signs:configurable`.  
+  
+Examples include [any Sign Post Fixture](#sign-post-fixtures) and the [Display Panel.](#display-panel)
+
 <br>
 
 <br><br>
@@ -281,6 +316,8 @@ Note: Any dye can be used in these recipes.
   - `symbols_n_signs:sign_post_connects_to_sides` - Blocks that [Sign Posts](#sign-post) will connect to via their sides.
   - `symbols_n_signs:sign_post_connects_to` - Blocks that [Sign Posts](#sign-post) will connect to via all faces, despite not being center-supporting.
   - `symbols_n_signs:sign_post_does_not_connect_to` - Blocks whose center face is unstable / Blocks that can't connect to [Sign Posts.](#sign-post)
+- Other:
+  - `symbols_n_signs:configurable` - Any block that can be configured by a [Ratchet Wrench](#ratchet-wrench) and the [Configuration Clipboard](#configuration-clipboard)
 
 <br>
 
@@ -294,7 +331,8 @@ Note: Any dye can be used in these recipes.
   - `symbols_n_signs:support/<support_type>` - Where the sign's valid attachment edges/points are (when looking at the texture). Can be `bottom`, `vertical`, `horizontal` or `any`, and `back` (included in all other types).
 - Materials:
   - `c:plates/retroreflective` - Contains the [Retroreflective Sheet.](#retroreflective-sheet)
-  - `symbols_n_signs:sign_post_materials/ingots` - Contains all material ingots that can be used to craft [Sign Posts](#sign-post) and [Sign Post Fixtures.](#sign-post-fixtures) Contains Iron and Zinc (from other mods) by default.
-  - `symbols_n_signs:sign_post_materials/nuggets` - Contains all material nuggets that can be used to craft [Sign Posts](#sign-post) and [Sign Post Fixtures.](#sign-post-fixtures) Contains Iron and Zinc (from other mods) by default.
+  - `symbols_n_signs:sign_post_materials/ingot` - Contains all material ingots that can be used to craft [Sign Posts](#sign-post) and [Sign Post Fixtures.](#sign-post-fixtures) Contains Iron and Zinc (from other mods) by default.
+  - `symbols_n_signs:sign_post_materials/nugget` - Contains all material nuggets that can be used to craft [Sign Posts](#sign-post) and [Sign Post Fixtures.](#sign-post-fixtures) Contains Iron and Zinc (from other mods) by default.
 - Other:
   - `symbols_n_signs:powered_lamps` - Lamp blocks that respond to a redstone signal. Used in the [Lamp Fixture](#lamp-fixture) crafting recipe.
+  - `symbols_n_signs:mechanical_materials` - Something mechanical, like a bearing, ratchet, gearbox, or similar. Used in the [Ratchet Wrench](#ratchet-wrench) crafting recipe.

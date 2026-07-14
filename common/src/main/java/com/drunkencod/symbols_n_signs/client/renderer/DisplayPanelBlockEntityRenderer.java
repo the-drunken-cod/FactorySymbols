@@ -8,6 +8,7 @@ import com.drunkencod.symbols_n_signs.block.display_panel.DisplayPanelBlockEntit
 import com.drunkencod.symbols_n_signs.platform.Services;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.LightTexture;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
@@ -46,6 +47,9 @@ public class DisplayPanelBlockEntityRenderer implements BlockEntityRenderer<Disp
             default -> 0f;
         }));
 
+        // in-plane spin, like vanilla Item Frame rotation
+        poseStack.mulPose(Axis.ZP.rotationDegrees(be.getRotation() * 45f));
+
         boolean isFactorySymbol = symbol
                 .is(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "symbols")));
 
@@ -58,18 +62,22 @@ public class DisplayPanelBlockEntityRenderer implements BlockEntityRenderer<Disp
         // flip horizontally
         poseStack.mulPose(Axis.YP.rotationDegrees(180f));
 
-        // scale down and shift a tiny bit against z-fighting:
-        poseStack.scale(0.995f, 0.995f, 0.995f);
+        // scale down and shift a tiny bit against z-fighting, then apply the
+        // Configuration Clipboard/Ratchet Wrench-configurable Scale:
+        float scale = 0.995f * be.getScale();
+        poseStack.scale(scale, scale, scale);
         if (Services.CONFIG.displayPanelShiftRenderedItem()) {
             float cardinalFactor = facing == Direction.NORTH || facing == Direction.EAST ? 1f : -1f;
             poseStack.translate(0.00025f, 0.00025f * cardinalFactor, 0.00025f);
         }
 
+        int light = be.isBright() ? LightTexture.FULL_BRIGHT : packedLight;
+
         // render item
         Minecraft.getInstance().getItemRenderer().renderStatic(
                 symbol,
                 ItemDisplayContext.FIXED,
-                packedLight,
+                light,
                 packedOverlay,
                 poseStack,
                 buffers,

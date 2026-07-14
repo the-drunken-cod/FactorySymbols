@@ -25,11 +25,38 @@
     },
     "item.ratchet_wrench.use": {
         "sounds": [
-            "symbols_n_signs:item/ratchet_wrench/use0",
             "symbols_n_signs:item/ratchet_wrench/use1",
             "symbols_n_signs:item/ratchet_wrench/use2",
-            "symbols_n_signs:item/ratchet_wrench/use3"
+            "symbols_n_signs:item/ratchet_wrench/use3",
+            "symbols_n_signs:item/ratchet_wrench/use4"
         ],
         "subtitle": "subtitles.symbols_n_signs.ratchet_wrench.use"
+    },
+    "item.configuration_clipboard.copy": {
+        "sounds": [
+            "symbols_n_signs:item/configuration_clipboard/scribble1",
+            "symbols_n_signs:item/configuration_clipboard/scribble2"
+        ],
+        "subtitle": "subtitles.symbols_n_signs.configuration_clipboard.copy"
+    },
+    "item.configuration_clipboard.paste": {
+        "sounds": [
+            "minecraft:item/book/open_flip2",
+            "minecraft:item/book/open_flip3"
+        ],
+        "subtitle": "subtitles.symbols_n_signs.configuration_clipboard.paste"
+    },
+    "item.configuration_clipboard.clear": {
+        "sounds": [
+            "symbols_n_signs:item/configuration_clipboard/rip1",
+            "symbols_n_signs:item/configuration_clipboard/rip2"
+        ],
+        "subtitle": "subtitles.symbols_n_signs.configuration_clipboard.clear"
+    },
+    "item.configuration_clipboard.error": {
+        "sounds": [
+            "minecraft:item/book/close_put2"
+        ],
+        "subtitle": "subtitles.symbols_n_signs.configuration_clipboard.error"
     }
 }
