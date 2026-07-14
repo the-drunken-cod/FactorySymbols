@@ -10,6 +10,8 @@
         "minecraft:waxed_exposed_copper_bulb",
         "minecraft:waxed_weathered_copper_bulb",
         "minecraft:waxed_oxidized_copper_bulb",
+        { "id": "#actuallyadditions:lamps", "required": false },
+        { "id": "#chipped:redstone_lamp", "required": false },
         { "id": "create_new_age:street_light", "required": false },
         { "id": "create:electron_tube", "required": false },
         { "id": "create:rose_quartz_lamp", "required": false },

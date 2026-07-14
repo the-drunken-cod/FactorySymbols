@@ -5,6 +5,7 @@
 
     "tooltip.symbols_n_signs.hold_shift": "Hold [Shift] for information",
 
+    "block.symbols_n_signs.display_panel": "Display Panel",
     "block.symbols_n_signs.display_panel.black": "Black Display Panel",
     "block.symbols_n_signs.display_panel.blue": "Blue Display Panel",
     "block.symbols_n_signs.display_panel.brown": "Brown Display Panel",
@@ -304,7 +305,7 @@
     "sign.symbols_n_signs.hazard_uncontrolled_intersection.tooltip": "- There is an uncontrolled intersection ahead (no signs or traffic lights). Default rules apply.",
     "sign.symbols_n_signs.hazard_uneven_road_surface": "Uneven Road Surface Ahead",
     "sign.symbols_n_signs.hazard_danger_ahead": "Danger Ahead",
-    "sign.symbols_n_signs.hazard_danger_ahead.tooltip": "- There's a danger ahead that doesn't fit any of the other sign's criteria.",
+    "sign.symbols_n_signs.hazard_danger_ahead.tooltip": "- There's a danger ahead that doesn't fit any of the other signs, or is explained by an additional sign.",
     "sign.symbols_n_signs.hazard_narrow_road": "Road Narrows",
     "sign.symbols_n_signs.hazard_narrow_road_left": "Road Narrows on the Left",
     "sign.symbols_n_signs.hazard_narrow_road_right": "Road Narrows on the Right",

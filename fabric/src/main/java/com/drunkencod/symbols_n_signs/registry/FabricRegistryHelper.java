@@ -5,7 +5,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -42,12 +41,5 @@ public class FabricRegistryHelper implements IRegistryHelper {
         SoundEvent soundEvent = Registry.register(BuiltInRegistries.SOUND_EVENT,
                 ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id), factory.get());
         return () -> soundEvent;
-    }
-
-    @Override
-    public <T extends RecipeSerializer<?>> Supplier<T> registerRecipeSerializer(String id, Supplier<T> factory) {
-        T serializer = Registry.register(BuiltInRegistries.RECIPE_SERIALIZER,
-                ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, id), factory.get());
-        return () -> serializer;
     }
 }

@@ -48,7 +48,7 @@ public class DisplayPanelBlockEntityRenderer implements BlockEntityRenderer<Disp
         }));
 
         // in-plane spin, like vanilla Item Frame rotation
-        poseStack.mulPose(Axis.ZP.rotationDegrees(be.getRotation() * 45f));
+        poseStack.mulPose(Axis.ZP.rotationDegrees(be.getRotation() * -45f));
 
         boolean isFactorySymbol = symbol
                 .is(TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath(Constants.MOD_ID, "symbols")));

@@ -3,7 +3,6 @@ package com.drunkencod.symbols_n_signs.registry;
 import java.util.function.Supplier;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -59,13 +58,4 @@ public interface IRegistryHelper {
      * @return A supplier that returns the registered sound event
      */
     Supplier<SoundEvent> registerSoundEvent(String id, Supplier<SoundEvent> factory);
-
-    /**
-     * Register a recipe serializer under the mod's namespace.
-     *
-     * @param id      Registry path (e.g. {@code "my_recipe"})
-     * @param factory Supplier that creates the {@link RecipeSerializer} instance
-     * @return A supplier that returns the registered recipe serializer
-     */
-    <T extends RecipeSerializer<?>> Supplier<T> registerRecipeSerializer(String id, Supplier<T> factory);
 }

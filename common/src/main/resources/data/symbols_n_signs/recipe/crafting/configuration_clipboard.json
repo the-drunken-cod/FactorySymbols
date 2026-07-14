@@ -2,19 +2,19 @@
     "type": "minecraft:crafting_shaped",
     "category": "building",
     "pattern": [
-        "WPW",
-        "NPN",
-        "WPW"
+        "I",
+        "P",
+        "W"
     ],
     "key": {
-        "W": {
-            "tag": "minecraft:wooden_slabs"
+        "I": {
+            "tag": "symbols_n_signs:sign_post_materials/ingot"
         },
         "P": {
             "item": "minecraft:paper"
         },
-        "N": {
-            "tag": "symbols_n_signs:sign_post_materials/nugget"
+        "W": {
+            "tag": "minecraft:wooden_pressure_plates"
         }
     },
     "result": {

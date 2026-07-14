@@ -82,8 +82,8 @@ public class ConfigurationClipboardItem extends Item implements IExpandableToolt
         if (!level.isClientSide()) {
             CompoundTag data = configurable.copyConfiguration(level, pos, state, ctx.getClickedFace(),
                     ctx.getClickLocation(), player);
-            ConfigurationClipboardUtil.storeConfiguration(clipboard, blockId, configurable.getConfigFormatVersion(),
-                    data);
+            ConfigurationClipboardUtil.storeConfiguration(clipboard, blockId,
+                    configurable.getConfigFormatVersion(), data);
         }
         player.displayClientMessage(
                 Component.translatable("item." + Constants.MOD_ID + ".configuration_clipboard.message.copied",
@@ -96,13 +96,10 @@ public class ConfigurationClipboardItem extends Item implements IExpandableToolt
     private static void pasteConfiguration(Level level, BlockPos pos, BlockState state,
             IWrenchConfigurable configurable, ItemStack clipboard,
             ResourceLocation blockId, UseOnContext ctx, Player player) {
-        boolean changed = true;
-        if (!level.isClientSide()) {
-            CompoundTag data = ConfigurationClipboardUtil.getConfiguration(clipboard, blockId,
-                    configurable.getConfigFormatVersion());
-            changed = data != null && configurable.pasteConfiguration(level, pos, state, ctx.getClickedFace(),
-                    ctx.getClickLocation(), data, player);
-        }
+        CompoundTag data = ConfigurationClipboardUtil.getConfiguration(clipboard, blockId,
+                configurable.getConfigFormatVersion());
+        boolean changed = data != null && configurable.pasteConfiguration(level, pos, state, ctx.getClickedFace(),
+                ctx.getClickLocation(), data, player);
 
         if (!changed) {
             player.displayClientMessage(
@@ -123,7 +120,11 @@ public class ConfigurationClipboardItem extends Item implements IExpandableToolt
     }
 
     private static void playSound(Level level, BlockPos pos, Player player, SoundEvent sound) {
+        playSound(level, pos, player, sound, 0.0f);
+    }
+
+    private static void playSound(Level level, BlockPos pos, Player player, SoundEvent sound, float pitchMod) {
         RandomSource rand = level.getRandom();
-        level.playSound(player, pos, sound, SoundSource.PLAYERS, 1.0f, 0.75f + rand.nextFloat() * 0.5f);
+        level.playSound(player, pos, sound, SoundSource.PLAYERS, 1.0f, 0.85f + pitchMod + rand.nextFloat() * 0.3f);
     }
 }
