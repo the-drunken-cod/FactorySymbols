@@ -5,6 +5,8 @@
 
     "tooltip.symbols_n_signs.hold_shift": "Hold §8[§r§fShift§r§8]§r for information",
 
+    "generic.message.symbols_n_signs.targeted_block_not_configurable": "Needs to be used on blocks from Symbols'n'Signs",
+
     "block.symbols_n_signs.display_panel": "Display Panel",
     "block.symbols_n_signs.display_panel.black": "Black Display Panel",
     "block.symbols_n_signs.display_panel.blue": "Blue Display Panel",
@@ -38,14 +40,15 @@
     "item.symbols_n_signs.retroreflective_sheet.tooltip": "Reflects light with minimal scattering. Used for making signs and lamps.",
 
     "item.symbols_n_signs.ratchet_wrench": "Ratchet Wrench",
-    "item.symbols_n_signs.ratchet_wrench.tooltip.1": "§8[§r§fLeft Click§r§8]§r any Fixture to switch the wrench mode.",
-    "item.symbols_n_signs.ratchet_wrench.tooltip.2": "§8[§r§fRight Click§r§8]§r any Fixture to edit the selected setting.",
+    "item.symbols_n_signs.ratchet_wrench.tooltip.1": "§8[§r§fLeft Click§r§8]§r a block to switch the wrench mode.",
+    "item.symbols_n_signs.ratchet_wrench.tooltip.2": "§8[§r§fRight Click§r§8]§r a block to edit the selected setting.",
     "item.symbols_n_signs.ratchet_wrench.tooltip.3": "§8[§r§fSneak Right Click§r§8]§r to pick up the targeted block.",
 
     "item.symbols_n_signs.configuration_clipboard": "Configuration Clipboard",
     "item.symbols_n_signs.configuration_clipboard.tooltip.1": "§8[§r§fSneak Right Click§r§8]§r a block to copy its settings.",
-    "item.symbols_n_signs.configuration_clipboard.tooltip.2": "§8[§r§fR-Click§r§8]§r a block to paste settings.",
-    "item.symbols_n_signs.configuration_clipboard.tooltip.3": "Settings are stored separately for each block type. Craft alone in a crafting grid to clear all stored settings.",
+    "item.symbols_n_signs.configuration_clipboard.tooltip.2": "§8[§r§fR-Click§r§8]§r a block to apply settings.",
+    "item.symbols_n_signs.configuration_clipboard.tooltip.3": "§8[§r§fOff-Hand§r§8]§r while placing blocks to auto-apply settings.",
+    "item.symbols_n_signs.configuration_clipboard.tooltip.4": "Settings are stored separately for each block type. Craft alone in a crafting grid to clear all stored settings.",
     "item.symbols_n_signs.configuration_clipboard.tooltip.stored_count.n": "Contains %1$s stored configurations.",
     "item.symbols_n_signs.configuration_clipboard.tooltip.stored_count.1": "Contains %1$s stored configuration.",
     "item.symbols_n_signs.configuration_clipboard.message.copied": "%1$s configuration saved to clipboard.",
