@@ -42,7 +42,8 @@ public class ConfigurationClipboardItem extends Item implements IExpandableToolt
                         count).withStyle(ChatFormatting.GRAY)),
                 TooltipUtil.tooltipLines("item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.1"),
                 TooltipUtil.tooltipLines("item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.2"),
-                TooltipUtil.tooltipLines("item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.3"));
+                TooltipUtil.tooltipLines("item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.3"),
+                TooltipUtil.tooltipLines("item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.4"));
     }
 
     @Override
@@ -59,8 +60,16 @@ public class ConfigurationClipboardItem extends Item implements IExpandableToolt
         BlockState state = level.getBlockState(pos);
         Block block = state.getBlock();
 
-        if (player == null || !(block instanceof IWrenchConfigurable configurable))
+        if (player == null)
             return InteractionResult.PASS;
+
+        if (!(block instanceof IWrenchConfigurable configurable)) {
+            player.displayClientMessage(
+                    Component.translatable("generic.message." + Constants.MOD_ID + ".targeted_block_not_configurable")
+                            .withStyle(ChatFormatting.RED),
+                    true);
+            return InteractionResult.PASS;
+        }
 
         ItemStack clipboard = ctx.getItemInHand();
         ResourceLocation blockId = BuiltInRegistries.BLOCK.getKey(block);

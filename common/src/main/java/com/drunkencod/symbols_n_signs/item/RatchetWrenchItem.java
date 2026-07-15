@@ -6,6 +6,7 @@ import com.drunkencod.symbols_n_signs.util.TooltipUtil;
 
 import java.util.List;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
@@ -49,8 +50,10 @@ public class RatchetWrenchItem extends Item implements IExpandableTooltip {
 
     public static void handleWrenchLeftClick(Level level, BlockPos pos, BlockState state, Direction clickedFace,
             Player player) {
-        if (!(state.getBlock() instanceof IWrenchConfigurable configurable))
+        if (!(state.getBlock() instanceof IWrenchConfigurable configurable)) {
+            displayNotConfigurableMessage(player);
             return;
+        }
         Vec3 hitLocation = raytraceExactHit(level, player, pos);
         InteractionResult result = configurable.onWrenchLeftClick(level, pos, state, clickedFace, hitLocation, player);
         if (result.consumesAction())
@@ -101,6 +104,15 @@ public class RatchetWrenchItem extends Item implements IExpandableTooltip {
             }
         }
         return InteractionResult.sidedSuccess(level.isClientSide);
+    }
+
+    private static void displayNotConfigurableMessage(@Nullable Player player) {
+        if (player == null)
+            return;
+        player.displayClientMessage(
+                Component.translatable("generic.message." + Constants.MOD_ID + ".targeted_block_not_configurable")
+                        .withStyle(ChatFormatting.RED),
+                true);
     }
 
     // #region Sound
