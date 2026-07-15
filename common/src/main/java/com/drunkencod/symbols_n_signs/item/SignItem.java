@@ -39,7 +39,7 @@ public class SignItem extends Item implements IExpandableTooltip {
             return List.of(Component.literal("Congrats, you managed to break my code!"));
         String signTooltipId = "sign." + Constants.MOD_ID + "." + signType.getId() + ".tooltip";
         if (Language.getInstance().has(signTooltipId))
-            return List.of(TooltipUtil.tooltipLine(signTooltipId));
+            return TooltipUtil.tooltipLines(signTooltipId);
         return List.of();
     }
 

@@ -1,6 +1,7 @@
 package com.drunkencod.symbols_n_signs.block.sign_post;
 
 import com.drunkencod.symbols_n_signs.Constants;
+import com.drunkencod.symbols_n_signs.item.IWrenchConfigurable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -336,14 +337,15 @@ public final class SignPostNetworkUtil {
     // #region Wrench harvest
 
     /**
-     * Handles sneak-right-click harvest for sign post blocks. Any item in
-     * {@code #c:tools/wrench} while the player is sneaking will harvest the
-     * block and play an item-pickup sound. Fixture blocks (
-     * {@link AbstractSignPostFixtureBlock}) delegate to
-     * {@link AbstractSignPostFixtureBlock#onWrenchHarvest} so they can give back
-     * their own item(s) and revert to a plain Sign Post instead of being fully
-     * destroyed; plain Sign Posts are broken outright via their loot table. In
-     * creative mode no items are given.
+     * Handles sneak-right-click harvest for wrench-configurable blocks. Any
+     * item in {@code #c:tools/wrench} while the player is sneaking will
+     * harvest the block and play an item-pickup sound.
+     * {@link IWrenchConfigurable} blocks delegate to
+     * {@link IWrenchConfigurable#onWrenchHarvest} (fixture blocks override it
+     * to give back their own item(s) and revert to a plain Sign Post instead
+     * of being fully destroyed); plain Sign Posts aren't wrench-configurable
+     * and are broken outright via their loot table. In creative mode no items
+     * are given.
      */
     public static ItemInteractionResult harvestWithWrench(ItemStack stack, BlockState state, Level level,
             BlockPos pos, @Nullable Vec3 hitLocation, Player player) {
@@ -351,8 +353,8 @@ public final class SignPostNetworkUtil {
             return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
 
         if (!level.isClientSide()) {
-            if (state.getBlock() instanceof AbstractSignPostFixtureBlock fixture) {
-                fixture.onWrenchHarvest(level, pos, state, hitLocation, stack, player);
+            if (state.getBlock() instanceof IWrenchConfigurable configurable) {
+                configurable.onWrenchHarvest(level, pos, state, hitLocation, stack, player);
             } else {
                 if (!player.isCreative()) {
                     BlockEntity be = level.getBlockEntity(pos);

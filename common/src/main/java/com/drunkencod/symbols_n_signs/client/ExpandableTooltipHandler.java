@@ -20,10 +20,12 @@ public final class ExpandableTooltipHandler {
     }
 
     /**
-     * Index right after the item name and registry id lines, where the
-     * expandable tooltip content is inserted rather than appended at the end.
+     * Index right after the item name line (index 0), where the expandable
+     * tooltip content is inserted. This runs after the tooltip is fully
+     * assembled, so inserting here puts our content before the Ctrl+F3+H
+     * registry id line and the blue mod name line added at the end.
      */
-    private static final int INSERT_INDEX = 2;
+    private static final int INSERT_INDEX = 1;
 
     public static void append(ItemStack stack, List<Component> tooltip) {
         if (!(stack.getItem() instanceof IExpandableTooltip expandable))

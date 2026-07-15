@@ -483,16 +483,33 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
     }
 
     /**
-     * Copies whichever occupied face {@code hitLocation} resolves to. Per ADR
-     * 0003, the source face is not remembered - the copied Configuration can
-     * later be pasted onto any face, of any Sign Fixture.
+     * Resolves which face the clipboard should target: an exact pane hit takes
+     * priority (so clicking directly on a rendered sign - even a perpendicular
+     * one whose pane doesn't lie flush with the post's outer cube - always
+     * targets that sign), otherwise falls back to the literal outer-cube face
+     * that was clicked. Deliberately does NOT fall back to the nearest
+     * <i>occupied</i> face across the whole post - unlike the wrench's
+     * per-mode targeting, an empty face must resolve to itself (so copy/paste
+     * can operate on faces with no sign yet), not jump to an unrelated
+     * already-occupied face elsewhere on the post.
+     */
+    private static @Nullable Direction resolveClipboardTargetFace(BlockPos pos, SignPostSignFixtureBlockEntity be,
+            @Nullable Vec3 hitLocation, Direction clickedFace) {
+        Direction exact = resolveTargetFace(pos, be, hitLocation, false);
+        return exact != null ? exact : clickedFace;
+    }
+
+    /**
+     * Copies whichever face {@code hitLocation}/{@code clickedFace} resolves
+     * to. Per ADR 0003, the source face is not remembered - the copied
+     * Configuration can later be pasted onto any face, of any Sign Fixture.
      */
     @Override
     public CompoundTag copyConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
             @Nullable Vec3 hitLocation, Player player) {
         if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be))
             return new CompoundTag();
-        Direction face = resolveTargetFace(pos, be, hitLocation, true);
+        Direction face = resolveClipboardTargetFace(pos, be, hitLocation, clickedFace);
         SignFixtureFaceData data = face != null ? be.getFaceData(face) : null;
         if (data == null)
             return new CompoundTag();
@@ -522,7 +539,7 @@ public class SignPostSignFixtureBlock extends AbstractSignPostFixtureBlock {
             @Nullable Vec3 hitLocation, CompoundTag data, Player player) {
         if (!(level.getBlockEntity(pos) instanceof SignPostSignFixtureBlockEntity be))
             return false;
-        Direction face = resolveTargetFace(pos, be, hitLocation, true);
+        Direction face = resolveClipboardTargetFace(pos, be, hitLocation, clickedFace);
         if (face == null)
             return false;
 

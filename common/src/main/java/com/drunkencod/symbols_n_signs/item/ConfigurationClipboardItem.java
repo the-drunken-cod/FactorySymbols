@@ -35,12 +35,14 @@ public class ConfigurationClipboardItem extends Item implements IExpandableToolt
     @Override
     public List<Component> getExpandedTooltip(ItemStack stack) {
         int count = ConfigurationClipboardUtil.countStoredConfigurations(stack);
-        return List.of(
-                Component.translatable("item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.stored_count",
-                        count).withStyle(ChatFormatting.GRAY),
-                TooltipUtil.tooltipLine("item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.1"),
-                TooltipUtil.tooltipLine("item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.2"),
-                TooltipUtil.tooltipLine("item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.3"));
+        return TooltipUtil.combine(
+                List.of(Component.translatable(
+                        "item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.stored_count."
+                                + (count == 1 ? "1" : "n"),
+                        count).withStyle(ChatFormatting.GRAY)),
+                TooltipUtil.tooltipLines("item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.1"),
+                TooltipUtil.tooltipLines("item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.2"),
+                TooltipUtil.tooltipLines("item." + Constants.MOD_ID + ".configuration_clipboard.tooltip.3"));
     }
 
     @Override

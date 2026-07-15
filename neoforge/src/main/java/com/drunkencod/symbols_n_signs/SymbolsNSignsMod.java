@@ -1,6 +1,5 @@
 package com.drunkencod.symbols_n_signs;
 
-import com.drunkencod.symbols_n_signs.block.sign_post.AbstractSignPostFixtureBlock;
 import com.drunkencod.symbols_n_signs.block.sign_post.SignPostBlock;
 import com.drunkencod.symbols_n_signs.block.sign_post.SignPostNetworkUtil;
 import com.drunkencod.symbols_n_signs.config.NeoForgeConfigHelper;
@@ -54,7 +53,7 @@ public class SymbolsNSignsMod {
                         return;
                 BlockState state = event.getLevel().getBlockState(event.getPos());
                 Block block = state.getBlock();
-                if (!(block instanceof SignPostBlock) && !(block instanceof AbstractSignPostFixtureBlock))
+                if (!(block instanceof SignPostBlock) && !(block instanceof IWrenchConfigurable))
                         return;
 
                 event.setCanceled(true);

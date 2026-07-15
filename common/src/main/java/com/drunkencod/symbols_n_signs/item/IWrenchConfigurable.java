@@ -1,12 +1,18 @@
 package com.drunkencod.symbols_n_signs.item;
 
+import java.util.List;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 
@@ -123,4 +129,33 @@ public interface IWrenchConfigurable {
      */
     boolean pasteConfiguration(Level level, BlockPos pos, BlockState state, Direction clickedFace,
             @Nullable Vec3 hitLocation, CompoundTag data, Player player);
+
+    /**
+     * Called when the player sneak-right-clicks this block with the Ratchet
+     * Wrench instead of cycling a mode value - harvests the block instantly
+     * instead of requiring it to be mined. Default behavior gives back this
+     * block's own loot-table drops and destroys it. Implementors holding extra
+     * items of their own (e.g. a Display Panel's stored item) override this to
+     * hand those back too and to prevent them from also being dropped by
+     * {@code onRemove}. In creative mode nothing is given or dropped.
+     */
+    default void onWrenchHarvest(Level level, BlockPos pos, BlockState state, @Nullable Vec3 hitLocation,
+            ItemStack wrenchStack, Player player) {
+        if (!player.isCreative()) {
+            BlockEntity be = level.getBlockEntity(pos);
+            List<ItemStack> drops = Block.getDrops(state, (ServerLevel) level, pos, be, player, wrenchStack);
+            for (ItemStack drop : drops)
+                giveOrDrop(player, drop);
+        }
+        level.destroyBlock(pos, false);
+    }
+
+    /**
+     * Adds {@code stack} to the player's inventory, dropping any overflow at
+     * their feet instead of letting it vanish.
+     */
+    static void giveOrDrop(Player player, ItemStack stack) {
+        if (!stack.isEmpty() && !player.getInventory().add(stack))
+            player.drop(stack, false);
+    }
 }

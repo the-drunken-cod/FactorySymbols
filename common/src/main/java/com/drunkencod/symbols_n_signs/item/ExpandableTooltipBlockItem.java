@@ -24,6 +24,6 @@ public class ExpandableTooltipBlockItem extends BlockItem implements IExpandable
 
     @Override
     public List<Component> getExpandedTooltip(ItemStack stack) {
-        return List.of(TooltipUtil.tooltipLine(tooltipKey));
+        return TooltipUtil.tooltipLines(tooltipKey);
     }
 }

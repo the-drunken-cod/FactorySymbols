@@ -1,6 +1,5 @@
 package com.drunkencod.symbols_n_signs;
 
-import com.drunkencod.symbols_n_signs.block.sign_post.AbstractSignPostFixtureBlock;
 import com.drunkencod.symbols_n_signs.block.sign_post.SignPostBlock;
 import com.drunkencod.symbols_n_signs.block.sign_post.SignPostNetworkUtil;
 import com.drunkencod.symbols_n_signs.config.FabricConfigHelper;
@@ -40,7 +39,7 @@ public class SymbolsNSignsMod implements ModInitializer {
             net.minecraft.core.BlockPos pos = hit.getBlockPos();
             net.minecraft.world.level.block.state.BlockState state = world.getBlockState(pos);
             net.minecraft.world.level.block.Block block = state.getBlock();
-            if (!(block instanceof SignPostBlock) && !(block instanceof AbstractSignPostFixtureBlock))
+            if (!(block instanceof SignPostBlock) && !(block instanceof IWrenchConfigurable))
                 return InteractionResult.PASS;
             player.swing(hand);
             if (!world.isClientSide())

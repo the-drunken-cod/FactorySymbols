@@ -1,6 +1,7 @@
 package com.drunkencod.symbols_n_signs.block.sign_post;
 
 import com.drunkencod.symbols_n_signs.Constants;
+import com.drunkencod.symbols_n_signs.item.ConfigurationClipboardItem;
 import com.drunkencod.symbols_n_signs.item.ConfigurationClipboardUtil;
 import com.drunkencod.symbols_n_signs.item.IWrenchConfigurable;
 import com.drunkencod.symbols_n_signs.item.RatchetWrenchItem;
@@ -164,7 +165,10 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
     @Override
     protected ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos,
             Player player, InteractionHand hand, BlockHitResult hit) {
-        if (stack.getItem() instanceof RatchetWrenchItem)
+        // Skip the block's own default interaction (e.g. a Button Fixture's physical
+        // press) so it never runs ahead of Item#useOn - otherwise it consumes the
+        // interaction before the wrench/clipboard ever gets a chance to act.
+        if (stack.getItem() instanceof RatchetWrenchItem || stack.getItem() instanceof ConfigurationClipboardItem)
             return ItemInteractionResult.SKIP_DEFAULT_BLOCK_INTERACTION;
         return super.useItemOn(stack, state, level, pos, player, hand, hit);
     }
@@ -366,6 +370,7 @@ public abstract class AbstractSignPostFixtureBlock extends FaceAttachedHorizonta
      * manage their own items instead - see
      * {@link SignPostSignFixtureBlock#onWrenchHarvest}.
      */
+    @Override
     public void onWrenchHarvest(Level level, BlockPos pos, BlockState state, @Nullable Vec3 hitLocation,
             ItemStack wrenchStack, Player player) {
         if (!player.isCreative())
