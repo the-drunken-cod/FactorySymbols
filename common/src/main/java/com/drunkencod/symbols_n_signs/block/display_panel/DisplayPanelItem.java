@@ -22,7 +22,7 @@ public class DisplayPanelItem extends BlockItem implements IExpandableTooltip {
 
     @Override
     public List<Component> getExpandedTooltip(ItemStack stack) {
-        return List.of(TooltipUtil.tooltipLine("block.symbols_n_signs.display_panel.tooltip"));
+        return TooltipUtil.tooltipLines("block.symbols_n_signs.display_panel.tooltip");
     }
 
     @Override

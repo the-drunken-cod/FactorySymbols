@@ -415,6 +415,26 @@ public class DisplayPanelBlock extends Block implements EntityBlock, IWrenchConf
         return InteractionResult.SUCCESS;
     }
 
+    // #region Wrench sneak right-click harvest
+
+    /**
+     * Hands back the stored item (if any) alongside the panel's own drop,
+     * instead of letting it fall to the ground via {@link #onRemove}. The
+     * stored item is cleared beforehand so onRemove doesn't also drop it.
+     */
+    @Override
+    public void onWrenchHarvest(Level level, BlockPos pos, BlockState state, @Nullable Vec3 hitLocation,
+            ItemStack wrenchStack, Player player) {
+        ItemStack stored = ItemStack.EMPTY;
+        if (level.getBlockEntity(pos) instanceof DisplayPanelBlockEntity be) {
+            stored = be.getStoredItem();
+            be.setStoredItem(ItemStack.EMPTY);
+        }
+        if (!player.isCreative() && !stored.isEmpty())
+            giveOrDrop(player, stored);
+        IWrenchConfigurable.super.onWrenchHarvest(level, pos, state, hitLocation, wrenchStack, player);
+    }
+
     // #region Configuration Clipboard
 
     private static final String NBT_ROTATION = "rotation";
