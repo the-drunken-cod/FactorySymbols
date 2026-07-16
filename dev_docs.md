@@ -44,12 +44,14 @@
     - [x] **Redstone Fixture:** Strongly powers the block it faces when the sign post is powered, eliminating the need for using a comparator to read the post's signal, for better aesthetics and more compact redstone designs.
 5. [x] **Rename to Symbols'n'Signs**
 6. [ ] **More Symbols:**
-    - [ ] more emoji and unicode symbols
-    - [ ] signs (one material per symbol with single-file, non-layered textures)
+    - [x] signs (one material per symbol with single-file, non-layered textures)
         - [x] road signs
         - [x] GHS hazard signs
-        - [ ] NFPA hazard signs
-7. [ ] **Final Polish 🇵🇱:**
+    - [ ] more emoji and unicode symbols
+7. [x] **Configuration Clipboard:**
+    - [x] Item that can copy and paste fixture configurations for faster configuration.
+    - [x] If held in the offhand while placing fixtures, auto-applies the settings while placing.
+8. [ ] **Final Polish 🇵🇱:**
     - Lamp Fixture:
         - [ ] More lamp models: bigger lamp, connected lamp, caged lamp and modern (LED) lamp.
         - [ ] Make lamp place and remove a `minecraft:light` block above the first non-air block in the column below it.
@@ -57,24 +59,53 @@
         - [x] Sneak-right-click to remove fixtures from sign posts and signs from sign fixtures, instead of breaking the entire block.
     - Redstone Emitter Fixture:
         - [ ] Make emitters power sign posts to act as a signal relay. (But make sure to investigate infinite loop potential and performance, maybe add a server config toggle?)
-8. [ ] **v1.0.0 Release**
-9. [x] **Configuration Clipboard:**
-    - [x] Item that can copy and paste fixture configurations for faster configuration.
-    - [x] If held in the offhand while placing fixtures, auto-applies the settings while placing.
+    - Display Panel:
+        - [x] Make configurable via wrench.
+        - [x] Make items rotatable like item frames.
+        - [ ] Make placeable on the ceiling and floor.
+9. [ ] **v1.0.0 Release**
 10. [ ] **Future Features:**
-    - wide variety of road markings that all interconnect.
+    - [ ] Mounting Bracket:
+        - another kind of item display that can display items flush against the wall or perpendicular to it.
+        - can be placed on any of the 6 faces of a block.
+        - has a tiny footprint as to not be in the way of the block it's placed against.
+        - up to 6 brackets can be placed in a single block.
+        - wrench modes (per-face): stance (flat,perp_a,perp_b), rotation (0-7), scale (0.5-2.0,step0.1), full_bright (yes/no), locked (yes/no).
+    - [ ] wide variety of road markings that all interconnect:
         - white/yellow/gray colors.
         - zebra stripes (placed like minecart tracks).
         - single/double solid/double dashed/double solid & dashed (L & R).
         - solid/dashed/dashed (short).
-    - traffic light fixture
+    - [ ] Traffic Light Fixture:
         - remote controlled by wireless controller block?
         - dumb system (player needs to figure out phases) or smart system (GUI with phase editor)?
         - computercraft integration?
-    - [x] make display panel items rotatable like item frames (maybe via the wrench or something?).
-    - make display panel placeable on the ceiling and floor.
-    - more symbol materials (e.g. netherite, quartz, prismarine, etc.).
-    - user-defined symbols: allows modpack creators to add their own symbols.
+    - [ ] Custom Sign designing system:
+        - [ ] Crafting station, like a basic linear router that cuts and prints the sign
+            - [ ] Takes materials to create signs: Dyes (cyan,magenta,yellow,black) and Retroreflective Sheet.  
+                - [ ] Can also take a sign as a template, which makes copying custom signs faster.
+            - [ ] Slots: 4x dye input (`#symbols_n_signs:sign_dye/<color>`), 1x sheet input (`#c:plates/retroreflective`), 1x optional sign input (`#symbols_n_signs:signs`), 1x sign output.
+                - [ ] Make compatible with all kinds of automation (hopper, item pipes, ...). Any side can push or pull items.
+            - [ ] Player Interaction:
+                1. Select a base layer (e.g. "base/triangle_inverted_red_outline.png").
+                2. Add new elements to new transparency layers. One element per layer, the last layer has the highest priority.
+                    - Elements can be sprites (e.g. "sprite/car_frontal_small.png") or text in a select font (default/DIN_1451).
+                    - [ ] For different languages, different texts can be specified, which can change the rendered text for each client.
+                3. Move elements by selecting and dragging them. After placing elements, their path, layer index and x and y offsets are stored in the sign's NBT.  
+                   - Elements can also be removed, reordered and duplicated.
+                4. After confirming, the sign is printed instantly, using 1 of each dye and a sheet.
+            - [ ] If powered by redstone, stops auto-copying the inserted sign.
+        - [ ] Custom Sign templates:
+            - [ ] Current road signs.
+                - [ ] Extended custom road signs.
+            - [ ] NFPA hazard signs (fire diamonds).
+        - [ ] Overhauled SignPostSignFixtureBlockEntityRenderer:
+            - Needs to be sign NBT-aware.
+            - Precise sign placement should be improved even more.
+        - [ ] Render the custom signs in inventory slots.
+            - [ ] If this is particularly hard, fall back to a tooltip describing the sign's components (or add the tooltip either way).
+    - [ ] Data-oriented symbols and signs: allows modpack creators to add their own symbol and sign items.
+        - Potential issues: server/client sync can be annoying to set up & new items cannot be created at runtime.
 
 <br>
 
