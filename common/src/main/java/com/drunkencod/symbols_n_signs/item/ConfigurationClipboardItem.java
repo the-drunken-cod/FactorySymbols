@@ -109,10 +109,8 @@ public class ConfigurationClipboardItem extends Item implements IExpandableToolt
             ResourceLocation blockId, UseOnContext ctx, Player player) {
         CompoundTag data = ConfigurationClipboardUtil.getConfiguration(clipboard, blockId,
                 configurable.getConfigFormatVersion());
-        boolean changed = data != null && configurable.pasteConfiguration(level, pos, state, ctx.getClickedFace(),
-                ctx.getClickLocation(), data, player);
 
-        if (!changed) {
+        if (data == null) {
             player.displayClientMessage(
                     Component.translatable("item." + Constants.MOD_ID + ".configuration_clipboard.message.paste_failed",
                             state.getBlock().getName()).withStyle(ChatFormatting.RED),
@@ -121,6 +119,9 @@ public class ConfigurationClipboardItem extends Item implements IExpandableToolt
             playSound(level, pos, player, ModSoundEvents.CONFIGURATION_CLIPBOARD_ERROR.get());
             return;
         }
+
+        configurable.pasteConfiguration(level, pos, state, ctx.getClickedFace(),
+                ctx.getClickLocation(), data, player);
 
         player.displayClientMessage(
                 Component.translatable("item." + Constants.MOD_ID + ".configuration_clipboard.message.pasted",
