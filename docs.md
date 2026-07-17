@@ -309,15 +309,15 @@ Examples include [any Sign Post Fixture](#sign-post-fixtures) and the [Display P
 - Displays:
   - `symbols_n_signs:displays` - All blocks that can display items. Also exists as an item tag with the same key.
 - Sign Post:
-  - `symbols_n_signs:sign_post_blocks` - Contains the [Sign Post](#sign-post) and every [Sign Post Fixture](#sign-post-fixtures) block.
-  - `symbols_n_signs:sign_post_fixtures` - Contains all [Sign Post Fixture](#sign-post-fixtures) blocks except the [Sign Post.](#sign-post)
+  - `symbols_n_signs:sign_post_blocks` - Contains the [Sign Post](#sign-post) and every [Sign Post Fixture](#sign-post-fixtures) block. Contained blocks MUST extend the class `AbstractSignPostFixtureBlock` and have at least the boolean block state properties `powered,north,south,east,west,up,down`, otherwise the game might crash when it tries to propagate power through adjacent blocks in the Sign Post Network.
+  - `symbols_n_signs:sign_post_fixtures` - Contains all [Sign Post Fixture](#sign-post-fixtures) blocks except the base [Sign Post.](#sign-post)
   - `symbols_n_signs:sign_post_connects_to_bottom` - Blocks that [Sign Posts](#sign-post) will connect to, but only via their bottom face.
   - `symbols_n_signs:sign_post_connects_to_top` - Blocks that [Sign Posts](#sign-post) will connect to, but only via their top face.
   - `symbols_n_signs:sign_post_connects_to_sides` - Blocks that [Sign Posts](#sign-post) will connect to via their sides.
   - `symbols_n_signs:sign_post_connects_to` - Blocks that [Sign Posts](#sign-post) will connect to via all faces, despite not being center-supporting.
   - `symbols_n_signs:sign_post_does_not_connect_to` - Blocks whose center face is unstable / Blocks that can't connect to [Sign Posts.](#sign-post)
 - Other:
-  - `symbols_n_signs:configurable` - Any block that can be configured by a [Ratchet Wrench](#ratchet-wrench) and the [Configuration Clipboard](#configuration-clipboard)
+  - `symbols_n_signs:configurable` - Any block that can be configured by a [Ratchet Wrench](#ratchet-wrench) and the [Configuration Clipboard.](#configuration-clipboard) Contained blocks MUST implement the interface `IWrenchConfigurable`, otherwise they can't be configured properly.
 
 <br>
 
