@@ -44,14 +44,17 @@
     - [x] **Redstone Fixture:** Strongly powers the block it faces when the sign post is powered, eliminating the need for using a comparator to read the post's signal, for better aesthetics and more compact redstone designs.
 5. [x] **Rename to Symbols'n'Signs**
 6. [ ] **More Symbols:**
-    - [x] signs (one material per symbol with single-file, non-layered textures)
-        - [x] road signs
-        - [x] GHS hazard signs
-    - [ ] more emoji and unicode symbols
+    - [x] Signs (one material per symbol with single-file, non-layered textures):
+        - [x] road signs.
+        - [x] GHS hazard signs.
+    - [ ] More emoji and unicode symbols.
 7. [x] **Configuration Clipboard:**
     - [x] Item that can copy and paste fixture configurations for faster configuration.
     - [x] If held in the offhand while placing fixtures, auto-applies the settings while placing.
 8. [ ] **Final Polish 🇵🇱:**
+    - Sign Fixture:
+        - [ ] Remove placement restrictions.
+        - [ ] Allow any item to be rendered (with `#symbols_n_signs:symbols` offset by 0.5px on both x and y, like in Display Panels).
     - Lamp Fixture:
         - [ ] More lamp models: bigger lamp, connected lamp, caged lamp and modern (LED) lamp.
         - [ ] Make lamp place and remove a `minecraft:light` block above the first non-air block in the column below it.
@@ -66,39 +69,93 @@
 9. [ ] **v1.0.0 Release**
 10. [ ] **Future Features:**
     - [ ] Mounting Bracket:
-        - another kind of item display that can display items flush against the wall or perpendicular to it.
-        - can be placed on any of the 6 faces of a block.
-        - has a tiny footprint as to not be in the way of the block it's placed against.
-        - up to 6 brackets can be placed in a single block.
-        - wrench modes (per-face): stance (flat,perp_a,perp_b), rotation (0-7), scale (0.5-2.0,step0.1), full_bright (yes/no), locked (yes/no).
-    - [ ] wide variety of road markings that all interconnect:
-        - white/yellow/gray colors.
-        - zebra stripes (placed like minecart tracks).
-        - single/double solid/double dashed/double solid & dashed (L & R).
-        - solid/dashed/dashed (short).
+        - Another kind of item display that can display items flush against the wall or perpendicular to it.
+        - Can be placed on any of the 6 faces of a block.
+        - Has a tiny footprint as to not be in the way of the block it's placed against.
+        - Up to 6 brackets can be placed in a single block.
+        - Wrench modes (per-face): stance (flat,perp_a,perp_b), rotation (0-7), scale (0.5-2.0,step0.1), full_bright (yes/no), locked (yes/no).
+    - [ ] Wide variety of road markings that all interconnect:
+        - White/yellow/gray colors.
+        - Zebra stripes (placed like minecart tracks).
+        - Single/double solid/double dashed/double solid & dashed (L & R).
+        - Solid/dashed/dashed (short).
     - [ ] Traffic Light Fixture:
-        - remote controlled by wireless controller block?
-        - dumb system (player needs to figure out phases) or smart system (GUI with phase editor)?
-        - computercraft integration?
+        - Remote controlled by wireless controller block?
+        - Dumb system (player needs to figure out phases) or smart system (GUI with phase editor)?
+        - Computercraft integration?
     - [ ] Custom Sign designing system:
-        - [ ] Crafting station, like a basic linear router that cuts and prints the sign
-            - [ ] Takes materials to create signs: Dyes (cyan,magenta,yellow,black) and Retroreflective Sheet.  
-                - [ ] Can also take a sign as a template, which makes copying custom signs faster.
-            - [ ] Slots: 4x dye input (`#symbols_n_signs:sign_dye/<color>`), 1x sheet input (`#c:plates/retroreflective`), 1x optional sign input (`#symbols_n_signs:signs`), 1x sign output.
-                - [ ] Make compatible with all kinds of automation (hopper, item pipes, ...). Any side can push or pull items.
-            - [ ] Player Interaction:
-                1. Select a base layer (e.g. "base/triangle_inverted_red_outline.png").
-                2. Add new elements to new transparency layers. One element per layer, the last layer has the highest priority.
-                    - Elements can be sprites (e.g. "sprite/car_frontal_small.png") or text in a select font (default/DIN_1451).
-                    - [ ] For different languages, different texts can be specified, which can change the rendered text for each client.
-                3. Move elements by selecting and dragging them. After placing elements, their path, layer index and x and y offsets are stored in the sign's NBT.  
-                   - Elements can also be removed, reordered and duplicated.
-                4. After confirming, the sign is printed instantly, using 1 of each dye and a sheet.
-            - [ ] If powered by redstone, stops auto-copying the inserted sign.
-        - [ ] Custom Sign templates:
-            - [ ] Current road signs.
-                - [ ] Extended custom road signs.
+        - New crafting stations:
+            - [ ] New crafting stations - GUIs:
+                - [ ] Shows player inventory, hotbar and off-hand slot.
+                    - Investigate if it's possible to just insert the entire inventory into the GUI, so there's compatibility with other mods like Accessories/Curios.
+                - [ ] JEI/EMI button.
+                - Tooltip for every slot with a concise name and a description on a separate line.
+            - [ ] New crafting stations - Recipes:
+                - [ ] Custom recipe providers.
+                - [ ] Multi-platform JEI/EMI plugin.
+            - [ ] Sign template crafting station, like a drafting table / plotter:
+                - Takes any ink and paper as inputs, allows the player to whip up a design, and yields a Sign Template that can be used in the sign crafting station.
+                - An already created custom sign can be placed in an optional input slot to easily copy it to a new Sign Template, making them easy to copy, and then mass produce.
+                - Slots: 1x ink input (`#symbols_n_signs:inks`), 1x paper input (`#symbols_n_signs:drafting_papers`), 1x optional sign or sign template input (`#symbols_n_signs:sign_templates`), 1x sign template input and output / editing slot (`symbols_n_signs:sign_template`).
+                    - [ ] Make compatible with all kinds of automation (hopper, item pipes, ...). Any side can push or pull items. Sign or sign template input slot gets filled first.
+                - [ ] Player Interaction (creating a new design or editing a template's design):
+                    1. Supply base materials (>=1x `#symbols_n_signs:drafting_inks`, >=1 `#symbols_n_signs:drafting_papers`). Skip step if editing a template.
+                    2. Press the "Create" button. This uses an ink and drafting paper and creates the template in the output slot.  
+                       If a template already occupies the editing slot, the button is greyed out and has a different icon and tooltip.  
+                       Skip step if editing a template.
+                    3. Edit base layer (e.g. "base/triangle_inverted_red_outline.png", 32x32 textures with transparency).
+                    4. Add new elements to new transparency layers. One element per layer, the last layer has the highest priority.
+                        - Elements can be sprites (e.g. "sprite/car_frontal_small.png") or text in a select font (default/DIN_1451).
+                        - [ ] For different languages, different texts can be specified, which can change the rendered text for each client.
+                    5. Move elements by selecting them in a list and clicking the arrow move buttons, or editing their local coordinates directly via text fields.  
+                        - Elements can also be removed, reordered and duplicated.
+                        - After modifying layers, their elements' relative texture path, layer index and x and y offsets are serialized into the output template's NBT. An additional list in NBT also keeps track of which of the 4 colors were used across the whole template.
+                    6. Take out the template from the editing slot to use it in a sign crafting station. It can also be put back into the same slot to continue editing it over and over again.  
+                       - To make this work seamlessly across major updates, templates need to have a format version that makes them unable to be loaded if it mismatches.  
+                         In the future, the data fixing could either be done traditionally for all templates, or manually when the player creates a copy of an outdated template.
+                - [ ] Player Interaction (copying a sign or template to a new template):
+                    1. Supply base materials (>=1x `#symbols_n_signs:drafting_inks`, >=1x `#symbols_n_signs:drafting_papers`).
+                    2. Place the sign template or sign to copy from (>=1x `#symbols_n_signs:sign_templates`) into the sign or sign template input slot.
+                    3. Press the "Copy" button. This uses an ink and drafting paper and creates the copied template in the template editing slot. Pressing it again repeats the process all the way until the base materials are used up or the max template stack size (64) is reached.
+                - [ ] Player Interaction (voiding a template):
+                    1. Place the template in its slot, so that the editor is open.
+                    2. Press the "Erase" button. (Button icon and tooltips change to ask user for confirmation.)
+                    3. Press it again to confirm.
+                    4. Paper gets put in player inventory. Dye is lost.
+                - [ ] GUI:
+                    - Refer to the "New crafting stations - GUIs" section above for shared GUI requirements.
+                    - For an example layout refer to the excalidraw file in `mod_assets/proto/sign_template_crafting_station.excalidraw` or the SVG in `mod_assets/proto/sign_template_crafting_station.svg`.
+                - [ ] Model:
+                    - Slanted table that renders a sheet of paper if the paper slot has >0 items, and an ink vessel and a quill if the ink slot has >0 items.
+                    - If the output slot is full, the initial sheet of paper is disabled and a duplicate is rendered instead, with a different texture that makes it look like a blueprint/instruction sheet that has been written on.
+                    - Over top of the sheet is a moveable ruler.
+                    - Also on the table is a basic compass.
+            - [ ] Sign crafting station, like a basic linear router / CNC mill that cuts and prints the sign from a template:
+                - Takes materials to create signs: Dyes (cyan,magenta,yellow,black) and Retroreflective Sheet.  
+                - Slots: 4x dye input (`#symbols_n_signs:sign_dye/<color>`), 1x sheet input (`#c:plates/retroreflective`), 1x sign template input (`symbols_n_signs:sign_template`), 1x fuel input (any furnace fuel - same exact general mechanics), 1x sign output (`#symbols_n_signs:signs`).
+                    - [ ] Make compatible with all kinds of automation (hopper, item pipes, ...). Any side can push or pull items.
+                - [ ] Player Interaction (producing signs):
+                    1. Supply base materials (>=1*4x `#symbols_n_signs:sign_dye/<color>` (cyan,magenta,yellow,black), >=1x `#c:plates/retroreflective`, >=1x `symbols_n_signs:sign_template`), >=1x (any furnace fuel).
+                    2. Station automatically crafts the ingredients into a sign. Each crafting cycle takes about as long as a blast furnace / smoker and uses the same amount of fuel. After crafting, template is left untouched.  
+                       The required dyes are dependant on the dyes used in the sign template's layers (stored in an extra list in NBT).  
+                       If fuel runs out, the progress reverts over time just like regular furnaces.
+                - [ ] If powered by redstone, pauses the continued crafting of signs. Progress is stored until the currently burning fuel is used up.
+                - [ ] GUI:
+                    - Refer to the "New crafting stations - GUIs" section above for shared GUI requirements.
+                    - For an example layout refer to the excalidraw file in `mod_assets/proto/sign_crafting_station.excalidraw` or the SVG in `mod_assets/proto/sign_crafting_station.svg`.
+                - [ ] Model:
+                    - Tiny furnace engine at the bottom producing heat for a hot plate, as well as powering the cutting tools.
+                        - When fueled switch texture, just like regular furnaces.
+                    - Retroreflective Sheets are rendered flat on the hot plate when there's no output item. Otherwise, the sign in the output is rendered.
+                    - Above the hot plate there is a linear gantry (think CNC machine or 3D printer), that carries the print head and cutting tool.
+                    - The dyes sit in 4 vats above and behind the hot plate and gantry. A fill level might be rendered using a custom client renderer later on.
+                    - The template is rendered on a scanner or under a camera next to the gantry.
+                    - The model may be animated later on using GeckoLib.
+        - [ ] Base layers:
+            - [ ] All current road signs.
+                - [ ] Extended custom road signs (addendum signs, biiig signs, etc. etc. etc.)
             - [ ] NFPA hazard signs (fire diamonds).
+        - [ ] Sign sprites: Whooooole load of sprites that can be used on the signs.
         - [ ] Overhauled SignPostSignFixtureBlockEntityRenderer:
             - Needs to be sign NBT-aware.
             - Precise sign placement should be improved even more.
